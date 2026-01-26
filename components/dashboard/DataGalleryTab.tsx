@@ -29,7 +29,7 @@ export const DataGalleryTab: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <div style={sectionTitleStyle}>Component Gallery (75 Items)</div>
+        <div style={sectionTitleStyle}>Component Gallery (76 Items)</div>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>A comprehensive collection of data-rich UI micro-components to test theme scalability.</p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -352,6 +352,25 @@ export const DataGalleryTab: React.FC = () => {
                         <div className="h-2 bg-gray-200 rounded w-1/2 animate-pulse" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                     </div>
                 </div>
+            </CardWrapper>
+            
+            <CardWrapper title="Table Skeleton">
+                 <div className="w-full">
+                    <div className="flex gap-2 mb-2 border-b pb-1" style={{borderColor: theme.colors.text+'10'}}>
+                         <div className="h-2 w-1/3 bg-gray-200 rounded animate-pulse" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                         <div className="h-2 w-1/4 bg-gray-200 rounded animate-pulse" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                         <div className="h-2 w-1/4 bg-gray-200 rounded animate-pulse" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                    </div>
+                    <div className="space-y-2">
+                        {[1,2,3].map(i => (
+                            <div key={i} className="flex gap-2">
+                                <div className="h-2 w-1/3 bg-gray-200 rounded animate-pulse" style={{ backgroundColor: theme.colors.text + '05' }}></div>
+                                <div className="h-2 w-1/4 bg-gray-200 rounded animate-pulse" style={{ backgroundColor: theme.colors.text + '05' }}></div>
+                                <div className="h-2 w-1/4 bg-gray-200 rounded animate-pulse" style={{ backgroundColor: theme.colors.text + '05' }}></div>
+                            </div>
+                        ))}
+                    </div>
+                 </div>
             </CardWrapper>
 
             <CardWrapper title="Chip (Deletable)">

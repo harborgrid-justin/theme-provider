@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useTheme } from '../../../context/ThemeContext';
 import { ThemedCard } from '../../ui-elements/ThemedCard';
 import { ThemedButton } from '../../ui-elements/ThemedButton';
@@ -8,6 +8,7 @@ import { toast } from '../../ui/Toaster';
 export const ProjectFiles: React.FC = () => {
   const { theme } = useTheme();
   const [isDragging, setIsDragging] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   // Initial static data moved to state for interactivity
@@ -17,6 +18,12 @@ export const ProjectFiles: React.FC = () => {
     { name: 'Project_Timeline.xlsx', size: '128 KB', type: 'xls', date: 'Oct 24', user: 'Sarah W.' },
     { name: 'Logo_Pack_Final.zip', size: '12 MB', type: 'zip', date: 'Oct 22', user: 'James R.' },
   ]);
+
+  useEffect(() => {
+    // Simulate initial data fetch
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -72,6 +79,10 @@ export const ProjectFiles: React.FC = () => {
     if (t.includes('zip') || t.includes('rar')) return <Icons.Folder style={{ color: '#F59E0B' }} />;
     return <Icons.File style={{ color: theme.colors.textSecondary }} />;
   };
+
+  const SkeletonPulse = ({ className }: { className?: string }) => (
+    <div className={`animate-pulse rounded ${className}`} style={{ backgroundColor: theme.colors.text + '10' }}></div>
+  );
 
   return (
     <div className="space-y-8">
@@ -135,7 +146,20 @@ export const ProjectFiles: React.FC = () => {
                 <div className="overflow-x-auto flex-1">
                     <table className="w-full text-sm">
                         <tbody className="divide-y" style={{ borderColor: theme.colors.text + '10' }}>
-                            {files.map((file, i) => (
+                            {isLoading ? Array.from({length: 4}).map((_, i) => (
+                                <tr key={i}>
+                                    <td className="p-4 pl-6 flex items-center gap-3">
+                                        <SkeletonPulse className="w-8 h-8 rounded" />
+                                        <div className="space-y-1">
+                                            <SkeletonPulse className="w-32 h-3" />
+                                            <SkeletonPulse className="w-16 h-2" />
+                                        </div>
+                                    </td>
+                                    <td className="p-4"><SkeletonPulse className="w-20 h-3" /></td>
+                                    <td className="p-4"><SkeletonPulse className="w-24 h-3" /></td>
+                                    <td className="p-4"></td>
+                                </tr>
+                            )) : files.map((file, i) => (
                                 <tr 
                                     key={i} 
                                     className="hover:bg-black/5 group cursor-pointer transition-colors"

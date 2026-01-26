@@ -20,7 +20,7 @@ export const AppStats: React.FC = () => {
     fontWeight: theme.typography.headingWeight,
   };
 
-  const SkeletonPulse = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  const SkeletonPulse: React.FC<{ className?: string; style?: React.CSSProperties }> = ({ className, style }) => (
     <div className={`animate-pulse rounded ${className}`} style={{ backgroundColor: theme.colors.text + '10', ...style }}></div>
   );
 

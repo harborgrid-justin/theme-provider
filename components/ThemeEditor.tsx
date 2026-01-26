@@ -58,6 +58,28 @@ export const ThemeEditor: React.FC<ThemeEditorProps> = ({ onClose, isMobile }) =
 
   return (
     <div className="flex flex-col h-full bg-gray-50/50">
+        <style>{`
+          .scrollbar-stable {
+            scrollbar-gutter: stable;
+          }
+          .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.3);
+            border-radius: 99px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+          }
+          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(107, 114, 128, 0.6);
+          }
+        `}</style>
+
         {/* Header */}
         <div className="p-4 border-b bg-white flex justify-between items-center shrink-0 shadow-sm z-10">
              <div className="flex items-center gap-2">
@@ -69,7 +91,7 @@ export const ThemeEditor: React.FC<ThemeEditorProps> = ({ onClose, isMobile }) =
              {isMobile && <button onClick={onClose} className="p-2 text-gray-500 hover:bg-gray-100 rounded-full">✕</button>}
         </div>
 
-        <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-stable custom-scrollbar">
              
              {/* AI Generator Section */}
             <div className={`border-b bg-white transition-all duration-300 ease-in-out ${isAIExpanded ? 'bg-indigo-50/30' : ''}`}>
