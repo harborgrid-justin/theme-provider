@@ -1,0 +1,5 @@
+{
+  "name": "Chameleon Theme Architect",
+  "description": "An AI-powered, interactive design system builder. Switch between visual frameworks like Material, Bootstrap, and Glassmorphism in real-time, customize every token, and generate themes with Gemini.",
+  "requestFramePermissions": []
+}

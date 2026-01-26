@@ -1,0 +1,33 @@
+import React from 'react';
+import { Icon } from '../ui-elements/Icon';
+
+export const Icons = {
+  Check: () => <Icon name="check" size="sm" />,
+  User: () => <Icon name="person" size="sm" />,
+  Chart: () => <Icon name="bar_chart" size="sm" />,
+  Bell: () => <Icon name="notifications" size="sm" />,
+  Search: () => <Icon name="search" size="sm" />,
+  Menu: () => <Icon name="menu" size="md" />,
+  Star: (props: any) => <Icon name="star" size="sm" {...props} />,
+  Settings: () => <Icon name="settings" size="sm" />,
+  Chat: () => <Icon name="chat_bubble_outline" size="sm" />,
+  Folder: () => <Icon name="folder" size="md" />,
+  File: () => <Icon name="description" size="md" />,
+  Send: () => <Icon name="send" size="sm" />,
+  More: () => <Icon name="more_vert" size="sm" />,
+  ChevronDown: () => <Icon name="expand_more" size="sm" />,
+  ChevronRight: () => <Icon name="chevron_right" size="sm" />,
+  Image: () => <Icon name="image" size="lg" />,
+  Help: () => <Icon name="help_outline" size="sm" />,
+  Edit: () => <Icon name="edit" size="sm" />,
+  Trash: () => <Icon name="delete_outline" size="sm" />,
+  Lock: () => <Icon name="lock" size="sm" />,
+  Cloud: () => <Icon name="cloud_upload" size="md" />,
+  Calendar: () => <Icon name="calendar_today" size="sm" />,
+  Clock: () => <Icon name="schedule" size="sm" />,
+  Attach: () => <Icon name="attach_file" size="sm" />,
+  Link: () => <Icon name="link" size="sm" />,
+  Flag: () => <Icon name="flag" size="sm" />,
+  Tag: () => <Icon name="label" size="sm" />,
+  Close: () => <Icon name="close" size="sm" />,
+};
