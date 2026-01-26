@@ -1,77 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { AppStats } from './application/AppStats';
+import { AppChat } from './application/AppChat';
+import { AppSettings } from './application/AppSettings';
 import { useTheme } from '../../context/ThemeContext';
-import { ThemedButton } from '../ui-elements/ThemedButton';
 import { ThemedCard } from '../ui-elements/ThemedCard';
-import { ThemedInput } from '../ui-elements/ThemedInput';
+import { ThemedButton } from '../ui-elements/ThemedButton';
 import { Icons } from './DashboardIcons';
-import { CHART_DATA, FILES } from './DashboardData';
-import { BarChart, Bar, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { toast } from '../ui/Toaster';
 
 export const ApplicationTab: React.FC = () => {
   const { theme } = useTheme();
 
-  // -- Interactive State --
-  
-  // 8. Charts
-  const [trafficFilter, setTrafficFilter] = useState('This Week');
-  
-  // 10. Chat
-  const [activeChatId, setActiveChatId] = useState(1);
-  const [messageInput, setMessageInput] = useState('');
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hey! Can you review the PR?", sender: 'them', time: '10:30 AM' },
-    { id: 2, text: "Sure, I'll take a look in 5 mins.", sender: 'me', time: '10:32 AM' },
-    { id: 3, text: "Awesome, thanks!", sender: 'them', time: '10:33 AM' }
-  ]);
-
-  // 11. Settings
-  const [activeSettingsTab, setActiveSettingsTab] = useState('General');
-  const [profileForm, setProfileForm] = useState({ firstName: 'Alex', lastName: 'Morgan', bio: 'Product Designer based in SF.' });
-
-
-  // -- Handlers --
-
-  const handleSendMessage = () => {
-      if (!messageInput.trim()) return;
-      const newMsg = { id: Date.now(), text: messageInput, sender: 'me', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
-      setMessages([...messages, newMsg]);
-      setMessageInput('');
-      
-      // Simulate reply
-      setTimeout(() => {
-          setMessages(prev => [...prev, { 
-              id: Date.now() + 1, 
-              text: "Got it. Looks good!", 
-              sender: 'them', 
-              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
-          }]);
-          toast.success("New message received");
-      }, 2000);
-  };
-
-  const handleFileClick = (fileName: string) => {
-      toast.info(`Opening ${fileName}...`);
-  };
-
-  const handleSaveSettings = () => {
-      toast.success("Profile settings saved successfully");
-  };
-
-  const handleStatClick = (label: string) => {
-      toast.info(`Viewing details for ${label}`);
-  };
-
-
-  // -- Styles --
-
-  const headingStyle = {
+  const sectionTitleStyle = {
     color: theme.colors.text,
     fontWeight: theme.typography.headingWeight,
-  };
-
-  const sectionTitleStyle = {
-    ...headingStyle,
     opacity: 0.9,
     fontSize: '1.25rem',
     marginBottom: '1rem',
@@ -80,337 +21,151 @@ export const ApplicationTab: React.FC = () => {
     borderBottom: `1px solid ${theme.colors.text}20`
   };
 
-  const mutedTextStyle = {
-      color: theme.colors.textSecondary,
-  };
-
   return (
     <div className="space-y-12 animate-in fade-in duration-500">
-        {/* 7. Dashboard Stats */}
         <section>
-            <div style={sectionTitleStyle}>7. Stats Overview</div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                    { label: 'Total Revenue', val: '$45,231', change: '+20.1%', trend: 'up' },
-                    { label: 'Active Users', val: '2,345', change: '+15%', trend: 'up' },
-                    { label: 'Bounce Rate', val: '42.3%', change: '-5%', trend: 'down' },
-                    { label: 'Server Time', val: '12ms', change: '+1%', trend: 'flat' }
-                ].map((stat, i) => (
-                    <ThemedCard key={i} className="p-4 cursor-pointer hover:-translate-y-1 transition-transform" onClick={() => handleStatClick(stat.label)}>
-                        <div className="text-xs font-medium opacity-60 uppercase mb-1" style={{ color: theme.colors.text }}>{stat.label}</div>
-                        <div className="text-2xl mb-2" style={headingStyle}>{stat.val}</div>
-                        <div 
-                            className="text-xs font-medium" 
-                            style={{ 
-                                color: stat.trend === 'up' ? theme.colors.success : stat.trend === 'down' ? theme.colors.error : theme.colors.textSecondary 
-                            }}
-                        >
-                            {stat.change} from last month
-                        </div>
-                    </ThemedCard>
-                ))}
-            </div>
+            <div style={sectionTitleStyle}>Stats Overview</div>
+            <AppStats />
         </section>
 
-        {/* 8. Charts */}
         <section>
-            <div style={sectionTitleStyle}>8. Data Visualization</div>
-            <div className="grid md:grid-cols-2 gap-6">
-                <ThemedCard className="h-80 flex flex-col">
-                    <div className="flex justify-between items-center mb-6">
-                        <h3 style={headingStyle}>Traffic Source</h3>
-                        <select 
-                            className="text-xs bg-transparent border-none outline-none opacity-50 cursor-pointer hover:opacity-100 transition-opacity" 
-                            style={{ color: theme.colors.text }}
-                            value={trafficFilter}
-                            onChange={(e) => { setTrafficFilter(e.target.value); toast.info(`Filter updated: ${e.target.value}`); }}
-                        >
-                            <option>This Week</option>
-                            <option>Last Week</option>
-                            <option>This Month</option>
-                        </select>
+             <div style={sectionTitleStyle}>Calendar & Scheduling</div>
+             <ThemedCard className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                    <h3 className="font-bold text-lg" style={{ color: theme.colors.text }}>October 2024</h3>
+                    <div className="flex gap-2">
+                        <ThemedButton size="sm" variant="outline">Today</ThemedButton>
+                        <div className="flex gap-1">
+                            <ThemedButton size="sm" variant="ghost">{'<'}</ThemedButton>
+                            <ThemedButton size="sm" variant="ghost">{'>'}</ThemedButton>
+                        </div>
                     </div>
-                    <div className="flex-1 min-h-0">
-                    <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={CHART_DATA}>
-                            <defs>
-                                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor={theme.colors.primary} stopOpacity={0.3}/>
-                                <stop offset="95%" stopColor={theme.colors.primary} stopOpacity={0}/>
-                                </linearGradient>
-                            </defs>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.1} stroke={theme.colors.text}/>
-                            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: theme.colors.textSecondary, fontSize: 10}} />
-                            <YAxis hide />
-                            <Tooltip 
-                                contentStyle={{ 
-                                    borderRadius: theme.borderRadius.sm, 
-                                    border: 'none', 
-                                    backgroundColor: theme.colors.surface,
-                                    color: theme.colors.text,
-                                    boxShadow: `0 4px 12px ${theme.colors.text}15` 
-                                }} 
-                            />
-                            <Area 
-                                type="monotone" 
-                                dataKey="uv" 
-                                stroke={theme.colors.primary} 
-                                fillOpacity={1} 
-                                fill="url(#colorUv)" 
-                                strokeWidth={2}
-                                animationDuration={1000}
-                            />
-                        </AreaChart>
-                    </ResponsiveContainer>
+                </div>
+                <div className="grid grid-cols-7 text-center mb-2">
+                    {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
+                        <div key={d} className="text-xs font-bold opacity-50 py-2" style={{ color: theme.colors.text }}>{d}</div>
+                    ))}
+                </div>
+                <div className="grid grid-cols-7 gap-1">
+                    {Array.from({length: 31}, (_, i) => i + 1).map((day) => {
+                         const hasEvent = [4, 12, 15, 22, 28].includes(day);
+                         return (
+                            <div key={day} className="aspect-square border rounded-lg p-2 flex flex-col justify-between hover:bg-black/5 transition-colors cursor-pointer" style={{ borderColor: theme.colors.text + '10' }}>
+                                <span className={`text-sm ${day === 15 ? 'font-bold w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center' : ''}`} style={{ color: day === 15 ? '#fff' : theme.colors.text }}>{day}</span>
+                                {hasEvent && (
+                                    <div className="w-full h-1.5 rounded-full" style={{ backgroundColor: theme.colors.primary }}></div>
+                                )}
+                            </div>
+                         )
+                    })}
+                </div>
+             </ThemedCard>
+        </section>
+
+        <section>
+             <div style={sectionTitleStyle}>Invoices & Billing</div>
+             <ThemedCard className="overflow-hidden p-0">
+                 <div className="p-8">
+                     <div className="flex justify-between items-start mb-12">
+                         <div>
+                             <h1 className="text-3xl font-bold mb-2" style={{ color: theme.colors.text }}>Invoice</h1>
+                             <div className="text-sm opacity-60" style={{ color: theme.colors.text }}>#INV-2024-001</div>
+                         </div>
+                         <div className="text-right">
+                             <h3 className="font-bold text-lg" style={{ color: theme.colors.text }}>Chameleon Inc.</h3>
+                             <p className="text-sm opacity-60" style={{ color: theme.colors.text }}>123 Design St<br/>San Francisco, CA</p>
+                         </div>
+                     </div>
+                     <table className="w-full mb-8">
+                         <thead className="border-b-2" style={{ borderColor: theme.colors.text + '10' }}>
+                             <tr>
+                                 <th className="text-left py-3 text-sm font-bold opacity-60" style={{ color: theme.colors.text }}>Description</th>
+                                 <th className="text-right py-3 text-sm font-bold opacity-60" style={{ color: theme.colors.text }}>Amount</th>
+                             </tr>
+                         </thead>
+                         <tbody className="divide-y" style={{ borderColor: theme.colors.text + '10' }}>
+                             <tr>
+                                 <td className="py-4 text-sm" style={{ color: theme.colors.text }}>Pro Plan Subscription (Yearly)</td>
+                                 <td className="py-4 text-right font-mono" style={{ color: theme.colors.text }}>$290.00</td>
+                             </tr>
+                             <tr>
+                                 <td className="py-4 text-sm" style={{ color: theme.colors.text }}>Extra Team Seats (x2)</td>
+                                 <td className="py-4 text-right font-mono" style={{ color: theme.colors.text }}>$40.00</td>
+                             </tr>
+                         </tbody>
+                         <tfoot>
+                             <tr>
+                                 <td className="py-4 text-right font-bold" style={{ color: theme.colors.text }}>Total</td>
+                                 <td className="py-4 text-right font-bold text-xl" style={{ color: theme.colors.primary }}>$330.00</td>
+                             </tr>
+                         </tfoot>
+                     </table>
+                     <div className="flex justify-end gap-3">
+                         <ThemedButton variant="outline"><Icons.File size="sm"/> Download PDF</ThemedButton>
+                         <ThemedButton>Pay Now</ThemedButton>
+                     </div>
+                 </div>
+             </ThemedCard>
+        </section>
+
+        <section>
+             <div style={sectionTitleStyle}>Notification Center</div>
+             <div className="grid md:grid-cols-2 gap-8">
+                <ThemedCard>
+                    <div className="flex justify-between items-center mb-6">
+                         <h3 className="font-bold" style={{ color: theme.colors.text }}>Notifications</h3>
+                         <span className="text-xs font-bold px-2 py-1 rounded bg-blue-100 text-blue-600">3 New</span>
+                    </div>
+                    <div className="space-y-4">
+                        {[
+                            { title: 'New comment on your post', time: '5m ago', unread: true },
+                            { title: 'Project "Alpha" was approved', time: '1h ago', unread: true },
+                            { title: 'Server maintenance scheduled', time: '2h ago', unread: true },
+                            { title: 'Welcome to the team!', time: '1d ago', unread: false },
+                        ].map((n, i) => (
+                            <div key={i} className="flex gap-4 items-start p-3 rounded-lg hover:bg-black/5 transition-colors cursor-pointer">
+                                <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${n.unread ? 'bg-blue-500' : 'bg-transparent'}`}></div>
+                                <div>
+                                    <h4 className={`text-sm ${n.unread ? 'font-bold' : 'font-medium'}`} style={{ color: theme.colors.text }}>{n.title}</h4>
+                                    <p className="text-xs opacity-60" style={{ color: theme.colors.text }}>{n.time}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </ThemedCard>
                 
-                <ThemedCard className="h-80 flex flex-col">
-                    <div className="mb-6">
-                        <h3 style={headingStyle}>Conversion</h3>
+                <ThemedCard>
+                    <div className="flex justify-between items-center mb-6">
+                         <h3 className="font-bold" style={{ color: theme.colors.text }}>Upcoming Tasks</h3>
+                         <ThemedButton size="sm" variant="ghost">View All</ThemedButton>
                     </div>
-                    <div className="flex-1 min-h-0">
-                        <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={CHART_DATA}>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.1} stroke={theme.colors.text}/>
-                            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: theme.colors.textSecondary, fontSize: 10}} />
-                            <Tooltip 
-                                cursor={{fill: theme.colors.text + '05'}} 
-                                contentStyle={{ 
-                                    borderRadius: theme.borderRadius.sm,
-                                    backgroundColor: theme.colors.surface,
-                                    color: theme.colors.text,
-                                    border: `1px solid ${theme.colors.text}10`
-                                }} 
-                            />
-                            <Bar 
-                                dataKey="pv" 
-                                fill={theme.colors.secondary} 
-                                radius={[4, 4, 0, 0]} 
-                                barSize={20}
-                                animationDuration={1000} 
-                            />
-                        </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </ThemedCard>
-            </div>
-        </section>
-
-        {/* 9. File Manager */}
-        <section>
-            <div style={sectionTitleStyle}>9. File Manager</div>
-            <ThemedCard>
-                <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-2">
-                        <button style={{ color: theme.colors.textSecondary }} className="hover:opacity-100 opacity-70"><Icons.ChevronDown/></button>
-                        <h3 style={headingStyle}>My Documents</h3>
-                    </div>
-                    <div className="flex gap-2">
-                        <ThemedButton size="sm" variant="outline" onClick={() => toast.info("Cloud storage connecting...")}><Icons.Cloud/></ThemedButton>
-                        <ThemedButton size="sm" onClick={() => toast.success("Created new file")}><Icons.Check/> New</ThemedButton>
-                    </div>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {FILES.map((file, i) => (
-                        <div 
-                            key={i} 
-                            onClick={() => handleFileClick(file.name)}
-                            className="group p-4 border transition-all cursor-pointer flex flex-col items-center text-center gap-3 hover:shadow-md hover:-translate-y-1" 
-                            style={{ 
-                                borderColor: theme.colors.text + '10',
-                                borderRadius: theme.borderRadius.md,
-                                backgroundColor: theme.colors.background 
-                            }}
-                        >
-                            <div 
-                                className="p-3" 
-                                style={{ 
-                                    borderRadius: theme.borderRadius.md,
-                                    backgroundColor: file.type === 'folder' ? theme.colors.accent + '20' : theme.colors.surface,
-                                    color: file.type === 'folder' ? theme.colors.accent : theme.colors.textSecondary
-                                }}
-                            >
-                                {file.type === 'folder' ? <Icons.Folder/> : <Icons.File/>}
-                            </div>
-                            <div className="w-full">
-                                <div className="text-sm font-medium truncate" style={{ color: theme.colors.text }}>{file.name}</div>
-                                <div className="text-xs" style={mutedTextStyle}>{file.size}</div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </ThemedCard>
-        </section>
-
-        {/* 10. Chat Interface */}
-        <section>
-            <div style={sectionTitleStyle}>10. Communication</div>
-            <div className="grid md:grid-cols-3 gap-6 h-96">
-                <ThemedCard className="col-span-1 p-0 flex flex-col overflow-hidden">
-                    <div className="p-4 border-b font-bold" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.background, color: theme.colors.text }}>Messages</div>
-                    <div className="flex-1 overflow-y-auto">
-                        {[1,2,3,4].map(i => (
-                            <button 
-                                key={i} 
-                                onClick={() => setActiveChatId(i)}
-                                className={`w-full p-3 flex gap-3 cursor-pointer border-b last:border-0 hover:bg-black/5 text-left transition-colors ${activeChatId === i ? 'bg-black/5' : ''}`} 
-                                style={{ borderColor: theme.colors.text + '05' }}
-                            >
-                                <div className="w-10 h-10 rounded-full flex-shrink-0" style={{ backgroundColor: theme.colors.text + '20' }}></div>
-                                <div className="min-w-0 flex-1">
-                                    <div className="flex justify-between items-baseline">
-                                        <div className="text-sm truncate" style={{ fontWeight: '600', color: theme.colors.text }}>
-                                            {i === 1 ? 'Sarah Wilson' : `User ${i}`}
-                                        </div>
-                                        <div className="text-[10px]" style={{ color: theme.colors.textSecondary }}>12m</div>
-                                    </div>
-                                    <div className="text-xs truncate" style={{ color: theme.colors.textSecondary }}>Hey, did you see the latest designs?</div>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
-                </ThemedCard>
-                <ThemedCard className="col-span-2 md:col-span-2 p-0 flex flex-col overflow-hidden">
-                    <div className="p-4 border-b flex justify-between items-center" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.background }}>
-                        <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: theme.colors.success + '20', color: theme.colors.success }}>SW</div>
-                            <div className="text-sm font-bold" style={{ color: theme.colors.text }}>Sarah Wilson</div>
-                        </div>
-                        <div className="flex gap-2" style={{ color: theme.colors.textSecondary }}>
-                            <Icons.Search/>
-                            <Icons.More/>
-                        </div>
-                    </div>
-                    <div className="flex-1 p-4 flex flex-col gap-4 overflow-y-auto" style={{ backgroundColor: theme.colors.background }}>
-                        {messages.map((msg) => (
-                            <div 
-                                key={msg.id}
-                                className={`max-w-[80%] p-3 text-sm animate-in zoom-in-95 duration-200 ${msg.sender === 'me' ? 'self-end' : 'self-start'}`}
-                                style={{ 
-                                    borderRadius: theme.borderRadius.lg, 
-                                    borderTopRightRadius: msg.sender === 'me' ? 0 : theme.borderRadius.lg,
-                                    borderTopLeftRadius: msg.sender === 'me' ? theme.borderRadius.lg : 0,
-                                    backgroundColor: msg.sender === 'me' ? theme.colors.primary : theme.colors.surface,
-                                    border: msg.sender === 'me' ? 'none' : `1px solid ${theme.colors.text}10`,
-                                    color: msg.sender === 'me' ? '#fff' : theme.colors.text
-                                }}
-                            >
-                                {msg.text}
-                                <div className={`text-[10px] mt-1 opacity-70 ${msg.sender === 'me' ? 'text-right' : 'text-left'}`}>
-                                    {msg.time}
-                                </div>
+                    <div className="space-y-2">
+                        {[
+                            { task: 'Review Q3 Financials', due: 'Today' },
+                            { task: 'Update landing page assets', due: 'Tomorrow' },
+                            { task: 'Client meeting prep', due: 'Oct 24' },
+                            { task: 'Deploy v2.1 to staging', due: 'Oct 28' },
+                            { task: 'Team retrospective', due: 'Oct 30' },
+                        ].map((t, i) => (
+                            <div key={i} className="flex items-center gap-3 p-2 rounded hover:bg-black/5">
+                                <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                <span className="flex-1 text-sm" style={{ color: theme.colors.text }}>{t.task}</span>
+                                <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">{t.due}</span>
                             </div>
                         ))}
                     </div>
-                    <div className="p-3 border-t" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
-                        <div className="flex gap-2">
-                            <button className="p-2 rounded hover:bg-black/5" style={{ color: theme.colors.textSecondary, borderRadius: theme.borderRadius.sm }}><Icons.Cloud/></button>
-                            <ThemedInput 
-                                placeholder="Type a message..." 
-                                style={{ backgroundColor: theme.colors.background, borderColor: 'transparent' }} 
-                                value={messageInput}
-                                onChange={(e) => setMessageInput(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                            />
-                            <ThemedButton size="sm" onClick={handleSendMessage}><Icons.Send/></ThemedButton>
-                        </div>
-                    </div>
                 </ThemedCard>
-            </div>
+             </div>
         </section>
 
-        {/* 11. Settings Panel */}
         <section>
-            <div style={sectionTitleStyle}>11. Settings Layout</div>
-            <ThemedCard className="p-0 overflow-hidden flex flex-col md:flex-row min-h-[400px]">
-                <div className="w-full md:w-64 border-r" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.background }}>
-                    <div className="p-6 text-lg" style={headingStyle}>Settings</div>
-                    <nav className="flex flex-col gap-1 px-3">
-                        {['General', 'Account', 'Notifications', 'Security', 'Billing'].map((item, i) => (
-                            <button 
-                            key={item} 
-                            onClick={() => setActiveSettingsTab(item)}
-                            className={`text-left px-3 py-2 text-sm font-medium transition-all`}
-                            style={{ 
-                                borderRadius: theme.borderRadius.sm,
-                                backgroundColor: activeSettingsTab === item ? theme.colors.surface : 'transparent',
-                                color: activeSettingsTab === item ? theme.colors.primary : theme.colors.textSecondary,
-                                boxShadow: activeSettingsTab === item ? `0 1px 2px ${theme.colors.text}10` : 'none',
-                                fontWeight: activeSettingsTab === item ? 'bold' : 'normal'
-                            }}
-                            >
-                                {item}
-                            </button>
-                        ))}
-                    </nav>
-                </div>
-                <div className="flex-1 p-6 md:p-8">
-                    <div className="max-w-xl space-y-8 animate-in fade-in slide-in-from-right-2 duration-300" key={activeSettingsTab}>
-                        <div>
-                            <h3 className="text-lg mb-1" style={headingStyle}>{activeSettingsTab} Settings</h3>
-                            <p className="text-sm mb-6" style={mutedTextStyle}>Update your {activeSettingsTab.toLowerCase()} information.</p>
-                            
-                            {activeSettingsTab === 'General' ? (
-                                <>
-                                    <div className="flex items-center gap-6 mb-6">
-                                        <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl overflow-hidden" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.textSecondary }}>
-                                            <Icons.User/>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <ThemedButton size="sm" variant="outline" onClick={() => toast.info("Opening file picker...")}>Change Avatar</ThemedButton>
-                                            <div className="text-xs" style={{ color: theme.colors.textSecondary }}>JPG, GIF or PNG. 1MB max.</div>
-                                        </div>
-                                    </div>
-                                    <div className="grid gap-4">
-                                        <div className="grid md:grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="text-xs font-bold uppercase mb-1 block opacity-70" style={{ color: theme.colors.text }}>First Name</label>
-                                                <ThemedInput 
-                                                    value={profileForm.firstName} 
-                                                    onChange={(e) => setProfileForm({...profileForm, firstName: e.target.value})}
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="text-xs font-bold uppercase mb-1 block opacity-70" style={{ color: theme.colors.text }}>Last Name</label>
-                                                <ThemedInput 
-                                                    value={profileForm.lastName}
-                                                    onChange={(e) => setProfileForm({...profileForm, lastName: e.target.value})}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label className="text-xs font-bold uppercase mb-1 block opacity-70" style={{ color: theme.colors.text }}>Bio</label>
-                                            <textarea 
-                                                className="w-full p-3 border text-sm focus:ring-2 outline-none h-24 transition-all" 
-                                                style={{ 
-                                                    borderRadius: theme.borderRadius.md,
-                                                    borderColor: theme.colors.text + '20',
-                                                    backgroundColor: theme.colors.surface,
-                                                    color: theme.colors.text,
-                                                    fontFamily: 'inherit'
-                                                }} 
-                                                value={profileForm.bio}
-                                                onChange={(e) => setProfileForm({...profileForm, bio: e.target.value})}
-                                            />
-                                        </div>
-                                    </div>
-                                </>
-                            ) : (
-                                <div className="p-8 text-center opacity-50 border-2 border-dashed rounded-lg" style={{ borderColor: theme.colors.text + '20' }}>
-                                    Settings content for {activeSettingsTab} would go here.
-                                </div>
-                            )}
-                        </div>
-                        <div className="pt-6 border-t" style={{ borderColor: theme.colors.text + '10' }}>
-                            <div className="flex justify-end gap-3">
-                                <ThemedButton variant="ghost">Cancel</ThemedButton>
-                                <ThemedButton onClick={handleSaveSettings}>Save Changes</ThemedButton>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ThemedCard>
+            <div style={sectionTitleStyle}>Communication</div>
+            <AppChat />
+        </section>
+
+        <section>
+            <div style={sectionTitleStyle}>Settings Layout</div>
+            <AppSettings />
         </section>
     </div>
   );
