@@ -52,6 +52,22 @@ export const ElementsTab: React.FC = () => {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(24);
 
+  // 32. Advanced Nav
+  const [verticalTab, setVerticalTab] = useState('Profile');
+  const [accordionOpen, setAccordionOpen] = useState<number | null>(1);
+
+  // 33. Tables
+  const [sortConfig, setSortConfig] = useState<{key: string, direction: 'asc' | 'desc'}>({ key: 'name', direction: 'asc' });
+
+  // 34. Overlays
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // 35. Input Groups
+  const [showPassword, setShowPassword] = useState(false);
+
+  // 36. Media
+  const [uploadProgress, setUploadProgress] = useState(45);
+
 
   // -- Handlers --
 
@@ -76,6 +92,14 @@ export const ElementsTab: React.FC = () => {
   const handleLike = () => {
       setIsLiked(!isLiked);
       setLikeCount(prev => isLiked ? prev - 1 : prev + 1);
+  };
+
+  const handleSort = (key: string) => {
+      setSortConfig(prev => ({
+          key,
+          direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
+      }));
+      toast.info(`Sorted by ${key}`);
   };
 
   // -- Styles --
@@ -929,6 +953,363 @@ export const ElementsTab: React.FC = () => {
                     </div>
                 </div>
             </div>
+        </section>
+
+        {/* 31. Typography & Prose */}
+        <section>
+             <div style={sectionTitleStyle}>31. Typography & Prose</div>
+             <div className="grid md:grid-cols-2 gap-8">
+                 <ThemedCard>
+                     <h1 className="text-3xl font-bold mb-2" style={{color: theme.colors.text}}>Heading 1</h1>
+                     <h2 className="text-2xl font-bold mb-2" style={{color: theme.colors.text}}>Heading 2</h2>
+                     <h3 className="text-xl font-bold mb-2" style={{color: theme.colors.text}}>Heading 3</h3>
+                     <h4 className="text-lg font-bold mb-2" style={{color: theme.colors.text}}>Heading 4</h4>
+                 </ThemedCard>
+                 <ThemedCard>
+                     <p className="text-sm leading-relaxed mb-4" style={{color: theme.colors.text}}>
+                         Regular paragraph text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                         <a href="#" className="underline ml-1" style={{color: theme.colors.primary}}>Inline Link</a>
+                     </p>
+                     <blockquote className="pl-4 border-l-4 italic mb-4 text-sm opacity-80" style={{borderColor: theme.colors.primary, color: theme.colors.text}}>
+                         "This is a blockquote element used for highlighting quotes or testimonials."
+                     </blockquote>
+                     <div className="flex gap-2 mb-4">
+                         <code className="px-1.5 py-0.5 rounded text-xs font-mono" style={{backgroundColor: theme.colors.text+'10', color: theme.colors.text}}>const code = true;</code>
+                         <kbd className="px-2 py-0.5 rounded border text-xs font-mono font-bold border-b-2" style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.surface, color: theme.colors.text}}>⌘ K</kbd>
+                     </div>
+                     <ul className="list-disc pl-5 text-sm space-y-1 opacity-80" style={{color: theme.colors.text}}>
+                         <li>Unordered List Item 1</li>
+                         <li>Unordered List Item 2</li>
+                     </ul>
+                 </ThemedCard>
+             </div>
+        </section>
+
+        {/* 32. Advanced Navigation */}
+        <section>
+            <div style={sectionTitleStyle}>32. Advanced Navigation</div>
+            <div className="grid md:grid-cols-2 gap-8">
+                {/* Vertical Tabs */}
+                <div className="flex border rounded-lg overflow-hidden h-48" style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.card}}>
+                    <div className="w-32 border-r flex flex-col" style={{borderColor: theme.colors.text+'10', backgroundColor: theme.colors.background}}>
+                        {['Profile', 'Account', 'Privacy', 'Apps'].map(t => (
+                            <button
+                                key={t}
+                                onClick={() => setVerticalTab(t)}
+                                className="px-4 py-3 text-xs font-medium text-left hover:bg-black/5 transition-colors relative"
+                                style={{color: verticalTab === t ? theme.colors.primary : theme.colors.text}}
+                            >
+                                {t}
+                                {verticalTab === t && <div className="absolute left-0 top-0 bottom-0 w-0.5" style={{backgroundColor: theme.colors.primary}}></div>}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="flex-1 p-4 flex items-center justify-center">
+                        <span className="text-sm font-medium opacity-50" style={{color: theme.colors.text}}>{verticalTab} Content</span>
+                    </div>
+                </div>
+
+                {/* Accordion */}
+                <div className="border rounded-lg overflow-hidden" style={{borderColor: theme.colors.text+'20', borderRadius: theme.borderRadius.card}}>
+                    {[1, 2, 3].map(i => (
+                        <div key={i} className="border-b last:border-0" style={{borderColor: theme.colors.text+'10'}}>
+                            <button 
+                                onClick={() => setAccordionOpen(accordionOpen === i ? null : i)}
+                                className="w-full flex justify-between items-center p-3 text-sm font-medium hover:bg-black/5"
+                                style={{color: theme.colors.text, backgroundColor: theme.colors.surface}}
+                            >
+                                <span>Accordion Item {i}</span>
+                                <div className={`transition-transform duration-200 ${accordionOpen === i ? 'rotate-180' : ''}`}><Icons.ChevronDown/></div>
+                            </button>
+                            {accordionOpen === i && (
+                                <div className="p-3 text-xs opacity-70 border-t" style={{color: theme.colors.text, borderColor: theme.colors.text+'05', backgroundColor: theme.colors.background}}>
+                                    Content for accordion item {i} goes here. Expanding reveals details.
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* 33. Advanced Data Tables */}
+        <section>
+             <div style={sectionTitleStyle}>33. Data Tables</div>
+             <ThemedCard className="p-0 overflow-hidden">
+                 <div className="overflow-x-auto">
+                     <table className="w-full text-sm">
+                         <thead className="text-xs uppercase font-bold" style={{backgroundColor: theme.colors.text+'05', color: theme.colors.textSecondary}}>
+                             <tr>
+                                 {['Name', 'Role', 'Status', 'Last Active'].map((h) => (
+                                     <th key={h} className="p-4 text-left cursor-pointer hover:bg-black/5 transition-colors" onClick={() => handleSort(h.toLowerCase())}>
+                                         <div className="flex items-center gap-1">
+                                             {h}
+                                             {sortConfig.key === h.toLowerCase() && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                                         </div>
+                                     </th>
+                                 ))}
+                                 <th className="p-4 w-10"></th>
+                             </tr>
+                         </thead>
+                         <tbody className="divide-y" style={{borderColor: theme.colors.text+'10'}}>
+                             {[
+                                 {name: 'Alice Smith', role: 'Admin', status: 'Online', time: 'Now'},
+                                 {name: 'Bob Jones', role: 'Editor', status: 'Offline', time: '2h ago'},
+                                 {name: 'Charlie Day', role: 'Viewer', status: 'Busy', time: '5m ago'},
+                             ].map((row, i) => (
+                                 <tr key={i} className="hover:bg-black/5 transition-colors group">
+                                     <td className="p-4 font-medium" style={{color: theme.colors.text}}>{row.name}</td>
+                                     <td className="p-4" style={{color: theme.colors.textSecondary}}>{row.role}</td>
+                                     <td className="p-4">
+                                         <span className="flex items-center gap-2">
+                                            <span className={`w-2 h-2 rounded-full ${row.status === 'Online' ? 'bg-green-500' : row.status === 'Offline' ? 'bg-gray-400' : 'bg-orange-500'}`}></span>
+                                            <span style={{color: theme.colors.text}}>{row.status}</span>
+                                         </span>
+                                     </td>
+                                     <td className="p-4 font-mono text-xs opacity-60" style={{color: theme.colors.text}}>{row.time}</td>
+                                     <td className="p-4 text-right">
+                                         <button className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-black/10" style={{color: theme.colors.text}}>
+                                             <Icons.More size="sm"/>
+                                         </button>
+                                     </td>
+                                 </tr>
+                             ))}
+                         </tbody>
+                     </table>
+                 </div>
+                 <div className="p-3 border-t flex justify-between items-center text-xs opacity-60" style={{borderColor: theme.colors.text+'10', color: theme.colors.text}}>
+                     <span>Showing 1-3 of 45</span>
+                     <div className="flex gap-1">
+                         <button className="px-2 py-1 rounded hover:bg-black/10">Prev</button>
+                         <button className="px-2 py-1 rounded hover:bg-black/10">Next</button>
+                     </div>
+                 </div>
+             </ThemedCard>
+        </section>
+
+        {/* 34. Overlays & Dialogs */}
+        <section>
+            <div style={sectionTitleStyle}>34. Overlays & Dialogs</div>
+            <div className="flex flex-wrap gap-8 items-start">
+                
+                {/* Dropdown */}
+                <div className="relative">
+                    <ThemedButton onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-2">
+                        Options <Icons.ChevronDown/>
+                    </ThemedButton>
+                    {dropdownOpen && (
+                        <div 
+                            className="absolute top-full left-0 mt-2 w-48 shadow-lg rounded-lg border z-10 animate-in zoom-in-95 duration-100 origin-top-left"
+                            style={{backgroundColor: theme.colors.surface, borderColor: theme.colors.text+'10'}}
+                        >
+                            <div className="p-1">
+                                {['Edit Profile', 'Preferences', 'Integrations'].map(item => (
+                                    <button key={item} className="w-full text-left px-3 py-2 text-sm rounded hover:bg-black/5" style={{color: theme.colors.text}}>
+                                        {item}
+                                    </button>
+                                ))}
+                                <div className="h-px my-1 bg-black/5"></div>
+                                <button className="w-full text-left px-3 py-2 text-sm rounded hover:bg-red-50 text-red-500">
+                                    Sign Out
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Context Menu Mock */}
+                <div 
+                    className="w-48 p-1 rounded-lg shadow-lg border cursor-default"
+                    style={{backgroundColor: theme.colors.surface, borderColor: theme.colors.text+'10'}}
+                >
+                    <div className="px-3 py-1.5 text-xs font-bold opacity-50 uppercase mb-1" style={{color: theme.colors.text}}>Context Menu</div>
+                    <div className="flex items-center justify-between px-3 py-2 text-sm rounded hover:bg-black/5 cursor-pointer" style={{color: theme.colors.text}}>
+                        <span>Copy</span> <span className="opacity-40 text-xs">⌘C</span>
+                    </div>
+                    <div className="flex items-center justify-between px-3 py-2 text-sm rounded hover:bg-black/5 cursor-pointer" style={{color: theme.colors.text}}>
+                        <span>Paste</span> <span className="opacity-40 text-xs">⌘V</span>
+                    </div>
+                </div>
+
+                {/* Tooltip Mock */}
+                <div className="relative group">
+                    <ThemedButton variant="outline"><Icons.Help/></ThemedButton>
+                    <div 
+                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs rounded text-white bg-gray-900 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none"
+                    >
+                        Help Information
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* 35. Input Groups */}
+        <section>
+             <div style={sectionTitleStyle}>35. Input Groups</div>
+             <div className="grid md:grid-cols-3 gap-6">
+                 <div>
+                     <label className="text-xs font-bold mb-1.5 block" style={{color: theme.colors.text}}>Website</label>
+                     <div className="flex items-center">
+                         <span className="px-3 py-2 text-sm border border-r-0 rounded-l-md bg-gray-50 text-gray-500" style={{borderColor: theme.colors.text+'20'}}>https://</span>
+                         <input className="flex-1 min-w-0 px-3 py-2 text-sm border rounded-r-md outline-none focus:ring-1 transition-all" style={{borderColor: theme.colors.text+'20', borderRadius: `0 ${theme.borderRadius.sm} ${theme.borderRadius.sm} 0`}} placeholder="example.com"/>
+                     </div>
+                 </div>
+
+                 <div>
+                     <label className="text-xs font-bold mb-1.5 block" style={{color: theme.colors.text}}>Password Reveal</label>
+                     <div className="relative">
+                         <ThemedInput type={showPassword ? "text" : "password"} placeholder="Enter password" />
+                         <button 
+                            className="absolute right-3 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100"
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{color: theme.colors.text}}
+                         >
+                             {showPassword ? <Icons.Image size="sm"/> : <Icons.Lock size="sm"/>}
+                         </button>
+                     </div>
+                 </div>
+
+                 <div>
+                     <label className="text-xs font-bold mb-1.5 block" style={{color: theme.colors.text}}>Search Dropdown</label>
+                     <div className="flex">
+                         <input className="flex-1 min-w-0 px-3 py-2 text-sm border rounded-l-md outline-none focus:ring-1 z-10" style={{borderColor: theme.colors.text+'20', borderRadius: `${theme.borderRadius.sm} 0 0 ${theme.borderRadius.sm}`}} placeholder="Search..."/>
+                         <button className="px-3 py-2 text-sm border border-l-0 bg-gray-50 hover:bg-gray-100 text-gray-600 rounded-r-md" style={{borderColor: theme.colors.text+'20'}}>
+                             <Icons.Search size="sm"/>
+                         </button>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        {/* 36. File & Media */}
+        <section>
+             <div style={sectionTitleStyle}>36. File & Media</div>
+             <div className="grid md:grid-cols-2 gap-8">
+                 {/* Upload */}
+                 <div className="space-y-4">
+                     <div 
+                        className="border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-black/5 transition-colors group"
+                        style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.background}}
+                     >
+                         <div className="p-3 rounded-full bg-gray-100 mb-3 group-hover:scale-110 transition-transform"><Icons.Cloud/></div>
+                         <h4 className="text-sm font-bold" style={{color: theme.colors.text}}>Click to upload or drag and drop</h4>
+                         <p className="text-xs opacity-50" style={{color: theme.colors.text}}>SVG, PNG, JPG or GIF (max. 800x400px)</p>
+                     </div>
+                     <div className="bg-white p-3 rounded border flex items-center gap-3" style={{borderColor: theme.colors.text+'10'}}>
+                         <Icons.File className="opacity-50"/>
+                         <div className="flex-1">
+                             <div className="flex justify-between text-xs mb-1">
+                                 <span className="font-medium">uploading_file.zip</span>
+                                 <span>{uploadProgress}%</span>
+                             </div>
+                             <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                 <div className="h-full bg-blue-500 transition-all duration-300" style={{width: `${uploadProgress}%`, backgroundColor: theme.colors.primary}}></div>
+                             </div>
+                         </div>
+                         <button className="text-gray-400 hover:text-red-500"><Icons.Close size="sm"/></button>
+                     </div>
+                 </div>
+
+                 {/* Media Player Shell */}
+                 <div className="rounded-xl overflow-hidden border bg-black relative group" style={{borderColor: theme.colors.text+'20', height: '200px'}}>
+                     <div className="absolute inset-0 flex items-center justify-center">
+                         <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:bg-white/30 transition-all hover:scale-110">
+                             <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-white border-b-[8px] border-b-transparent ml-1"></div>
+                         </div>
+                     </div>
+                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent flex items-center gap-3 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                         <button><Icons.Check size="sm"/></button> {/* Play icon placeholder */}
+                         <div className="flex-1 h-1 bg-white/30 rounded-full">
+                             <div className="w-1/3 h-full bg-white rounded-full"></div>
+                         </div>
+                         <span className="text-xs font-mono">03:45</span>
+                     </div>
+                 </div>
+             </div>
+        </section>
+
+        {/* 37. Date & Time */}
+        <section>
+            <div style={sectionTitleStyle}>37. Date & Time</div>
+            <div className="flex flex-wrap gap-8 items-start">
+                {/* Mini Calendar */}
+                <div className="p-4 rounded-lg border inline-block" style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.card}}>
+                    <div className="flex justify-between items-center mb-4">
+                        <span className="text-sm font-bold" style={{color: theme.colors.text}}>October 2024</span>
+                        <div className="flex gap-1">
+                             <button className="p-1 hover:bg-black/5 rounded"><Icons.ChevronDown className="rotate-90" size="sm"/></button>
+                             <button className="p-1 hover:bg-black/5 rounded"><Icons.ChevronRight size="sm"/></button>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-7 gap-1 text-center text-xs mb-2 opacity-50">
+                        {['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => <span key={d}>{d}</span>)}
+                    </div>
+                    <div className="grid grid-cols-7 gap-1 text-center text-sm">
+                        {Array.from({length: 31}).map((_, i) => (
+                            <div 
+                                key={i} 
+                                className={`w-8 h-8 flex items-center justify-center rounded cursor-pointer hover:bg-black/5 ${i === 23 ? 'text-white' : ''}`}
+                                style={{
+                                    backgroundColor: i === 23 ? theme.colors.primary : 'transparent',
+                                    color: i === 23 ? '#fff' : theme.colors.text
+                                }}
+                            >
+                                {i+1}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Time Slots */}
+                <div className="w-64">
+                    <label className="text-xs font-bold mb-2 block" style={{color: theme.colors.text}}>Available Time</label>
+                    <div className="grid grid-cols-2 gap-2">
+                        {['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM'].map(t => (
+                             <button 
+                                key={t} 
+                                className="px-3 py-2 text-xs border rounded hover:border-blue-500 hover:text-blue-500 transition-colors"
+                                style={{borderColor: theme.colors.text+'20', color: theme.colors.text}}
+                             >
+                                 {t}
+                             </button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* 38. Empty States */}
+        <section>
+             <div style={sectionTitleStyle}>38. Empty States</div>
+             <div className="grid md:grid-cols-3 gap-6">
+                 {/* No Data */}
+                 <ThemedCard className="flex flex-col items-center justify-center text-center py-12">
+                     <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4 text-gray-400">
+                         <Icons.Search size="lg"/>
+                     </div>
+                     <h4 className="font-bold text-sm mb-1" style={{color: theme.colors.text}}>No results found</h4>
+                     <p className="text-xs opacity-60 max-w-[200px]" style={{color: theme.colors.text}}>We couldn't find any items matching your search.</p>
+                 </ThemedCard>
+
+                 {/* Error State */}
+                 <ThemedCard className="flex flex-col items-center justify-center text-center py-12 border-red-100 bg-red-50/50">
+                     <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4 text-red-500">
+                         <Icons.Close size="lg"/>
+                     </div>
+                     <h4 className="font-bold text-sm mb-1 text-red-700">Connection Error</h4>
+                     <ThemedButton size="sm" className="mt-2" style={{backgroundColor: theme.colors.error, borderColor: theme.colors.error}}>Retry</ThemedButton>
+                 </ThemedCard>
+
+                 {/* New Item */}
+                 <ThemedCard className="flex flex-col items-center justify-center text-center py-12 border-dashed">
+                     <div className="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center mb-4 text-indigo-500">
+                         <Icons.File size="lg"/>
+                     </div>
+                     <h4 className="font-bold text-sm mb-1" style={{color: theme.colors.text}}>Start a new project</h4>
+                     <ThemedButton size="sm" variant="outline" className="mt-2">Create Project</ThemedButton>
+                 </ThemedCard>
+             </div>
         </section>
     </div>
   );
