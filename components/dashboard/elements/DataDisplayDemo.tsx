@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../../context/ThemeContext';
 import { ThemedCard } from '../../ui-elements/ThemedCard';
 import { Icons } from '../DashboardIcons';
+import { ThemedButton } from '../../ui-elements/ThemedButton';
 
 export const DataDisplayDemo: React.FC = () => {
   const { theme } = useTheme();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const SkeletonPulse = ({ className }: { className?: string }) => (
+    <div className={`animate-pulse rounded ${className}`} style={{ backgroundColor: theme.colors.text + '10' }}></div>
+  );
 
   return (
     <div className="space-y-12">
@@ -22,7 +33,14 @@ export const DataDisplayDemo: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y" style={{borderColor: theme.colors.text+'10'}}>
-                            {[
+                            {isLoading ? Array.from({length: 3}).map((_, i) => (
+                                <tr key={i}>
+                                    <td className="p-4"><SkeletonPulse className="h-4 w-32" /></td>
+                                    <td className="p-4"><SkeletonPulse className="h-4 w-20" /></td>
+                                    <td className="p-4"><SkeletonPulse className="h-4 w-16" /></td>
+                                    <td className="p-4"></td>
+                                </tr>
+                            )) : [
                                 {name: 'Alice Smith', role: 'Admin', status: 'Online'},
                                 {name: 'Bob Jones', role: 'Editor', status: 'Offline'},
                                 {name: 'Charlie Day', role: 'Viewer', status: 'Busy'},

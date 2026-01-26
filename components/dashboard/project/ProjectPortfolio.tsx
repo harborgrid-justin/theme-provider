@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../../context/ThemeContext';
 import { ThemedCard } from '../../ui-elements/ThemedCard';
 import { ThemedButton } from '../../ui-elements/ThemedButton';
@@ -10,6 +10,13 @@ import { toast } from '../../ui/Toaster';
 export const ProjectPortfolio: React.FC = () => {
   const { theme } = useTheme();
   const [viewMode, setViewMode] = useState<'grid' | 'kanban' | 'list'>('kanban');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate data fetching
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
   
   // Data State
   const [projects, setProjects] = useState([
@@ -78,6 +85,11 @@ export const ProjectPortfolio: React.FC = () => {
       toast.success('Task added to Backlog');
   };
 
+  // Skeletons
+  const SkeletonPulse = ({ className }: { className?: string }) => (
+    <div className={`animate-pulse rounded ${className}`} style={{ backgroundColor: theme.colors.text + '10' }}></div>
+  );
+
   return (
     <div className="space-y-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -97,52 +109,78 @@ export const ProjectPortfolio: React.FC = () => {
 
         {viewMode === 'grid' && (
             <div className="grid md:grid-cols-3 gap-6 animate-in fade-in zoom-in-95 duration-300">
-                {projects.map((proj) => (
-                    <ThemedCard key={proj.id} className="cursor-pointer hover:-translate-y-1 transition-transform group h-full flex flex-col justify-between">
+                {isLoading ? Array.from({length: 6}).map((_, i) => (
+                    <ThemedCard key={i} className="h-full flex flex-col justify-between">
                         <div>
-                            <div className="flex justify-between items-start mb-4">
-                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold shadow-sm`} style={{ backgroundColor: getStatusColor(proj.status) }}>
-                                    {proj.name[0]}
-                                </div>
-                                <span className={`px-2 py-1 rounded text-xs font-bold`} style={{ 
-                                    backgroundColor: getStatusColor(proj.status) + '20', 
-                                    color: getStatusColor(proj.status)
-                                }}>
-                                    {proj.status}
-                                </span>
-                            </div>
-                            <h4 className="font-bold mb-4 group-hover:underline decoration-2" style={{ color: theme.colors.text, decorationColor: theme.colors.primary }}>{proj.name}</h4>
-                            <div className="mb-6">
-                                <div className="flex justify-between text-xs mb-1.5 opacity-70" style={{ color: theme.colors.text }}>
-                                    <span>Progress</span>
-                                    <span>{proj.progress}%</span>
-                                </div>
-                                <div className="h-2 rounded-full bg-black/5 overflow-hidden" style={{ backgroundColor: theme.colors.text + '10' }}>
-                                    <div className="h-full transition-all" style={{ width: `${proj.progress}%`, backgroundColor: getStatusColor(proj.status) }}></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex justify-between items-center text-xs opacity-60 pt-4 border-t" style={{ borderColor: theme.colors.text + '10', color: theme.colors.text }}>
-                             <div className="flex -space-x-2">
-                                <div className="w-6 h-6 rounded-full border-2 border-white bg-gray-200"></div>
-                                <div className="w-6 h-6 rounded-full border-2 border-white bg-gray-300"></div>
+                             <div className="flex justify-between items-start mb-4">
+                                <SkeletonPulse className="w-10 h-10 rounded-lg" />
+                                <SkeletonPulse className="w-16 h-5" />
                              </div>
-                             <span>{proj.due}</span>
+                             <SkeletonPulse className="w-3/4 h-6 mb-4" />
+                             <div className="mb-6 space-y-2">
+                                <div className="flex justify-between">
+                                     <SkeletonPulse className="w-16 h-3" />
+                                     <SkeletonPulse className="w-8 h-3" />
+                                </div>
+                                <SkeletonPulse className="w-full h-2 rounded-full" />
+                             </div>
                         </div>
+                         <div className="flex justify-between items-center pt-4 border-t" style={{ borderColor: theme.colors.text + '10' }}>
+                             <div className="flex -space-x-2">
+                                 <div className="w-6 h-6 rounded-full border-2 border-white animate-pulse" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                                 <div className="w-6 h-6 rounded-full border-2 border-white animate-pulse" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                             </div>
+                             <SkeletonPulse className="w-20 h-3" />
+                         </div>
                     </ThemedCard>
-                ))}
-                
-                {/* Add Project Card */}
-                <button 
-                    onClick={() => setIsProjectModalOpen(true)}
-                    className="border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 hover:bg-black/5 transition-colors group"
-                    style={{ borderColor: theme.colors.text + '20', borderRadius: theme.borderRadius.card }}
-                >
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text }}>
-                        <Icons.Check size="md" />
-                    </div>
-                    <span className="font-bold text-sm" style={{ color: theme.colors.text }}>Create New Project</span>
-                </button>
+                )) : (
+                    <>
+                    {projects.map((proj) => (
+                        <ThemedCard key={proj.id} className="cursor-pointer hover:-translate-y-1 transition-transform group h-full flex flex-col justify-between">
+                            <div>
+                                <div className="flex justify-between items-start mb-4">
+                                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold shadow-sm`} style={{ backgroundColor: getStatusColor(proj.status) }}>
+                                        {proj.name[0]}
+                                    </div>
+                                    <span className={`px-2 py-1 rounded text-xs font-bold`} style={{ 
+                                        backgroundColor: getStatusColor(proj.status) + '20', 
+                                        color: getStatusColor(proj.status)
+                                    }}>
+                                        {proj.status}
+                                    </span>
+                                </div>
+                                <h4 className="font-bold mb-4 group-hover:underline decoration-2" style={{ color: theme.colors.text, decorationColor: theme.colors.primary }}>{proj.name}</h4>
+                                <div className="mb-6">
+                                    <div className="flex justify-between text-xs mb-1.5 opacity-70" style={{ color: theme.colors.text }}>
+                                        <span>Progress</span>
+                                        <span>{proj.progress}%</span>
+                                    </div>
+                                    <div className="h-2 rounded-full bg-black/5 overflow-hidden" style={{ backgroundColor: theme.colors.text + '10' }}>
+                                        <div className="h-full transition-all" style={{ width: `${proj.progress}%`, backgroundColor: getStatusColor(proj.status) }}></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex justify-between items-center text-xs opacity-60 pt-4 border-t" style={{ borderColor: theme.colors.text + '10', color: theme.colors.text }}>
+                                 <div className="flex -space-x-2">
+                                    <div className="w-6 h-6 rounded-full border-2 border-white bg-gray-200"></div>
+                                    <div className="w-6 h-6 rounded-full border-2 border-white bg-gray-300"></div>
+                                 </div>
+                                 <span>{proj.due}</span>
+                            </div>
+                        </ThemedCard>
+                    ))}
+                    <button 
+                        onClick={() => setIsProjectModalOpen(true)}
+                        className="border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 hover:bg-black/5 transition-colors group"
+                        style={{ borderColor: theme.colors.text + '20', borderRadius: theme.borderRadius.card }}
+                    >
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text }}>
+                            <Icons.Check size="md" />
+                        </div>
+                        <span className="font-bold text-sm" style={{ color: theme.colors.text }}>Create New Project</span>
+                    </button>
+                    </>
+                )}
             </div>
         )}
 
@@ -155,7 +193,19 @@ export const ProjectPortfolio: React.FC = () => {
                             <span className="text-xs px-2 py-0.5 rounded-full font-bold" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text }}>{tasks.length}</span>
                         </div>
                         <div className="space-y-3 flex-1">
-                            {tasks.map(task => (
+                            {isLoading ? Array.from({length: 3}).map((_, idx) => (
+                                <ThemedCard key={idx} className="p-4">
+                                     <div className="flex gap-2 mb-2">
+                                         <SkeletonPulse className="w-16 h-4" />
+                                         <SkeletonPulse className="w-12 h-4" />
+                                     </div>
+                                     <SkeletonPulse className="w-3/4 h-4 mb-3" />
+                                     <div className="flex justify-between items-center">
+                                         <SkeletonPulse className="w-6 h-6 rounded-full" />
+                                         <SkeletonPulse className="w-8 h-3" />
+                                     </div>
+                                </ThemedCard>
+                            )) : tasks.map(task => (
                                 <ThemedCard key={task.id} className="p-4 cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow">
                                     <div className="flex gap-2 mb-2">
                                         <span className="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase" style={{ backgroundColor: theme.colors.primary + '20', color: theme.colors.primary }}>{task.tag}</span>
@@ -202,7 +252,25 @@ export const ProjectPortfolio: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody className="divide-y" style={{ borderColor: theme.colors.text + '10' }}>
-                            {projects.map((row, i) => (
+                            {isLoading ? Array.from({length: 5}).map((_, i) => (
+                                <tr key={i}>
+                                    <td className="p-4 pl-6">
+                                        <div className="flex items-center gap-3">
+                                            <SkeletonPulse className="w-8 h-8" />
+                                            <SkeletonPulse className="w-32 h-4" />
+                                        </div>
+                                    </td>
+                                    <td className="p-4">
+                                         <div className="flex items-center gap-2">
+                                            <SkeletonPulse className="w-6 h-6 rounded-full" />
+                                            <SkeletonPulse className="w-16 h-3" />
+                                         </div>
+                                    </td>
+                                    <td className="p-4"><SkeletonPulse className="w-20 h-5 rounded-full" /></td>
+                                    <td className="p-4"><SkeletonPulse className="w-32 h-2 rounded-full" /></td>
+                                    <td className="p-4"></td>
+                                </tr>
+                            )) : projects.map((row, i) => (
                                 <tr key={i} className="group hover:bg-black/5 transition-colors">
                                     <td className="p-4 pl-6 font-medium" style={{ color: theme.colors.text }}>
                                         <div className="flex items-center gap-3">

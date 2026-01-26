@@ -38,11 +38,11 @@ export default function App() {
           {/* Sidebar Editor */}
           <div 
             className={`
-              absolute lg:relative z-20 h-full bg-white border-r border-gray-200 shadow-xl lg:shadow-none transition-all duration-300 ease-in-out
-              ${isSidebarOpen ? 'translate-x-0 w-full md:w-96' : '-translate-x-full lg:w-0 lg:translate-x-0'}
+              absolute lg:relative z-20 h-full bg-white border-r border-gray-200 shadow-xl lg:shadow-none transition-all duration-300 ease-in-out flex flex-col shrink-0
+              ${isSidebarOpen ? 'translate-x-0 w-full md:w-[400px] lg:w-[28%] lg:min-w-[360px] lg:max-w-[480px]' : '-translate-x-full lg:w-0 lg:translate-x-0'}
             `}
           >
-            <div className={`h-full overflow-y-auto ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'}`}>
+            <div className={`h-full overflow-hidden flex flex-col ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'}`}>
                <ThemeEditor onClose={() => setIsSidebarOpen(false)} isMobile={isMobile} />
             </div>
           </div>
