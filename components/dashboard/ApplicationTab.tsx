@@ -43,17 +43,19 @@ export const ApplicationTab: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-7 text-center mb-2">
                     {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
-                        <div key={d} className="text-xs font-bold opacity-50 py-2" style={{ color: theme.colors.text }}>{d}</div>
+                        <div key={d} className="text-xs font-bold opacity-50 py-2 uppercase tracking-wide" style={{ color: theme.colors.text }}>{d}</div>
                     ))}
                 </div>
-                <div className="grid grid-cols-7 gap-1">
+                <div className="grid grid-cols-7 gap-px bg-gray-200 border rounded-lg overflow-hidden" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.text + '10' }}>
                     {Array.from({length: 31}, (_, i) => i + 1).map((day) => {
                          const hasEvent = [4, 12, 15, 22, 28].includes(day);
                          return (
-                            <div key={day} className="aspect-square border rounded-lg p-2 flex flex-col justify-between hover:bg-black/5 transition-colors cursor-pointer" style={{ borderColor: theme.colors.text + '10' }}>
-                                <span className={`text-sm ${day === 15 ? 'font-bold w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center' : ''}`} style={{ color: day === 15 ? '#fff' : theme.colors.text }}>{day}</span>
+                            <div key={day} className="aspect-square bg-white p-2 flex flex-col justify-between hover:bg-gray-50 transition-colors cursor-pointer" style={{ backgroundColor: theme.colors.surface }}>
+                                <span className={`text-sm w-7 h-7 flex items-center justify-center rounded-full ${day === 15 ? 'font-bold' : ''}`} style={{ backgroundColor: day === 15 ? theme.colors.primary : 'transparent', color: day === 15 ? '#fff' : theme.colors.text }}>{day}</span>
                                 {hasEvent && (
-                                    <div className="w-full h-1.5 rounded-full" style={{ backgroundColor: theme.colors.primary }}></div>
+                                    <div className="w-full px-1">
+                                        <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: theme.colors.secondary }}></div>
+                                    </div>
                                 )}
                             </div>
                          )
@@ -79,8 +81,8 @@ export const ApplicationTab: React.FC = () => {
                      <table className="w-full mb-8">
                          <thead className="border-b-2" style={{ borderColor: theme.colors.text + '10' }}>
                              <tr>
-                                 <th className="text-left py-3 text-sm font-bold opacity-60" style={{ color: theme.colors.text }}>Description</th>
-                                 <th className="text-right py-3 text-sm font-bold opacity-60" style={{ color: theme.colors.text }}>Amount</th>
+                                 <th className="text-left py-3 text-sm font-bold opacity-60 uppercase tracking-wider" style={{ color: theme.colors.text }}>Description</th>
+                                 <th className="text-right py-3 text-sm font-bold opacity-60 uppercase tracking-wider" style={{ color: theme.colors.text }}>Amount</th>
                              </tr>
                          </thead>
                          <tbody className="divide-y" style={{ borderColor: theme.colors.text + '10' }}>
@@ -111,10 +113,10 @@ export const ApplicationTab: React.FC = () => {
         <section>
              <div style={sectionTitleStyle}>Notification Center</div>
              <div className="grid md:grid-cols-2 gap-8">
-                <ThemedCard>
+                <ThemedCard className="h-full">
                     <div className="flex justify-between items-center mb-6">
                          <h3 className="font-bold" style={{ color: theme.colors.text }}>Notifications</h3>
-                         <span className="text-xs font-bold px-2 py-1 rounded bg-blue-100 text-blue-600">3 New</span>
+                         <span className="text-xs font-bold px-2.5 py-1 rounded" style={{ backgroundColor: theme.colors.primary + '20', color: theme.colors.primary }}>3 New</span>
                     </div>
                     <div className="space-y-4">
                         {[
@@ -124,7 +126,7 @@ export const ApplicationTab: React.FC = () => {
                             { title: 'Welcome to the team!', time: '1d ago', unread: false },
                         ].map((n, i) => (
                             <div key={i} className="flex gap-4 items-start p-3 rounded-lg hover:bg-black/5 transition-colors cursor-pointer">
-                                <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${n.unread ? 'bg-blue-500' : 'bg-transparent'}`}></div>
+                                <div className={`w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0`} style={{ backgroundColor: n.unread ? theme.colors.accent : 'transparent', border: n.unread ? 'none' : `1px solid ${theme.colors.text}40` }}></div>
                                 <div>
                                     <h4 className={`text-sm ${n.unread ? 'font-bold' : 'font-medium'}`} style={{ color: theme.colors.text }}>{n.title}</h4>
                                     <p className="text-xs opacity-60" style={{ color: theme.colors.text }}>{n.time}</p>
@@ -134,7 +136,7 @@ export const ApplicationTab: React.FC = () => {
                     </div>
                 </ThemedCard>
                 
-                <ThemedCard>
+                <ThemedCard className="h-full">
                     <div className="flex justify-between items-center mb-6">
                          <h3 className="font-bold" style={{ color: theme.colors.text }}>Upcoming Tasks</h3>
                          <ThemedButton size="sm" variant="ghost">View All</ThemedButton>
@@ -148,9 +150,11 @@ export const ApplicationTab: React.FC = () => {
                             { task: 'Team retrospective', due: 'Oct 30' },
                         ].map((t, i) => (
                             <div key={i} className="flex items-center gap-3 p-2 rounded hover:bg-black/5">
-                                <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                <div className={`w-4 h-4 rounded border flex items-center justify-center cursor-pointer`} style={{ borderColor: theme.colors.text + '40' }}>
+                                    {/* Checkbox sim */}
+                                </div>
                                 <span className="flex-1 text-sm" style={{ color: theme.colors.text }}>{t.task}</span>
-                                <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">{t.due}</span>
+                                <span className="text-xs px-2 py-0.5 rounded opacity-70 font-medium" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text }}>{t.due}</span>
                             </div>
                         ))}
                     </div>
