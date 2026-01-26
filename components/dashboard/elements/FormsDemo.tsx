@@ -2,11 +2,25 @@ import React, { useState } from 'react';
 import { useTheme } from '../../../context/ThemeContext';
 import { ThemedInput } from '../../ui-elements/ThemedInput';
 import { Icons } from '../DashboardIcons';
+import { toast } from '../../ui/Toaster';
 
 export const FormsDemo: React.FC = () => {
   const { theme } = useTheme();
   const [toggle, setToggle] = useState(true);
   const [radio, setRadio] = useState('Option 1');
+  
+  // Form State
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const validateEmail = (val: string) => {
+      setEmail(val);
+      if (val && !val.includes('@')) {
+          setEmailError('Please enter a valid email address.');
+      } else {
+          setEmailError('');
+      }
+  };
 
   const labelStyle = { color: theme.colors.text, opacity: 0.8 };
 
@@ -17,8 +31,17 @@ export const FormsDemo: React.FC = () => {
             
             <div className="space-y-1">
                 <label className="text-xs font-bold" style={labelStyle}>Email Address</label>
-                <ThemedInput placeholder="name@example.com" />
-                <div className="text-xs opacity-60" style={{ color: theme.colors.text }}>We'll never share your email.</div>
+                <ThemedInput 
+                    placeholder="name@example.com" 
+                    value={email}
+                    onChange={(e) => validateEmail(e.target.value)}
+                    style={{ borderColor: emailError ? theme.colors.error : undefined }}
+                />
+                {emailError ? (
+                    <div className="text-xs font-medium" style={{ color: theme.colors.error }}>{emailError}</div>
+                ) : (
+                    <div className="text-xs opacity-60" style={{ color: theme.colors.text }}>We'll never share your email.</div>
+                )}
             </div>
 
             <div className="space-y-1">
@@ -46,8 +69,12 @@ export const FormsDemo: React.FC = () => {
             {/* File Upload */}
              <div className="space-y-1">
                  <label className="text-xs font-bold" style={labelStyle}>Upload Document</label>
-                 <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-center hover:bg-black/5 transition-colors cursor-pointer" style={{ borderColor: theme.colors.text + '20' }}>
-                     <div className="opacity-50 mb-2" style={{ color: theme.colors.text }}><Icons.Cloud size="md" /></div>
+                 <div 
+                    className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center text-center hover:bg-black/5 transition-colors cursor-pointer group" 
+                    style={{ borderColor: theme.colors.text + '20' }}
+                    onClick={() => toast.info("Opening file dialog...")}
+                 >
+                     <div className="opacity-50 mb-2 group-hover:scale-110 transition-transform" style={{ color: theme.colors.text }}><Icons.Cloud size="md" /></div>
                      <span className="text-sm font-medium" style={{ color: theme.colors.primary }}>Click to upload</span>
                      <span className="text-xs opacity-50" style={{ color: theme.colors.text }}>or drag and drop</span>
                  </div>

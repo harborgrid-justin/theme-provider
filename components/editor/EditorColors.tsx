@@ -26,7 +26,7 @@ export const EditorColors: React.FC = () => {
         />
         
         <div>
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b pb-2">Semantic Palette</h3>
+            <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-4">Semantic Palette</h3>
             <div className="space-y-1">
                 <ColorPicker label="Primary" value={theme.colors.primary} onChange={(v) => updateColor('primary', v)} />
                 <ColorPicker label="Secondary" value={theme.colors.secondary} onChange={(v) => updateColor('secondary', v)} />

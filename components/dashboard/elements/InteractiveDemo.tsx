@@ -10,6 +10,10 @@ export const InteractiveDemo: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Account');
   const [accordionOpen, setAccordionOpen] = useState<number | null>(0);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 5;
 
   return (
     <div className="space-y-12">
@@ -136,13 +140,40 @@ export const InteractiveDemo: React.FC = () => {
 
                  <h4 className="text-sm font-bold opacity-50 uppercase mb-4" style={{ color: theme.colors.text }}>Pagination</h4>
                  <div className="flex items-center gap-2">
-                    <ThemedButton size="sm" variant="outline" className="w-8 h-8 p-0 flex items-center justify-center">{'<'}</ThemedButton>
-                    <button className="w-8 h-8 rounded flex items-center justify-center text-sm font-medium hover:bg-black/5 transition-colors" style={{ backgroundColor: theme.colors.primary, color: '#fff', borderRadius: theme.borderRadius.sm }}>1</button>
-                    <button className="w-8 h-8 rounded flex items-center justify-center text-sm font-medium hover:bg-black/5 transition-colors" style={{ color: theme.colors.text, borderRadius: theme.borderRadius.sm }}>2</button>
-                    <button className="w-8 h-8 rounded flex items-center justify-center text-sm font-medium hover:bg-black/5 transition-colors" style={{ color: theme.colors.text, borderRadius: theme.borderRadius.sm }}>3</button>
-                    <span className="text-xs opacity-50" style={{ color: theme.colors.text }}>...</span>
-                    <button className="w-8 h-8 rounded flex items-center justify-center text-sm font-medium hover:bg-black/5 transition-colors" style={{ color: theme.colors.text, borderRadius: theme.borderRadius.sm }}>9</button>
-                    <ThemedButton size="sm" variant="outline" className="w-8 h-8 p-0 flex items-center justify-center">{'>'}</ThemedButton>
+                    <ThemedButton 
+                        size="sm" 
+                        variant="outline" 
+                        className="w-8 h-8 p-0 flex items-center justify-center"
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                    >
+                        {'<'}
+                    </ThemedButton>
+                    
+                    {Array.from({length: totalPages}, (_, i) => i + 1).map(page => (
+                         <button 
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className="w-8 h-8 rounded flex items-center justify-center text-sm font-medium hover:bg-black/5 transition-colors" 
+                            style={{ 
+                                backgroundColor: currentPage === page ? theme.colors.primary : 'transparent', 
+                                color: currentPage === page ? '#fff' : theme.colors.text, 
+                                borderRadius: theme.borderRadius.sm 
+                            }}
+                        >
+                            {page}
+                        </button>
+                    ))}
+
+                    <ThemedButton 
+                        size="sm" 
+                        variant="outline" 
+                        className="w-8 h-8 p-0 flex items-center justify-center"
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                    >
+                        {'>'}
+                    </ThemedButton>
                  </div>
             </div>
         </div>

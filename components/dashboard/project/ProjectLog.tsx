@@ -2,10 +2,38 @@ import React, { useState } from 'react';
 import { useTheme } from '../../../context/ThemeContext';
 import { ThemedCard } from '../../ui-elements/ThemedCard';
 import { ThemedButton } from '../../ui-elements/ThemedButton';
+import { ThemedInput } from '../../ui-elements/ThemedInput';
+import { ThemedModal } from '../../ui-elements/ThemedModal';
 import { Icons } from '../DashboardIcons';
+import { toast } from '../../ui/Toaster';
 
 export const ProjectLog: React.FC = () => {
   const { theme } = useTheme();
+  
+  const [issues, setIssues] = useState([
+    { id: 'BUG-102', title: 'Login page crash on iOS', sev: 'P0', status: 'Open' },
+    { id: 'BUG-105', title: 'Dark mode contrast issues', sev: 'P2', status: 'In Progress' },
+    { id: 'BUG-110', title: 'Export PDF fails for large data', sev: 'P1', status: 'Open' },
+  ]);
+
+  const [isBugModalOpen, setIsBugModalOpen] = useState(false);
+  const [bugTitle, setBugTitle] = useState('');
+  const [bugSev, setBugSev] = useState('P2');
+
+  const handleReportBug = () => {
+      if (!bugTitle) return;
+      const newIssue = {
+          id: `BUG-${Math.floor(Math.random() * 1000) + 111}`,
+          title: bugTitle,
+          sev: bugSev,
+          status: 'Open'
+      };
+      setIssues([newIssue, ...issues]);
+      setBugTitle('');
+      setBugSev('P2');
+      setIsBugModalOpen(false);
+      toast.error('Bug reported to tracking system.');
+  };
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
@@ -33,7 +61,7 @@ export const ProjectLog: React.FC = () => {
                                 { desc: 'Mobile UI lag on older devices', prob: 'High', impact: 'Low', owner: 'QA' },
                                 { desc: 'Third-party lib deprecation', prob: 'Low', impact: 'Med', owner: 'Eng' },
                             ].map((risk, i) => (
-                                <tr key={i} className="group hover:bg-black/5">
+                                <tr key={i} className="group hover:bg-black/5 cursor-pointer">
                                     <td className="p-3 font-medium" style={{ color: theme.colors.text }}>{risk.desc}</td>
                                     <td className="p-3"><span className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${risk.prob === 'High' ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-600'}`}>{risk.prob}</span></td>
                                     <td className="p-3"><span className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${risk.impact === 'High' ? 'bg-red-100 text-red-600' : 'bg-blue-100 text-blue-600'}`}>{risk.impact}</span></td>
@@ -49,19 +77,15 @@ export const ProjectLog: React.FC = () => {
             <ThemedCard>
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="font-bold text-sm" style={{ color: theme.colors.text }}>Issue Tracker</h4>
-                    <ThemedButton size="sm" variant="outline">Report Bug</ThemedButton>
+                    <ThemedButton size="sm" variant="outline" onClick={() => setIsBugModalOpen(true)}>Report Bug</ThemedButton>
                 </div>
-                <div className="space-y-3">
-                    {[
-                        { id: 'BUG-102', title: 'Login page crash on iOS', sev: 'P0', status: 'Open' },
-                        { id: 'BUG-105', title: 'Dark mode contrast issues', sev: 'P2', status: 'In Progress' },
-                        { id: 'BUG-110', title: 'Export PDF fails for large data', sev: 'P1', status: 'Open' },
-                    ].map(issue => (
-                        <div key={issue.id} className="flex items-center justify-between p-3 border rounded-lg hover:shadow-sm transition-shadow" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
+                <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+                    {issues.map(issue => (
+                        <div key={issue.id} className="flex items-center justify-between p-3 border rounded-lg hover:shadow-sm transition-shadow cursor-pointer group" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
                             <div className="flex items-center gap-3">
-                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${issue.sev === 'P0' ? 'bg-red-500 text-white' : 'bg-yellow-100 text-yellow-700'}`}>{issue.sev}</span>
+                                <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${issue.sev === 'P0' ? 'bg-red-500 text-white' : issue.sev === 'P1' ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}`}>{issue.sev}</span>
                                 <div>
-                                    <div className="text-xs font-mono opacity-50" style={{ color: theme.colors.text }}>{issue.id}</div>
+                                    <div className="text-xs font-mono opacity-50 group-hover:underline" style={{ color: theme.colors.text }}>{issue.id}</div>
                                     <div className="text-sm font-medium" style={{ color: theme.colors.text }}>{issue.title}</div>
                                 </div>
                             </div>
@@ -76,7 +100,7 @@ export const ProjectLog: React.FC = () => {
         <ThemedCard className="relative overflow-hidden">
             <h4 className="font-bold text-sm mb-6" style={{ color: theme.colors.text }}>Project Activity</h4>
             <div className="absolute top-16 bottom-0 left-8 w-px bg-gray-200" style={{ backgroundColor: theme.colors.text + '10' }}></div>
-            <div className="space-y-6 relative">
+            <div className="space-y-6 relative max-h-[400px] overflow-y-auto pr-2">
                 {[
                     { user: 'Sarah W.', action: 'pushed 3 commits', target: 'feature/auth', time: '10 mins ago', type: 'code' },
                     { user: 'Alex M.', action: 'commented on', target: 'Design Specs v2', time: '1 hour ago', type: 'comment' },
@@ -109,6 +133,44 @@ export const ProjectLog: React.FC = () => {
             </div>
             <ThemedButton size="sm" variant="ghost" className="w-full mt-6">View All Activity</ThemedButton>
         </ThemedCard>
+
+        <ThemedModal
+            isOpen={isBugModalOpen}
+            onClose={() => setIsBugModalOpen(false)}
+            title="Report Issue"
+            footer={
+                <>
+                    <ThemedButton variant="ghost" onClick={() => setIsBugModalOpen(false)}>Cancel</ThemedButton>
+                    <ThemedButton onClick={handleReportBug} style={{ backgroundColor: theme.colors.error, borderColor: theme.colors.error }}>Submit Bug</ThemedButton>
+                </>
+            }
+        >
+            <div className="space-y-4">
+                <div>
+                    <label className="text-xs font-bold mb-1.5 block opacity-70" style={{ color: theme.colors.text }}>Issue Description</label>
+                    <ThemedInput 
+                        placeholder="What went wrong?" 
+                        value={bugTitle}
+                        onChange={(e) => setBugTitle(e.target.value)}
+                        autoFocus
+                    />
+                </div>
+                <div>
+                    <label className="text-xs font-bold mb-1.5 block opacity-70" style={{ color: theme.colors.text }}>Severity</label>
+                    <div className="flex gap-2">
+                        {['P0', 'P1', 'P2'].map(p => (
+                            <button
+                                key={p}
+                                onClick={() => setBugSev(p)}
+                                className={`px-3 py-1.5 rounded text-sm font-bold border transition-colors ${bugSev === p ? 'bg-indigo-50 border-indigo-500 text-indigo-700' : 'bg-transparent border-gray-200 text-gray-500'}`}
+                            >
+                                {p}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </ThemedModal>
     </div>
   );
 };

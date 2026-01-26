@@ -6,7 +6,6 @@ export const EditorShape: React.FC = () => {
 
   return (
     <section className="space-y-6">
-        <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b pb-2">Shape & Effects</h3>
         <div className="space-y-4">
             <div>
                 <label className="text-xs font-medium text-gray-600 mb-1.5 block">Button Radius</label>
