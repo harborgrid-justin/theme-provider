@@ -5,10 +5,11 @@ import { ApplicationTab } from './dashboard/ApplicationTab';
 import { ProjectTab } from './dashboard/ProjectTab';
 import { ElementsTab } from './dashboard/ElementsTab';
 import { DataGalleryTab } from './dashboard/DataGalleryTab';
+import { LegalGalleryTab } from './dashboard/LegalGalleryTab';
 
 export const DashboardPreview: React.FC = () => {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data'>('data');
+  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal'>('legal');
 
   const wrapperStyle = {
     backgroundColor: theme.colors.background,
@@ -34,14 +35,14 @@ export const DashboardPreview: React.FC = () => {
       <div className="sticky top-0 z-20 backdrop-blur-md bg-white/50 border-b border-gray-200/50 px-6 py-4 flex items-center justify-between">
          <div className="font-bold tracking-tight text-lg">UI Gallery</div>
          <div className="flex gap-2 overflow-x-auto no-scrollbar">
-            {(['marketing', 'application', 'project', 'elements', 'data'] as const).map(tab => (
+            {(['marketing', 'application', 'project', 'elements', 'data', 'legal'] as const).map(tab => (
               <button 
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 style={badgeStyle(activeTab === tab)}
                 className="capitalize transition-all whitespace-nowrap"
               >
-                {tab === 'data' ? 'Data Gallery' : tab}
+                {tab === 'data' ? 'Data Gallery' : tab === 'legal' ? 'Legal Gallery' : tab}
               </button>
             ))}
          </div>
@@ -53,6 +54,7 @@ export const DashboardPreview: React.FC = () => {
         {activeTab === 'project' && <ProjectTab />}
         {activeTab === 'elements' && <ElementsTab />}
         {activeTab === 'data' && <DataGalleryTab />}
+        {activeTab === 'legal' && <LegalGalleryTab />}
       </div>
     </div>
   );
