@@ -24,13 +24,13 @@ export const LegalGalleryTab: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Legal Micro-Elements (200+ Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Legal Micro-Elements (230+ Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             Specialized UI tokens for contract management, compliance, and legal workflows. 
         </p>
 
         {/* --- 1. Document Lifecycle & Status --- */}
-        <SectionTitle>Document Lifecycle</SectionTitle>
+        <SectionTitle>1. Document Lifecycle</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Draft" centered><StatusBadge label="Draft" color={theme.colors.textSecondary} /></GalleryItem>
             <GalleryItem title="In Review" centered><StatusBadge label="In Review" color={theme.colors.info} /></GalleryItem>
@@ -53,7 +53,7 @@ export const LegalGalleryTab: React.FC = () => {
         </div>
 
         {/* --- 2. Signature & Authentication --- */}
-        <SectionTitle>Signature & Authentication</SectionTitle>
+        <SectionTitle>2. Signature & Authentication</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
              <GalleryItem title="Signature Line" centered>
                 <div className="w-full px-4 text-center">
@@ -121,7 +121,7 @@ export const LegalGalleryTab: React.FC = () => {
         </div>
 
         {/* --- 3. Structure & Formatting --- */}
-        <SectionTitle>Structure & Formatting</SectionTitle>
+        <SectionTitle>3. Structure & Formatting</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
              <GalleryItem title="Clause Header" centered>
                 <div className="flex gap-2 items-baseline w-full px-6">
@@ -187,8 +187,8 @@ export const LegalGalleryTab: React.FC = () => {
             </GalleryItem>
         </div>
 
-        {/* --- 4. Legal Icons & Symbols --- */}
-        <SectionTitle>Icons & Symbols</SectionTitle>
+        {/* --- 4. Icons & Symbols --- */}
+        <SectionTitle>4. Icons & Symbols</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Gavel" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>gavel</span></GalleryItem>
             <GalleryItem title="Scales" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>balance</span></GalleryItem>
@@ -204,8 +204,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Privacy" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>visibility_off</span></GalleryItem>
         </div>
 
-        {/* --- 5. Case & Matter Management --- */}
-        <SectionTitle>Case & Matter Fields</SectionTitle>
+        {/* --- 5. Case & Matter Fields --- */}
+        <SectionTitle>5. Case & Matter Fields</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Case Number" centered>
                 <div className="rounded px-3 py-1.5 text-[10px] font-mono border font-bold tracking-wide" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '20', color: theme.colors.text }}>
@@ -247,7 +247,7 @@ export const LegalGalleryTab: React.FC = () => {
         </div>
 
         {/* --- 6. Compliance & Security --- */}
-        <SectionTitle>Compliance & Security</SectionTitle>
+        <SectionTitle>6. Compliance & Security</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="GDPR" centered>
                 <div className="w-10 h-10 rounded-full text-white flex items-center justify-center text-[8px] font-bold border-2 border-white shadow-md" style={{ backgroundColor: theme.colors.info }}>
@@ -282,8 +282,8 @@ export const LegalGalleryTab: React.FC = () => {
             </GalleryItem>
         </div>
 
-        {/* --- 7. Contract Clauses (NEW) --- */}
-        <SectionTitle>Contract Clauses</SectionTitle>
+        {/* --- 7. Contract Clauses --- */}
+        <SectionTitle>7. Contract Clauses</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Indemnity" centered><ClauseItem title="Indemnity" icon="shield" /></GalleryItem>
             <GalleryItem title="Liability Cap" centered><ClauseItem title="Liability" icon="money_off" /></GalleryItem>
@@ -299,8 +299,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Entire Agreement" centered><ClauseItem title="Entire Agmt." icon="folder_zip" /></GalleryItem>
         </div>
 
-        {/* --- 8. Intellectual Property (NEW) --- */}
-        <SectionTitle>Intellectual Property</SectionTitle>
+        {/* --- 8. Intellectual Property --- */}
+        <SectionTitle>8. Intellectual Property</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Patent Pending" centered><ClauseItem title="Pending" icon="lightbulb" /></GalleryItem>
             <GalleryItem title="Trademark (TM)" centered><span className="text-2xl font-serif font-bold" style={{ color: theme.colors.text }}>TM</span></GalleryItem>
@@ -316,8 +316,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Prior Art" centered><ClauseItem title="Prior Art" icon="history" /></GalleryItem>
         </div>
 
-        {/* --- 9. Corporate & Entity (NEW) --- */}
-        <SectionTitle>Corporate & Entity</SectionTitle>
+        {/* --- 9. Corporate & Entity --- */}
+        <SectionTitle>9. Corporate & Entity</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Incorporation" centered><ClauseItem title="Inc." icon="business" /></GalleryItem>
             <GalleryItem title="LLC" centered><span className="font-bold text-lg border-2 p-1 rounded" style={{ borderColor: theme.colors.text }}>LLC</span></GalleryItem>
@@ -333,8 +333,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Acquisition" centered><span className="material-icons text-3xl" style={{ color: theme.colors.accent }}>shopping_bag</span></GalleryItem>
         </div>
 
-        {/* --- 10. Court & Litigation (NEW) --- */}
-        <SectionTitle>Court & Litigation</SectionTitle>
+        {/* --- 10. Court & Litigation --- */}
+        <SectionTitle>10. Court & Litigation</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Subpoena" centered><ClauseItem title="Subpoena" icon="mail" /></GalleryItem>
             <GalleryItem title="Affidavit" centered><ClauseItem title="Affidavit" icon="history_edu" /></GalleryItem>
@@ -350,8 +350,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Summons" centered><ClauseItem title="Summons" icon="notifications_active" /></GalleryItem>
         </div>
 
-        {/* --- 11. Real Estate & Property (NEW) --- */}
-        <SectionTitle>Real Estate & Property</SectionTitle>
+        {/* --- 11. Real Estate & Property --- */}
+        <SectionTitle>11. Real Estate & Property</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Deed" centered><ClauseItem title="Deed" icon="foundation" /></GalleryItem>
             <GalleryItem title="Title Search" centered><ClauseItem title="Title" icon="search" /></GalleryItem>
@@ -367,8 +367,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Eviction" centered><ClauseItem title="Eviction" icon="block" /></GalleryItem>
         </div>
 
-        {/* --- 12. Estate & Family (NEW) --- */}
-        <SectionTitle>Estate & Family</SectionTitle>
+        {/* --- 12. Estate & Family --- */}
+        <SectionTitle>12. Estate & Family</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Will" centered><ClauseItem title="Will" icon="receipt_long" /></GalleryItem>
             <GalleryItem title="Trust" centered><ClauseItem title="Trust" icon="volunteer_activism" /></GalleryItem>
@@ -382,8 +382,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Custody" centered><ClauseItem title="Custody" icon="family_restroom" /></GalleryItem>
         </div>
 
-        {/* --- 13. Legal UI & Tools (NEW) --- */}
-        <SectionTitle>Legal UI & Tools</SectionTitle>
+        {/* --- 13. Legal UI & Tools --- */}
+        <SectionTitle>13. Legal UI & Tools</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Redact Tool" centered>
                 <div className="w-12 h-6 bg-black flex items-center justify-center text-[6px] text-white tracking-widest font-mono">REDACT</div>
@@ -410,8 +410,8 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Audit Trail" centered><ClauseItem title="Audit" icon="history" /></GalleryItem>
         </div>
 
-        {/* --- 14. Status Stamps (NEW) --- */}
-        <SectionTitle>Official Status Stamps</SectionTitle>
+        {/* --- 14. Status Stamps --- */}
+        <SectionTitle>14. Official Status Stamps</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Approved" centered>
                 <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest transform -rotate-12 opacity-80" style={{ borderColor: theme.colors.success, color: theme.colors.success }}>
@@ -451,6 +451,195 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Confidential" centered>
                 <div className="border-4 px-2 py-1 text-[8px] font-bold uppercase tracking-widest transform rotate-3 opacity-50" style={{ borderColor: theme.colors.text, color: theme.colors.text }}>
                     CONFIDENTIAL
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 15. Integrated Legal Views (NEW) --- */}
+        <SectionTitle>15. Integrated Legal Views</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-16">
+            <GalleryItem title="Contract Header" centered>
+                <div className="w-full border-b pb-2">
+                    <div className="text-[8px] font-bold uppercase tracking-wide opacity-50">Master Services Agreement</div>
+                    <div className="text-[10px] font-bold">Acme Corp v. Beta Inc</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Status Timeline" centered>
+                <div className="flex items-center gap-1 w-full text-[8px]">
+                    <div className="px-1 bg-green-100 rounded">Draft</div>
+                    <span>→</span>
+                    <div className="px-1 border rounded">Review</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Clause Review" centered>
+                <div className="relative border p-2 w-full text-[8px]">
+                    <span className="bg-yellow-100">Term: 3 years</span>
+                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Signature Block" centered>
+                <div className="flex justify-between w-full text-[6px] pt-4 border-t border-dashed">
+                    <span>Client Sign</span>
+                    <span>Provider Sign</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Redline View" centered>
+                <div className="text-[8px]">
+                    <span className="line-through text-red-500 opacity-60">Monthly</span>
+                    <span className="text-green-600 font-bold ml-1">Quarterly</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Comment Thread" centered>
+                <div className="space-y-1 w-full">
+                    <div className="bg-gray-100 p-1 rounded text-[6px]">Pls revise sec 2.</div>
+                    <div className="bg-blue-50 p-1 rounded text-[6px] ml-2">Done.</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Approval Chain" centered>
+                <div className="flex items-center gap-1">
+                    <div className="w-4 h-4 rounded-full bg-green-200"></div>
+                    <div className="h-px w-2 bg-gray-300"></div>
+                    <div className="w-4 h-4 rounded-full border"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Doc List Item" centered>
+                <div className="flex justify-between w-full border-b pb-1 text-[8px]">
+                    <span>NDA.pdf</span>
+                    <span className="text-green-600">Signed</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Version History" centered>
+                <div className="text-[8px] opacity-60 w-full">
+                    <div>v1.0 - Oct 1</div>
+                    <div className="font-bold">v1.1 - Oct 5</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Matter Card" centered>
+                <div className="border p-2 w-full">
+                    <div className="text-[8px] font-bold">Matter #99</div>
+                    <div className="text-[6px] opacity-60">Open • Litigation</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Billing Row" centered>
+                <div className="flex justify-between w-full text-[8px] border-b border-dashed">
+                    <span>Research</span>
+                    <span>0.5h</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Search Hit" centered>
+                <div className="text-[8px]">
+                    ...party shall <span className="bg-yellow-200">indemnify</span> the...
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Filter Tag" centered>
+                <div className="border rounded-full px-2 py-0.5 text-[8px] flex gap-1 items-center">
+                    Type: NDA <span className="text-[6px]">✕</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Smart Field" centered>
+                <span className="bg-blue-100 text-blue-800 px-1 rounded text-[8px]">[ Client Name ]</span>
+            </GalleryItem>
+            <GalleryItem title="Obligation" centered>
+                <div className="border-l-2 border-red-500 pl-2 text-[8px]">
+                    <div>Deliver Report</div>
+                    <div className="opacity-50">Due Oct 31</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Risk Badge" centered>
+                <div className="border border-red-500 text-red-500 rounded px-1 text-[8px] font-bold">HIGH RISK</div>
+            </GalleryItem>
+            <GalleryItem title="User Perms" centered>
+                <div className="w-full text-[8px]">
+                    <div className="flex justify-between"><span>Alice</span> <span>Edit</span></div>
+                    <div className="flex justify-between opacity-60"><span>Bob</span> <span>View</span></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="E-Sign Env" centered>
+                <div className="relative border w-8 h-10 bg-white mx-auto shadow-sm">
+                    <div className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Nav Sidebar" centered>
+                <div className="w-full space-y-1 text-[8px]">
+                    <div className="font-bold">Contracts</div>
+                    <div className="opacity-60">Matters</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="KPI Widget" centered>
+                <div className="text-center">
+                    <div className="text-xl font-bold">3</div>
+                    <div className="text-[6px] uppercase">Expiring Soon</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Task Check" centered>
+                <div className="flex items-center gap-1 text-[8px]">
+                    <input type="checkbox" checked readOnly /> Review Clause 5
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Dropzone" centered>
+                <div className="border-2 border-dashed w-full py-2 text-center text-[6px]">
+                    Upload Signed Copy
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Toast" centered>
+                <div className="bg-green-600 text-white text-[8px] px-2 py-1 rounded shadow-md">
+                    Contract Signed
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Confirm Modal" centered>
+                <div className="border rounded p-2 text-center shadow-lg w-3/4 bg-white">
+                    <div className="text-[8px] font-bold mb-1">Approve?</div>
+                    <div className="flex gap-1 justify-center"><button className="bg-gray-200 px-1 text-[6px]">No</button><button className="bg-blue-500 text-white px-1 text-[6px]">Yes</button></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Data Room" centered>
+                <div className="grid grid-cols-2 gap-1 w-full px-2">
+                    <Icons.Folder size="sm" className="opacity-50"/>
+                    <Icons.Folder size="sm" className="opacity-50"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Exhibit List" centered>
+                <div className="w-full text-[8px] space-y-1">
+                    <div className="border-b">Exhibit A</div>
+                    <div className="border-b">Exhibit B</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Board Vote" centered>
+                <div className="w-full text-[8px]">
+                    <div className="text-green-600">For: 5</div>
+                    <div className="text-red-600">Against: 0</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Watermark" centered>
+                <div className="border w-10 h-12 bg-white relative flex items-center justify-center">
+                    <div className="transform -rotate-45 text-[6px] opacity-20 font-bold">DRAFT</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Jurisdiction" centered>
+                <div className="relative w-12 h-12 border rounded bg-gray-50">
+                    <Icons.Flag size="sm" className="absolute top-2 left-4 text-red-500"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Audit Log" centered>
+                <div className="text-[6px] font-mono w-full">
+                    <span className="opacity-50">10:00</span> User X viewed
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Secure Link" centered>
+                <div className="flex border rounded w-full">
+                    <div className="bg-gray-100 text-[6px] px-1 truncate flex-1">https://sec...</div>
+                    <div className="border-l px-1">📋</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Tag Cloud" centered>
+                <div className="flex flex-wrap gap-1 justify-center">
+                    <span className="bg-gray-100 px-1 rounded text-[6px]">NDA</span>
+                    <span className="bg-gray-100 px-1 rounded text-[6px]">MSA</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Renewal Alert" centered>
+                <div className="w-full bg-yellow-100 text-yellow-800 text-[6px] p-1 text-center font-bold">
+                    RENEWAL DUE
                 </div>
             </GalleryItem>
         </div>
