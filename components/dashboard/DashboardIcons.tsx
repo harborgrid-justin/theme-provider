@@ -4,6 +4,8 @@ import { Icon, IconProps } from '../ui-elements/Icon';
 // Explicitly define IconWrapperProps to ensure all attributes are available
 export interface IconWrapperProps extends React.HTMLAttributes<HTMLSpanElement> {
   size?: IconProps['size'];
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export const Icons = {

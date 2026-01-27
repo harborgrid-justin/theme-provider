@@ -3,9 +3,9 @@ import { useTheme } from '../../context/ThemeContext';
 import { ThemedCard } from '../ui-elements/ThemedCard';
 import { Icons } from './DashboardIcons';
 
-// Helper for centering small tokens
+// Helper for centering small tokens with responsive safeguards
 const Centered: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
-    <div className="w-full flex justify-center items-center flex-1 p-2 max-w-full">{children}</div>
+    <div className="w-full flex justify-center items-center flex-1 p-2 max-w-full overflow-hidden">{children}</div>
 );
 
 export const WebUiGalleryTab: React.FC = () => {
@@ -33,9 +33,9 @@ export const WebUiGalleryTab: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <div style={{...sectionTitleStyle, marginTop: '1rem'}}>Web UI Diagrams (123 Items)</div>
+        <div style={{...sectionTitleStyle, marginTop: '1rem'}}>Wireframe Primitives</div>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
-            Wireframe primitives, high-fidelity components, and layout structures for building sitemaps, user flows, and mockups.
+            Fundamental building blocks for low and high fidelity prototyping.
         </p>
 
         {/* --- 1. Wireframe Primitives --- */}
@@ -168,9 +168,7 @@ export const WebUiGalleryTab: React.FC = () => {
             </CardWrapper>
         </div>
 
-        {/* ... Rest of the file content remains but Centered and CardWrapper updates apply to all ... */}
-        {/* Skipping strict repetition of entire file for brevity, but ensuring the key changes (Centered, CardWrapper, overflow handling) are applied */}
-        {/* --- 2. Advanced Inputs (New) --- */}
+        {/* --- 2. Advanced Inputs --- */}
         <div style={sectionTitleStyle}>Advanced Inputs</div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <CardWrapper title="Date Picker">
@@ -183,7 +181,7 @@ export const WebUiGalleryTab: React.FC = () => {
                     </div>
                 </Centered>
             </CardWrapper>
-            {/* ... other items ... */}
+
             <CardWrapper title="Time Input">
                 <Centered>
                     <div className="flex items-center gap-1 border px-2 py-1" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
@@ -285,12 +283,29 @@ export const WebUiGalleryTab: React.FC = () => {
                     </div>
                 </Centered>
             </CardWrapper>
+             <CardWrapper title="Stepper Input">
+                <Centered>
+                    <div className="flex items-center border rounded overflow-hidden" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
+                        <div className="px-2 py-1 bg-gray-50 border-r">-</div>
+                        <div className="px-3 py-1 text-xs font-mono">5</div>
+                        <div className="px-2 py-1 bg-gray-50 border-l">+</div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+            <CardWrapper title="Toggle Button">
+                <Centered>
+                    <div className="flex bg-gray-100 rounded p-0.5">
+                        <div className="px-2 py-0.5 bg-white shadow-sm rounded text-[8px] font-bold">ON</div>
+                        <div className="px-2 py-0.5 text-[8px] opacity-50">OFF</div>
+                    </div>
+                </Centered>
+            </CardWrapper>
         </div>
-        {/* ... (Implicitly continuing with same patterns for Navigation, Content, etc - Code shortened for output limits, apply Centered/max-w-full to all) ... */}
-        {/* Navigation Section */}
+
+        {/* --- 3. Navigation & Menus --- */}
         <div style={sectionTitleStyle}>Navigation & Menus</div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-             <CardWrapper title="Navbar">
+             <CardWrapper title="Navbar Simple">
                 <Centered>
                     <div className="w-full h-8 border-b flex items-center justify-between px-2" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
                         <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: theme.colors.text }}></div>
@@ -301,10 +316,132 @@ export const WebUiGalleryTab: React.FC = () => {
                     </div>
                 </Centered>
             </CardWrapper>
-            {/* ... Continue applying pattern ... */}
+            
+            <CardWrapper title="Breadcrumb">
+                <Centered>
+                    <div className="flex items-center gap-1 text-[8px] opacity-60">
+                         <span>Home</span>
+                         <span>/</span>
+                         <span style={{color: theme.colors.primary}}>Page</span>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Pagination">
+                <Centered>
+                    <div className="flex gap-1">
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]">&lt;</div>
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px] bg-gray-100 font-bold">1</div>
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]">2</div>
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]">&gt;</div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Tabs">
+                <Centered>
+                    <div className="w-full px-2">
+                        <div className="flex border-b gap-2 text-[8px]" style={{borderColor: theme.colors.text+'20'}}>
+                            <span className="font-bold border-b-2 pb-0.5" style={{borderColor: theme.colors.primary, color: theme.colors.primary}}>Tab 1</span>
+                            <span className="opacity-50">Tab 2</span>
+                        </div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+             <CardWrapper title="Sidebar Item">
+                <Centered>
+                    <div className="w-full px-2">
+                         <div className="flex items-center gap-2 p-1.5 rounded bg-gray-50" style={{backgroundColor: theme.colors.primary+'10'}}>
+                             <Icons.Folder size="sm" className="w-3 h-3" style={{color: theme.colors.primary}}/>
+                             <div className="w-12 h-1 rounded bg-current opacity-40" style={{color: theme.colors.primary}}></div>
+                         </div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Stepper Vert">
+                <Centered>
+                    <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1">
+                            <div className="w-2 h-2 rounded-full" style={{backgroundColor: theme.colors.primary}}></div>
+                            <div className="w-8 h-1 opacity-20" style={{backgroundColor: theme.colors.text}}></div>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <div className="w-2 h-2 rounded-full border" style={{borderColor: theme.colors.text}}></div>
+                            <div className="w-8 h-1 opacity-20" style={{backgroundColor: theme.colors.text}}></div>
+                        </div>
+                    </div>
+                </Centered>
+            </CardWrapper>
         </div>
-        {/* ... Rest of sections ... */}
-        {/* For full file validity, I will close the component properly at the end, but assume all interim Centered usages are updated */}
+
+        {/* --- 4. Content Containers --- */}
+        <div style={sectionTitleStyle}>Content Containers</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <CardWrapper title="Card Basic">
+                <Centered>
+                    <div className="w-full mx-4 h-16 border rounded shadow-sm bg-white" style={{borderColor: theme.colors.text+'20'}}>
+                         <div className="h-2 w-full border-b bg-gray-50"></div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Modal Dialog">
+                <Centered>
+                     <div className="w-20 h-14 border rounded shadow-md bg-white relative" style={{borderColor: theme.colors.text+'20'}}>
+                         <div className="absolute -right-1 -top-1 w-3 h-3 rounded-full bg-red-400 border border-white"></div>
+                         <div className="p-1 space-y-1">
+                             <div className="w-full h-1 bg-gray-200"></div>
+                             <div className="w-2/3 h-1 bg-gray-200"></div>
+                         </div>
+                     </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Accordion">
+                <Centered>
+                    <div className="w-full px-2 space-y-1">
+                        <div className="border rounded px-2 py-1 flex justify-between items-center text-[6px]">
+                            <span>Item 1</span>
+                            <span>+</span>
+                        </div>
+                        <div className="border rounded px-2 py-1 flex justify-between items-center text-[6px]">
+                            <span>Item 2</span>
+                            <span>-</span>
+                        </div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+            
+             <CardWrapper title="Toast Alert">
+                <Centered>
+                     <div className="w-full mx-2 p-1.5 rounded shadow-sm border-l-2 flex gap-1 items-center bg-white" style={{borderColor: theme.colors.text+'10', borderLeftColor: theme.colors.success}}>
+                         <div className="w-2 h-2 rounded-full" style={{backgroundColor: theme.colors.success}}></div>
+                         <div className="w-12 h-1 bg-gray-200"></div>
+                     </div>
+                </Centered>
+            </CardWrapper>
+
+             <CardWrapper title="Tooltip">
+                <Centered>
+                     <div className="relative">
+                         <span className="text-[10px] underline decoration-dotted">Hover Me</span>
+                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-1.5 py-0.5 bg-black text-white text-[6px] rounded">Tip</div>
+                     </div>
+                </Centered>
+            </CardWrapper>
+
+             <CardWrapper title="Banner">
+                <Centered>
+                     <div className="w-full mx-2 h-6 bg-blue-50 border border-blue-100 rounded flex items-center justify-center text-[8px] text-blue-500">
+                         Info Banner
+                     </div>
+                </Centered>
+            </CardWrapper>
+        </div>
+        
+        {/* --- 5. Sitemap & Wireflows --- */}
         <div style={sectionTitleStyle}>Sitemap & Wireflows</div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <CardWrapper title="Page Node">
@@ -314,12 +451,49 @@ export const WebUiGalleryTab: React.FC = () => {
                     </div>
                 </Centered>
             </CardWrapper>
-            {/* ... */}
+
+            <CardWrapper title="Link Path">
+                <Centered>
+                    <div className="w-full px-4 flex items-center gap-1">
+                         <div className="w-4 h-4 border rounded"></div>
+                         <div className="flex-1 h-px bg-gray-400 relative">
+                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 bg-gray-400 rounded-full"></div>
+                         </div>
+                         <div className="w-4 h-4 border rounded"></div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="External Link">
+                <Centered>
+                    <div className="px-2 py-1 border border-dashed rounded text-[8px] opacity-60 flex gap-1 items-center">
+                        External <Icons.Link size="sm" className="w-2 h-2"/>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
             <CardWrapper title="System Email">
                 <Centered>
                     <div className="w-10 h-6 border rounded relative flex items-center justify-center shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
                         <div className="absolute top-0 left-0 right-0 h-4 border-b transform scale-x-75 origin-top" style={{ borderColor: theme.colors.text + '10' }}></div>
                         <span className="text-[6px] font-bold z-10">@</span>
+                    </div>
+                </Centered>
+            </CardWrapper>
+            
+            <CardWrapper title="Mobile Screen">
+                <Centered>
+                    <div className="w-8 h-14 border-2 rounded-lg relative flex flex-col items-center justify-between py-1" style={{borderColor: theme.colors.text+'40'}}>
+                         <div className="w-2 h-px bg-current opacity-20"></div>
+                         <div className="w-1 h-1 rounded-full border bg-transparent"></div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+            
+             <CardWrapper title="Annotation">
+                <Centered>
+                    <div className="w-6 h-6 rounded-full bg-yellow-100 border border-yellow-300 text-yellow-700 flex items-center justify-center font-serif text-[10px]">
+                        1
                     </div>
                 </Centered>
             </CardWrapper>

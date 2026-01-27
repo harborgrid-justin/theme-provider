@@ -6,7 +6,7 @@ import { Icons } from './DashboardIcons';
 
 // Helper for centering small tokens
 const Centered: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
-    <div className="w-full flex justify-center items-center flex-1 p-2 max-w-full">{children}</div>
+    <div className="w-full flex justify-center items-center flex-1 p-2 max-w-full overflow-hidden">{children}</div>
 );
 
 export const DatabaseGalleryTab: React.FC = () => {
@@ -46,10 +46,56 @@ export const DatabaseGalleryTab: React.FC = () => {
                     <span className="font-mono text-xs px-2 py-1 rounded border" style={{ color: theme.colors.primary, borderColor: theme.colors.primary, backgroundColor: theme.colors.primary + '10' }}>INT</span>
                 </Centered>
             </CardWrapper>
-            {/* ... Rest of types ... */}
+
+            <CardWrapper title="Type: String">
+                <Centered>
+                    <span className="font-mono text-xs px-2 py-1 rounded border" style={{ color: theme.colors.secondary, borderColor: theme.colors.secondary, backgroundColor: theme.colors.secondary + '10' }}>VARCHAR</span>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Type: Boolean">
+                <Centered>
+                    <span className="font-mono text-xs px-2 py-1 rounded border border-gray-300 bg-gray-100 text-gray-600">BOOL</span>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Type: JSON">
+                <Centered>
+                    <span className="font-mono text-xs px-2 py-1 rounded border border-yellow-300 bg-yellow-50 text-yellow-700">{'{JSON}'}</span>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Key: Primary">
+                <Centered>
+                    <div className="flex items-center gap-1 text-[10px] font-bold text-yellow-600">
+                        <Icons.Lock size="sm" className="w-3 h-3"/> PK
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Key: Foreign">
+                <Centered>
+                    <div className="flex items-center gap-1 text-[10px] font-bold text-blue-600">
+                        <Icons.Link size="sm" className="w-3 h-3"/> FK
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Index">
+                <Centered>
+                    <div className="flex items-center gap-1 text-[10px] font-bold text-gray-500">
+                        <Icons.Search size="sm" className="w-3 h-3"/> IDX
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Null">
+                <Centered>
+                    <span className="font-mono text-[10px] opacity-40 uppercase">NULL</span>
+                </Centered>
+            </CardWrapper>
         </div>
         
-        {/* ... Rest of the file ... */}
         <div style={sectionTitleStyle}>Complex Database Modules</div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             <CardWrapper title="Table Schema Node" className="col-span-2 min-h-[180px]">
@@ -66,7 +112,19 @@ export const DatabaseGalleryTab: React.FC = () => {
                             </div>
                             <span className="font-mono opacity-50">UUID</span>
                         </div>
-                        {/* ... items ... */}
+                         <div className="px-3 py-1.5 flex justify-between hover:bg-black/5">
+                            <div className="flex items-center gap-2">
+                                <span className="font-bold pl-5" style={{ color: theme.colors.text }}>email</span>
+                            </div>
+                            <span className="font-mono opacity-50">VARCHAR</span>
+                        </div>
+                         <div className="px-3 py-1.5 flex justify-between hover:bg-black/5">
+                            <div className="flex items-center gap-2">
+                                 <Icons.Link size="sm" className="text-blue-500 w-3"/>
+                                <span className="font-bold" style={{ color: theme.colors.text }}>role_id</span>
+                            </div>
+                            <span className="font-mono opacity-50">INT</span>
+                        </div>
                     </div>
                 </div>
             </CardWrapper>
@@ -94,6 +152,29 @@ export const DatabaseGalleryTab: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </CardWrapper>
+
+            <CardWrapper title="ER Relationship">
+                <Centered>
+                    <div className="flex items-center w-full justify-center">
+                        <div className="w-8 h-8 border rounded bg-white shadow-sm"></div>
+                        <div className="w-8 h-px bg-gray-400 relative">
+                             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3 border-l border-gray-400"></div>
+                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 border-t border-r border-gray-400"></div>
+                        </div>
+                        <div className="w-8 h-8 border rounded bg-white shadow-sm"></div>
+                    </div>
+                </Centered>
+            </CardWrapper>
+            
+            <CardWrapper title="Query Result">
+                <Centered>
+                    <div className="w-full border rounded overflow-hidden text-[8px]">
+                        <div className="bg-gray-100 p-1 border-b font-bold">id | email</div>
+                        <div className="p-1 border-b">1 | a@b.com</div>
+                        <div className="p-1">2 | c@d.com</div>
+                    </div>
+                </Centered>
             </CardWrapper>
         </div>
     </div>
