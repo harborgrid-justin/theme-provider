@@ -4,6 +4,7 @@ import { ThemedButton } from '../ui-elements/ThemedButton';
 import { ThemedCard } from '../ui-elements/ThemedCard';
 import { ThemedInput } from '../ui-elements/ThemedInput';
 import { Icons } from './DashboardIcons';
+import { SectionTitle } from './SectionTitle';
 
 export const MarketingTab: React.FC = () => {
   const { theme } = useTheme();
@@ -11,16 +12,6 @@ export const MarketingTab: React.FC = () => {
   const headingStyle = {
     color: theme.colors.text,
     fontWeight: theme.typography.headingWeight,
-  };
-
-  const sectionTitleStyle = {
-    ...headingStyle,
-    opacity: 0.9,
-    fontSize: '1.25rem',
-    marginBottom: '1.5rem',
-    marginTop: '3rem',
-    paddingBottom: '0.5rem',
-    borderBottom: `1px solid ${theme.colors.text}20`
   };
 
   const mutedTextStyle = {
@@ -31,7 +22,7 @@ export const MarketingTab: React.FC = () => {
     <div className="space-y-20 animate-in fade-in duration-500 pb-20">
         {/* 1. Hero Sections */}
         <section>
-            <div style={sectionTitleStyle}>1. Hero Sections</div>
+            <SectionTitle style={{ marginTop: 0 }}>1. Hero Sections</SectionTitle>
             <div className="grid gap-8">
                 <ThemedCard className="overflow-hidden relative text-center py-20 px-6">
                     <span className="inline-block py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider mb-8" style={{ backgroundColor: theme.colors.primary + '15', color: theme.colors.primary }}>
@@ -106,7 +97,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 2. Stats Grid */}
         <section>
-            <div style={sectionTitleStyle}>2. Statistics</div>
+            <SectionTitle>2. Statistics</SectionTitle>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                     { label: 'Active Users', value: '100k+' },
@@ -124,7 +115,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 3. Feature Grids */}
         <section>
-            <div style={sectionTitleStyle}>3. Feature Sections</div>
+            <SectionTitle>3. Feature Sections</SectionTitle>
             <div className="grid md:grid-cols-3 gap-6">
                 {[
                     { title: 'Analytics', icon: 'Chart', desc: 'Deep dive into your data with our advanced processing engine.' },
@@ -153,7 +144,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 4. Testimonials */}
         <section>
-             <div style={sectionTitleStyle}>4. Social Proof & Testimonials</div>
+             <SectionTitle>4. Social Proof & Testimonials</SectionTitle>
              <div className="grid md:grid-cols-3 gap-6">
                  {[
                      { text: "This tool has completely transformed how we build our design systems. It's simply incredible.", author: "Jane Doe", role: "CTO at TechCorp" },
@@ -177,7 +168,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 5. Team Section */}
         <section>
-            <div style={sectionTitleStyle}>5. Team</div>
+            <SectionTitle>5. Team</SectionTitle>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[1,2,3,4].map(i => (
                     <div key={i} className="group">
@@ -197,7 +188,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 6. Blog Grid */}
         <section>
-            <div style={sectionTitleStyle}>6. Blog & News</div>
+            <SectionTitle>6. Blog & News</SectionTitle>
             <div className="grid md:grid-cols-3 gap-8">
                  {[
                      { title: "The Future of Design Systems", cat: "Thought Leadership" },
@@ -220,7 +211,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 7. FAQ */}
         <section>
-            <div style={sectionTitleStyle}>7. FAQ</div>
+            <SectionTitle>7. FAQ</SectionTitle>
             <div className="max-w-3xl mx-auto space-y-4">
                 {[
                     "What is the difference between the Free and Pro plan?",
@@ -240,7 +231,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 8. Contact */}
         <section>
-             <div style={sectionTitleStyle}>8. Contact Form</div>
+             <SectionTitle>8. Contact Form</SectionTitle>
              <div className="grid md:grid-cols-2 gap-12 items-center">
                  <div>
                      <h3 className="text-3xl font-bold mb-4" style={headingStyle}>Get in touch</h3>
@@ -289,7 +280,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 9. Pricing Cards */}
         <section>
-            <div style={sectionTitleStyle}>9. Pricing Tables</div>
+            <SectionTitle>9. Pricing Tables</SectionTitle>
             <div className="grid md:grid-cols-3 gap-6 items-start">
                 {/* Basic */}
                 <ThemedCard className="p-8 h-full flex flex-col">
@@ -341,7 +332,7 @@ export const MarketingTab: React.FC = () => {
 
         {/* 10. Footer */}
         <section>
-            <div style={sectionTitleStyle}>10. Footer & CTA</div>
+            <SectionTitle>10. Footer & CTA</SectionTitle>
             <ThemedCard className="mb-12 text-center py-16 px-4" style={{ backgroundColor: theme.colors.surface }}>
                 <h3 className="text-3xl font-bold mb-4" style={headingStyle}>Ready to get started?</h3>
                 <p className="mb-8 max-w-md mx-auto text-lg" style={mutedTextStyle}>Join over 100,000 developers building better apps today.</p>

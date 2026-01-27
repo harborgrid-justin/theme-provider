@@ -6,30 +6,20 @@ import { useTheme } from '../../context/ThemeContext';
 import { ThemedCard } from '../ui-elements/ThemedCard';
 import { ThemedButton } from '../ui-elements/ThemedButton';
 import { Icons } from './DashboardIcons';
+import { SectionTitle } from './SectionTitle';
 
 export const ApplicationTab: React.FC = () => {
   const { theme } = useTheme();
 
-  const sectionTitleStyle = {
-    color: theme.colors.text,
-    fontWeight: theme.typography.headingWeight,
-    opacity: 0.9,
-    fontSize: '1.25rem',
-    marginBottom: '1rem',
-    marginTop: '2rem',
-    paddingBottom: '0.5rem',
-    borderBottom: `1px solid ${theme.colors.text}20`
-  };
-
   return (
     <div className="space-y-12 animate-in fade-in duration-500">
         <section>
-            <div style={sectionTitleStyle}>Stats Overview</div>
+            <SectionTitle style={{ marginTop: '2rem' }}>Stats Overview</SectionTitle>
             <AppStats />
         </section>
 
         <section>
-             <div style={sectionTitleStyle}>Calendar & Scheduling</div>
+             <SectionTitle>Calendar & Scheduling</SectionTitle>
              <ThemedCard className="p-6">
                 <div className="flex justify-between items-center mb-6">
                     <h3 className="font-bold text-lg" style={{ color: theme.colors.text }}>October 2024</h3>
@@ -65,7 +55,7 @@ export const ApplicationTab: React.FC = () => {
         </section>
 
         <section>
-             <div style={sectionTitleStyle}>Invoices & Billing</div>
+             <SectionTitle>Invoices & Billing</SectionTitle>
              <ThemedCard className="overflow-hidden p-0">
                  <div className="p-8">
                      <div className="flex justify-between items-start mb-12">
@@ -111,7 +101,7 @@ export const ApplicationTab: React.FC = () => {
         </section>
 
         <section>
-             <div style={sectionTitleStyle}>Notification Center</div>
+             <SectionTitle>Notification Center</SectionTitle>
              <div className="grid md:grid-cols-2 gap-8">
                 <ThemedCard className="h-full">
                     <div className="flex justify-between items-center mb-6">
@@ -163,12 +153,12 @@ export const ApplicationTab: React.FC = () => {
         </section>
 
         <section>
-            <div style={sectionTitleStyle}>Communication</div>
+            <SectionTitle>Communication</SectionTitle>
             <AppChat />
         </section>
 
         <section>
-            <div style={sectionTitleStyle}>Settings Layout</div>
+            <SectionTitle>Settings Layout</SectionTitle>
             <AppSettings />
         </section>
     </div>

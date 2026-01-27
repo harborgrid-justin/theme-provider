@@ -6,50 +6,40 @@ import { LayoutDemo } from './elements/LayoutDemo';
 import { FeedbackDemo } from './elements/FeedbackDemo';
 import { DataDisplayDemo } from './elements/DataDisplayDemo';
 import { TypographyDemo } from './elements/TypographyDemo';
+import { SectionTitle } from './SectionTitle';
 
 export const ElementsTab: React.FC = () => {
   const { theme } = useTheme();
 
-  const sectionTitleStyle = {
-    color: theme.colors.text,
-    fontWeight: theme.typography.headingWeight,
-    opacity: 0.9,
-    fontSize: '1.25rem',
-    marginBottom: '1rem',
-    marginTop: '2rem',
-    paddingBottom: '0.5rem',
-    borderBottom: `1px solid ${theme.colors.text}20`
-  };
-
   return (
     <div className="space-y-12 animate-in fade-in duration-500 pb-20">
         <section>
-            <div style={sectionTitleStyle}>Typography Scale</div>
+            <SectionTitle style={{ marginTop: '2rem' }}>Typography Scale</SectionTitle>
             <TypographyDemo />
         </section>
 
         <section>
-            <div style={sectionTitleStyle}>Interactive & Buttons</div>
+            <SectionTitle>Interactive & Buttons</SectionTitle>
             <InteractiveDemo />
         </section>
 
         <section>
-            <div style={sectionTitleStyle}>Forms & Inputs</div>
+            <SectionTitle>Forms & Inputs</SectionTitle>
             <FormsDemo />
         </section>
 
         <section>
-            <div style={sectionTitleStyle}>Layout & Navigation</div>
+            <SectionTitle>Layout & Navigation</SectionTitle>
             <LayoutDemo />
         </section>
 
         <section>
-             <div style={sectionTitleStyle}>Data Display</div>
+             <SectionTitle>Data Display</SectionTitle>
              <DataDisplayDemo />
         </section>
 
         <section>
-            <div style={sectionTitleStyle}>Feedback & Overlays</div>
+            <SectionTitle>Feedback & Overlays</SectionTitle>
             <FeedbackDemo />
         </section>
     </div>
