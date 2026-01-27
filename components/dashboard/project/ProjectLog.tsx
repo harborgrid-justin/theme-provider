@@ -40,13 +40,13 @@ export const ProjectLog: React.FC = () => {
         <div className="space-y-8">
             {/* Risk Register */}
             <ThemedCard className="p-0 overflow-hidden">
-                <div className="p-4 border-b bg-gray-50 flex justify-between items-center" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>
+                <div className="p-4 border-b flex justify-between items-center" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>
                     <h4 className="font-bold text-sm" style={{ color: theme.colors.text }}>Risk Register</h4>
                     <span className="text-xs px-2 py-1 rounded bg-red-100 text-red-600 font-bold">2 High</span>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
-                        <thead className="text-xs text-left opacity-60 bg-white border-b" style={{ borderColor: theme.colors.text + '10' }}>
+                        <thead className="text-xs text-left opacity-60 border-b" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
                             <tr>
                                 <th className="p-3 font-medium">Risk Description</th>
                                 <th className="p-3 font-medium">Prob.</th>
@@ -99,7 +99,7 @@ export const ProjectLog: React.FC = () => {
         {/* Activity Stream */}
         <ThemedCard className="relative overflow-hidden">
             <h4 className="font-bold text-sm mb-6" style={{ color: theme.colors.text }}>Project Activity</h4>
-            <div className="absolute top-16 bottom-0 left-8 w-px bg-gray-200" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+            <div className="absolute top-16 bottom-0 left-8 w-px" style={{ backgroundColor: theme.colors.text + '10' }}></div>
             <div className="space-y-6 relative max-h-[400px] overflow-y-auto pr-2">
                 {[
                     { user: 'Sarah W.', action: 'pushed 3 commits', target: 'feature/auth', time: '10 mins ago', type: 'code' },
@@ -110,10 +110,11 @@ export const ProjectLog: React.FC = () => {
                 ].map((act, i) => (
                     <div key={i} className="flex gap-4 items-start pl-2">
                          <div 
-                            className="w-8 h-8 rounded-full flex items-center justify-center text-xs relative z-10 border-4 border-white shadow-sm"
+                            className="w-8 h-8 rounded-full flex items-center justify-center text-xs relative z-10 border-4 shadow-sm"
                             style={{ 
                                 backgroundColor: act.type === 'system' ? theme.colors.textSecondary : theme.colors.primary, 
-                                color: '#fff' 
+                                color: '#fff',
+                                borderColor: theme.colors.surface
                             }}
                          >
                             {act.type === 'code' && <Icons.Code size="sm"/>}

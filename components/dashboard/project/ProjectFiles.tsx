@@ -90,10 +90,11 @@ export const ProjectFiles: React.FC = () => {
         
         {/* Upload Zone */}
         <div 
-            className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center transition-all cursor-pointer ${isDragging ? 'bg-opacity-10' : 'bg-transparent hover:bg-gray-50'}`}
+            className={`border-2 border-dashed p-8 flex flex-col items-center justify-center text-center transition-all cursor-pointer ${isDragging ? 'bg-opacity-10' : 'bg-transparent hover:bg-gray-50'}`}
             style={{ 
                 borderColor: isDragging ? theme.colors.primary : theme.colors.text + '20',
-                backgroundColor: isDragging ? theme.colors.primary + '10' : undefined
+                backgroundColor: isDragging ? theme.colors.primary + '10' : theme.colors.surface + '80',
+                borderRadius: theme.borderRadius.card
             }}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}

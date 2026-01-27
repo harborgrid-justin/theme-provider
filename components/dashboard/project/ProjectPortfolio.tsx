@@ -191,8 +191,12 @@ export const ProjectPortfolio: React.FC = () => {
                     ))}
                     <button 
                         onClick={() => setIsProjectModalOpen(true)}
-                        className="border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 hover:bg-black/5 transition-colors group"
-                        style={{ borderColor: theme.colors.text + '20', borderRadius: theme.borderRadius.card }}
+                        className="border-2 border-dashed flex flex-col items-center justify-center p-8 hover:bg-black/5 transition-colors group h-full w-full"
+                        style={{ 
+                            borderColor: theme.colors.text + '20', 
+                            borderRadius: theme.borderRadius.card,
+                            backgroundColor: theme.colors.surface + '80' // Slight transparency
+                        }}
                     >
                         <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text }}>
                             <Icons.Check size="md" />
@@ -207,8 +211,15 @@ export const ProjectPortfolio: React.FC = () => {
         {viewMode === 'kanban' && (
             <div className="grid md:grid-cols-3 gap-6 overflow-x-auto pb-4 animate-in fade-in slide-in-from-right-4 duration-300">
                 {(Object.entries(kanbanTasks) as [string, Task[]][]).map(([col, tasks]) => (
-                    <div key={col} className="min-w-[300px] flex flex-col h-full rounded-xl p-4 border" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.background }}>
-                        <div className="flex justify-between items-center mb-4">
+                    <div 
+                        key={col} 
+                        className="min-w-[300px] flex flex-col h-full rounded-xl p-4 transition-colors" 
+                        style={{ 
+                            backgroundColor: theme.colors.text + '05', 
+                            borderRadius: theme.borderRadius.card 
+                        }}
+                    >
+                        <div className="flex justify-between items-center mb-4 px-1">
                             <h4 className="font-bold text-sm uppercase tracking-wide" style={{ color: theme.colors.text }}>{col}</h4>
                             <span className="text-xs px-2 py-0.5 rounded-full font-bold" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text }}>{tasks.length}</span>
                         </div>
@@ -249,7 +260,11 @@ export const ProjectPortfolio: React.FC = () => {
                         <button 
                             onClick={() => setIsTaskModalOpen(true)}
                             className="mt-4 w-full py-2 border-2 border-dashed rounded-lg text-sm font-medium opacity-50 hover:opacity-100 hover:bg-black/5 transition-all" 
-                            style={{ borderColor: theme.colors.text + '20', color: theme.colors.text }}
+                            style={{ 
+                                borderColor: theme.colors.text + '20', 
+                                color: theme.colors.text,
+                                borderRadius: theme.borderRadius.button
+                            }}
                         >
                             + Add Task
                         </button>
