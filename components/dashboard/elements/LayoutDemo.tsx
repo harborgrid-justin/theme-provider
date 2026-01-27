@@ -27,7 +27,12 @@ export const LayoutDemo: React.FC = () => {
             <div>
                  <h4 className="text-sm font-bold opacity-50 uppercase mb-4" style={{ color: theme.colors.text }}>Horizontal Card</h4>
                  <div className="flex rounded-lg border overflow-hidden h-32" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.card }}>
-                     <div className="w-1/3 bg-gray-200 bg-cover bg-center" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=400&q=80)' }}></div>
+                     <div 
+                        className="w-1/3 bg-gray-200 bg-cover bg-center" 
+                        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=400&q=80)' }}
+                        role="img"
+                        aria-label="Abstract background"
+                     ></div>
                      <div className="flex-1 p-4 flex flex-col justify-center">
                          <h5 className="font-bold mb-1 truncate" style={{ color: theme.colors.text }}>Article Title</h5>
                          <p className="text-xs mb-3 opacity-70 line-clamp-2" style={{ color: theme.colors.text }}>Short description of the content goes here. It might be long.</p>

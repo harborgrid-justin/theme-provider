@@ -20,7 +20,9 @@ module.exports = {
         secondary: '${theme.colors.secondary}',
         accent: '${theme.colors.accent}',
         success: '${theme.colors.success}',
+        warning: '${theme.colors.warning}',
         error: '${theme.colors.error}',
+        info: '${theme.colors.info}',
         background: '${theme.colors.background}',
         surface: '${theme.colors.surface}',
       },
@@ -45,6 +47,11 @@ module.exports = {
   /* Colors */
   --color-primary: ${theme.colors.primary};
   --color-secondary: ${theme.colors.secondary};
+  --color-accent: ${theme.colors.accent};
+  --color-success: ${theme.colors.success};
+  --color-warning: ${theme.colors.warning};
+  --color-error: ${theme.colors.error};
+  --color-info: ${theme.colors.info};
   --color-background: ${theme.colors.background};
   --color-surface: ${theme.colors.surface};
   --color-text: ${theme.colors.text};

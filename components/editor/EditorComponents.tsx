@@ -10,10 +10,10 @@ export const EditorComponents: React.FC = () => {
              <div className="space-y-2">
                  <label className="text-xs font-medium text-gray-700 block">Button Style</label>
                  <div className="flex gap-2">
-                     {['solid', 'outline', 'ghost'].map(s => (
+                     {(['solid', 'outline', 'ghost'] as const).map(s => (
                          <button
                             key={s}
-                            onClick={() => setTheme(prev => ({...prev, buttonStyle: s as any}))}
+                            onClick={() => setTheme(prev => ({...prev, buttonStyle: s}))}
                             className={`flex-1 py-1.5 px-2 text-[10px] font-medium border rounded-md capitalize transition-all ${theme.buttonStyle === s ? 'bg-indigo-50 border-indigo-500 text-indigo-700' : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'}`}
                          >
                              {s}

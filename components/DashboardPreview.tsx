@@ -9,10 +9,11 @@ import { LegalGalleryTab } from './dashboard/LegalGalleryTab';
 import { GraphGalleryTab } from './dashboard/GraphGalleryTab';
 import { DatabaseGalleryTab } from './dashboard/DatabaseGalleryTab';
 import { FlowGalleryTab } from './dashboard/FlowGalleryTab';
+import { WebUiGalleryTab } from './dashboard/WebUiGalleryTab';
 
 export const DashboardPreview: React.FC = () => {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow'>('flow');
+  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui'>('webui');
 
   const wrapperStyle = {
     backgroundColor: theme.colors.background,
@@ -44,7 +45,7 @@ export const DashboardPreview: React.FC = () => {
              </div>
              
              <div className="flex flex-wrap gap-2">
-                {(['marketing', 'application', 'project', 'elements', 'data', 'legal', 'graph', 'database', 'flow'] as const).map(tab => (
+                {(['marketing', 'application', 'project', 'elements', 'data', 'legal', 'graph', 'database', 'flow', 'webui'] as const).map(tab => (
                   <button 
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -56,6 +57,7 @@ export const DashboardPreview: React.FC = () => {
                      tab === 'graph' ? 'Diagrams' : 
                      tab === 'database' ? 'Database' : 
                      tab === 'flow' ? 'Flowcharts' : 
+                     tab === 'webui' ? 'Web UI' :
                      tab}
                   </button>
                 ))}
@@ -73,6 +75,7 @@ export const DashboardPreview: React.FC = () => {
         {activeTab === 'graph' && <GraphGalleryTab />}
         {activeTab === 'database' && <DatabaseGalleryTab />}
         {activeTab === 'flow' && <FlowGalleryTab />}
+        {activeTab === 'webui' && <WebUiGalleryTab />}
       </div>
     </div>
   );

@@ -4,13 +4,19 @@ import { ThemedCard } from '../../ui-elements/ThemedCard';
 import { ThemedButton } from '../../ui-elements/ThemedButton';
 import { ThemedInput } from '../../ui-elements/ThemedInput';
 import { Icons } from '../DashboardIcons';
-import { toast } from '../../ui/Toaster';
+
+interface ChatMessage {
+    id: number;
+    text: string;
+    sender: 'me' | 'them';
+    time: string;
+}
 
 export const AppChat: React.FC = () => {
   const { theme } = useTheme();
   const [activeChatId, setActiveChatId] = useState(1);
   const [messageInput, setMessageInput] = useState('');
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<ChatMessage[]>([
     { id: 1, text: "Hey! Can you review the PR?", sender: 'them', time: '10:30 AM' },
     { id: 2, text: "Sure, I'll take a look in 5 mins.", sender: 'me', time: '10:32 AM' },
     { id: 3, text: "Awesome, thanks!", sender: 'them', time: '10:33 AM' }

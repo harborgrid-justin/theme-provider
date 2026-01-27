@@ -11,7 +11,9 @@ export interface ThemeColors {
   textSecondary: string;
   accent: string;
   success: string;
+  warning: string;
   error: string;
+  info: string;
 }
 
 export interface Typography {

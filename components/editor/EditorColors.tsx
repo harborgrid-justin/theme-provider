@@ -39,7 +39,9 @@ export const EditorColors: React.FC = () => {
                 <ColorPicker label="Text Dim" value={theme.colors.textSecondary} onChange={(v) => updateColor('textSecondary', v)} />
                 <div className="h-px bg-gray-100 my-2"></div>
                 <ColorPicker label="Success" value={theme.colors.success} onChange={(v) => updateColor('success', v)} />
+                <ColorPicker label="Warning" value={theme.colors.warning} onChange={(v) => updateColor('warning', v)} />
                 <ColorPicker label="Error" value={theme.colors.error} onChange={(v) => updateColor('error', v)} />
+                <ColorPicker label="Info" value={theme.colors.info} onChange={(v) => updateColor('info', v)} />
             </div>
         </div>
     </section>

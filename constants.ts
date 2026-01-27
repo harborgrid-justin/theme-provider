@@ -13,7 +13,9 @@ export const DEFAULT_THEME: ThemeConfig = {
     textSecondary: '#475569', // slate-600
     accent: '#8b5cf6', // violet-500
     success: '#22c55e',
+    warning: '#f59e0b', // amber-500
     error: '#ef4444',
+    info: '#0ea5e9', // sky-500
   },
   typography: {
     fontFamily: 'sans',

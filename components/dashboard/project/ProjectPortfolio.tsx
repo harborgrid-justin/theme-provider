@@ -7,6 +7,26 @@ import { ThemedModal } from '../../ui-elements/ThemedModal';
 import { Icons } from '../DashboardIcons';
 import { toast } from '../../ui/Toaster';
 
+interface Project {
+    id: number;
+    name: string;
+    progress: number;
+    status: string;
+    lead: string;
+    due: string;
+}
+
+interface Task {
+    id: number;
+    title: string;
+    tag: string;
+    priority: 'Low' | 'Med' | 'High';
+}
+
+interface KanbanData {
+    [key: string]: Task[];
+}
+
 export const ProjectPortfolio: React.FC = () => {
   const { theme } = useTheme();
   const [viewMode, setViewMode] = useState<'grid' | 'kanban' | 'list'>('kanban');
@@ -19,7 +39,7 @@ export const ProjectPortfolio: React.FC = () => {
   }, []);
   
   // Data State
-  const [projects, setProjects] = useState([
+  const [projects, setProjects] = useState<Project[]>([
     { id: 1, name: 'Mobile App Redesign', progress: 75, status: 'In Progress', lead: 'Sarah', due: '2 days left' },
     { id: 2, name: 'Cloud Migration', progress: 30, status: 'At Risk', lead: 'Mike', due: '1 week left' },
     { id: 3, name: 'Q4 Marketing', progress: 90, status: 'Done', lead: 'Jessica', due: 'Completed' },
@@ -28,7 +48,7 @@ export const ProjectPortfolio: React.FC = () => {
     { id: 6, name: 'Analytics Dashboard', progress: 60, status: 'Review', lead: 'Dave', due: '5 days' },
   ]);
 
-  const [kanbanTasks, setKanbanTasks] = useState({
+  const [kanbanTasks, setKanbanTasks] = useState<KanbanData>({
       'Backlog': [
           { id: 101, title: 'User Interviews', tag: 'Research', priority: 'Med' },
           { id: 102, title: 'Competitor Analysis', tag: 'Strategy', priority: 'Low' },
@@ -60,7 +80,7 @@ export const ProjectPortfolio: React.FC = () => {
 
   const handleAddProject = () => {
       if (!newProjectName) return;
-      const newProj = {
+      const newProj: Project = {
           id: Date.now(),
           name: newProjectName,
           progress: 0,
@@ -186,7 +206,7 @@ export const ProjectPortfolio: React.FC = () => {
 
         {viewMode === 'kanban' && (
             <div className="grid md:grid-cols-3 gap-6 overflow-x-auto pb-4 animate-in fade-in slide-in-from-right-4 duration-300">
-                {(Object.entries(kanbanTasks) as [string, any[]][]).map(([col, tasks], i) => (
+                {(Object.entries(kanbanTasks) as [string, Task[]][]).map(([col, tasks]) => (
                     <div key={col} className="min-w-[300px] flex flex-col h-full rounded-xl p-4 border" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.background }}>
                         <div className="flex justify-between items-center mb-4">
                             <h4 className="font-bold text-sm uppercase tracking-wide" style={{ color: theme.colors.text }}>{col}</h4>
