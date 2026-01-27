@@ -32,33 +32,33 @@ export const DatabaseGalleryTab: React.FC = () => {
             ))}
 
             <GalleryItem title="Key: Primary" centered>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-1 rounded border border-yellow-200">
+                <div className="flex items-center gap-1.5 text-xs font-bold px-2 py-1 rounded border" style={{ color: theme.colors.warning, backgroundColor: theme.colors.warning + '10', borderColor: theme.colors.warning + '30' }}>
                     <Icons.Lock size="sm" className="w-3 h-3"/> PK
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Key: Foreign" centered>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded border border-blue-200">
+                <div className="flex items-center gap-1.5 text-xs font-bold px-2 py-1 rounded border" style={{ color: theme.colors.info, backgroundColor: theme.colors.info + '10', borderColor: theme.colors.info + '30' }}>
                     <Icons.Link size="sm" className="w-3 h-3"/> FK
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Index" centered>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-gray-600 bg-gray-50 px-2 py-1 rounded border border-gray-200">
+                <div className="flex items-center gap-1.5 text-xs font-bold px-2 py-1 rounded border" style={{ color: theme.colors.textSecondary, backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '20' }}>
                     <Icons.Search size="sm" className="w-3 h-3"/> IDX
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Constraint: Unique" centered>
-                <span className="font-mono text-[10px] font-bold border px-1.5 py-0.5 rounded bg-purple-50 text-purple-700 border-purple-200">UNQ</span>
+                <span className="font-mono text-[10px] font-bold border px-1.5 py-0.5 rounded" style={{ color: theme.colors.accent, backgroundColor: theme.colors.accent + '10', borderColor: theme.colors.accent + '30' }}>UNQ</span>
             </GalleryItem>
 
             <GalleryItem title="Constraint: Not Null" centered>
-                <span className="font-mono text-[10px] font-bold border px-1.5 py-0.5 rounded bg-red-50 text-red-700 border-red-200">NN</span>
+                <span className="font-mono text-[10px] font-bold border px-1.5 py-0.5 rounded" style={{ color: theme.colors.error, backgroundColor: theme.colors.error + '10', borderColor: theme.colors.error + '30' }}>NN</span>
             </GalleryItem>
 
             <GalleryItem title="Null" centered>
-                <span className="font-mono text-xs opacity-40 uppercase tracking-widest">NULL</span>
+                <span className="font-mono text-xs opacity-40 uppercase tracking-widest" style={{ color: theme.colors.text }}>NULL</span>
             </GalleryItem>
         </div>
 
@@ -67,7 +67,7 @@ export const DatabaseGalleryTab: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
              {['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'FROM', 'WHERE', 'JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'UNION', 'GROUP BY', 'ORDER BY', 'HAVING', 'LIMIT', 'OFFSET', 'CREATE', 'ALTER', 'DROP', 'TRUNCATE', 'GRANT', 'REVOKE', 'COMMIT', 'ROLLBACK', 'EXPLAIN'].map(kw => (
                 <GalleryItem key={kw} title={`Keyword: ${kw}`} centered>
-                    <span className="font-mono text-xs font-bold text-pink-600 tracking-wide">{kw}</span>
+                    <span className="font-mono text-xs font-bold tracking-wide" style={{ color: theme.colors.accent }}>{kw}</span>
                 </GalleryItem>
              ))}
         </div>
@@ -75,12 +75,12 @@ export const DatabaseGalleryTab: React.FC = () => {
         {/* --- Database Objects --- */}
         <SectionTitle>Database Objects</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-             <GalleryItem title="Table" centered><Icons.File size="lg" className="text-blue-500"/></GalleryItem>
-             <GalleryItem title="View" centered><Icons.Image size="lg" className="text-purple-500"/></GalleryItem>
-             <GalleryItem title="Stored Proc" centered><Icons.Settings size="lg" className="text-orange-500"/></GalleryItem>
-             <GalleryItem title="Trigger" centered><Icons.Clock size="lg" className="text-red-500"/></GalleryItem>
-             <GalleryItem title="User" centered><Icons.User size="lg" className="text-green-500"/></GalleryItem>
-             <GalleryItem title="Role" centered><Icons.Lock size="lg" className="text-gray-500"/></GalleryItem>
+             <GalleryItem title="Table" centered><Icons.File size="lg" style={{ color: theme.colors.primary }}/></GalleryItem>
+             <GalleryItem title="View" centered><Icons.Image size="lg" style={{ color: theme.colors.secondary }}/></GalleryItem>
+             <GalleryItem title="Stored Proc" centered><Icons.Settings size="lg" style={{ color: theme.colors.warning }}/></GalleryItem>
+             <GalleryItem title="Trigger" centered><Icons.Clock size="lg" style={{ color: theme.colors.error }}/></GalleryItem>
+             <GalleryItem title="User" centered><Icons.User size="lg" style={{ color: theme.colors.success }}/></GalleryItem>
+             <GalleryItem title="Role" centered><Icons.Lock size="lg" style={{ color: theme.colors.text }}/></GalleryItem>
         </div>
         
         <SectionTitle>Complex Database Modules</SectionTitle>
@@ -95,23 +95,23 @@ export const DatabaseGalleryTab: React.FC = () => {
                         <div className="divide-y text-[10px] flex-1 overflow-auto" style={{ borderColor: theme.colors.text + '05' }}>
                             <div className="px-3 py-2 flex justify-between hover:bg-black/5 items-center">
                                 <div className="flex items-center gap-2">
-                                    <Icons.Lock size="sm" className="text-yellow-500 w-3"/>
+                                    <Icons.Lock size="sm" className="w-3" style={{ color: theme.colors.warning }}/>
                                     <span className="font-bold" style={{ color: theme.colors.text }}>id</span>
                                 </div>
-                                <span className="font-mono opacity-50">UUID</span>
+                                <span className="font-mono opacity-50" style={{ color: theme.colors.text }}>UUID</span>
                             </div>
                              <div className="px-3 py-2 flex justify-between hover:bg-black/5 items-center">
                                 <div className="flex items-center gap-2">
                                     <span className="font-bold pl-5" style={{ color: theme.colors.text }}>email</span>
                                 </div>
-                                <span className="font-mono opacity-50">VARCHAR</span>
+                                <span className="font-mono opacity-50" style={{ color: theme.colors.text }}>VARCHAR</span>
                             </div>
                              <div className="px-3 py-2 flex justify-between hover:bg-black/5 items-center">
                                 <div className="flex items-center gap-2">
-                                     <Icons.Link size="sm" className="text-blue-500 w-3"/>
+                                     <Icons.Link size="sm" className="w-3" style={{ color: theme.colors.info }}/>
                                     <span className="font-bold" style={{ color: theme.colors.text }}>role_id</span>
                                 </div>
-                                <span className="font-mono opacity-50">INT</span>
+                                <span className="font-mono opacity-50" style={{ color: theme.colors.text }}>INT</span>
                             </div>
                         </div>
                     </div>
@@ -122,23 +122,23 @@ export const DatabaseGalleryTab: React.FC = () => {
             <GalleryItem title="SQL Console" className="col-span-2 md:col-span-4 min-h-[200px] h-auto">
                 <div className="w-full h-full p-2">
                     <div className="flex flex-col h-full w-full rounded-lg border overflow-hidden font-mono text-xs shadow-sm" style={{ borderColor: theme.colors.text + '20' }}>
-                        <div className="bg-gray-100 px-3 py-2 flex items-center gap-2 border-b" style={{ borderColor: theme.colors.text + '10' }}>
-                            <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
-                            <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
-                            <span className="opacity-50 ml-2 text-[10px]" style={{ color: '#000' }}>query_editor.sql</span>
+                        <div className="px-3 py-2 flex items-center gap-2 border-b" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>
+                            <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: theme.colors.error }}></div>
+                            <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: theme.colors.warning }}></div>
+                            <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: theme.colors.success }}></div>
+                            <span className="opacity-50 ml-2 text-[10px]" style={{ color: theme.colors.text }}>query_editor.sql</span>
                         </div>
-                        <div className="flex-1 p-4 relative" style={{ backgroundColor: '#1e1e1e', color: '#d4d4d4' }}>
+                        <div className="flex-1 p-4 relative" style={{ backgroundColor: theme.colors.text, color: theme.colors.surface }}>
                             {/* Static dark theme for code editor feel */}
-                            <div className="pl-2 leading-relaxed">
-                                <span style={{ color: '#F472B6' }}>SELECT</span> u.id, u.email, r.name<br/>
-                                <span style={{ color: '#F472B6' }}>FROM</span> users u<br/>
-                                <span style={{ color: '#F472B6' }}>JOIN</span> roles r <span style={{ color: '#F472B6' }}>ON</span> u.role_id = r.id<br/>
-                                <span style={{ color: '#F472B6' }}>WHERE</span> u.active = <span style={{ color: '#60A5FA' }}>true</span><br/>
-                                <span style={{ color: '#F472B6' }}>LIMIT</span> <span style={{ color: '#60A5FA' }}>100</span>;
+                            <div className="pl-2 leading-relaxed opacity-90">
+                                <span style={{ color: theme.colors.accent }}>SELECT</span> u.id, u.email, r.name<br/>
+                                <span style={{ color: theme.colors.accent }}>FROM</span> users u<br/>
+                                <span style={{ color: theme.colors.accent }}>JOIN</span> roles r <span style={{ color: theme.colors.accent }}>ON</span> u.role_id = r.id<br/>
+                                <span style={{ color: theme.colors.accent }}>WHERE</span> u.active = <span style={{ color: theme.colors.info }}>true</span><br/>
+                                <span style={{ color: theme.colors.accent }}>LIMIT</span> <span style={{ color: theme.colors.info }}>100</span>;
                             </div>
                             <div className="absolute bottom-3 right-3">
-                                <button className="px-4 py-1.5 rounded bg-green-600 text-white font-bold hover:bg-green-500 text-[10px] shadow-sm tracking-wide">RUN ▶</button>
+                                <button className="px-4 py-1.5 rounded font-bold text-[10px] shadow-sm tracking-wide text-white" style={{ backgroundColor: theme.colors.success }}>RUN ▶</button>
                             </div>
                         </div>
                     </div>
@@ -147,22 +147,22 @@ export const DatabaseGalleryTab: React.FC = () => {
 
             <GalleryItem title="ER Relationship" centered>
                 <div className="flex items-center w-full justify-center px-4">
-                    <div className="w-10 h-10 border rounded-md shadow-sm bg-white" style={{ borderColor: theme.colors.text + '20' }}></div>
-                    <div className="flex-1 h-px bg-gray-400 relative mx-1">
-                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-3 bg-gray-400"></div>
-                            <div className="absolute left-2 top-1/2 -translate-y-1/2 w-px h-3 bg-gray-400"></div>
+                    <div className="w-10 h-10 border rounded-md shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}></div>
+                    <div className="flex-1 h-px relative mx-1" style={{ backgroundColor: theme.colors.text + '40' }}>
+                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-3" style={{ backgroundColor: theme.colors.text + '40' }}></div>
+                            <div className="absolute left-2 top-1/2 -translate-y-1/2 w-px h-3" style={{ backgroundColor: theme.colors.text + '40' }}></div>
                             
-                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-px h-3 bg-gray-400"></div>
-                            <div className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 border-t border-r border-gray-400 transform rotate-45"></div>
-                            <div className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 border-b border-r border-gray-400 transform -rotate-45"></div>
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-px h-3" style={{ backgroundColor: theme.colors.text + '40' }}></div>
+                            <div className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 border-t border-r transform rotate-45" style={{ borderColor: theme.colors.text + '40' }}></div>
+                            <div className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 border-b border-r transform -rotate-45" style={{ borderColor: theme.colors.text + '40' }}></div>
                     </div>
-                    <div className="w-10 h-10 border rounded-md shadow-sm bg-white" style={{ borderColor: theme.colors.text + '20' }}></div>
+                    <div className="w-10 h-10 border rounded-md shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}></div>
                 </div>
             </GalleryItem>
             
             <GalleryItem title="Query Result" centered>
                 <div className="w-full border rounded-md overflow-hidden text-[10px] shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                    <div className="flex border-b bg-gray-50" style={{ borderColor: theme.colors.text + '10' }}>
+                    <div className="flex border-b" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>
                         <div className="flex-1 p-2 font-bold border-r" style={{ borderColor: theme.colors.text + '10', color: theme.colors.text }}>id</div>
                         <div className="flex-1 p-2 font-bold" style={{ color: theme.colors.text }}>email</div>
                     </div>
@@ -182,27 +182,27 @@ export const DatabaseGalleryTab: React.FC = () => {
         <SectionTitle>Query Builder</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Block: AND" centered>
-                <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-l-none border-l-4 border-blue-500 font-bold text-xs uppercase tracking-wider relative">
+                <div className="px-3 py-1 rounded-l-none border-l-4 font-bold text-xs uppercase tracking-wider relative" style={{ backgroundColor: theme.colors.info + '15', color: theme.colors.info, borderLeftColor: theme.colors.info }}>
                     AND
-                    <div className="absolute top-1/2 -left-1 w-2 h-2 bg-blue-500 rounded-full -translate-y-1/2"></div>
+                    <div className="absolute top-1/2 -left-1 w-2 h-2 rounded-full -translate-y-1/2" style={{ backgroundColor: theme.colors.info }}></div>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Block: OR" centered>
-                <div className="bg-orange-100 text-orange-800 px-3 py-1 rounded-l-none border-l-4 border-orange-500 font-bold text-xs uppercase tracking-wider relative">
+                <div className="px-3 py-1 rounded-l-none border-l-4 font-bold text-xs uppercase tracking-wider relative" style={{ backgroundColor: theme.colors.warning + '15', color: theme.colors.warning, borderLeftColor: theme.colors.warning }}>
                     OR
-                    <div className="absolute top-1/2 -left-1 w-2 h-2 bg-orange-500 rounded-full -translate-y-1/2"></div>
+                    <div className="absolute top-1/2 -left-1 w-2 h-2 rounded-full -translate-y-1/2" style={{ backgroundColor: theme.colors.warning }}></div>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Field Select" centered>
-                <div className="flex items-center border rounded px-2 py-1 bg-white text-xs text-gray-600 gap-2 w-full mx-4">
+                <div className="flex items-center border rounded px-2 py-1 text-xs gap-2 w-full mx-4" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20', color: theme.colors.textSecondary }}>
                     <Icons.Tag size="sm" className="w-3 opacity-50"/> <span>User.Email</span>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Operator" centered>
-                <div className="bg-gray-100 px-2 py-1 rounded text-xs font-mono font-bold text-gray-700">contains</div>
+                <div className="px-2 py-1 rounded text-xs font-mono font-bold" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text }}>contains</div>
             </GalleryItem>
         </div>
 
@@ -211,26 +211,26 @@ export const DatabaseGalleryTab: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Replication Lag" centered>
                 <div className="flex flex-col items-center">
-                    <span className="text-2xl font-bold text-green-600">12ms</span>
-                    <span className="text-[8px] uppercase tracking-wide opacity-60">Repl. Lag</span>
+                    <span className="text-2xl font-bold" style={{ color: theme.colors.success }}>12ms</span>
+                    <span className="text-[8px] uppercase tracking-wide opacity-60" style={{ color: theme.colors.text }}>Repl. Lag</span>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Shard Health" centered>
                 <div className="grid grid-cols-3 gap-1">
                     {[1,1,1,1,0,1,1,1,1].map((s,i) => (
-                        <div key={i} className={`w-3 h-3 rounded-sm ${s ? 'bg-green-500' : 'bg-red-500 animate-pulse'}`}></div>
+                        <div key={i} className={`w-3 h-3 rounded-sm ${!s && 'animate-pulse'}`} style={{ backgroundColor: s ? theme.colors.success : theme.colors.error }}></div>
                     ))}
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Connection Pool" centered>
                 <div className="w-full px-4">
-                    <div className="flex justify-between text-[8px] mb-1">
+                    <div className="flex justify-between text-[8px] mb-1" style={{ color: theme.colors.text }}>
                         <span>Used</span><span>85/100</span>
                     </div>
-                    <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full w-[85%] bg-blue-500"></div>
+                    <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: theme.colors.text + '10' }}>
+                        <div className="h-full w-[85%]" style={{ backgroundColor: theme.colors.primary }}></div>
                     </div>
                 </div>
             </GalleryItem>

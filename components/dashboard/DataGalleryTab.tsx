@@ -8,14 +8,7 @@ export const DataGalleryTab: React.FC = () => {
   const { theme } = useTheme();
 
   // Helper for common SVG props
-  const svgProps = {
-    vectorEffect: "non-scaling-stroke",
-    fill: theme.colors.surface,
-    stroke: theme.colors.text,
-    strokeWidth: "1.5",
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-  };
+  const svgStyle = { overflow: 'visible' as const };
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
@@ -23,11 +16,6 @@ export const DataGalleryTab: React.FC = () => {
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             A comprehensive collection of data-rich UI micro-components and visualization primitives.
         </p>
-
-        {/* ... (Existing sections 1-6 omitted for brevity, they remain unchanged) ... */}
-        {/* Re-inserting previous content is implied by "continuing" - but here I will just append the new section for clarity in the XML structure 
-            Actually, I must return full content. I will include previous content.
-        */}
         
         {/* --- 1. KPI & Metrics --- */}
         <SectionTitle>KPIs & Metrics</SectionTitle>
@@ -283,33 +271,33 @@ export const DataGalleryTab: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-12">
              <GalleryItem title="Status: Active" centered>
                 <svg viewBox="0 0 80 24" className="w-24 h-8">
-                    <rect x="1" y="1" width="78" height="22" rx="11" fill="#DCFCE7" stroke="#86EFAC" strokeWidth="1" />
-                    <circle cx="15" cy="12" r="3" fill="#22C55E" />
-                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill="#15803D" textAnchor="middle">Active</text>
+                    <rect x="1" y="1" width="78" height="22" rx="11" fill={theme.colors.success + '10'} stroke={theme.colors.success + '40'} strokeWidth="1" />
+                    <circle cx="15" cy="12" r="3" fill={theme.colors.success} />
+                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill={theme.colors.success} textAnchor="middle">Active</text>
                 </svg>
             </GalleryItem>
 
              <GalleryItem title="Status: Offline" centered>
                 <svg viewBox="0 0 80 24" className="w-24 h-8">
-                    <rect x="1" y="1" width="78" height="22" rx="11" fill="#F3F4F6" stroke="#D1D5DB" strokeWidth="1" />
-                    <circle cx="15" cy="12" r="3" fill="#9CA3AF" />
-                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill="#4B5563" textAnchor="middle">Offline</text>
+                    <rect x="1" y="1" width="78" height="22" rx="11" fill={theme.colors.text + '05'} stroke={theme.colors.text + '20'} strokeWidth="1" />
+                    <circle cx="15" cy="12" r="3" fill={theme.colors.text} opacity="0.4" />
+                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill={theme.colors.text} opacity="0.6" textAnchor="middle">Offline</text>
                 </svg>
             </GalleryItem>
 
             <GalleryItem title="Status: Error" centered>
                 <svg viewBox="0 0 80 24" className="w-24 h-8">
-                    <rect x="1" y="1" width="78" height="22" rx="11" fill="#FEF2F2" stroke="#FECACA" strokeWidth="1" />
-                    <circle cx="15" cy="12" r="3" fill="#EF4444" />
-                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill="#B91C1C" textAnchor="middle">Error</text>
+                    <rect x="1" y="1" width="78" height="22" rx="11" fill={theme.colors.error + '10'} stroke={theme.colors.error + '40'} strokeWidth="1" />
+                    <circle cx="15" cy="12" r="3" fill={theme.colors.error} />
+                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill={theme.colors.error} textAnchor="middle">Error</text>
                 </svg>
             </GalleryItem>
 
             <GalleryItem title="Status: Warning" centered>
                 <svg viewBox="0 0 80 24" className="w-24 h-8">
-                    <rect x="1" y="1" width="78" height="22" rx="11" fill="#FFFBEB" stroke="#FDE68A" strokeWidth="1" />
-                    <circle cx="15" cy="12" r="3" fill="#F59E0B" />
-                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill="#B45309" textAnchor="middle">Warning</text>
+                    <rect x="1" y="1" width="78" height="22" rx="11" fill={theme.colors.warning + '10'} stroke={theme.colors.warning + '40'} strokeWidth="1" />
+                    <circle cx="15" cy="12" r="3" fill={theme.colors.warning} />
+                    <text x="40" y="15" fontSize="9px" fontWeight="bold" fill={theme.colors.warning} textAnchor="middle">Warning</text>
                 </svg>
             </GalleryItem>
 
@@ -335,136 +323,6 @@ export const DataGalleryTab: React.FC = () => {
                     <circle cx="15" cy="20" r="4" fill={theme.colors.info} />
                     <text x="25" y="23" fontSize="8px" fill={theme.colors.text} textAnchor="start">Update available</text>
                 </svg>
-            </GalleryItem>
-        </div>
-
-        {/* --- 5. Progress & Activity --- */}
-        <SectionTitle>Progress & Activity</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-12">
-            <GalleryItem title="Progress Ring" centered>
-                 <svg viewBox="0 0 40 40" className="w-12 h-12">
-                     <circle cx="20" cy="20" r="16" fill="none" stroke={theme.colors.text} strokeOpacity="0.1" strokeWidth="3" />
-                     <circle cx="20" cy="20" r="16" fill="none" stroke={theme.colors.primary} strokeWidth="3" strokeDasharray="75 100" strokeLinecap="round" transform="rotate(-90 20 20)" />
-                     <text x="20" y="23" fontSize="8px" fontWeight="bold" fill={theme.colors.primary} textAnchor="middle">75%</text>
-                 </svg>
-            </GalleryItem>
-
-            <GalleryItem title="Progress Bar" centered>
-                <svg viewBox="0 0 100 40" className="w-32 h-12">
-                    <rect x="5" y="18" width="90" height="4" rx="2" fill={theme.colors.text} fillOpacity="0.1" />
-                    <rect x="5" y="18" width="60" height="4" rx="2" fill={theme.colors.primary} />
-                </svg>
-            </GalleryItem>
-
-            <GalleryItem title="Step Horizontal" centered>
-                <svg viewBox="0 0 100 40" className="w-32 h-12">
-                    <line x1="15" y1="20" x2="85" y2="20" stroke={theme.colors.text} strokeOpacity="0.2" />
-                    <circle cx="15" cy="20" r="6" fill={theme.colors.primary} />
-                    <text x="15" y="23" fontSize="6px" fill="white" fontWeight="bold" textAnchor="middle">1</text>
-                    <circle cx="50" cy="20" r="6" fill={theme.colors.primary} />
-                    <text x="50" y="23" fontSize="6px" fill="white" fontWeight="bold" textAnchor="middle">2</text>
-                    <circle cx="85" cy="20" r="6" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.2" />
-                </svg>
-            </GalleryItem>
-
-            <GalleryItem title="Timeline Vertical" centered>
-                <svg viewBox="0 0 40 60" className="w-12 h-20">
-                    <line x1="20" y1="5" x2="20" y2="55" stroke={theme.colors.text} strokeOpacity="0.2" />
-                    <circle cx="20" cy="10" r="4" fill={theme.colors.primary} />
-                    <circle cx="20" cy="30" r="4" fill={theme.colors.secondary} />
-                    <circle cx="20" cy="50" r="4" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
-                </svg>
-            </GalleryItem>
-
-            <GalleryItem title="Loading Spinner" centered>
-                <svg viewBox="0 0 40 40" className="w-12 h-12">
-                    <circle cx="20" cy="20" r="12" fill="none" stroke={theme.colors.text} strokeOpacity="0.2" strokeWidth="3" />
-                    <path d="M20,8 A12,12 0 0,1 32,20" fill="none" stroke={theme.colors.primary} strokeWidth="3" strokeLinecap="round" />
-                </svg>
-            </GalleryItem>
-        </div>
-        
-        {/* --- 6. Complex Data Sets --- */}
-        <SectionTitle>Complex Data Sets</SectionTitle>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <div className="col-span-1 lg:col-span-2">
-                <GalleryItem title="Table Skeleton" centered>
-                     <svg viewBox="0 0 200 60" className="w-full h-24">
-                        <line x1="0" y1="15" x2="200" y2="15" stroke={theme.colors.text} strokeOpacity="0.1" />
-                        <rect x="0" y="2" width="60" height="8" rx="2" fill={theme.colors.text} fillOpacity="0.1" />
-                        <rect x="70" y="2" width="40" height="8" rx="2" fill={theme.colors.text} fillOpacity="0.1" />
-                        <rect x="120" y="2" width="30" height="8" rx="2" fill={theme.colors.text} fillOpacity="0.1" />
-                        <rect x="0" y="22" width="50" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="70" y="22" width="30" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="120" y="22" width="20" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="0" y="32" width="55" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="70" y="32" width="25" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="120" y="32" width="25" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="0" y="42" width="45" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="70" y="42" width="35" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                        <rect x="120" y="42" width="15" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.05" />
-                     </svg>
-                </GalleryItem>
-            </div>
-            
-             <GalleryItem title="Activity Feed" centered>
-                 <svg viewBox="0 0 100 80" className="w-full h-24">
-                     <line x1="10" y1="0" x2="10" y2="80" stroke={theme.colors.text} strokeOpacity="0.1" strokeWidth="1" />
-                     <circle cx="10" cy="10" r="4" fill={theme.colors.surface} stroke={theme.colors.primary} strokeWidth="1.5" />
-                     <text x="20" y="10" fontSize="8px" fontWeight="bold" fill={theme.colors.text} dominantBaseline="middle">User Action 1</text>
-                     <text x="20" y="18" fontSize="5px" fill={theme.colors.text} opacity="0.5">2 hours ago</text>
-                     <circle cx="10" cy="40" r="4" fill={theme.colors.surface} stroke={theme.colors.secondary} strokeWidth="1.5" />
-                     <text x="20" y="40" fontSize="8px" fontWeight="bold" fill={theme.colors.text} dominantBaseline="middle">System Alert</text>
-                     <text x="20" y="48" fontSize="5px" fill={theme.colors.text} opacity="0.5">5 hours ago</text>
-                     <circle cx="10" cy="70" r="4" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.4" strokeWidth="1.5" />
-                     <text x="20" y="70" fontSize="8px" fontWeight="bold" fill={theme.colors.text} dominantBaseline="middle">Log Entry</text>
-                     <text x="20" y="78" fontSize="5px" fill={theme.colors.text} opacity="0.5">Yesterday</text>
-                 </svg>
-            </GalleryItem>
-        </div>
-
-        {/* --- 7. Filters & Controls --- */}
-        <SectionTitle>Filters & Controls</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Filter Group" centered>
-                <div className="flex items-center gap-1 bg-gray-50 border rounded p-1">
-                    <span className="px-2 py-0.5 rounded bg-white text-[8px] font-bold shadow-sm">All</span>
-                    <span className="px-2 py-0.5 rounded text-[8px] opacity-60">Active</span>
-                    <span className="px-2 py-0.5 rounded text-[8px] opacity-60">Closed</span>
-                </div>
-            </GalleryItem>
-
-            <GalleryItem title="Date Picker" centered>
-                <div className="flex items-center gap-2 border rounded px-2 py-1 text-[10px]">
-                    <Icons.Calendar size="sm" className="w-3 opacity-50"/>
-                    <span className="opacity-70">Oct 10 - Oct 24</span>
-                </div>
-            </GalleryItem>
-
-            <GalleryItem title="Sort Header" centered>
-                <div className="flex items-center gap-1 cursor-pointer">
-                    <span className="text-[10px] font-bold">Name</span>
-                    <Icons.ChevronDown size="sm" className="w-2.5 opacity-50"/>
-                </div>
-            </GalleryItem>
-
-            <GalleryItem title="Search Inline" centered>
-                <div className="flex items-center gap-1 border-b pb-0.5 opacity-60 w-full px-2">
-                    <Icons.Search size="sm" className="w-3"/>
-                    <span className="text-[10px]">Filter...</span>
-                </div>
-            </GalleryItem>
-
-            <GalleryItem title="Column Toggle" centered>
-                <div className="p-1 border rounded opacity-60">
-                    <Icons.Grid size="sm" className="w-3"/>
-                </div>
-            </GalleryItem>
-
-            <GalleryItem title="Export Btn" centered>
-                <div className="flex items-center gap-1 border rounded px-2 py-1 text-[10px] bg-gray-50">
-                    <Icons.Download size="sm" className="w-3"/> CSV
-                </div>
             </GalleryItem>
         </div>
     </div>

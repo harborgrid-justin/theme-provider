@@ -33,9 +33,6 @@ export const FlowGalleryTab: React.FC = () => {
             Standardized vector shapes for Flowcharts, BPMN 2.0, UML Activity/State diagrams, and Logic circuits.
         </p>
 
-        {/* ... (Existing sections 1-7 omitted for brevity, will be included in full output) ... */}
-        {/* Repeating all sections to ensure full file integrity */}
-        
         {/* --- 1. Standard Flowchart Shapes --- */}
         <SectionTitle>Standard Flowchart Shapes</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
@@ -534,19 +531,19 @@ export const FlowGalleryTab: React.FC = () => {
 
             <GalleryItem title="Object Lifeline" centered>
                 <div className="flex flex-col items-center h-full pt-4">
-                    <div className="px-2 py-1 border bg-white rounded shadow-sm text-[8px] font-bold">Object</div>
-                    <div className="w-px flex-1 border-l border-dashed border-gray-400 mt-1"></div>
+                    <div className="px-2 py-1 border rounded shadow-sm text-[8px] font-bold" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface, color: theme.colors.text }}>Object</div>
+                    <div className="w-px flex-1 border-l border-dashed mt-1" style={{ borderColor: theme.colors.text + '40' }}></div>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Activation" centered>
-                <div className="w-4 h-16 border bg-white mx-auto shadow-sm"></div>
+                <div className="w-4 h-16 border mx-auto shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text }}></div>
             </GalleryItem>
 
             <GalleryItem title="Sync Message" centered>
                 <svg viewBox="0 0 100 20" className="w-full h-6">
                     <line x1="0" y1="10" x2="90" y2="10" stroke={theme.colors.text} strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-                    <text x="50" y="5" fontSize="8px" textAnchor="middle">request()</text>
+                    <text x="50" y="5" fontSize="8px" textAnchor="middle" fill={theme.colors.text}>request()</text>
                 </svg>
             </GalleryItem>
 
@@ -554,7 +551,7 @@ export const FlowGalleryTab: React.FC = () => {
                 <svg viewBox="0 0 100 20" className="w-full h-6">
                     <line x1="0" y1="10" x2="90" y2="10" stroke={theme.colors.text} strokeWidth="1.5" />
                     <path d="M85,5 L95,10 L85,15" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
-                    <text x="50" y="5" fontSize="8px" textAnchor="middle">async()</text>
+                    <text x="50" y="5" fontSize="8px" textAnchor="middle" fill={theme.colors.text}>async()</text>
                 </svg>
             </GalleryItem>
 
@@ -562,7 +559,7 @@ export const FlowGalleryTab: React.FC = () => {
                 <svg viewBox="0 0 100 20" className="w-full h-6">
                     <line x1="10" y1="10" x2="100" y2="10" stroke={theme.colors.text} strokeWidth="1.5" strokeDasharray="4 2" />
                     <path d="M15,5 L5,10 L15,15" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
-                    <text x="50" y="5" fontSize="8px" textAnchor="middle">return</text>
+                    <text x="50" y="5" fontSize="8px" textAnchor="middle" fill={theme.colors.text}>return</text>
                 </svg>
             </GalleryItem>
         </div>

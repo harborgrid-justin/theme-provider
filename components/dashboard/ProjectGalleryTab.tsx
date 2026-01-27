@@ -78,45 +78,45 @@ export const ProjectGalleryTab: React.FC = () => {
             </GalleryItem>
 
             <GalleryItem title="Priority: P0" centered>
-                <span className="text-[10px] font-bold px-2 py-1 rounded bg-red-100 text-red-700 border border-red-200">Critical</span>
+                <span className="text-[10px] font-bold px-2 py-1 rounded border" style={{ backgroundColor: theme.colors.error + '15', color: theme.colors.error, borderColor: theme.colors.error + '30' }}>Critical</span>
             </GalleryItem>
 
             <GalleryItem title="Priority: P1" centered>
-                <span className="text-[10px] font-bold px-2 py-1 rounded bg-orange-100 text-orange-700 border border-orange-200">High</span>
+                <span className="text-[10px] font-bold px-2 py-1 rounded border" style={{ backgroundColor: theme.colors.warning + '15', color: theme.colors.warning, borderColor: theme.colors.warning + '30' }}>High</span>
             </GalleryItem>
 
             <GalleryItem title="Priority: P2" centered>
-                <span className="text-[10px] font-bold px-2 py-1 rounded bg-blue-100 text-blue-700 border border-blue-200">Medium</span>
+                <span className="text-[10px] font-bold px-2 py-1 rounded border" style={{ backgroundColor: theme.colors.info + '15', color: theme.colors.info, borderColor: theme.colors.info + '30' }}>Medium</span>
             </GalleryItem>
 
             <GalleryItem title="Priority: P3" centered>
-                <span className="text-[10px] font-bold px-2 py-1 rounded bg-gray-100 text-gray-700 border border-gray-200">Low</span>
+                <span className="text-[10px] font-bold px-2 py-1 rounded border" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.text, borderColor: theme.colors.text + '20' }}>Low</span>
             </GalleryItem>
 
             <GalleryItem title="Swimlane Head" centered>
-                <div className="w-full h-8 bg-gray-50 border-b border-t flex items-center px-2 gap-2" style={{ borderColor: theme.colors.text + '20' }}>
+                <div className="w-full h-8 border-b border-t flex items-center px-2 gap-2" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
                     <Icons.ChevronDown size="sm" className="opacity-50"/>
                     <span className="text-[10px] font-bold uppercase tracking-wide">Backlog</span>
-                    <span className="text-[8px] bg-gray-200 px-1 rounded-full">12</span>
+                    <span className="text-[8px] px-1 rounded-full" style={{ backgroundColor: theme.colors.text + '10' }}>12</span>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Subtask" centered>
                 <div className="flex items-center gap-2 w-full px-4">
                     <div className="w-3 h-3 border rounded-sm" style={{ borderColor: theme.colors.text + '40' }}></div>
-                    <div className="h-1.5 w-20 bg-gray-200 rounded"></div>
+                    <div className="h-1.5 w-20 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Tag: Epic" centered>
-                <div className="flex items-center gap-1 bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-[8px] font-bold uppercase">
+                <div className="flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold uppercase" style={{ backgroundColor: theme.colors.accent + '15', color: theme.colors.accent }}>
                     <Icons.Star size="sm" className="w-3 h-3"/> Epic
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Tag: Bug" centered>
-                <div className="flex items-center gap-1 bg-red-100 text-red-700 px-2 py-0.5 rounded text-[8px] font-bold uppercase">
-                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div> Bug
+                <div className="flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold uppercase" style={{ backgroundColor: theme.colors.error + '15', color: theme.colors.error }}>
+                    <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: theme.colors.error }}></div> Bug
                 </div>
             </GalleryItem>
         </div>
@@ -171,15 +171,15 @@ export const ProjectGalleryTab: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Avatar Stack" centered>
                 <div className="flex -space-x-2">
-                    <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-200"></div>
-                    <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-300"></div>
-                    <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-400"></div>
+                    <div className="w-8 h-8 rounded-full border-2 border-white" style={{ backgroundColor: theme.colors.text + '20' }}></div>
+                    <div className="w-8 h-8 rounded-full border-2 border-white" style={{ backgroundColor: theme.colors.text + '30' }}></div>
+                    <div className="w-8 h-8 rounded-full border-2 border-white" style={{ backgroundColor: theme.colors.text + '40' }}></div>
                 </div>
             </GalleryItem>
 
             <GalleryItem title="Assignee" centered>
-                <div className="flex items-center gap-2 border px-2 py-1 rounded-full bg-white shadow-sm" style={{ borderColor: theme.colors.text + '20' }}>
-                    <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+                <div className="flex items-center gap-2 border px-2 py-1 rounded-full shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
+                    <div className="w-4 h-4 rounded-full" style={{ backgroundColor: theme.colors.primary }}></div>
                     <span className="text-[10px] font-bold">Alex</span>
                 </div>
             </GalleryItem>
@@ -187,8 +187,8 @@ export const ProjectGalleryTab: React.FC = () => {
             <GalleryItem title="Capacity Bar" centered>
                 <div className="w-full px-4">
                     <div className="flex justify-between text-[8px] mb-1 opacity-60 font-bold"><span>LOAD</span><span>85%</span></div>
-                    <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-orange-400 w-[85%]"></div>
+                    <div className="w-full h-2 rounded-full overflow-hidden" style={{ backgroundColor: theme.colors.text + '10' }}>
+                        <div className="h-full w-[85%]" style={{ backgroundColor: theme.colors.warning }}></div>
                     </div>
                 </div>
             </GalleryItem>
@@ -196,10 +196,10 @@ export const ProjectGalleryTab: React.FC = () => {
             <GalleryItem title="Availability" centered>
                 <div className="flex flex-col gap-1 w-full px-4">
                     <div className="flex items-center gap-2 text-[8px]">
-                        <div className="w-2 h-2 rounded-full bg-green-500"></div> Available
+                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.colors.success }}></div> Available
                     </div>
                     <div className="flex items-center gap-2 text-[8px]">
-                        <div className="w-2 h-2 rounded-full bg-red-500"></div> Busy
+                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.colors.error }}></div> Busy
                     </div>
                 </div>
             </GalleryItem>
@@ -209,7 +209,7 @@ export const ProjectGalleryTab: React.FC = () => {
             </GalleryItem>
 
             <GalleryItem title="Team Card" centered>
-                <div className="border rounded p-2 text-center w-24 bg-white shadow-sm" style={{ borderColor: theme.colors.text + '10' }}>
+                <div className="border rounded p-2 text-center w-24 shadow-sm" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
                     <div className="text-[10px] font-bold">Design</div>
                     <div className="text-[8px] opacity-60">4 Members</div>
                 </div>
@@ -492,18 +492,18 @@ export const ProjectGalleryTab: React.FC = () => {
             <GalleryItem title="Workload" centered>
                 <div className="flex gap-1 items-end h-10 w-full px-4">
                     {[3, 5, 2, 4, 3].map((h, i) => (
-                        <div key={i} className="flex-1 bg-blue-400 rounded-t-sm" style={{ height: `${h * 10}%` }}></div>
+                        <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${h * 10}%`, backgroundColor: theme.colors.primary }}></div>
                     ))}
                 </div>
             </GalleryItem>
             <GalleryItem title="Budget" centered>
                 <div className="text-center">
-                    <div className="text-xl font-bold text-green-600">$5k</div>
+                    <div className="text-xl font-bold" style={{ color: theme.colors.success }}>$5k</div>
                     <div className="text-[8px] opacity-60">Remaining</div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Time Widget" centered>
-                <div className="text-center border rounded p-2">
+                <div className="text-center border rounded p-2" style={{ borderColor: theme.colors.text + '20' }}>
                     <div className="text-lg font-mono font-bold">04:20</div>
                     <div className="text-[6px] uppercase tracking-wide opacity-50">Tracked Today</div>
                 </div>
@@ -515,34 +515,34 @@ export const ProjectGalleryTab: React.FC = () => {
                 </svg>
             </GalleryItem>
             <GalleryItem title="Risk Card" centered>
-                <div className="bg-red-50 border border-red-100 p-2 rounded text-center w-24">
-                    <div className="text-red-700 font-bold text-xs">High Risk</div>
-                    <div className="text-[8px] text-red-500">2 Critical</div>
+                <div className="border p-2 rounded text-center w-24" style={{ backgroundColor: theme.colors.error + '10', borderColor: theme.colors.error + '30' }}>
+                    <div className="font-bold text-xs" style={{ color: theme.colors.error }}>High Risk</div>
+                    <div className="text-[8px]" style={{ color: theme.colors.error }}>2 Critical</div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Health" centered>
                 <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: theme.colors.success }}></div>
                     <span className="font-bold text-xs">On Track</span>
                 </div>
             </GalleryItem>
             <GalleryItem title="Activity" centered>
                 <div className="space-y-1 w-full px-4">
-                    <div className="h-1 w-full bg-gray-200 rounded"></div>
-                    <div className="h-1 w-2/3 bg-gray-200 rounded"></div>
-                    <div className="h-1 w-1/2 bg-gray-200 rounded"></div>
+                    <div className="h-1 w-full rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                    <div className="h-1 w-2/3 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                    <div className="h-1 w-1/2 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Recent Files" centered>
                 <div className="grid grid-cols-2 gap-2 w-full px-4">
-                    <div className="h-8 bg-gray-100 rounded"></div>
-                    <div className="h-8 bg-gray-100 rounded"></div>
+                    <div className="h-8 rounded" style={{ backgroundColor: theme.colors.text + '05' }}></div>
+                    <div className="h-8 rounded" style={{ backgroundColor: theme.colors.text + '05' }}></div>
                 </div>
             </GalleryItem>
             <GalleryItem title="My Tasks" centered>
                 <div className="w-full px-4 space-y-2">
-                    <div className="flex justify-between items-center"><div className="w-4 h-4 border rounded"></div><div className="h-2 w-16 bg-gray-200 rounded"></div></div>
-                    <div className="flex justify-between items-center"><div className="w-4 h-4 border rounded"></div><div className="h-2 w-16 bg-gray-200 rounded"></div></div>
+                    <div className="flex justify-between items-center"><div className="w-4 h-4 border rounded" style={{ borderColor: theme.colors.text + '20' }}></div><div className="h-2 w-16 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div></div>
+                    <div className="flex justify-between items-center"><div className="w-4 h-4 border rounded" style={{ borderColor: theme.colors.text + '20' }}></div><div className="h-2 w-16 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div></div>
                 </div>
             </GalleryItem>
         </div>
@@ -551,34 +551,34 @@ export const ProjectGalleryTab: React.FC = () => {
         <SectionTitle>Agile Tools</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Backlog Item" centered>
-                <div className="flex items-center gap-2 border rounded p-2 w-full mx-4 shadow-sm bg-white">
-                    <div className="text-[8px] font-mono text-gray-400">#123</div>
-                    <div className="h-2 w-16 bg-gray-200 rounded"></div>
+                <div className="flex items-center gap-2 border rounded p-2 w-full mx-4 shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20' }}>
+                    <div className="text-[8px] font-mono opacity-50">#123</div>
+                    <div className="h-2 w-16 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Sprint Col" centered>
-                <div className="w-16 h-24 bg-gray-50 border rounded p-1 flex flex-col gap-1">
-                    <div className="h-3 w-full bg-gray-200 rounded mb-1"></div>
-                    <div className="h-6 w-full bg-white border rounded shadow-sm"></div>
-                    <div className="h-6 w-full bg-white border rounded shadow-sm"></div>
+                <div className="w-16 h-24 border rounded p-1 flex flex-col gap-1" style={{ backgroundColor: theme.colors.background, borderColor: theme.colors.text + '10' }}>
+                    <div className="h-3 w-full rounded mb-1" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                    <div className="h-6 w-full border rounded shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '10' }}></div>
+                    <div className="h-6 w-full border rounded shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '10' }}></div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Retro Col" centered>
-                <div className="w-16 h-24 bg-green-50 border border-green-100 rounded p-1 flex flex-col gap-1">
-                    <div className="text-[6px] font-bold text-green-700 uppercase text-center">Went Well</div>
-                    <div className="h-6 w-full bg-white border border-green-200 rounded shadow-sm"></div>
+                <div className="w-16 h-24 border rounded p-1 flex flex-col gap-1" style={{ backgroundColor: theme.colors.success + '10', borderColor: theme.colors.success + '20' }}>
+                    <div className="text-[6px] font-bold uppercase text-center" style={{ color: theme.colors.success }}>Went Well</div>
+                    <div className="h-6 w-full border rounded shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.success + '20' }}></div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Story Point" centered>
-                <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-sm text-gray-600">5</div>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.textSecondary }}>5</div>
             </GalleryItem>
             <GalleryItem title="Epic Badge" centered>
-                <div className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-[8px] font-bold uppercase tracking-wider">
+                <div className="px-2 py-1 rounded text-[8px] font-bold uppercase tracking-wider" style={{ backgroundColor: theme.colors.accent + '15', color: theme.colors.accent }}>
                     Epic
                 </div>
             </GalleryItem>
             <GalleryItem title="Release" centered>
-                <div className="flex items-center gap-1 border border-blue-200 bg-blue-50 text-blue-700 px-2 py-1 rounded text-[8px] font-bold">
+                <div className="flex items-center gap-1 border px-2 py-1 rounded text-[8px] font-bold" style={{ backgroundColor: theme.colors.info + '10', borderColor: theme.colors.info + '30', color: theme.colors.info }}>
                     <Icons.Flag size="sm" className="w-3 h-3"/> v2.0
                 </div>
             </GalleryItem>
@@ -589,26 +589,26 @@ export const ProjectGalleryTab: React.FC = () => {
                 </svg>
             </GalleryItem>
             <GalleryItem title="Blocker" centered>
-                <div className="bg-red-500 text-white w-6 h-6 flex items-center justify-center rounded text-[10px] font-bold">!</div>
+                <div className="w-6 h-6 flex items-center justify-center rounded text-[10px] font-bold text-white" style={{ backgroundColor: theme.colors.error }}>!</div>
             </GalleryItem>
             <GalleryItem title="WIP Limit" centered>
-                <div className="border border-red-300 text-red-500 px-2 py-1 rounded text-[8px] font-bold bg-red-50">
+                <div className="border px-2 py-1 rounded text-[8px] font-bold" style={{ borderColor: theme.colors.error + '40', color: theme.colors.error, backgroundColor: theme.colors.error + '10' }}>
                     Max: 3
                 </div>
             </GalleryItem>
             <GalleryItem title="User Story" centered>
-                <div className="text-[8px] p-2 border rounded bg-yellow-50 border-yellow-200 text-yellow-900 w-full mx-4">
+                <div className="text-[8px] p-2 border rounded w-full mx-4" style={{ backgroundColor: theme.colors.warning + '10', borderColor: theme.colors.warning + '30', color: theme.colors.warning }}>
                     As a user, I want...
                 </div>
             </GalleryItem>
             <GalleryItem title="Acceptance" centered>
                 <div className="flex flex-col gap-1 w-full px-4">
-                    <div className="flex items-center gap-1"><div className="w-2 h-2 border rounded"></div><div className="h-1 w-12 bg-gray-200"></div></div>
-                    <div className="flex items-center gap-1"><div className="w-2 h-2 border rounded bg-green-500 border-green-500"></div><div className="h-1 w-12 bg-gray-200"></div></div>
+                    <div className="flex items-center gap-1"><div className="w-2 h-2 border rounded" style={{ borderColor: theme.colors.text + '40' }}></div><div className="h-1 w-12 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div></div>
+                    <div className="flex items-center gap-1"><div className="w-2 h-2 border rounded" style={{ backgroundColor: theme.colors.success, borderColor: theme.colors.success }}></div><div className="h-1 w-12 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div></div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Done Def" centered>
-                <div className="border-2 border-green-500 text-green-500 px-2 py-1 rounded font-bold text-[8px] uppercase">
+                <div className="border-2 px-2 py-1 rounded font-bold text-[8px] uppercase" style={{ borderColor: theme.colors.success, color: theme.colors.success }}>
                     DoD
                 </div>
             </GalleryItem>
@@ -619,38 +619,38 @@ export const ProjectGalleryTab: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Resource Row" centered>
                 <div className="flex items-center gap-2 w-full px-4">
-                    <div className="w-6 h-6 rounded-full bg-gray-200"></div>
-                    <div className="flex-1 h-2 bg-blue-100 rounded overflow-hidden">
-                        <div className="w-2/3 h-full bg-blue-500"></div>
+                    <div className="w-6 h-6 rounded-full" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                    <div className="flex-1 h-2 rounded overflow-hidden" style={{ backgroundColor: theme.colors.primary + '20' }}>
+                        <div className="w-2/3 h-full" style={{ backgroundColor: theme.colors.primary }}></div>
                     </div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Allocation" centered>
                 <div className="w-full px-4">
                     <div className="flex h-4 rounded overflow-hidden">
-                        <div className="bg-blue-500 w-1/3"></div>
-                        <div className="bg-green-500 w-1/4"></div>
-                        <div className="bg-gray-200 w-full"></div>
+                        <div className="w-1/3" style={{ backgroundColor: theme.colors.primary }}></div>
+                        <div className="w-1/4" style={{ backgroundColor: theme.colors.success }}></div>
+                        <div className="w-full" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                     </div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Availability" centered>
                 <div className="grid grid-cols-5 gap-1">
                     {[1,1,0,1,1].map((a, i) => (
-                        <div key={i} className={`w-3 h-3 rounded-sm ${a ? 'bg-green-200' : 'bg-red-200'}`}></div>
+                        <div key={i} className="w-3 h-3 rounded-sm" style={{ backgroundColor: a ? theme.colors.success + '40' : theme.colors.error + '40' }}></div>
                     ))}
                 </div>
             </GalleryItem>
             <GalleryItem title="Skill Tag" centered>
-                <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-[8px] border">React</span>
+                <span className="px-2 py-0.5 rounded-full text-[8px] border" style={{ backgroundColor: theme.colors.text + '05', color: theme.colors.textSecondary, borderColor: theme.colors.text + '10' }}>React</span>
             </GalleryItem>
             <GalleryItem title="Leave Marker" centered>
-                <div className="h-full w-4 bg-yellow-100 border-x border-yellow-200 flex items-center justify-center">
-                    <span className="text-[6px] transform -rotate-90 text-yellow-700 font-bold">OOO</span>
+                <div className="h-full w-4 border-x flex items-center justify-center" style={{ backgroundColor: theme.colors.warning + '20', borderColor: theme.colors.warning + '40' }}>
+                    <span className="text-[6px] transform -rotate-90 font-bold" style={{ color: theme.colors.warning }}>OOO</span>
                 </div>
             </GalleryItem>
             <GalleryItem title="Shift Block" centered>
-                <div className="bg-blue-50 border border-blue-200 rounded px-2 py-1 text-[8px] text-blue-700 w-full text-center mx-2">
+                <div className="border rounded px-2 py-1 text-[8px] w-full text-center mx-2" style={{ backgroundColor: theme.colors.primary + '10', borderColor: theme.colors.primary + '30', color: theme.colors.primary }}>
                     09:00 - 17:00
                 </div>
             </GalleryItem>
@@ -661,21 +661,21 @@ export const ProjectGalleryTab: React.FC = () => {
                 </svg>
             </GalleryItem>
             <GalleryItem title="Team Card" centered>
-                <div className="border rounded p-2 flex flex-col items-center bg-white shadow-sm">
+                <div className="border rounded p-2 flex flex-col items-center shadow-sm" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
                     <div className="flex -space-x-1 mb-1">
-                        <div className="w-4 h-4 rounded-full bg-gray-300 border border-white"></div>
-                        <div className="w-4 h-4 rounded-full bg-gray-400 border border-white"></div>
+                        <div className="w-4 h-4 rounded-full border border-white" style={{ backgroundColor: theme.colors.text + '20' }}></div>
+                        <div className="w-4 h-4 rounded-full border border-white" style={{ backgroundColor: theme.colors.text + '30' }}></div>
                     </div>
                     <div className="text-[8px] font-bold">Frontend</div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Role Label" centered>
-                <span className="text-[8px] font-mono text-gray-500 uppercase tracking-tight">Lead Dev</span>
+                <span className="text-[8px] font-mono uppercase tracking-tight" style={{ color: theme.colors.textSecondary }}>Lead Dev</span>
             </GalleryItem>
             <GalleryItem title="Rate Card" centered>
                 <div className="text-center">
-                    <div className="text-xs font-bold text-gray-700">$150</div>
-                    <div className="text-[6px] text-gray-400">/ hour</div>
+                    <div className="text-xs font-bold" style={{ color: theme.colors.text }}>$150</div>
+                    <div className="text-[6px]" style={{ color: theme.colors.textSecondary }}>/ hour</div>
                 </div>
             </GalleryItem>
         </div>
@@ -684,71 +684,71 @@ export const ProjectGalleryTab: React.FC = () => {
         <SectionTitle>Forms & Dialogs</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Create Modal" centered>
-                <div className="w-20 h-16 bg-white border rounded shadow-md flex flex-col p-2">
+                <div className="w-20 h-16 border rounded shadow-md flex flex-col p-2" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '10' }}>
                     <div className="font-bold text-[6px] mb-1">New Task</div>
-                    <div className="h-2 w-full bg-gray-100 mb-1"></div>
-                    <div className="h-4 w-full bg-gray-100 flex-1"></div>
+                    <div className="h-2 w-full mb-1 rounded" style={{ backgroundColor: theme.colors.text + '05' }}></div>
+                    <div className="h-4 w-full flex-1 rounded" style={{ backgroundColor: theme.colors.text + '05' }}></div>
                     <div className="flex justify-end gap-1 mt-1">
-                        <div className="h-2 w-4 bg-gray-300 rounded"></div>
-                        <div className="h-2 w-4 bg-blue-500 rounded"></div>
+                        <div className="h-2 w-4 rounded" style={{ backgroundColor: theme.colors.text + '20' }}></div>
+                        <div className="h-2 w-4 rounded" style={{ backgroundColor: theme.colors.primary }}></div>
                     </div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Edit Sidebar" centered>
-                <div className="w-24 h-16 flex border rounded overflow-hidden">
-                    <div className="flex-1 bg-gray-50"></div>
-                    <div className="w-8 bg-white border-l p-1 flex flex-col gap-1">
-                        <div className="h-1 w-4 bg-gray-200"></div>
-                        <div className="h-1 w-6 bg-gray-200"></div>
+                <div className="w-24 h-16 flex border rounded overflow-hidden" style={{ borderColor: theme.colors.text + '10' }}>
+                    <div className="flex-1" style={{ backgroundColor: theme.colors.background }}></div>
+                    <div className="w-8 border-l p-1 flex flex-col gap-1" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '10' }}>
+                        <div className="h-1 w-4 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                        <div className="h-1 w-6 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                     </div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Date Range" centered>
-                <div className="border rounded px-2 py-1 text-[8px] flex items-center gap-1 bg-white">
+                <div className="border rounded px-2 py-1 text-[8px] flex items-center gap-1" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20' }}>
                     <span>Oct 1</span> <span>→</span> <span>Oct 15</span>
                 </div>
             </GalleryItem>
             <GalleryItem title="Member Select" centered>
-                <div className="flex items-center gap-1 border rounded px-2 py-1 bg-white">
-                    <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+                <div className="flex items-center gap-1 border rounded px-2 py-1" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20' }}>
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: theme.colors.text + '20' }}></div>
                     <span className="text-[8px]">Select...</span>
                 </div>
             </GalleryItem>
             <GalleryItem title="Label Select" centered>
                 <div className="flex gap-1">
-                    <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-blue-400"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-400 border-2 border-black"></div>
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: theme.colors.error }}></div>
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: theme.colors.primary }}></div>
+                    <div className="w-3 h-3 rounded-full border-2" style={{ backgroundColor: theme.colors.success, borderColor: theme.colors.text }}></div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Priority Select" centered>
-                <div className="flex border rounded overflow-hidden">
-                    <div className="px-1 bg-gray-100 text-[6px]">Low</div>
-                    <div className="px-1 bg-orange-100 text-[6px] font-bold">Med</div>
-                    <div className="px-1 bg-gray-100 text-[6px]">High</div>
+                <div className="flex border rounded overflow-hidden" style={{ borderColor: theme.colors.text + '20' }}>
+                    <div className="px-1 text-[6px]" style={{ backgroundColor: theme.colors.text + '10' }}>Low</div>
+                    <div className="px-1 text-[6px] font-bold" style={{ backgroundColor: theme.colors.warning + '20' }}>Med</div>
+                    <div className="px-1 text-[6px]" style={{ backgroundColor: theme.colors.text + '10' }}>High</div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Status Select" centered>
-                <div className="border rounded px-2 py-1 text-[8px] flex justify-between items-center w-20 bg-white">
+                <div className="border rounded px-2 py-1 text-[8px] flex justify-between items-center w-20" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20' }}>
                     <span>In Progress</span> <Icons.ChevronDown size="sm" className="w-2"/>
                 </div>
             </GalleryItem>
             <GalleryItem title="Time Picker" centered>
-                <div className="border rounded px-2 py-1 text-[10px] font-mono bg-white">12:30 PM</div>
+                <div className="border rounded px-2 py-1 text-[10px] font-mono" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20' }}>12:30 PM</div>
             </GalleryItem>
             <GalleryItem title="Estimation" centered>
                 <div className="w-full px-2">
                     <div className="flex justify-between text-[6px] mb-0.5"><span>1h</span><span>8h</span></div>
-                    <div className="h-1 bg-gray-200 rounded relative">
-                        <div className="absolute left-1/3 w-2 h-2 bg-blue-500 rounded-full -top-0.5"></div>
+                    <div className="h-1 rounded relative" style={{ backgroundColor: theme.colors.text + '10' }}>
+                        <div className="absolute left-1/3 w-2 h-2 rounded-full -top-0.5" style={{ backgroundColor: theme.colors.primary }}></div>
                     </div>
                 </div>
             </GalleryItem>
             <GalleryItem title="Description" centered>
-                <div className="w-20 h-12 border rounded bg-white p-1">
-                    <div className="h-1 w-10 bg-gray-200 mb-1"></div>
-                    <div className="h-1 w-16 bg-gray-200 mb-1"></div>
-                    <div className="h-1 w-12 bg-gray-200"></div>
+                <div className="w-20 h-12 border rounded p-1" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '10' }}>
+                    <div className="h-1 w-10 mb-1 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                    <div className="h-1 w-16 mb-1 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
+                    <div className="h-1 w-12 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                 </div>
             </GalleryItem>
         </div>
