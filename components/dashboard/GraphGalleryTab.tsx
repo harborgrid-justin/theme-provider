@@ -93,7 +93,7 @@ export const GraphGalleryTab: React.FC = () => {
 
             <CardWrapper title="Bullet Chart">
                 <Centered>
-                    <div className="w-full h-3 bg-gray-200 rounded-sm relative overflow-hidden" style={{ backgroundColor: theme.colors.text + '10' }}>
+                    <div className="w-full h-3 rounded-sm relative overflow-hidden" style={{ backgroundColor: theme.colors.text + '10' }}>
                         <div className="absolute top-0 left-0 h-full w-3/4 opacity-30" style={{ backgroundColor: theme.colors.text }}></div>
                         <div className="absolute top-1 left-0 h-1 w-1/2 rounded-sm" style={{ backgroundColor: theme.colors.text }}></div>
                         <div className="absolute top-0 left-[60%] h-full w-0.5 bg-red-500"></div>
@@ -120,7 +120,7 @@ export const GraphGalleryTab: React.FC = () => {
 
             <CardWrapper title="Activity Gauge">
                  <Centered>
-                    <div className="w-10 h-10 rounded-full border-4 border-gray-100 relative">
+                    <div className="w-10 h-10 rounded-full border-4 relative" style={{ borderColor: theme.colors.text + '10' }}>
                         <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-500 border-r-blue-500 transform rotate-45"></div>
                         <div className="absolute inset-2 rounded-full border-4 border-transparent border-t-green-500 border-l-green-500 transform -rotate-12"></div>
                     </div>
@@ -142,7 +142,7 @@ export const GraphGalleryTab: React.FC = () => {
                         <div className="flex-1 bg-green-500"></div>
                         <div className="flex-1 bg-green-500"></div>
                         <div className="flex-1 bg-yellow-500"></div>
-                        <div className="flex-1 bg-gray-200"></div>
+                        <div className="flex-1 bg-gray-200" style={{ opacity: 0.2 }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -163,8 +163,8 @@ export const GraphGalleryTab: React.FC = () => {
                         <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                         <div className="flex-1 h-px bg-blue-500"></div>
                         <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                        <div className="flex-1 h-px bg-gray-200"></div>
-                        <div className="w-2 h-2 rounded-full bg-gray-200"></div>
+                        <div className="flex-1 h-px" style={{ backgroundColor: theme.colors.text + '20' }}></div>
+                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.colors.text + '20' }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -177,7 +177,7 @@ export const GraphGalleryTab: React.FC = () => {
                 <Centered>
                     <div className="h-12 w-full flex items-center justify-center relative">
                         <div className="absolute left-2 right-2 h-px" style={{ backgroundColor: theme.colors.text + '40' }}></div>
-                        <div className="w-12 h-6 border bg-white relative z-10 flex items-center justify-center" style={{ borderColor: theme.colors.primary, backgroundColor: theme.colors.surface }}>
+                        <div className="w-12 h-6 border relative z-10 flex items-center justify-center" style={{ borderColor: theme.colors.primary, backgroundColor: theme.colors.surface }}>
                             <div className="w-px h-full" style={{ backgroundColor: theme.colors.primary }}></div>
                         </div>
                         <div className="absolute left-2 h-2 w-px" style={{ backgroundColor: theme.colors.text }}></div>
@@ -263,9 +263,9 @@ export const GraphGalleryTab: React.FC = () => {
                 <Centered>
                     <div className="w-16 h-10 border-b border-l relative">
                         <div className="absolute left-3 bottom-4 w-1 h-1 rounded-full bg-blue-500"></div>
-                        <div className="absolute left-2 bottom-2 w-3 h-px bg-black"></div>
-                        <div className="absolute left-2 bottom-6 w-3 h-px bg-black"></div>
-                        <div className="absolute left-3.5 bottom-2 w-px h-4 bg-black"></div>
+                        <div className="absolute left-2 bottom-2 w-3 h-px" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="absolute left-2 bottom-6 w-3 h-px" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="absolute left-3.5 bottom-2 w-px h-4" style={{ backgroundColor: theme.colors.text }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -273,9 +273,9 @@ export const GraphGalleryTab: React.FC = () => {
             <CardWrapper title="Dot Plot">
                 <Centered>
                     <div className="flex flex-col gap-1 w-full px-2">
-                        <div className="h-px bg-gray-200 w-full relative"><div className="absolute left-1/4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-500"></div></div>
-                        <div className="h-px bg-gray-200 w-full relative"><div className="absolute left-1/2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-500"></div></div>
-                        <div className="h-px bg-gray-200 w-full relative"><div className="absolute left-3/4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-green-500"></div></div>
+                        <div className="h-px w-full relative" style={{ backgroundColor: theme.colors.text + '20' }}><div className="absolute left-1/4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-500"></div></div>
+                        <div className="h-px w-full relative" style={{ backgroundColor: theme.colors.text + '20' }}><div className="absolute left-1/2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-500"></div></div>
+                        <div className="h-px w-full relative" style={{ backgroundColor: theme.colors.text + '20' }}><div className="absolute left-3/4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-green-500"></div></div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -293,13 +293,13 @@ export const GraphGalleryTab: React.FC = () => {
             <CardWrapper title="OHLC">
                 <Centered>
                      <div className="flex gap-2 items-center h-10">
-                         <div className="w-px h-8 bg-gray-800 relative">
-                             <div className="absolute top-2 left-0 w-2 h-px bg-gray-800"></div>
-                             <div className="absolute bottom-2 -left-2 w-2 h-px bg-gray-800"></div>
+                         <div className="w-px h-8 relative" style={{ backgroundColor: theme.colors.text }}>
+                             <div className="absolute top-2 left-0 w-2 h-px" style={{ backgroundColor: theme.colors.text }}></div>
+                             <div className="absolute bottom-2 -left-2 w-2 h-px" style={{ backgroundColor: theme.colors.text }}></div>
                          </div>
-                         <div className="w-px h-6 bg-gray-800 relative">
-                             <div className="absolute top-1 -left-2 w-2 h-px bg-gray-800"></div>
-                             <div className="absolute bottom-1 left-0 w-2 h-px bg-gray-800"></div>
+                         <div className="w-px h-6 relative" style={{ backgroundColor: theme.colors.text }}>
+                             <div className="absolute top-1 -left-2 w-2 h-px" style={{ backgroundColor: theme.colors.text }}></div>
+                             <div className="absolute bottom-1 left-0 w-2 h-px" style={{ backgroundColor: theme.colors.text }}></div>
                          </div>
                      </div>
                 </Centered>
@@ -423,7 +423,7 @@ export const GraphGalleryTab: React.FC = () => {
                 <Centered>
                     <div className="grid grid-cols-3 gap-0.5">
                         {[1,1,1,1,1,0,0,0,0].map((v, i) => (
-                            <div key={i} className={`w-3 h-3 rounded-sm ${v ? 'bg-blue-500' : 'bg-gray-200'}`}></div>
+                            <div key={i} className={`w-3 h-3 rounded-sm ${v ? 'bg-blue-500' : 'bg-gray-200'}`} style={{ opacity: v ? 1 : 0.2 }}></div>
                         ))}
                     </div>
                 </Centered>
@@ -460,13 +460,13 @@ export const GraphGalleryTab: React.FC = () => {
              <CardWrapper title="Load Balancer">
                 <Centered>
                     <div className="flex items-center gap-1">
-                        <div className="w-1 h-8 bg-gray-300 rounded-full"></div>
+                        <div className="w-1 h-8 rounded-full" style={{ backgroundColor: theme.colors.text + '40' }}></div>
                         <div className="flex flex-col gap-1">
                              <Icons.ChevronRight size="sm" className="w-2 h-2"/>
                              <Icons.ChevronRight size="sm" className="w-2 h-2"/>
                              <Icons.ChevronRight size="sm" className="w-2 h-2"/>
                         </div>
-                         <div className="w-6 h-6 border rounded bg-white flex items-center justify-center font-bold text-[8px]">LB</div>
+                         <div className="w-6 h-6 border rounded flex items-center justify-center font-bold text-[8px]" style={{ backgroundColor: theme.colors.surface }}>LB</div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -493,7 +493,7 @@ export const GraphGalleryTab: React.FC = () => {
             <CardWrapper title="Storage Bucket">
                 <Centered>
                     <div className="w-8 h-8 border-b-2 border-x-2 rounded-b-lg relative mt-2 flex items-center justify-center" style={{ borderColor: theme.colors.text }}>
-                        <div className="absolute -top-2 w-8 h-4 border-2 rounded-[50%]" style={{ borderColor: theme.colors.text, backgroundColor: '#fff' }}></div>
+                        <div className="absolute -top-2 w-8 h-4 border-2 rounded-[50%]" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                         <span className="text-[8px] pt-1">S3</span>
                     </div>
                 </Centered>
@@ -625,11 +625,11 @@ export const GraphGalleryTab: React.FC = () => {
             <CardWrapper title="Tree Diagram">
                 <Centered>
                     <div className="flex flex-col items-center">
-                        <div className="w-2 h-2 bg-black rounded-full mb-1"></div>
-                        <div className="w-8 h-px bg-black mb-1"></div>
+                        <div className="w-2 h-2 rounded-full mb-1" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="w-8 h-px mb-1" style={{ backgroundColor: theme.colors.text }}></div>
                         <div className="flex justify-between w-8">
-                            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.colors.textSecondary }}></div>
+                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.colors.textSecondary }}></div>
                         </div>
                     </div>
                 </Centered>
@@ -653,12 +653,12 @@ export const GraphGalleryTab: React.FC = () => {
             <CardWrapper title="Org Chart">
                 <Centered>
                     <div className="flex flex-col items-center gap-1">
-                        <div className="w-6 h-3 border rounded bg-white"></div>
-                        <div className="w-px h-1 bg-black"></div>
-                        <div className="w-8 h-px bg-black"></div>
+                        <div className="w-6 h-3 border rounded" style={{ backgroundColor: theme.colors.surface }}></div>
+                        <div className="w-px h-1" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="w-8 h-px" style={{ backgroundColor: theme.colors.text }}></div>
                         <div className="flex gap-2">
-                            <div className="flex flex-col items-center"><div className="w-px h-1 bg-black"></div><div className="w-4 h-3 border rounded bg-white"></div></div>
-                            <div className="flex flex-col items-center"><div className="w-px h-1 bg-black"></div><div className="w-4 h-3 border rounded bg-white"></div></div>
+                            <div className="flex flex-col items-center"><div className="w-px h-1" style={{ backgroundColor: theme.colors.text }}></div><div className="w-4 h-3 border rounded" style={{ backgroundColor: theme.colors.surface }}></div></div>
+                            <div className="flex flex-col items-center"><div className="w-px h-1" style={{ backgroundColor: theme.colors.text }}></div><div className="w-4 h-3 border rounded" style={{ backgroundColor: theme.colors.surface }}></div></div>
                         </div>
                     </div>
                 </Centered>
@@ -667,10 +667,10 @@ export const GraphGalleryTab: React.FC = () => {
             <CardWrapper title="Arc Diagram">
                 <Centered>
                     <div className="flex items-end gap-1 h-8">
-                        <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
-                        <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
-                        <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
-                        <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: theme.colors.text }}></div>
                         <svg className="absolute inset-0 w-full h-full pointer-events-none">
                             <path d="M10,25 Q15,5 20,25" fill="none" stroke="black" opacity="0.2"/>
                             <path d="M10,25 Q20,0 30,25" fill="none" stroke="black" opacity="0.2"/>
@@ -700,7 +700,7 @@ export const GraphGalleryTab: React.FC = () => {
                     <div className="w-10 h-10 rounded-full border border-dashed relative">
                         <div className="absolute inset-2 rounded-full border opacity-50"></div>
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-1 h-1 bg-black rounded-full"></div>
+                            <div className="w-1 h-1 rounded-full" style={{ backgroundColor: theme.colors.text }}></div>
                         </div>
                     </div>
                 </Centered>

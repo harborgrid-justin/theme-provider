@@ -74,9 +74,9 @@ export const FlowGalleryTab: React.FC = () => {
 
             <CardWrapper title="Document">
                  <Centered>
-                    <div className="w-10 h-8 border relative bg-white shadow-sm flex items-center justify-center text-[8px]" style={{ borderColor: theme.colors.text }}>
+                    <div className="w-10 h-8 border relative shadow-sm flex items-center justify-center text-[8px]" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}>
                         Doc
-                        <div className="absolute -bottom-2 left-0 w-full h-4 bg-white border-b border-l border-r" style={{ borderRadius: '50% 50% 0 0 / 100% 100% 0 0', borderColor: theme.colors.text }}></div>
+                        <div className="absolute -bottom-2 left-0 w-full h-4 border-b border-l border-r" style={{ borderRadius: '50% 50% 0 0 / 100% 100% 0 0', borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                     </div>
                  </Centered>
             </CardWrapper>
@@ -84,9 +84,9 @@ export const FlowGalleryTab: React.FC = () => {
             <CardWrapper title="Multi-Document">
                  <Centered>
                     <div className="relative w-10 h-8">
-                        <div className="absolute top-0 right-0 w-8 h-6 border bg-white shadow-sm" style={{ borderColor: theme.colors.text }}></div>
-                        <div className="absolute top-1 right-1 w-8 h-6 border bg-white shadow-sm" style={{ borderColor: theme.colors.text }}></div>
-                        <div className="absolute top-2 right-2 w-8 h-6 border bg-white shadow-sm flex items-center justify-center text-[6px]" style={{ borderColor: theme.colors.text }}>Docs</div>
+                        <div className="absolute top-0 right-0 w-8 h-6 border shadow-sm" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
+                        <div className="absolute top-1 right-1 w-8 h-6 border shadow-sm" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
+                        <div className="absolute top-2 right-2 w-8 h-6 border shadow-sm flex items-center justify-center text-[6px]" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}>Docs</div>
                     </div>
                  </Centered>
             </CardWrapper>
@@ -94,8 +94,8 @@ export const FlowGalleryTab: React.FC = () => {
             <CardWrapper title="Database">
                 <Centered>
                     <div className="w-8 h-10 border-l border-r relative flex items-center justify-center" style={{ borderColor: theme.colors.text }}>
-                         <div className="absolute -top-1.5 w-full h-3 border rounded-full bg-white" style={{ borderColor: theme.colors.text }}></div>
-                         <div className="absolute -bottom-1.5 w-full h-3 border-b border-l border-r rounded-b-full bg-white" style={{ borderColor: theme.colors.text }}></div>
+                         <div className="absolute -top-1.5 w-full h-3 border rounded-full" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
+                         <div className="absolute -bottom-1.5 w-full h-3 border-b border-l border-r rounded-b-full" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                          <span className="text-[8px]">DB</span>
                     </div>
                 </Centered>
@@ -329,12 +329,12 @@ export const FlowGalleryTab: React.FC = () => {
         <div style={sectionTitleStyle}>UML State & Activity</div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <CardWrapper title="Initial State">
-                 <Centered><div className="w-6 h-6 rounded-full bg-black"></div></Centered>
+                 <Centered><div className="w-6 h-6 rounded-full" style={{ backgroundColor: theme.colors.text }}></div></Centered>
             </CardWrapper>
             <CardWrapper title="Final State">
                  <Centered>
-                     <div className="w-6 h-6 rounded-full border-2 border-black flex items-center justify-center">
-                         <div className="w-3 h-3 rounded-full bg-black"></div>
+                     <div className="w-6 h-6 rounded-full border-2 flex items-center justify-center" style={{ borderColor: theme.colors.text }}>
+                         <div className="w-3 h-3 rounded-full" style={{ backgroundColor: theme.colors.text }}></div>
                      </div>
                  </Centered>
             </CardWrapper>
@@ -352,13 +352,13 @@ export const FlowGalleryTab: React.FC = () => {
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Decision (Diamond)">
-                 <Centered><div className="w-6 h-6 border border-black transform rotate-45"></div></Centered>
+                 <Centered><div className="w-6 h-6 border transform rotate-45" style={{ borderColor: theme.colors.text }}></div></Centered>
             </CardWrapper>
             <CardWrapper title="Fork / Join">
-                 <Centered><div className="w-full h-1.5 bg-black rounded"></div></Centered>
+                 <Centered><div className="w-full h-1.5 rounded" style={{ backgroundColor: theme.colors.text }}></div></Centered>
             </CardWrapper>
             <CardWrapper title="History">
-                 <Centered><div className="w-6 h-6 rounded-full border border-black flex items-center justify-center text-[10px] font-bold">H</div></Centered>
+                 <Centered><div className="w-6 h-6 rounded-full border flex items-center justify-center text-[10px] font-bold" style={{ borderColor: theme.colors.text }}>H</div></Centered>
             </CardWrapper>
             <CardWrapper title="Object Node">
                 <Centered><div className="px-3 py-1 border w-full text-center text-[10px]" style={{ borderColor: theme.colors.text }}>[Object]</div></Centered>
@@ -384,7 +384,7 @@ export const FlowGalleryTab: React.FC = () => {
             <CardWrapper title="NOT Gate">
                 <Centered>
                     <div className="w-0 h-0 border-l-[10px] border-r-[10px] border-b-[16px] border-transparent relative" style={{ borderBottomColor: theme.colors.text }}>
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 rounded-full border bg-white" style={{ borderColor: theme.colors.text }}></div>
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 rounded-full border" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -392,7 +392,7 @@ export const FlowGalleryTab: React.FC = () => {
                 <Centered>
                     <div className="w-10 h-8 border flex items-center justify-center relative" style={{ borderColor: theme.colors.text, borderRadius: '0 50% 50% 0 / 0 50% 50% 0' }}>
                         &
-                        <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border bg-white" style={{ borderColor: theme.colors.text }}></div>
+                        <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -415,63 +415,63 @@ export const FlowGalleryTab: React.FC = () => {
         <div style={sectionTitleStyle}>Connectors & Lines</div>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <CardWrapper title="Solid">
-                <Centered><div className="w-full h-px bg-black"></div></Centered>
+                <Centered><div className="w-full h-px" style={{ backgroundColor: theme.colors.text }}></div></Centered>
             </CardWrapper>
             <CardWrapper title="Dashed">
-                <Centered><div className="w-full h-px border-t border-dashed border-black"></div></Centered>
+                <Centered><div className="w-full h-px border-t border-dashed" style={{ borderColor: theme.colors.text }}></div></Centered>
             </CardWrapper>
             <CardWrapper title="Dotted">
-                <Centered><div className="w-full h-px border-t border-dotted border-black"></div></Centered>
+                <Centered><div className="w-full h-px border-t border-dotted" style={{ borderColor: theme.colors.text }}></div></Centered>
             </CardWrapper>
             <CardWrapper title="Arrow">
                 <Centered>
-                    <div className="w-full h-px bg-black relative">
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-black"></div>
+                    <div className="w-full h-px relative" style={{ backgroundColor: theme.colors.text }}>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent" style={{ borderLeftColor: theme.colors.text }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Double Arrow">
                 <Centered>
-                    <div className="w-full h-px bg-black relative">
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-black"></div>
-                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-black"></div>
+                    <div className="w-full h-px relative" style={{ backgroundColor: theme.colors.text }}>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent" style={{ borderLeftColor: theme.colors.text }}></div>
+                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent" style={{ borderRightColor: theme.colors.text }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Diamond (Agg)">
                 <Centered>
-                    <div className="w-full h-px bg-black relative">
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border border-black bg-white transform rotate-45"></div>
+                    <div className="w-full h-px relative" style={{ backgroundColor: theme.colors.text }}>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border transform rotate-45" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Filled Diamond">
                 <Centered>
-                    <div className="w-full h-px bg-black relative">
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-black transform rotate-45"></div>
+                    <div className="w-full h-px relative" style={{ backgroundColor: theme.colors.text }}>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 transform rotate-45" style={{ backgroundColor: theme.colors.text }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Elbow">
                 <Centered>
                     <div className="w-full h-8 relative">
-                        <div className="absolute left-1/4 top-1/2 w-1/4 h-px bg-black"></div>
-                        <div className="absolute left-1/2 top-0 h-1/2 w-px bg-black"></div>
-                        <div className="absolute left-1/2 top-0 w-1/4 h-px bg-black"></div>
+                        <div className="absolute left-1/4 top-1/2 w-1/4 h-px" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="absolute left-1/2 top-0 h-1/2 w-px" style={{ backgroundColor: theme.colors.text }}></div>
+                        <div className="absolute left-1/2 top-0 w-1/4 h-px" style={{ backgroundColor: theme.colors.text }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Jump">
                 <Centered>
-                    <div className="w-full h-px bg-black relative flex justify-center items-center">
-                        <div className="w-2 h-2 border-t border-r border-black rounded-full bg-white transform -rotate-45 translate-y-[-1px]"></div>
+                    <div className="w-full h-px relative flex justify-center items-center" style={{ backgroundColor: theme.colors.text }}>
+                        <div className="w-2 h-2 border-t border-r rounded-full transform -rotate-45 translate-y-[-1px]" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Message Flow">
                 <Centered>
-                    <div className="w-full h-px border-t border-dashed border-black relative">
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border border-black bg-white"></div>
+                    <div className="w-full h-px border-t border-dashed relative" style={{ borderColor: theme.colors.text }}>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}></div>
                     </div>
                 </Centered>
             </CardWrapper>

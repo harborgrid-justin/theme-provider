@@ -214,8 +214,8 @@ export const WebUiGalleryTab: React.FC = () => {
                     <div className="w-full px-4 relative max-w-full">
                         <div className="h-1 rounded-full w-full opacity-20" style={{ backgroundColor: theme.colors.text }}></div>
                         <div className="absolute top-0 h-1 left-8 right-8" style={{ backgroundColor: theme.colors.primary }}></div>
-                        <div className="absolute top-1/2 -translate-y-1/2 left-8 w-3 h-3 rounded-full bg-white border shadow-sm" style={{ borderColor: theme.colors.text + '20' }}></div>
-                        <div className="absolute top-1/2 -translate-y-1/2 right-8 w-3 h-3 rounded-full bg-white border shadow-sm" style={{ borderColor: theme.colors.text + '20' }}></div>
+                        <div className="absolute top-1/2 -translate-y-1/2 left-8 w-3 h-3 rounded-full border shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}></div>
+                        <div className="absolute top-1/2 -translate-y-1/2 right-8 w-3 h-3 rounded-full border shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -302,16 +302,16 @@ export const WebUiGalleryTab: React.FC = () => {
              <CardWrapper title="Stepper Input">
                 <Centered>
                     <div className="flex items-center border rounded overflow-hidden" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                        <div className="px-2 py-1 bg-gray-50 border-r">-</div>
+                        <div className="px-2 py-1 bg-gray-50 border-r" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>-</div>
                         <div className="px-3 py-1 text-xs font-mono">5</div>
-                        <div className="px-2 py-1 bg-gray-50 border-l">+</div>
+                        <div className="px-2 py-1 bg-gray-50 border-l" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>+</div>
                     </div>
                 </Centered>
             </CardWrapper>
             <CardWrapper title="Toggle Button">
                 <Centered>
-                    <div className="flex bg-gray-100 rounded p-0.5">
-                        <div className="px-2 py-0.5 bg-white shadow-sm rounded text-[8px] font-bold">ON</div>
+                    <div className="flex rounded p-0.5" style={{ backgroundColor: theme.colors.text + '10' }}>
+                        <div className="px-2 py-0.5 shadow-sm rounded text-[8px] font-bold" style={{ backgroundColor: theme.colors.surface }}>ON</div>
                         <div className="px-2 py-0.5 text-[8px] opacity-50">OFF</div>
                     </div>
                 </Centered>
@@ -346,10 +346,10 @@ export const WebUiGalleryTab: React.FC = () => {
             <CardWrapper title="Pagination">
                 <Centered>
                     <div className="flex gap-1">
-                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]">&lt;</div>
-                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px] bg-gray-100 font-bold">1</div>
-                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]">2</div>
-                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]">&gt;</div>
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>&lt;</div>
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px] font-bold" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.text + '10' }}>1</div>
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>2</div>
+                        <div className="w-4 h-4 border rounded flex items-center justify-center text-[8px]" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>&gt;</div>
                     </div>
                 </Centered>
             </CardWrapper>
@@ -368,7 +368,7 @@ export const WebUiGalleryTab: React.FC = () => {
              <CardWrapper title="Sidebar Item">
                 <Centered>
                     <div className="w-full px-2">
-                         <div className="flex items-center gap-2 p-1.5 rounded bg-gray-50" style={{backgroundColor: theme.colors.primary+'10'}}>
+                         <div className="flex items-center gap-2 p-1.5 rounded" style={{backgroundColor: theme.colors.primary+'10'}}>
                              <Icons.Folder size="sm" className="w-3 h-3" style={{color: theme.colors.primary}}/>
                              <div className="w-12 h-1 rounded bg-current opacity-40" style={{color: theme.colors.primary}}></div>
                          </div>
@@ -397,19 +397,19 @@ export const WebUiGalleryTab: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <CardWrapper title="Card Basic">
                 <Centered>
-                    <div className="w-full mx-4 h-16 border rounded shadow-sm bg-white" style={{borderColor: theme.colors.text+'20'}}>
-                         <div className="h-2 w-full border-b bg-gray-50"></div>
+                    <div className="w-full mx-4 h-16 border rounded shadow-sm" style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.surface}}>
+                         <div className="h-2 w-full border-b" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '10' }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
 
             <CardWrapper title="Modal Dialog">
                 <Centered>
-                     <div className="w-20 h-14 border rounded shadow-md bg-white relative" style={{borderColor: theme.colors.text+'20'}}>
+                     <div className="w-20 h-14 border rounded shadow-md relative" style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.surface}}>
                          <div className="absolute -right-1 -top-1 w-3 h-3 rounded-full bg-red-400 border border-white"></div>
                          <div className="p-1 space-y-1">
-                             <div className="w-full h-1 bg-gray-200"></div>
-                             <div className="w-2/3 h-1 bg-gray-200"></div>
+                             <div className="w-full h-1" style={{ backgroundColor: theme.colors.text + '20' }}></div>
+                             <div className="w-2/3 h-1" style={{ backgroundColor: theme.colors.text + '20' }}></div>
                          </div>
                      </div>
                 </Centered>
@@ -418,11 +418,11 @@ export const WebUiGalleryTab: React.FC = () => {
             <CardWrapper title="Accordion">
                 <Centered>
                     <div className="w-full px-2 space-y-1">
-                        <div className="border rounded px-2 py-1 flex justify-between items-center text-[6px]">
+                        <div className="border rounded px-2 py-1 flex justify-between items-center text-[6px]" style={{ borderColor: theme.colors.text + '20' }}>
                             <span>Item 1</span>
                             <span>+</span>
                         </div>
-                        <div className="border rounded px-2 py-1 flex justify-between items-center text-[6px]">
+                        <div className="border rounded px-2 py-1 flex justify-between items-center text-[6px]" style={{ borderColor: theme.colors.text + '20' }}>
                             <span>Item 2</span>
                             <span>-</span>
                         </div>
@@ -432,9 +432,9 @@ export const WebUiGalleryTab: React.FC = () => {
             
              <CardWrapper title="Toast Alert">
                 <Centered>
-                     <div className="w-full mx-2 p-1.5 rounded shadow-sm border-l-2 flex gap-1 items-center bg-white" style={{borderColor: theme.colors.text+'10', borderLeftColor: theme.colors.success}}>
+                     <div className="w-full mx-2 p-1.5 rounded shadow-sm border-l-2 flex gap-1 items-center" style={{borderColor: theme.colors.text+'10', borderLeftColor: theme.colors.success, backgroundColor: theme.colors.surface}}>
                          <div className="w-2 h-2 rounded-full" style={{backgroundColor: theme.colors.success}}></div>
-                         <div className="w-12 h-1 bg-gray-200"></div>
+                         <div className="w-12 h-1" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                      </div>
                 </Centered>
             </CardWrapper>
@@ -471,18 +471,18 @@ export const WebUiGalleryTab: React.FC = () => {
             <CardWrapper title="Link Path">
                 <Centered>
                     <div className="w-full px-4 flex items-center gap-1">
-                         <div className="w-4 h-4 border rounded"></div>
-                         <div className="flex-1 h-px bg-gray-400 relative">
-                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 bg-gray-400 rounded-full"></div>
+                         <div className="w-4 h-4 border rounded" style={{ borderColor: theme.colors.text + '20' }}></div>
+                         <div className="flex-1 h-px relative" style={{ backgroundColor: theme.colors.text + '20' }}>
+                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full" style={{ backgroundColor: theme.colors.text + '20' }}></div>
                          </div>
-                         <div className="w-4 h-4 border rounded"></div>
+                         <div className="w-4 h-4 border rounded" style={{ borderColor: theme.colors.text + '20' }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
 
             <CardWrapper title="External Link">
                 <Centered>
-                    <div className="px-2 py-1 border border-dashed rounded text-[8px] opacity-60 flex gap-1 items-center">
+                    <div className="px-2 py-1 border border-dashed rounded text-[8px] opacity-60 flex gap-1 items-center" style={{ borderColor: theme.colors.text + '40' }}>
                         External <Icons.Link size="sm" className="w-2 h-2"/>
                     </div>
                 </Centered>
@@ -501,7 +501,7 @@ export const WebUiGalleryTab: React.FC = () => {
                 <Centered>
                     <div className="w-8 h-14 border-2 rounded-lg relative flex flex-col items-center justify-between py-1" style={{borderColor: theme.colors.text+'40'}}>
                          <div className="w-2 h-px bg-current opacity-20"></div>
-                         <div className="w-1 h-1 rounded-full border bg-transparent"></div>
+                         <div className="w-1 h-1 rounded-full border bg-transparent" style={{ borderColor: theme.colors.text + '40' }}></div>
                     </div>
                 </Centered>
             </CardWrapper>

@@ -167,10 +167,10 @@ export const DatabaseGalleryTab: React.FC = () => {
                         <div className="w-2 h-2 rounded-full bg-red-400"></div>
                         <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
                         <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                        <span className="opacity-50 ml-2">query_editor.sql</span>
+                        <span className="opacity-50 ml-2" style={{ color: '#000' }}>query_editor.sql</span>
                     </div>
-                    <div className="flex-1 p-3 relative" style={{ backgroundColor: theme.colors.text, color: theme.colors.surface }}>
-                        {/* ... */}
+                    <div className="flex-1 p-3 relative" style={{ backgroundColor: '#1e1e1e', color: '#d4d4d4' }}>
+                        {/* Static dark theme for code editor feel */}
                         <div className="pl-8">
                             <span style={{ color: '#F472B6' }}>SELECT</span> u.id, u.email, r.name<br/>
                             <span style={{ color: '#F472B6' }}>FROM</span> users u<br/>
@@ -188,21 +188,21 @@ export const DatabaseGalleryTab: React.FC = () => {
             <CardWrapper title="ER Relationship">
                 <Centered>
                     <div className="flex items-center w-full justify-center">
-                        <div className="w-8 h-8 border rounded bg-white shadow-sm"></div>
+                        <div className="w-8 h-8 border rounded shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20' }}></div>
                         <div className="w-8 h-px bg-gray-400 relative">
                              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3 border-l border-gray-400"></div>
                              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rotate-45 border-t border-r border-gray-400"></div>
                         </div>
-                        <div className="w-8 h-8 border rounded bg-white shadow-sm"></div>
+                        <div className="w-8 h-8 border rounded shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20' }}></div>
                     </div>
                 </Centered>
             </CardWrapper>
             
             <CardWrapper title="Query Result">
                 <Centered>
-                    <div className="w-full border rounded overflow-hidden text-[8px]">
-                        <div className="bg-gray-100 p-1 border-b font-bold">id | email</div>
-                        <div className="p-1 border-b">1 | a@b.com</div>
+                    <div className="w-full border rounded overflow-hidden text-[8px]" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
+                        <div className="p-1 border-b font-bold" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '10' }}>id | email</div>
+                        <div className="p-1 border-b" style={{ borderColor: theme.colors.text + '10' }}>1 | a@b.com</div>
                         <div className="p-1">2 | c@d.com</div>
                     </div>
                 </Centered>
