@@ -15,9 +15,16 @@ export const LegalGalleryTab: React.FC = () => {
       </span>
   );
 
+  const ClauseItem = ({ title, icon }: { title: string, icon: string }) => (
+      <div className="flex flex-col items-center justify-center text-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+          <span className="material-icons text-2xl" style={{ color: theme.colors.primary }}>{icon}</span>
+          <span className="text-[8px] font-bold uppercase tracking-wide leading-tight" style={{ color: theme.colors.text }}>{title}</span>
+      </div>
+  );
+
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Legal Micro-Elements (120+ Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Legal Micro-Elements (200+ Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             Specialized UI tokens for contract management, compliance, and legal workflows. 
         </p>
@@ -113,7 +120,7 @@ export const LegalGalleryTab: React.FC = () => {
             </GalleryItem>
         </div>
 
-        {/* --- 3. Document Structure & Formatting --- */}
+        {/* --- 3. Structure & Formatting --- */}
         <SectionTitle>Structure & Formatting</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
              <GalleryItem title="Clause Header" centered>
@@ -183,7 +190,6 @@ export const LegalGalleryTab: React.FC = () => {
         {/* --- 4. Legal Icons & Symbols --- */}
         <SectionTitle>Icons & Symbols</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            {/* Using Material Icons via simple spans as placeholders, themed */}
             <GalleryItem title="Gavel" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>gavel</span></GalleryItem>
             <GalleryItem title="Scales" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>balance</span></GalleryItem>
             <GalleryItem title="Courthouse" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>account_balance</span></GalleryItem>
@@ -272,6 +278,179 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Privileged" centered>
                 <div className="px-2 py-0.5 text-[6px] uppercase font-bold tracking-widest border rounded shadow-sm" style={{ backgroundColor: theme.colors.error + '10', color: theme.colors.error, borderColor: theme.colors.error + '30' }}>
                     Privileged
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 7. Contract Clauses (NEW) --- */}
+        <SectionTitle>Contract Clauses</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Indemnity" centered><ClauseItem title="Indemnity" icon="shield" /></GalleryItem>
+            <GalleryItem title="Liability Cap" centered><ClauseItem title="Liability" icon="money_off" /></GalleryItem>
+            <GalleryItem title="Confidentiality" centered><ClauseItem title="NDA" icon="lock" /></GalleryItem>
+            <GalleryItem title="Termination" centered><ClauseItem title="Termination" icon="cancel" /></GalleryItem>
+            <GalleryItem title="Force Majeure" centered><ClauseItem title="Act of God" icon="thunderstorm" /></GalleryItem>
+            <GalleryItem title="Governing Law" centered><ClauseItem title="Gov. Law" icon="gavel" /></GalleryItem>
+            <GalleryItem title="Arbitration" centered><ClauseItem title="Arbitration" icon="balance" /></GalleryItem>
+            <GalleryItem title="Severability" centered><ClauseItem title="Severability" icon="content_cut" /></GalleryItem>
+            <GalleryItem title="Non-Compete" centered><ClauseItem title="Non-Compete" icon="block" /></GalleryItem>
+            <GalleryItem title="Non-Solicit" centered><ClauseItem title="Non-Solicit" icon="person_off" /></GalleryItem>
+            <GalleryItem title="Assignment" centered><ClauseItem title="Assignment" icon="forward" /></GalleryItem>
+            <GalleryItem title="Entire Agreement" centered><ClauseItem title="Entire Agmt." icon="folder_zip" /></GalleryItem>
+        </div>
+
+        {/* --- 8. Intellectual Property (NEW) --- */}
+        <SectionTitle>Intellectual Property</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Patent Pending" centered><ClauseItem title="Pending" icon="lightbulb" /></GalleryItem>
+            <GalleryItem title="Trademark (TM)" centered><span className="text-2xl font-serif font-bold" style={{ color: theme.colors.text }}>TM</span></GalleryItem>
+            <GalleryItem title="Registered (R)" centered><span className="text-2xl font-serif font-bold" style={{ color: theme.colors.text }}>®</span></GalleryItem>
+            <GalleryItem title="Copyright (C)" centered><span className="text-2xl font-serif font-bold" style={{ color: theme.colors.text }}>©</span></GalleryItem>
+            <GalleryItem title="Trade Secret" centered><ClauseItem title="Secret" icon="visibility_off" /></GalleryItem>
+            <GalleryItem title="License Grant" centered><ClauseItem title="License" icon="key" /></GalleryItem>
+            <GalleryItem title="Royalties" centered><ClauseItem title="Royalties" icon="monetization_on" /></GalleryItem>
+            <GalleryItem title="Open Source" centered><span className="material-icons text-3xl" style={{ color: theme.colors.success }}>code</span></GalleryItem>
+            <GalleryItem title="Public Domain" centered><span className="material-icons text-3xl" style={{ color: theme.colors.textSecondary }}>public</span></GalleryItem>
+            <GalleryItem title="Fair Use" centered><ClauseItem title="Fair Use" icon="balance" /></GalleryItem>
+            <GalleryItem title="Infringement" centered><ClauseItem title="Infringement" icon="report_problem" /></GalleryItem>
+            <GalleryItem title="Prior Art" centered><ClauseItem title="Prior Art" icon="history" /></GalleryItem>
+        </div>
+
+        {/* --- 9. Corporate & Entity (NEW) --- */}
+        <SectionTitle>Corporate & Entity</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Incorporation" centered><ClauseItem title="Inc." icon="business" /></GalleryItem>
+            <GalleryItem title="LLC" centered><span className="font-bold text-lg border-2 p-1 rounded" style={{ borderColor: theme.colors.text }}>LLC</span></GalleryItem>
+            <GalleryItem title="Partnership" centered><span className="material-icons text-3xl" style={{ color: theme.colors.primary }}>handshake</span></GalleryItem>
+            <GalleryItem title="Non-Profit" centered><span className="material-icons text-3xl" style={{ color: theme.colors.success }}>volunteer_activism</span></GalleryItem>
+            <GalleryItem title="Board of Dir" centered><span className="material-icons text-3xl" style={{ color: theme.colors.text }}>groups</span></GalleryItem>
+            <GalleryItem title="Shareholder" centered><ClauseItem title="Shares" icon="pie_chart" /></GalleryItem>
+            <GalleryItem title="Bylaws" centered><ClauseItem title="Bylaws" icon="gavel" /></GalleryItem>
+            <GalleryItem title="Meeting Mins" centered><ClauseItem title="Minutes" icon="description" /></GalleryItem>
+            <GalleryItem title="Resolution" centered><ClauseItem title="Resolution" icon="check_circle" /></GalleryItem>
+            <GalleryItem title="Proxy Vote" centered><ClauseItem title="Proxy" icon="how_to_vote" /></GalleryItem>
+            <GalleryItem title="Merger" centered><span className="material-icons text-3xl" style={{ color: theme.colors.accent }}>call_merge</span></GalleryItem>
+            <GalleryItem title="Acquisition" centered><span className="material-icons text-3xl" style={{ color: theme.colors.accent }}>shopping_bag</span></GalleryItem>
+        </div>
+
+        {/* --- 10. Court & Litigation (NEW) --- */}
+        <SectionTitle>Court & Litigation</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Subpoena" centered><ClauseItem title="Subpoena" icon="mail" /></GalleryItem>
+            <GalleryItem title="Affidavit" centered><ClauseItem title="Affidavit" icon="history_edu" /></GalleryItem>
+            <GalleryItem title="Deposition" centered><ClauseItem title="Deposition" icon="record_voice_over" /></GalleryItem>
+            <GalleryItem title="Evidence" centered><ClauseItem title="Evidence" icon="inventory_2" /></GalleryItem>
+            <GalleryItem title="Exhibit A" centered><div className="border px-2 py-1 font-serif bg-white shadow-sm">EXHIBIT A</div></GalleryItem>
+            <GalleryItem title="Motion" centered><ClauseItem title="Motion" icon="move_to_inbox" /></GalleryItem>
+            <GalleryItem title="Order" centered><ClauseItem title="Order" icon="gavel" /></GalleryItem>
+            <GalleryItem title="Judgment" centered><ClauseItem title="Judgment" icon="balance" /></GalleryItem>
+            <GalleryItem title="Appeal" centered><ClauseItem title="Appeal" icon="undo" /></GalleryItem>
+            <GalleryItem title="Brief" centered><ClauseItem title="Brief" icon="article" /></GalleryItem>
+            <GalleryItem title="Docket Entry" centered><ClauseItem title="Docket" icon="list" /></GalleryItem>
+            <GalleryItem title="Summons" centered><ClauseItem title="Summons" icon="notifications_active" /></GalleryItem>
+        </div>
+
+        {/* --- 11. Real Estate & Property (NEW) --- */}
+        <SectionTitle>Real Estate & Property</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Deed" centered><ClauseItem title="Deed" icon="foundation" /></GalleryItem>
+            <GalleryItem title="Title Search" centered><ClauseItem title="Title" icon="search" /></GalleryItem>
+            <GalleryItem title="Lease Agmt" centered><ClauseItem title="Lease" icon="key" /></GalleryItem>
+            <GalleryItem title="Mortgage" centered><ClauseItem title="Mortgage" icon="account_balance" /></GalleryItem>
+            <GalleryItem title="Lien" centered><ClauseItem title="Lien" icon="attach_money" /></GalleryItem>
+            <GalleryItem title="Easement" centered><ClauseItem title="Easement" icon="add_road" /></GalleryItem>
+            <GalleryItem title="Zoning" centered><ClauseItem title="Zoning" icon="map" /></GalleryItem>
+            <GalleryItem title="Inspection" centered><ClauseItem title="Inspect" icon="fact_check" /></GalleryItem>
+            <GalleryItem title="Escrow" centered><ClauseItem title="Escrow" icon="savings" /></GalleryItem>
+            <GalleryItem title="Closing Disc" centered><ClauseItem title="Closing" icon="done_all" /></GalleryItem>
+            <GalleryItem title="Tenancy" centered><ClauseItem title="Tenant" icon="person" /></GalleryItem>
+            <GalleryItem title="Eviction" centered><ClauseItem title="Eviction" icon="block" /></GalleryItem>
+        </div>
+
+        {/* --- 12. Estate & Family (NEW) --- */}
+        <SectionTitle>Estate & Family</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Will" centered><ClauseItem title="Will" icon="receipt_long" /></GalleryItem>
+            <GalleryItem title="Trust" centered><ClauseItem title="Trust" icon="volunteer_activism" /></GalleryItem>
+            <GalleryItem title="POA" centered><ClauseItem title="Power of Atty" icon="assignment_ind" /></GalleryItem>
+            <GalleryItem title="Health Proxy" centered><ClauseItem title="Health Proxy" icon="medical_services" /></GalleryItem>
+            <GalleryItem title="Beneficiary" centered><ClauseItem title="Beneficiary" icon="group_add" /></GalleryItem>
+            <GalleryItem title="Executor" centered><ClauseItem title="Executor" icon="manage_accounts" /></GalleryItem>
+            <GalleryItem title="Guardianship" centered><ClauseItem title="Guardian" icon="child_care" /></GalleryItem>
+            <GalleryItem title="Prenup" centered><ClauseItem title="Prenup" icon="handshake" /></GalleryItem>
+            <GalleryItem title="Divorce" centered><ClauseItem title="Divorce" icon="heart_broken" /></GalleryItem>
+            <GalleryItem title="Custody" centered><ClauseItem title="Custody" icon="family_restroom" /></GalleryItem>
+        </div>
+
+        {/* --- 13. Legal UI & Tools (NEW) --- */}
+        <SectionTitle>Legal UI & Tools</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Redact Tool" centered>
+                <div className="w-12 h-6 bg-black flex items-center justify-center text-[6px] text-white tracking-widest font-mono">REDACT</div>
+            </GalleryItem>
+            <GalleryItem title="Highlight Tool" centered>
+                <div className="w-12 h-6 bg-yellow-200 border-yellow-400 border flex items-center justify-center text-[8px] text-yellow-800">Highlight</div>
+            </GalleryItem>
+            <GalleryItem title="Comment Tool" centered>
+                <div className="relative">
+                    <Icons.Chat size="md" style={{ color: theme.colors.warning }}/>
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="E-Discovery" centered><ClauseItem title="Search" icon="find_in_page" /></GalleryItem>
+            <GalleryItem title="Bates Stamp" centered>
+                <div className="font-mono text-[8px] border px-1 bg-white shadow-sm" style={{ color: theme.colors.text }}>ABC-000123</div>
+            </GalleryItem>
+            <GalleryItem title="Time Keeper" centered><ClauseItem title="Timer" icon="timer" /></GalleryItem>
+            <GalleryItem title="Billing Code" centered>
+                <div className="bg-gray-100 px-2 py-1 rounded text-[8px] font-mono">L100</div>
+            </GalleryItem>
+            <GalleryItem title="Client Portal" centered><ClauseItem title="Portal" icon="web" /></GalleryItem>
+            <GalleryItem title="Secure Share" centered><ClauseItem title="Share" icon="lock" /></GalleryItem>
+            <GalleryItem title="Audit Trail" centered><ClauseItem title="Audit" icon="history" /></GalleryItem>
+        </div>
+
+        {/* --- 14. Status Stamps (NEW) --- */}
+        <SectionTitle>Official Status Stamps</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Approved" centered>
+                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest transform -rotate-12 opacity-80" style={{ borderColor: theme.colors.success, color: theme.colors.success }}>
+                    APPROVED
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Denied" centered>
+                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest transform rotate-6 opacity-80" style={{ borderColor: theme.colors.error, color: theme.colors.error }}>
+                    DENIED
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Filed" centered>
+                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest opacity-60" style={{ borderColor: theme.colors.primary, color: theme.colors.primary }}>
+                    FILED
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Received" centered>
+                <div className="border-2 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest border-dashed" style={{ borderColor: theme.colors.textSecondary, color: theme.colors.textSecondary }}>
+                    RECEIVED
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Paid" centered>
+                <div className="border-4 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest transform -rotate-12" style={{ borderColor: theme.colors.success, color: theme.colors.success }}>
+                    PAID
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Overdue" centered>
+                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest bg-red-100" style={{ borderColor: theme.colors.error, color: theme.colors.error }}>
+                    OVERDUE
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Urgent" centered>
+                <div className="border-4 px-2 py-1 text-[10px] font-bold uppercase tracking-widest" style={{ borderColor: theme.colors.error, color: theme.colors.error }}>
+                    URGENT
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Confidential" centered>
+                <div className="border-4 px-2 py-1 text-[8px] font-bold uppercase tracking-widest transform rotate-3 opacity-50" style={{ borderColor: theme.colors.text, color: theme.colors.text }}>
+                    CONFIDENTIAL
                 </div>
             </GalleryItem>
         </div>

@@ -57,4 +57,8 @@ export const Icons = {
   Play: (props: IconWrapperProps) => <Icon name="play_arrow" size="sm" {...props} />,
   Drag: (props: IconWrapperProps) => <Icon name="drag_indicator" size="sm" {...props} />,
   Eye: (props: IconWrapperProps) => <Icon name="visibility" size="sm" {...props} />,
+  
+  // Finance & Commerce Icons
+  ShoppingBag: (props: IconWrapperProps) => <Icon name="shopping_bag" size="sm" {...props} />,
+  Refresh: (props: IconWrapperProps) => <Icon name="refresh" size="sm" {...props} />,
 };
