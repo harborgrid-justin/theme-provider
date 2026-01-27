@@ -23,7 +23,7 @@ export const DatabaseGalleryTab: React.FC = () => {
     borderBottom: `1px solid ${theme.colors.text}20`
   };
 
-  const CardWrapper = ({ children, title, className = '' }: { children?: React.ReactNode, title: string, className?: string }) => (
+  const CardWrapper: React.FC<{ children?: React.ReactNode; title: string; className?: string }> = ({ children, title, className = '' }) => (
       <ThemedCard className={`flex flex-col justify-between h-full group hover:shadow-lg transition-shadow min-h-[120px] ${className}`}>
           <div className="text-[10px] uppercase font-bold tracking-wider opacity-40 mb-3 truncate" style={{ color: theme.colors.text }}>{title}</div>
           <div className="flex-1 flex flex-col justify-center relative w-full min-w-0">
@@ -41,29 +41,13 @@ export const DatabaseGalleryTab: React.FC = () => {
 
         {/* --- 1. Data Types & Fields --- */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <CardWrapper title="Type: Integer">
-                <Centered>
-                    <span className="font-mono text-xs px-2 py-1 rounded border" style={{ color: theme.colors.primary, borderColor: theme.colors.primary, backgroundColor: theme.colors.primary + '10' }}>INT</span>
-                </Centered>
-            </CardWrapper>
-
-            <CardWrapper title="Type: String">
-                <Centered>
-                    <span className="font-mono text-xs px-2 py-1 rounded border" style={{ color: theme.colors.secondary, borderColor: theme.colors.secondary, backgroundColor: theme.colors.secondary + '10' }}>VARCHAR</span>
-                </Centered>
-            </CardWrapper>
-
-            <CardWrapper title="Type: Boolean">
-                <Centered>
-                    <span className="font-mono text-xs px-2 py-1 rounded border border-gray-300 bg-gray-100 text-gray-600">BOOL</span>
-                </Centered>
-            </CardWrapper>
-
-            <CardWrapper title="Type: JSON">
-                <Centered>
-                    <span className="font-mono text-xs px-2 py-1 rounded border border-yellow-300 bg-yellow-50 text-yellow-700">{'{JSON}'}</span>
-                </Centered>
-            </CardWrapper>
+            {['INT', 'BIGINT', 'FLOAT', 'DOUBLE', 'DECIMAL', 'VARCHAR', 'CHAR', 'TEXT', 'CLOB', 'BLOB', 'DATE', 'TIME', 'TIMESTAMP', 'BOOL', 'UUID', 'JSON', 'XML', 'ENUM', 'SET', 'POINT'].map(type => (
+                <CardWrapper key={type} title={`Type: ${type}`}>
+                    <Centered>
+                        <span className="font-mono text-xs px-2 py-1 rounded border" style={{ color: theme.colors.primary, borderColor: theme.colors.primary, backgroundColor: theme.colors.primary + '10' }}>{type}</span>
+                    </Centered>
+                </CardWrapper>
+            ))}
 
             <CardWrapper title="Key: Primary">
                 <Centered>
@@ -89,11 +73,58 @@ export const DatabaseGalleryTab: React.FC = () => {
                 </Centered>
             </CardWrapper>
 
+            <CardWrapper title="Constraint: Unique">
+                <Centered>
+                    <span className="font-mono text-[10px] font-bold border px-1 rounded bg-purple-50 text-purple-700 border-purple-200">UNQ</span>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Constraint: Not Null">
+                <Centered>
+                    <span className="font-mono text-[10px] font-bold border px-1 rounded bg-red-50 text-red-700 border-red-200">NN</span>
+                </Centered>
+            </CardWrapper>
+
             <CardWrapper title="Null">
                 <Centered>
                     <span className="font-mono text-[10px] opacity-40 uppercase">NULL</span>
                 </Centered>
             </CardWrapper>
+        </div>
+
+        {/* --- SQL Keywords & Actions --- */}
+        <div style={sectionTitleStyle}>SQL Keywords & Actions</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+             {['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'FROM', 'WHERE', 'JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'UNION', 'GROUP BY', 'ORDER BY', 'HAVING', 'LIMIT', 'OFFSET', 'CREATE', 'ALTER', 'DROP', 'TRUNCATE', 'GRANT', 'REVOKE', 'COMMIT', 'ROLLBACK', 'EXPLAIN'].map(kw => (
+                <CardWrapper key={kw} title={`Keyword: ${kw}`}>
+                    <Centered>
+                        <span className="font-mono text-[10px] font-bold text-pink-600">{kw}</span>
+                    </Centered>
+                </CardWrapper>
+             ))}
+        </div>
+
+        {/* --- Database Objects --- */}
+        <div style={sectionTitleStyle}>Database Objects</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+             <CardWrapper title="Table">
+                <Centered><Icons.File size="md" className="text-blue-500"/></Centered>
+             </CardWrapper>
+             <CardWrapper title="View">
+                <Centered><Icons.Image size="md" className="text-purple-500"/></Centered>
+             </CardWrapper>
+             <CardWrapper title="Stored Proc">
+                <Centered><Icons.Settings size="md" className="text-orange-500"/></Centered>
+             </CardWrapper>
+             <CardWrapper title="Trigger">
+                <Centered><Icons.Clock size="md" className="text-red-500"/></Centered>
+             </CardWrapper>
+             <CardWrapper title="User">
+                <Centered><Icons.User size="md" className="text-green-500"/></Centered>
+             </CardWrapper>
+             <CardWrapper title="Role">
+                <Centered><Icons.Lock size="md" className="text-gray-500"/></Centered>
+             </CardWrapper>
         </div>
         
         <div style={sectionTitleStyle}>Complex Database Modules</div>

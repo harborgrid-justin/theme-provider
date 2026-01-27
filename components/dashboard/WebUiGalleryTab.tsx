@@ -58,6 +58,14 @@ export const WebUiGalleryTab: React.FC = () => {
                 </Centered>
             </CardWrapper>
 
+            <CardWrapper title="Avatar Square">
+                <Centered>
+                    <div className="w-10 h-10 border flex items-center justify-center" style={{ borderRadius: theme.borderRadius.sm, borderColor: theme.colors.text + '20', backgroundColor: theme.colors.text + '10' }}>
+                        <Icons.User size="sm" className="opacity-40"/>
+                    </div>
+                </Centered>
+            </CardWrapper>
+
             <CardWrapper title="Heading Block">
                 <Centered>
                     <div className="flex flex-col gap-1.5 w-full px-4 items-center max-w-full">
@@ -81,6 +89,14 @@ export const WebUiGalleryTab: React.FC = () => {
                 <Centered>
                     <div className="px-4 py-1.5 text-[10px] font-bold text-white shadow-sm whitespace-nowrap" style={{ backgroundColor: theme.colors.primary, borderRadius: theme.borderRadius.button }}>
                         Action
+                    </div>
+                </Centered>
+            </CardWrapper>
+
+            <CardWrapper title="Button Secondary">
+                <Centered>
+                    <div className="px-4 py-1.5 text-[10px] font-bold whitespace-nowrap" style={{ backgroundColor: theme.colors.secondary, color: '#fff', borderRadius: theme.borderRadius.button }}>
+                        Secondary
                     </div>
                 </Centered>
             </CardWrapper>
