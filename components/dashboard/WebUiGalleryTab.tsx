@@ -7,6 +7,38 @@ import { SectionTitle } from './SectionTitle';
 export const WebUiGalleryTab: React.FC = () => {
   const { theme } = useTheme();
 
+  // Helper for common SVG props
+  const svgProps = {
+    vectorEffect: "non-scaling-stroke",
+    fill: theme.colors.surface,
+    stroke: theme.colors.text,
+    strokeWidth: "1.5",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  // Solid fill style for active elements
+  const solidFill = {
+      fill: theme.colors.text,
+      stroke: "none"
+  };
+
+  // Primary fill style
+  const primaryFill = {
+      fill: theme.colors.primary,
+      stroke: "none"
+  };
+
+  const textStyle = {
+      fill: theme.colors.text,
+      fontSize: "8px",
+      fontFamily: theme.typography.fontFamily === 'mono' ? 'monospace' : 'inherit',
+      textAnchor: "middle" as const,
+      dominantBaseline: "middle" as const,
+      fontWeight: "bold",
+      pointerEvents: "none" as const
+  };
+
   return (
     <div className="animate-in fade-in duration-500 pb-20">
         <SectionTitle style={{ marginTop: '1rem' }}>Wireframe Primitives</SectionTitle>
@@ -17,119 +49,124 @@ export const WebUiGalleryTab: React.FC = () => {
         {/* --- 1. Wireframe Primitives --- */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Image Box" centered>
-                <div className="w-16 h-16 border flex items-center justify-center relative overflow-hidden bg-gray-50" style={{ borderColor: theme.colors.text + '40', borderRadius: theme.borderRadius.sm }}>
-                    <div className="absolute inset-0 border-t border-r transform rotate-45 scale-[2] opacity-20" style={{ borderColor: theme.colors.text }}></div>
-                    <div className="absolute inset-0 border-t border-l transform -rotate-45 scale-[2] opacity-20" style={{ borderColor: theme.colors.text }}></div>
-                    <Icons.Image size="md" className="opacity-40 z-10"/>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="25" y="5" width="50" height="50" rx="4" {...svgProps} fill={theme.colors.surface} />
+                    <line x1="25" y1="5" x2="75" y2="55" {...svgProps} strokeOpacity="0.2" />
+                    <line x1="75" y1="5" x2="25" y2="55" {...svgProps} strokeOpacity="0.2" />
+                    <circle cx="50" cy="30" r="8" fill={theme.colors.text} fillOpacity="0.1" stroke="none" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Avatar Circle" centered>
-                <div className="w-12 h-12 rounded-full border flex items-center justify-center bg-gray-50" style={{ borderColor: theme.colors.text + '20' }}>
-                    <Icons.User size="md" className="opacity-40"/>
-                </div>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="30" r="20" {...svgProps} />
+                    <circle cx="30" cy="25" r="6" fill={theme.colors.text} fillOpacity="0.2" stroke="none" />
+                    <path d="M18,42 Q30,55 42,42" fill={theme.colors.text} fillOpacity="0.2" stroke="none" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Avatar Square" centered>
-                <div className="w-12 h-12 border flex items-center justify-center bg-gray-50" style={{ borderRadius: theme.borderRadius.sm, borderColor: theme.colors.text + '20' }}>
-                    <Icons.User size="md" className="opacity-40"/>
-                </div>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" rx="6" {...svgProps} />
+                    <circle cx="30" cy="25" r="6" fill={theme.colors.text} fillOpacity="0.2" stroke="none" />
+                    <path d="M18,42 Q30,55 42,42" fill={theme.colors.text} fillOpacity="0.2" stroke="none" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Heading Block" centered>
-                <div className="flex flex-col gap-2 w-full px-6 items-center max-w-full">
-                    <div className="h-3 w-3/4 bg-gray-900" style={{ backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}></div>
-                    <div className="h-2 w-1/2 opacity-40 bg-gray-900" style={{ backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}></div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="20" width="80" height="8" rx="2" {...solidFill} />
+                    <rect x="20" y="32" width="60" height="4" rx="2" {...solidFill} fillOpacity="0.4" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Text Paragraph" centered>
-                <div className="flex flex-col gap-1.5 w-full px-6 max-w-full">
-                    <div className="h-1.5 w-full opacity-20 bg-gray-900" style={{ borderRadius: theme.borderRadius.sm, backgroundColor: theme.colors.text }}></div>
-                    <div className="h-1.5 w-full opacity-20 bg-gray-900" style={{ borderRadius: theme.borderRadius.sm, backgroundColor: theme.colors.text }}></div>
-                    <div className="h-1.5 w-2/3 opacity-20 bg-gray-900" style={{ borderRadius: theme.borderRadius.sm, backgroundColor: theme.colors.text }}></div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="15" width="80" height="4" rx="1" {...solidFill} fillOpacity="0.2" />
+                    <rect x="10" y="25" width="80" height="4" rx="1" {...solidFill} fillOpacity="0.2" />
+                    <rect x="10" y="35" width="50" height="4" rx="1" {...solidFill} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Button Primary" centered>
-                <div className="px-5 py-2 text-xs font-bold text-white shadow-sm whitespace-nowrap" style={{ backgroundColor: theme.colors.primary, borderRadius: theme.borderRadius.button }}>
-                    Action
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="20" width="80" height="20" rx="4" {...primaryFill} />
+                    <text x="50" y="31" {...textStyle} fill="white">Action</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Button Secondary" centered>
-                <div className="px-5 py-2 text-xs font-bold whitespace-nowrap" style={{ backgroundColor: theme.colors.secondary, color: '#fff', borderRadius: theme.borderRadius.button }}>
-                    Secondary
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="20" width="80" height="20" rx="4" fill={theme.colors.secondary} stroke="none" />
+                    <text x="50" y="31" {...textStyle} fill="white">Secondary</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Button Outline" centered>
-                <div className="px-5 py-2 text-xs font-bold border whitespace-nowrap" style={{ borderColor: theme.colors.text + '40', color: theme.colors.text, borderRadius: theme.borderRadius.button, backgroundColor: theme.colors.surface }}>
-                    Cancel
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="20" width="80" height="20" rx="4" fill="none" stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.5" />
+                    <text x="50" y="31" {...textStyle}>Cancel</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Input Field" centered>
-                <div className="w-full px-4 max-w-full">
-                    <div className="h-9 border flex items-center px-3" style={{ borderColor: theme.colors.text + '40', borderRadius: theme.borderRadius.sm, backgroundColor: theme.colors.surface }}>
-                        <div className="w-1/3 h-1.5 opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}></div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="5" y="20" width="90" height="20" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.4" />
+                    <rect x="15" y="28" width="30" height="4" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Checkbox Group" centered>
-                <div className="flex flex-col gap-3 items-start">
-                    <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 border" style={{ borderColor: theme.colors.text + '60', borderRadius: theme.borderRadius.sm }}></div>
-                        <div className="w-16 h-1.5 opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}></div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 border flex items-center justify-center" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}>
-                            <Icons.Check size="sm" className="text-white w-3 h-3"/>
-                        </div>
-                        <div className="w-16 h-1.5 opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}></div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    {/* Unchecked */}
+                    <rect x="15" y="15" width="10" height="10" rx="2" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <rect x="35" y="19" width="40" height="3" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                    
+                    {/* Checked */}
+                    <rect x="15" y="35" width="10" height="10" rx="2" fill={theme.colors.text} stroke="none" />
+                    <path d="M17,40 L20,43 L23,37" fill="none" stroke="white" strokeWidth="1.5" />
+                    <rect x="35" y="39" width="40" height="3" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Radio Group" centered>
-                <div className="flex flex-col gap-3 items-start">
-                    <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 border rounded-full" style={{ borderColor: theme.colors.text + '60' }}></div>
-                        <div className="w-16 h-1.5 opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}></div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="w-4 h-4 border rounded-full flex items-center justify-center" style={{ borderColor: theme.colors.primary }}>
-                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.colors.primary }}></div>
-                        </div>
-                        <div className="w-16 h-1.5 opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text, borderRadius: theme.borderRadius.sm }}></div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    {/* Unchecked */}
+                    <circle cx="20" cy="20" r="5" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <rect x="35" y="19" width="40" height="3" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                    
+                    {/* Checked */}
+                    <circle cx="20" cy="40" r="5" fill="none" stroke={theme.colors.primary} strokeWidth="1.5" />
+                    <circle cx="20" cy="40" r="2.5" fill={theme.colors.primary} stroke="none" />
+                    <rect x="35" y="39" width="40" height="3" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Toggle Switch" centered>
-                <div className="w-10 h-6 rounded-full relative transition-colors" style={{ backgroundColor: theme.colors.success }}>
-                    <div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full shadow-sm"></div>
-                </div>
+                <svg viewBox="0 0 60 40" className="w-16 h-12">
+                    <rect x="5" y="12" width="50" height="26" rx="13" fill={theme.colors.success} stroke="none" />
+                    <circle cx="42" cy="25" r="10" fill="white" stroke="none" filter="drop-shadow(0px 1px 2px rgba(0,0,0,0.2))" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Rating Stars" centered>
-                <div className="flex gap-1" style={{ color: theme.colors.warning }}>
-                    <Icons.Star size="sm" className="w-4 h-4"/>
-                    <Icons.Star size="sm" className="w-4 h-4"/>
-                    <Icons.Star size="sm" className="w-4 h-4"/>
-                    <Icons.Star size="sm" className="w-4 h-4 opacity-30"/>
-                    <Icons.Star size="sm" className="w-4 h-4 opacity-30"/>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-32 h-12">
+                    {[10, 30, 50].map(x => (
+                        <path key={x} d={`M${x},5 L${x+3},15 L${x+13},15 L${x+5},22 L${x+8},32 L${x},26 L${x-8},32 L${x-5},22 L${x-13},15 L${x-3},15 Z`} fill={theme.colors.warning} stroke="none" />
+                    ))}
+                    {[70, 90].map(x => (
+                        <path key={x} d={`M${x},5 L${x+3},15 L${x+13},15 L${x+5},22 L${x+8},32 L${x},26 L${x-8},32 L${x-5},22 L${x-13},15 L${x-3},15 Z`} fill={theme.colors.text} fillOpacity="0.1" stroke="none" />
+                    ))}
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Search Bar" centered>
-                <div className="w-full px-4 max-w-full">
-                    <div className="h-8 rounded-full border flex items-center px-3 gap-2" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.text + '05' }}>
-                        <Icons.Search size="sm" className="w-4 h-4 opacity-40"/>
-                        <div className="w-16 h-1.5 rounded-full opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text }}></div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="5" y="18" width="90" height="24" rx="12" fill={theme.colors.text} fillOpacity="0.05" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <circle cx="20" cy="30" r="4" fill="none" stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.4" />
+                    <line x1="23" y1="33" x2="26" y2="36" stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.4" />
+                    <rect x="35" y="28" width="40" height="4" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
         </div>
 
@@ -137,112 +174,124 @@ export const WebUiGalleryTab: React.FC = () => {
         <SectionTitle>Advanced Inputs</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Date Picker" centered>
-                <div className="w-full px-4 max-w-full">
-                    <div className="border flex items-center justify-between px-3 py-1.5 bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                        <span className="text-[10px] opacity-60 font-mono">YYYY-MM-DD</span>
-                        <Icons.Calendar size="sm" className="opacity-40 w-4 h-4"/>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="5" y="18" width="90" height="24" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <text x="35" y="31" {...textStyle} fillOpacity="0.6">YYYY-MM-DD</text>
+                    <rect x="78" y="22" width="12" height="12" rx="1" fill="none" stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.4" />
+                    <line x1="78" y1="26" x2="90" y2="26" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.4" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Time Input" centered>
-                <div className="flex items-center gap-1 border px-3 py-1.5 bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                    <span className="text-xs font-mono">12</span>
-                    <span className="opacity-40 text-xs">:</span>
-                    <span className="text-xs font-mono">30</span>
-                    <span className="text-[8px] px-1 ml-2 rounded bg-gray-100" style={{ backgroundColor: theme.colors.text + '10' }}>AM</span>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="15" y="18" width="70" height="24" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <text x="35" y="31" {...textStyle}>12</text>
+                    <text x="50" y="30" {...textStyle}>:</text>
+                    <text x="65" y="31" {...textStyle}>30</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Range Slider" centered>
-                <div className="w-full px-6 relative max-w-full">
-                    <div className="h-1 rounded-full w-full opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text }}></div>
-                    <div className="absolute top-0 h-1 left-10 right-10" style={{ backgroundColor: theme.colors.primary }}></div>
-                    <div className="absolute top-1/2 -translate-y-1/2 left-10 w-4 h-4 rounded-full border shadow-sm bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}></div>
-                    <div className="absolute top-1/2 -translate-y-1/2 right-10 w-4 h-4 rounded-full border shadow-sm bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}></div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <line x1="10" y1="30" x2="90" y2="30" stroke={theme.colors.text} strokeWidth="3" strokeOpacity="0.2" strokeLinecap="round" />
+                    <line x1="30" y1="30" x2="70" y2="30" stroke={theme.colors.primary} strokeWidth="3" strokeLinecap="round" />
+                    <circle cx="30" cy="30" r="6" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" />
+                    <circle cx="70" cy="30" r="6" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="OTP Input" centered>
-                <div className="flex gap-2">
-                    {[1,2,3,4].map(i => (
-                        <div key={i} className="w-8 h-10 border flex items-center justify-center bg-white" style={{ borderColor: i===1 ? theme.colors.primary : theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                            {i===1 && <div className="w-px h-5 animate-pulse bg-black"></div>}
-                            {i>1 && <div className="w-2 h-2 rounded-full" style={{ backgroundColor: theme.colors.text + '40' }}></div>}
-                        </div>
-                    ))}
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="15" width="18" height="30" rx="3" fill={theme.colors.surface} stroke={theme.colors.primary} strokeWidth="1.5" />
+                    <line x1="19" y1="22" x2="19" y2="38" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <rect x="34" y="15" width="18" height="30" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
+                    <circle cx="43" cy="30" r="2" fill={theme.colors.text} opacity="0.5" />
+                    <rect x="58" y="15" width="18" height="30" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
+                    <rect x="82" y="15" width="18" height="30" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Tag Input" centered>
-                <div className="w-full px-4 max-w-full">
-                    <div className="border p-1.5 flex gap-1 flex-wrap bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                        <span className="px-2 py-0.5 rounded text-[10px] flex items-center gap-1 bg-gray-100" style={{ backgroundColor: theme.colors.text + '10' }}>
-                            React <Icons.Close size="sm" className="w-2 h-2 cursor-pointer"/>
-                        </span>
-                        <div className="w-px h-4 animate-pulse bg-black mx-1" style={{ backgroundColor: theme.colors.text }}></div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="5" y="15" width="90" height="30" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <rect x="10" y="20" width="30" height="20" rx="10" fill={theme.colors.text} fillOpacity="0.1" />
+                    <text x="22" y="31" fontSize="6px" fill={theme.colors.text} fontWeight="bold">React</text>
+                    <line x1="32" y1="26" x2="36" y2="34" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.5" />
+                    <line x1="36" y1="26" x2="32" y2="34" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.5" />
+                    <line x1="45" y1="22" x2="45" y2="38" stroke={theme.colors.text} strokeWidth="1" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Color Input" centered>
-                <div className="flex items-center gap-2 border p-1 pr-3 bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                    <div className="w-5 h-5 rounded bg-gradient-to-br from-purple-500 to-blue-500 border border-black/10"></div>
-                    <span className="text-[10px] font-mono">#6366F1</span>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="18" width="80" height="24" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <rect x="15" y="22" width="16" height="16" rx="2" fill="#6366F1" stroke={theme.colors.text} strokeWidth="0.5" strokeOpacity="0.2" />
+                    <text x="55" y="31" {...textStyle} fontSize="10px" fontFamily="monospace">#6366F1</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="File Dropzone" centered>
-                <div className="w-full mx-4 h-12 border-2 border-dashed flex items-center justify-center gap-2 max-w-full bg-gray-50" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.text + '05', borderRadius: theme.borderRadius.md }}>
-                    <Icons.Cloud size="sm" className="opacity-40 w-4 h-4"/>
-                    <span className="text-[8px] uppercase font-bold opacity-40">Drop File</span>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="5" y="5" width="90" height="50" rx="6" fill={theme.colors.text} fillOpacity="0.02" stroke={theme.colors.text} strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.3" />
+                    <path d="M42,25 L58,25 L58,35 L42,35 Z M50,20 L50,30 M45,25 L55,25" stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+                    <text x="50" y="45" {...textStyle} opacity="0.5">DROP FILE</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Rich Text Toolbar" centered>
-                <div className="border flex overflow-hidden shadow-sm bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                    <div className="p-1.5 border-r font-bold text-[10px] hover:bg-gray-50 cursor-pointer" style={{ borderColor: theme.colors.text + '10' }}>B</div>
-                    <div className="p-1.5 border-r italic text-[10px] hover:bg-gray-50 cursor-pointer" style={{ borderColor: theme.colors.text + '10' }}>I</div>
-                    <div className="p-1.5 border-r underline text-[10px] hover:bg-gray-50 cursor-pointer" style={{ borderColor: theme.colors.text + '10' }}>U</div>
-                    <div className="p-1.5 hover:bg-gray-50 cursor-pointer"><Icons.Link size="sm" className="w-3 h-3"/></div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="20" width="80" height="20" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <line x1="30" y1="20" x2="30" y2="40" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <line x1="50" y1="20" x2="50" y2="40" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <line x1="70" y1="20" x2="70" y2="40" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <text x="20" y="31" {...textStyle} fontWeight="900">B</text>
+                    <text x="40" y="31" {...textStyle} fontStyle="italic">I</text>
+                    <text x="60" y="31" {...textStyle} textDecoration="underline">U</text>
+                    <path d="M78,28 L82,32 M78,32 L82,28" stroke={theme.colors.text} strokeWidth="1.5" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Password Field" centered>
-                <div className="w-full px-4 relative max-w-full">
-                    <div className="h-8 border flex items-center px-3 bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                        <div className="flex gap-1">
-                            <div className="w-1.5 h-1.5 rounded-full bg-black" style={{ backgroundColor: theme.colors.text }}></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-black" style={{ backgroundColor: theme.colors.text }}></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-black" style={{ backgroundColor: theme.colors.text }}></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-black" style={{ backgroundColor: theme.colors.text }}></div>
-                        </div>
-                    </div>
-                    <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-40"><Icons.Check size="sm" className="w-3 h-3"/></div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="5" y="18" width="90" height="24" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <circle cx="20" cy="30" r="3" fill={theme.colors.text} />
+                    <circle cx="30" cy="30" r="3" fill={theme.colors.text} />
+                    <circle cx="40" cy="30" r="3" fill={theme.colors.text} />
+                    <circle cx="50" cy="30" r="3" fill={theme.colors.text} />
+                    <path d="M80,30 L83,33 L88,27" fill="none" stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.4" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Search Results" centered>
-                <div className="relative w-full px-4 max-w-full">
-                    <div className="border shadow-sm text-[10px] overflow-hidden bg-white" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface, borderRadius: theme.borderRadius.sm }}>
-                        <div className="p-1.5 border-b bg-gray-50" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '10' }}>Results...</div>
-                        <div className="p-1.5 hover:bg-gray-50" style={{ backgroundColor: theme.colors.primary + '10' }}>Item A</div>
-                        <div className="p-1.5 hover:bg-gray-50">Item B</div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="5" width="80" height="50" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <rect x="10" y="5" width="80" height="15" rx="3" fill={theme.colors.text} fillOpacity="0.05" />
+                    <text x="25" y="13" fontSize="6px" fill={theme.colors.text} opacity="0.6">Results...</text>
+                    
+                    <rect x="10" y="20" width="80" height="15" fill={theme.colors.primary} fillOpacity="0.1" />
+                    <text x="25" y="28" fontSize="6px" fill={theme.colors.text}>Item A</text>
+                    <text x="25" y="43" fontSize="6px" fill={theme.colors.text}>Item B</text>
+                </svg>
             </GalleryItem>
-             <GalleryItem title="Stepper Input" centered>
-                <div className="flex items-center border rounded overflow-hidden bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                    <div className="px-2.5 py-1.5 bg-gray-50 border-r hover:bg-gray-100 cursor-pointer" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>-</div>
-                    <div className="px-3 py-1.5 text-xs font-mono">5</div>
-                    <div className="px-2.5 py-1.5 bg-gray-50 border-l hover:bg-gray-100 cursor-pointer" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>+</div>
-                </div>
+
+            <GalleryItem title="Stepper Input" centered>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="20" y="20" width="60" height="20" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <line x1="40" y1="20" x2="40" y2="40" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <line x1="60" y1="20" x2="60" y2="40" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <path d="M27,30 H33" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <text x="50" y="31" {...textStyle}>5</text>
+                    <path d="M67,30 H73 M70,27 V33" stroke={theme.colors.text} strokeWidth="1.5" />
+                </svg>
             </GalleryItem>
+
             <GalleryItem title="Toggle Button" centered>
-                <div className="flex rounded p-1 bg-gray-100" style={{ backgroundColor: theme.colors.text + '10' }}>
-                    <div className="px-3 py-1 shadow-sm rounded text-[10px] font-bold bg-white" style={{ backgroundColor: theme.colors.surface }}>ON</div>
-                    <div className="px-3 py-1 text-[10px] opacity-50 cursor-pointer">OFF</div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="15" y="20" width="70" height="20" rx="4" fill={theme.colors.text} fillOpacity="0.05" />
+                    <rect x="17" y="22" width="33" height="16" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" strokeWidth="1" />
+                    <text x="33" y="31" fontSize="6px" fill={theme.colors.text} fontWeight="bold">ON</text>
+                    <text x="67" y="31" fontSize="6px" fill={theme.colors.text} opacity="0.5">OFF</text>
+                </svg>
             </GalleryItem>
         </div>
 
@@ -250,61 +299,64 @@ export const WebUiGalleryTab: React.FC = () => {
         <SectionTitle>Navigation & Menus</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
              <GalleryItem title="Navbar Simple" centered>
-                <div className="w-full h-10 border-b flex items-center justify-between px-4 bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                    <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: theme.colors.text }}></div>
-                    <div className="flex gap-2">
-                        <div className="w-8 h-1.5 rounded-sm opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text }}></div>
-                        <div className="w-8 h-1.5 rounded-sm opacity-20 bg-gray-900" style={{ backgroundColor: theme.colors.text }}></div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-full h-12">
+                    <rect x="0" y="5" width="100" height="30" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <rect x="5" y="15" width="10" height="10" rx="2" fill={theme.colors.text} />
+                    <rect x="60" y="18" width="15" height="4" rx="2" fill={theme.colors.text} fillOpacity="0.2" />
+                    <rect x="80" y="18" width="15" height="4" rx="2" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
             
             <GalleryItem title="Breadcrumb" centered>
-                <div className="flex items-center gap-1.5 text-[10px] opacity-60">
-                         <span>Home</span>
-                         <span>/</span>
-                         <span style={{color: theme.colors.primary, fontWeight: 'bold'}}>Page</span>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-full h-8">
+                    <text x="20" y="22" fontSize="8px" fill={theme.colors.text} opacity="0.6">Home</text>
+                    <text x="40" y="22" fontSize="8px" fill={theme.colors.text} opacity="0.4">/</text>
+                    <text x="60" y="22" fontSize="8px" fill={theme.colors.primary} fontWeight="bold">Page</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Pagination" centered>
-                <div className="flex gap-1.5">
-                    <div className="w-5 h-5 border rounded flex items-center justify-center text-[8px] bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>&lt;</div>
-                    <div className="w-5 h-5 border rounded flex items-center justify-center text-[8px] font-bold bg-gray-100" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.text + '10' }}>1</div>
-                    <div className="w-5 h-5 border rounded flex items-center justify-center text-[8px] bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>2</div>
-                    <div className="w-5 h-5 border rounded flex items-center justify-center text-[8px] bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>&gt;</div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-full h-8">
+                    <rect x="10" y="10" width="15" height="20" rx="3" fill="none" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <path d="M19,16 L15,20 L19,24" stroke={theme.colors.text} strokeWidth="1" fill="none" />
+                    
+                    <rect x="30" y="10" width="15" height="20" rx="3" fill={theme.colors.text} fillOpacity="0.05" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <text x="37.5" y="22" fontSize="8px" fill={theme.colors.text} fontWeight="bold" textAnchor="middle">1</text>
+                    
+                    <rect x="50" y="10" width="15" height="20" rx="3" fill="none" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <text x="57.5" y="22" fontSize="8px" fill={theme.colors.text} textAnchor="middle">2</text>
+                    
+                    <rect x="70" y="10" width="15" height="20" rx="3" fill="none" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <path d="M76,16 L80,20 L76,24" stroke={theme.colors.text} strokeWidth="1" fill="none" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Tabs" centered>
-                <div className="w-full px-4">
-                    <div className="flex border-b gap-4 text-[10px]" style={{borderColor: theme.colors.text+'20'}}>
-                        <span className="font-bold border-b-2 pb-1" style={{borderColor: theme.colors.primary, color: theme.colors.primary}}>Tab 1</span>
-                        <span className="opacity-50 pb-1">Tab 2</span>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-full h-10">
+                    <line x1="0" y1="35" x2="100" y2="35" stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <text x="25" y="25" fontSize="8px" fill={theme.colors.primary} fontWeight="bold" textAnchor="middle">Tab 1</text>
+                    <line x1="10" y1="35" x2="40" y2="35" stroke={theme.colors.primary} strokeWidth="2" />
+                    <text x="75" y="25" fontSize="8px" fill={theme.colors.text} opacity="0.5" textAnchor="middle">Tab 2</text>
+                </svg>
             </GalleryItem>
 
              <GalleryItem title="Sidebar Item" centered>
-                <div className="w-full px-4">
-                         <div className="flex items-center gap-3 p-2 rounded bg-gray-50" style={{backgroundColor: theme.colors.primary+'10'}}>
-                             <Icons.Folder size="sm" className="w-4 h-4" style={{color: theme.colors.primary}}/>
-                             <div className="w-16 h-1.5 rounded bg-current opacity-40" style={{color: theme.colors.primary}}></div>
-                         </div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-full h-12">
+                    <rect x="5" y="5" width="90" height="30" rx="4" fill={theme.colors.primary} fillOpacity="0.1" />
+                    <path d="M15,15 H20 V25 H15 Z" fill={theme.colors.primary} /> {/* Simple folder icon rep */}
+                    <rect x="25" y="17" width="50" height="6" rx="3" fill={theme.colors.primary} fillOpacity="0.4" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Stepper Vert" centered>
-                <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full" style={{backgroundColor: theme.colors.primary}}></div>
-                        <div className="w-12 h-1.5 opacity-20 bg-gray-900" style={{backgroundColor: theme.colors.text}}></div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full border" style={{borderColor: theme.colors.text}}></div>
-                        <div className="w-12 h-1.5 opacity-20 bg-gray-900" style={{backgroundColor: theme.colors.text}}></div>
-                    </div>
-                </div>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <circle cx="15" cy="20" r="6" fill={theme.colors.primary} />
+                    <line x1="15" y1="26" x2="15" y2="54" stroke={theme.colors.text} strokeOpacity="0.2" strokeWidth="2" />
+                    <rect x="30" y="17" width="25" height="6" rx="3" fill={theme.colors.text} fillOpacity="0.2" />
+                    
+                    <circle cx="15" cy="60" r="5" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <rect x="30" y="57" width="25" height="6" rx="3" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
         </div>
 
@@ -312,55 +364,56 @@ export const WebUiGalleryTab: React.FC = () => {
         <SectionTitle>Content Containers</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Card Basic" centered>
-                <div className="w-full mx-6 h-20 border rounded shadow-sm bg-white" style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.surface}}>
-                         <div className="h-4 w-full border-b bg-gray-50" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '10' }}></div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="5" width="80" height="50" rx="4" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.15" />
+                    <line x1="10" y1="20" x2="90" y2="20" stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="10" y="5" width="80" height="15" fill={theme.colors.text} fillOpacity="0.02" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Modal Dialog" centered>
-                     <div className="w-24 h-16 border rounded shadow-lg relative bg-white" style={{borderColor: theme.colors.text+'20', backgroundColor: theme.colors.surface}}>
-                         <div className="absolute -right-1.5 -top-1.5 w-4 h-4 rounded-full bg-red-400 border-2 border-white shadow-sm"></div>
-                         <div className="p-2 space-y-1.5">
-                             <div className="w-full h-1.5 bg-gray-900 opacity-20 rounded" style={{ backgroundColor: theme.colors.text }}></div>
-                             <div className="w-2/3 h-1.5 bg-gray-900 opacity-20 rounded" style={{ backgroundColor: theme.colors.text }}></div>
-                         </div>
-                     </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="20" y="10" width="60" height="40" rx="4" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.15" filter="drop-shadow(0px 4px 6px rgba(0,0,0,0.1))" />
+                    <circle cx="75" cy="10" r="5" fill={theme.colors.error} stroke={theme.colors.surface} strokeWidth="1" />
+                    <rect x="25" y="20" width="50" height="4" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                    <rect x="25" y="30" width="30" height="4" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Accordion" centered>
-                <div className="w-full px-4 space-y-1">
-                    <div className="border rounded px-2 py-1.5 flex justify-between items-center text-[8px] bg-white" style={{ borderColor: theme.colors.text + '20' }}>
-                        <span>Item 1</span>
-                        <span>+</span>
-                    </div>
-                    <div className="border rounded px-2 py-1.5 flex justify-between items-center text-[8px] bg-white" style={{ borderColor: theme.colors.text + '20' }}>
-                        <span>Item 2</span>
-                        <span>-</span>
-                    </div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="5" width="80" height="20" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.2" strokeWidth="1" />
+                    <text x="15" y="17" fontSize="6px" fill={theme.colors.text}>Item 1</text>
+                    <text x="80" y="17" fontSize="8px" fill={theme.colors.text}>+</text>
+                    
+                    <rect x="10" y="30" width="80" height="20" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.2" strokeWidth="1" />
+                    <text x="15" y="42" fontSize="6px" fill={theme.colors.text}>Item 2</text>
+                    <text x="80" y="42" fontSize="8px" fill={theme.colors.text}>-</text>
+                </svg>
             </GalleryItem>
             
              <GalleryItem title="Toast Alert" centered>
-                     <div className="w-full mx-4 p-2 rounded shadow-sm border-l-4 flex gap-2 items-center bg-white" style={{borderColor: theme.colors.text+'10', borderLeftColor: theme.colors.success, backgroundColor: theme.colors.surface}}>
-                         <div className="w-3 h-3 rounded-full shrink-0" style={{backgroundColor: theme.colors.success}}></div>
-                         <div className="w-16 h-1.5 rounded bg-gray-900 opacity-20" style={{ backgroundColor: theme.colors.text }}></div>
-                     </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <rect x="10" y="15" width="80" height="30" rx="4" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" strokeWidth="1" filter="drop-shadow(0px 2px 4px rgba(0,0,0,0.05))" />
+                    <rect x="10" y="15" width="4" height="30" rx="0" fill={theme.colors.success} />
+                    <circle cx="22" cy="30" r="4" fill={theme.colors.success} />
+                    <rect x="32" y="28" width="40" height="4" rx="1" fill={theme.colors.text} fillOpacity="0.2" />
+                </svg>
             </GalleryItem>
 
              <GalleryItem title="Tooltip" centered>
-                     <div className="relative">
-                         <span className="text-[10px] underline decoration-dotted decoration-gray-400 cursor-help">Hover Me</span>
-                         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 bg-black text-white text-[8px] rounded shadow-lg whitespace-nowrap">
-                             Tooltip Text
-                             <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px w-0 h-0 border-4 border-transparent border-t-black"></div>
-                         </div>
-                     </div>
+                <svg viewBox="0 0 100 60" className="w-32 h-16">
+                    <text x="50" y="45" {...textStyle} textDecoration="underline" strokeDasharray="2 2" textDecorationStyle="dotted">Hover Me</text>
+                    <path d="M30,10 H70 A3,3 0 0,1 73,13 V27 A3,3 0 0,1 70,30 H55 L50,35 L45,30 H30 A3,3 0 0,1 27,27 V13 A3,3 0 0,1 30,10 Z" fill={theme.colors.text} />
+                    <text x="50" y="22" fontSize="6px" fill={theme.colors.surface} textAnchor="middle">Tooltip</text>
+                </svg>
             </GalleryItem>
 
              <GalleryItem title="Banner" centered>
-                     <div className="w-full mx-4 h-8 bg-blue-50 border border-blue-100 rounded flex items-center justify-center text-[8px] text-blue-600 font-medium">
-                         Info Banner
-                     </div>
+                <svg viewBox="0 0 100 40" className="w-full h-10">
+                    <rect x="5" y="10" width="90" height="20" rx="4" fill="#EFF6FF" stroke="#BFDBFE" strokeWidth="1" />
+                    <text x="50" y="22" fontSize="6px" fill="#2563EB" textAnchor="middle" dominantBaseline="middle">Info Banner</text>
+                </svg>
             </GalleryItem>
         </div>
         
@@ -368,45 +421,50 @@ export const WebUiGalleryTab: React.FC = () => {
         <SectionTitle>Sitemap & Wireflows</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             <GalleryItem title="Page Node" centered>
-                <div className="px-4 py-2 border rounded shadow-sm text-[10px] font-bold bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                    Home
-                </div>
+                <svg viewBox="0 0 100 40" className="w-24 h-12">
+                    <rect x="10" y="5" width="80" height="30" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" filter="drop-shadow(0px 1px 2px rgba(0,0,0,0.05))" />
+                    <text x="50" y="22" {...textStyle}>Home</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Link Path" centered>
-                <div className="w-full px-6 flex items-center gap-1">
-                         <div className="w-5 h-5 border rounded bg-white" style={{ borderColor: theme.colors.text + '20' }}></div>
-                         <div className="flex-1 h-px relative bg-gray-400" style={{ backgroundColor: theme.colors.text + '40' }}>
-                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-gray-600" style={{ backgroundColor: theme.colors.text + '60' }}></div>
-                         </div>
-                         <div className="w-5 h-5 border rounded bg-white" style={{ borderColor: theme.colors.text + '20' }}></div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-full h-12">
+                    <rect x="5" y="10" width="20" height="20" rx="2" fill="white" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
+                    <rect x="75" y="10" width="20" height="20" rx="2" fill="white" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
+                    <line x1="25" y1="20" x2="75" y2="20" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
+                    <circle cx="50" cy="20" r="3" fill={theme.colors.text} fillOpacity="0.3" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="External Link" centered>
-                <div className="px-3 py-1.5 border border-dashed rounded text-[10px] opacity-60 flex gap-1.5 items-center" style={{ borderColor: theme.colors.text + '40' }}>
-                    External <Icons.Link size="sm" className="w-2.5 h-2.5"/>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-24 h-12">
+                    <rect x="10" y="5" width="80" height="30" rx="3" fill="none" stroke={theme.colors.text} strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.5" />
+                    <text x="40" y="22" fontSize="8px" fill={theme.colors.text} opacity="0.6">External</text>
+                    <path d="M65,15 L70,15 L70,20 M60,25 L70,15" stroke={theme.colors.text} strokeWidth="1" fill="none" opacity="0.6" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="System Email" centered>
-                <div className="w-12 h-8 border rounded relative flex items-center justify-center shadow-sm bg-white" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                    <div className="absolute top-0 left-0 right-0 h-5 border-b transform scale-x-75 origin-top" style={{ borderColor: theme.colors.text + '10' }}></div>
-                    <span className="text-[8px] font-bold z-10 pt-1">@</span>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="20" y="15" width="60" height="30" rx="2" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.3" />
+                    <path d="M20,15 L50,35 L80,15" fill="none" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
+                    <text x="50" y="40" fontSize="10px" fill={theme.colors.text} fontWeight="bold" textAnchor="middle">@</text>
+                </svg>
             </GalleryItem>
             
             <GalleryItem title="Mobile Screen" centered>
-                <div className="w-10 h-16 border-2 rounded-lg relative flex flex-col items-center justify-between py-1.5 bg-white" style={{borderColor: theme.colors.text+'40'}}>
-                         <div className="w-3 h-0.5 bg-current opacity-20"></div>
-                         <div className="w-1.5 h-1.5 rounded-full border bg-transparent" style={{ borderColor: theme.colors.text + '40' }}></div>
-                </div>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <rect x="15" y="10" width="30" height="60" rx="4" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.4" />
+                    <line x1="25" y1="15" x2="35" y2="15" stroke={theme.colors.text} strokeWidth="1.5" strokeOpacity="0.2" />
+                    <circle cx="30" cy="65" r="2" fill="none" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.4" />
+                </svg>
             </GalleryItem>
             
              <GalleryItem title="Annotation" centered>
-                <div className="w-8 h-8 rounded-full bg-yellow-100 border border-yellow-300 text-yellow-700 flex items-center justify-center font-serif text-xs font-bold shadow-sm">
-                    1
-                </div>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <circle cx="20" cy="20" r="12" fill="#FEF3C7" stroke="#FCD34D" strokeWidth="1" />
+                    <text x="20" y="21" fontSize="12px" fill="#B45309" fontWeight="bold" fontFamily="serif" textAnchor="middle" dominantBaseline="middle">1</text>
+                </svg>
             </GalleryItem>
         </div>
     </div>
