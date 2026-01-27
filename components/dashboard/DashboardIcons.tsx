@@ -11,6 +11,7 @@ export interface IconWrapperProps extends React.HTMLAttributes<HTMLSpanElement> 
 export const Icons = {
   Check: (props: IconWrapperProps) => <Icon name="check" size="sm" {...props} />,
   User: (props: IconWrapperProps) => <Icon name="person" size="sm" {...props} />,
+  Home: (props: IconWrapperProps) => <Icon name="home" size="sm" {...props} />,
   Chart: (props: IconWrapperProps) => <Icon name="bar_chart" size="sm" {...props} />,
   Bell: (props: IconWrapperProps) => <Icon name="notifications" size="sm" {...props} />,
   Search: (props: IconWrapperProps) => <Icon name="search" size="sm" {...props} />,
@@ -38,4 +39,22 @@ export const Icons = {
   Tag: (props: IconWrapperProps) => <Icon name="label" size="sm" {...props} />,
   Close: (props: IconWrapperProps) => <Icon name="close" size="sm" {...props} />,
   Code: (props: IconWrapperProps) => <Icon name="code" size="sm" {...props} />,
+  
+  // New Icons for Gallery
+  Wifi: (props: IconWrapperProps) => <Icon name="wifi" size="sm" {...props} />,
+  Battery: (props: IconWrapperProps) => <Icon name="battery_full" size="sm" {...props} />,
+  Signal: (props: IconWrapperProps) => <Icon name="signal_cellular_alt" size="sm" {...props} />,
+  Layers: (props: IconWrapperProps) => <Icon name="layers" size="sm" {...props} />,
+  Palette: (props: IconWrapperProps) => <Icon name="palette" size="sm" {...props} />,
+  Grid: (props: IconWrapperProps) => <Icon name="grid_view" size="sm" {...props} />,
+  List: (props: IconWrapperProps) => <Icon name="view_list" size="sm" {...props} />,
+  Download: (props: IconWrapperProps) => <Icon name="download" size="sm" {...props} />,
+  Share: (props: IconWrapperProps) => <Icon name="share" size="sm" {...props} />,
+  Heart: (props: IconWrapperProps) => <Icon name="favorite_border" size="sm" {...props} />,
+  Copy: (props: IconWrapperProps) => <Icon name="content_copy" size="sm" {...props} />,
+  Filter: (props: IconWrapperProps) => <Icon name="filter_list" size="sm" {...props} />,
+  Sort: (props: IconWrapperProps) => <Icon name="sort" size="sm" {...props} />,
+  Play: (props: IconWrapperProps) => <Icon name="play_arrow" size="sm" {...props} />,
+  Drag: (props: IconWrapperProps) => <Icon name="drag_indicator" size="sm" {...props} />,
+  Eye: (props: IconWrapperProps) => <Icon name="visibility" size="sm" {...props} />,
 };

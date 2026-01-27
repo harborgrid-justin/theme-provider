@@ -10,10 +10,13 @@ import { GraphGalleryTab } from './dashboard/GraphGalleryTab';
 import { DatabaseGalleryTab } from './dashboard/DatabaseGalleryTab';
 import { FlowGalleryTab } from './dashboard/FlowGalleryTab';
 import { WebUiGalleryTab } from './dashboard/WebUiGalleryTab';
+import { ProjectGalleryTab } from './dashboard/ProjectGalleryTab';
+import { ApplicationGalleryTab } from './dashboard/ApplicationGalleryTab';
+import { FinanceGalleryTab } from './dashboard/FinanceGalleryTab';
 
 export const DashboardPreview: React.FC = () => {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui'>('webui');
+  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance'>('finance');
 
   const wrapperStyle = {
     backgroundColor: theme.colors.background,
@@ -41,23 +44,27 @@ export const DashboardPreview: React.FC = () => {
          <div className="flex flex-col xl:flex-row xl:items-center gap-4 xl:justify-between max-w-7xl mx-auto">
              <div className="flex items-center justify-between">
                 <div className="font-bold tracking-tight text-lg">UI Gallery</div>
-                {/* Mobile-only indicator could go here if needed, but flex-wrap handles visibility */}
              </div>
              
              <div className="flex flex-wrap gap-2">
-                {(['marketing', 'application', 'project', 'elements', 'data', 'legal', 'graph', 'database', 'flow', 'webui'] as const).map(tab => (
+                {(['elements', 'marketing', 'application', 'project', 'data', 'legal', 'finance', 'graph', 'database', 'flow', 'webui', 'project_gallery', 'app_gallery'] as const).map(tab => (
                   <button 
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     style={badgeStyle(activeTab === tab)}
                     className="capitalize transition-all duration-200 hover:opacity-80 active:scale-95 whitespace-nowrap"
                   >
-                    {tab === 'data' ? 'Data Gallery' : 
+                    {tab === 'project_gallery' ? 'Project Gallery' :
+                     tab === 'app_gallery' ? 'App Gallery' :
+                     tab === 'data' ? 'Data Gallery' : 
                      tab === 'legal' ? 'Legal Gallery' : 
+                     tab === 'finance' ? 'Finance Gallery' :
                      tab === 'graph' ? 'Diagrams' : 
                      tab === 'database' ? 'Database' : 
                      tab === 'flow' ? 'Flowcharts' : 
                      tab === 'webui' ? 'Web UI' :
+                     tab === 'application' ? 'App Demo' :
+                     tab === 'project' ? 'Project Demo' :
                      tab}
                   </button>
                 ))}
@@ -72,10 +79,13 @@ export const DashboardPreview: React.FC = () => {
         {activeTab === 'elements' && <ElementsTab />}
         {activeTab === 'data' && <DataGalleryTab />}
         {activeTab === 'legal' && <LegalGalleryTab />}
+        {activeTab === 'finance' && <FinanceGalleryTab />}
         {activeTab === 'graph' && <GraphGalleryTab />}
         {activeTab === 'database' && <DatabaseGalleryTab />}
         {activeTab === 'flow' && <FlowGalleryTab />}
         {activeTab === 'webui' && <WebUiGalleryTab />}
+        {activeTab === 'project_gallery' && <ProjectGalleryTab />}
+        {activeTab === 'app_gallery' && <ApplicationGalleryTab />}
       </div>
     </div>
   );

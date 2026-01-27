@@ -16,11 +16,13 @@ export const DatabaseGalleryTab: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Database Primitives (110 Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Database Primitives (135 Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             UI components for schema design, SQL consoles, data grids, and infrastructure monitoring.
         </p>
 
+        {/* ... (Sections 1-4 included below) ... */}
+        
         {/* --- 1. Data Types & Fields --- */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
             {['INT', 'BIGINT', 'FLOAT', 'DOUBLE', 'DECIMAL', 'VARCHAR', 'CHAR', 'TEXT', 'CLOB', 'BLOB', 'DATE', 'TIME', 'TIMESTAMP', 'BOOL', 'UUID', 'JSON', 'XML', 'ENUM', 'SET', 'POINT'].map(type => (
@@ -82,7 +84,7 @@ export const DatabaseGalleryTab: React.FC = () => {
         </div>
         
         <SectionTitle>Complex Database Modules</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-16">
             <GalleryItem title="Table Schema Node" className="col-span-2 min-h-[200px] h-auto">
                 <div className="w-full h-full p-2">
                     <div className="w-full border rounded-lg overflow-hidden shadow-sm h-full flex flex-col" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
@@ -171,6 +173,64 @@ export const DatabaseGalleryTab: React.FC = () => {
                     <div className="flex">
                         <div className="flex-1 p-2 border-r font-mono" style={{ borderColor: theme.colors.text + '10', color: theme.colors.textSecondary }}>2</div>
                         <div className="flex-1 p-2 font-mono" style={{ color: theme.colors.textSecondary }}>c@d.com</div>
+                    </div>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 5. Query Builder Primitives --- */}
+        <SectionTitle>Query Builder</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Block: AND" centered>
+                <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-l-none border-l-4 border-blue-500 font-bold text-xs uppercase tracking-wider relative">
+                    AND
+                    <div className="absolute top-1/2 -left-1 w-2 h-2 bg-blue-500 rounded-full -translate-y-1/2"></div>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Block: OR" centered>
+                <div className="bg-orange-100 text-orange-800 px-3 py-1 rounded-l-none border-l-4 border-orange-500 font-bold text-xs uppercase tracking-wider relative">
+                    OR
+                    <div className="absolute top-1/2 -left-1 w-2 h-2 bg-orange-500 rounded-full -translate-y-1/2"></div>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Field Select" centered>
+                <div className="flex items-center border rounded px-2 py-1 bg-white text-xs text-gray-600 gap-2 w-full mx-4">
+                    <Icons.Tag size="sm" className="w-3 opacity-50"/> <span>User.Email</span>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Operator" centered>
+                <div className="bg-gray-100 px-2 py-1 rounded text-xs font-mono font-bold text-gray-700">contains</div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 6. Infrastructure Status --- */}
+        <SectionTitle>Infrastructure Status</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Replication Lag" centered>
+                <div className="flex flex-col items-center">
+                    <span className="text-2xl font-bold text-green-600">12ms</span>
+                    <span className="text-[8px] uppercase tracking-wide opacity-60">Repl. Lag</span>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Shard Health" centered>
+                <div className="grid grid-cols-3 gap-1">
+                    {[1,1,1,1,0,1,1,1,1].map((s,i) => (
+                        <div key={i} className={`w-3 h-3 rounded-sm ${s ? 'bg-green-500' : 'bg-red-500 animate-pulse'}`}></div>
+                    ))}
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Connection Pool" centered>
+                <div className="w-full px-4">
+                    <div className="flex justify-between text-[8px] mb-1">
+                        <span>Used</span><span>85/100</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full w-[85%] bg-blue-500"></div>
                     </div>
                 </div>
             </GalleryItem>

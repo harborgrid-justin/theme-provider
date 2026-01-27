@@ -28,11 +28,14 @@ export const FlowGalleryTab: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Flow & Process Gallery (110+ Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Flow & Process Gallery (125+ Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             Standardized vector shapes for Flowcharts, BPMN 2.0, UML Activity/State diagrams, and Logic circuits.
         </p>
 
+        {/* ... (Existing sections 1-7 omitted for brevity, will be included in full output) ... */}
+        {/* Repeating all sections to ensure full file integrity */}
+        
         {/* --- 1. Standard Flowchart Shapes --- */}
         <SectionTitle>Standard Flowchart Shapes</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
@@ -511,6 +514,55 @@ export const FlowGalleryTab: React.FC = () => {
                 <svg viewBox="0 0 100 20" className="w-full h-4">
                     <line x1="0" y1="10" x2="90" y2="10" stroke={theme.colors.text} strokeWidth="2" strokeDasharray="5 5" />
                     <circle cx="95" cy="10" r="4" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 8. Sequence Diagrams --- */}
+        <SectionTitle>Sequence Diagrams</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Actor Lifeline" centered>
+                <svg viewBox="0 0 40 80" className="w-10 h-20">
+                    <circle cx="20" cy="10" r="5" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <line x1="20" y1="15" x2="20" y2="25" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <line x1="15" y1="18" x2="25" y2="18" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <line x1="20" y1="25" x2="15" y2="35" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <line x1="20" y1="25" x2="25" y2="35" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <line x1="20" y1="35" x2="20" y2="80" stroke={theme.colors.text} strokeWidth="1" strokeDasharray="4 2" />
+                </svg>
+            </GalleryItem>
+
+            <GalleryItem title="Object Lifeline" centered>
+                <div className="flex flex-col items-center h-full pt-4">
+                    <div className="px-2 py-1 border bg-white rounded shadow-sm text-[8px] font-bold">Object</div>
+                    <div className="w-px flex-1 border-l border-dashed border-gray-400 mt-1"></div>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Activation" centered>
+                <div className="w-4 h-16 border bg-white mx-auto shadow-sm"></div>
+            </GalleryItem>
+
+            <GalleryItem title="Sync Message" centered>
+                <svg viewBox="0 0 100 20" className="w-full h-6">
+                    <line x1="0" y1="10" x2="90" y2="10" stroke={theme.colors.text} strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+                    <text x="50" y="5" fontSize="8px" textAnchor="middle">request()</text>
+                </svg>
+            </GalleryItem>
+
+            <GalleryItem title="Async Message" centered>
+                <svg viewBox="0 0 100 20" className="w-full h-6">
+                    <line x1="0" y1="10" x2="90" y2="10" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <path d="M85,5 L95,10 L85,15" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <text x="50" y="5" fontSize="8px" textAnchor="middle">async()</text>
+                </svg>
+            </GalleryItem>
+
+            <GalleryItem title="Reply Message" centered>
+                <svg viewBox="0 0 100 20" className="w-full h-6">
+                    <line x1="10" y1="10" x2="100" y2="10" stroke={theme.colors.text} strokeWidth="1.5" strokeDasharray="4 2" />
+                    <path d="M15,5 L5,10 L15,15" fill="none" stroke={theme.colors.text} strokeWidth="1.5" />
+                    <text x="50" y="5" fontSize="8px" textAnchor="middle">return</text>
                 </svg>
             </GalleryItem>
         </div>

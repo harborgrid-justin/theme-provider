@@ -2,6 +2,7 @@ import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { GalleryItem } from './GalleryItem';
 import { SectionTitle } from './SectionTitle';
+import { Icons } from './DashboardIcons';
 
 export const DataGalleryTab: React.FC = () => {
   const { theme } = useTheme();
@@ -16,23 +17,18 @@ export const DataGalleryTab: React.FC = () => {
     strokeLinejoin: "round" as const,
   };
 
-  const textStyle = {
-      fill: theme.colors.text,
-      fontSize: "8px",
-      fontFamily: theme.typography.fontFamily === 'mono' ? 'monospace' : 'inherit',
-      textAnchor: "middle" as const,
-      dominantBaseline: "middle" as const,
-      fontWeight: "bold",
-      pointerEvents: "none" as const
-  };
-
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Component Gallery (76 Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Component Gallery (85 Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             A comprehensive collection of data-rich UI micro-components and visualization primitives.
         </p>
 
+        {/* ... (Existing sections 1-6 omitted for brevity, they remain unchanged) ... */}
+        {/* Re-inserting previous content is implied by "continuing" - but here I will just append the new section for clarity in the XML structure 
+            Actually, I must return full content. I will include previous content.
+        */}
+        
         {/* --- 1. KPI & Metrics --- */}
         <SectionTitle>KPIs & Metrics</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-12">
@@ -390,7 +386,7 @@ export const DataGalleryTab: React.FC = () => {
         
         {/* --- 6. Complex Data Sets --- */}
         <SectionTitle>Complex Data Sets</SectionTitle>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <div className="col-span-1 lg:col-span-2">
                 <GalleryItem title="Table Skeleton" centered>
                      <svg viewBox="0 0 200 60" className="w-full h-24">
@@ -424,6 +420,51 @@ export const DataGalleryTab: React.FC = () => {
                      <text x="20" y="70" fontSize="8px" fontWeight="bold" fill={theme.colors.text} dominantBaseline="middle">Log Entry</text>
                      <text x="20" y="78" fontSize="5px" fill={theme.colors.text} opacity="0.5">Yesterday</text>
                  </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 7. Filters & Controls --- */}
+        <SectionTitle>Filters & Controls</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Filter Group" centered>
+                <div className="flex items-center gap-1 bg-gray-50 border rounded p-1">
+                    <span className="px-2 py-0.5 rounded bg-white text-[8px] font-bold shadow-sm">All</span>
+                    <span className="px-2 py-0.5 rounded text-[8px] opacity-60">Active</span>
+                    <span className="px-2 py-0.5 rounded text-[8px] opacity-60">Closed</span>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Date Picker" centered>
+                <div className="flex items-center gap-2 border rounded px-2 py-1 text-[10px]">
+                    <Icons.Calendar size="sm" className="w-3 opacity-50"/>
+                    <span className="opacity-70">Oct 10 - Oct 24</span>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Sort Header" centered>
+                <div className="flex items-center gap-1 cursor-pointer">
+                    <span className="text-[10px] font-bold">Name</span>
+                    <Icons.ChevronDown size="sm" className="w-2.5 opacity-50"/>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Search Inline" centered>
+                <div className="flex items-center gap-1 border-b pb-0.5 opacity-60 w-full px-2">
+                    <Icons.Search size="sm" className="w-3"/>
+                    <span className="text-[10px]">Filter...</span>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Column Toggle" centered>
+                <div className="p-1 border rounded opacity-60">
+                    <Icons.Grid size="sm" className="w-3"/>
+                </div>
+            </GalleryItem>
+
+            <GalleryItem title="Export Btn" centered>
+                <div className="flex items-center gap-1 border rounded px-2 py-1 text-[10px] bg-gray-50">
+                    <Icons.Download size="sm" className="w-3"/> CSV
+                </div>
             </GalleryItem>
         </div>
     </div>
