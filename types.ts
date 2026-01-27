@@ -61,10 +61,10 @@ export interface ThemeContextType {
   theme: ThemeConfig;
   setTheme: React.Dispatch<React.SetStateAction<ThemeConfig>>;
   updateColor: (key: keyof ThemeConfig['colors'], value: string) => void;
-  updateTypography: (key: keyof ThemeConfig['typography'], value: any) => void;
-  updateEffect: (key: keyof ThemeConfig['effects'], value: any) => void;
-  updateSpacing: (key: keyof ThemeConfig['spacing'], value: any) => void;
-  updateBorderRadius: (key: keyof ThemeConfig['borderRadius'], value: any) => void;
+  updateTypography: <K extends keyof ThemeConfig['typography']>(key: K, value: ThemeConfig['typography'][K]) => void;
+  updateEffect: <K extends keyof ThemeConfig['effects']>(key: K, value: ThemeConfig['effects'][K]) => void;
+  updateSpacing: <K extends keyof ThemeConfig['spacing']>(key: K, value: ThemeConfig['spacing'][K]) => void;
+  updateBorderRadius: <K extends keyof ThemeConfig['borderRadius']>(key: K, value: ThemeConfig['borderRadius'][K]) => void;
   resetTheme: () => void;
   undo: () => void;
   redo: () => void;

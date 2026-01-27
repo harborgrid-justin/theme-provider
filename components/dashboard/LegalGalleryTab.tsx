@@ -32,15 +32,6 @@ export const LegalGalleryTab: React.FC = () => {
       </ThemedCard>
   );
 
-  const Centered = ({ children }: { children: React.ReactNode }) => (
-      <div className="w-full flex justify-center items-center h-full">{children}</div>
-  );
-
-  // Helper for centering small tokens
-  const CenteredInner = ({ children }: { children: React.ReactNode }) => (
-      <div className="w-full flex justify-center items-center h-full">{children}</div>
-  );
-
   return (
     <div className="animate-in fade-in duration-500 pb-20">
         <div style={{...sectionTitleStyle, marginTop: '1rem'}}>Legal Micro-Elements (45 Items)</div>

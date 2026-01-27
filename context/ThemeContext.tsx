@@ -71,28 +71,28 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }));
   };
 
-  const updateTypography = (key: keyof ThemeConfig['typography'], value: any) => {
+  const updateTypography = <K extends keyof ThemeConfig['typography']>(key: K, value: ThemeConfig['typography'][K]) => {
     setTheme(prev => ({
       ...prev,
       typography: { ...prev.typography, [key]: value }
     }));
   };
 
-  const updateEffect = (key: keyof ThemeConfig['effects'], value: any) => {
+  const updateEffect = <K extends keyof ThemeConfig['effects']>(key: K, value: ThemeConfig['effects'][K]) => {
     setTheme(prev => ({
       ...prev,
       effects: { ...prev.effects, [key]: value }
     }));
   };
 
-  const updateSpacing = (key: keyof ThemeConfig['spacing'], value: any) => {
+  const updateSpacing = <K extends keyof ThemeConfig['spacing']>(key: K, value: ThemeConfig['spacing'][K]) => {
     setTheme(prev => ({
       ...prev,
       spacing: { ...prev.spacing, [key]: value }
     }));
   };
 
-  const updateBorderRadius = (key: keyof ThemeConfig['borderRadius'], value: any) => {
+  const updateBorderRadius = <K extends keyof ThemeConfig['borderRadius']>(key: K, value: ThemeConfig['borderRadius'][K]) => {
     setTheme(prev => ({
       ...prev,
       borderRadius: { ...prev.borderRadius, [key]: value }

@@ -13,7 +13,7 @@ export const DataGalleryTab: React.FC = () => {
     opacity: 0.9,
     fontSize: '1.25rem',
     marginBottom: '1.5rem',
-    marginTop: '1rem',
+    marginTop: '3rem',
     paddingBottom: '0.5rem',
     borderBottom: `1px solid ${theme.colors.text}20`
   };
@@ -699,6 +699,118 @@ export const DataGalleryTab: React.FC = () => {
                  <div className="w-3 h-3 rounded-full border-2" style={{ borderColor: theme.colors.text + '40' }}></div>
             </CardWrapper>
 
+        </div>
+
+        {/* --- Data Grids & Tables --- */}
+        <div style={sectionTitleStyle}>Data Grids & Tables</div>
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+            
+            {/* File Table */}
+            <ThemedCard className="p-0 overflow-hidden flex flex-col h-full">
+                <div className="p-4 border-b flex justify-between items-center" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
+                    <div className="flex items-center gap-2">
+                        <Icons.Folder size="md" style={{ color: '#F59E0B' }}/>
+                        <span className="font-bold text-sm" style={{ color: theme.colors.text }}>Documents</span>
+                    </div>
+                    <div className="flex gap-2">
+                        <ThemedButton size="sm" variant="ghost"><Icons.Search size="sm"/></ThemedButton>
+                        <ThemedButton size="sm" variant="ghost"><Icons.More size="sm"/></ThemedButton>
+                    </div>
+                </div>
+                <div className="overflow-x-auto flex-1">
+                    <table className="w-full text-xs text-left">
+                        <thead style={{ backgroundColor: theme.colors.text + '05', color: theme.colors.textSecondary }}>
+                            <tr>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>Name</th>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>Type</th>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>Size</th>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y" style={{ borderColor: theme.colors.text + '10' }}>
+                            {[
+                                { name: 'financial_report_q3.pdf', type: 'PDF', size: '2.4 MB', date: 'Oct 24, 2024', icon: 'File', color: theme.colors.error },
+                                { name: 'website_assets_v2.zip', type: 'ZIP', size: '145 MB', date: 'Oct 23, 2024', icon: 'Folder', color: '#F59E0B' },
+                                { name: 'client_list_export.csv', type: 'CSV', size: '84 KB', date: 'Oct 22, 2024', icon: 'Chart', color: theme.colors.success },
+                                { name: 'project_timeline.xlsx', type: 'XLS', size: '12 KB', date: 'Oct 21, 2024', icon: 'Chart', color: theme.colors.success },
+                                { name: 'logo_brand_guidelines.fig', type: 'FIG', size: '45 MB', date: 'Oct 20, 2024', icon: 'Image', color: theme.colors.accent },
+                            ].map((file, i) => (
+                                <tr key={i} className="group hover:bg-black/5 transition-colors cursor-pointer">
+                                    <td className="p-3 font-medium" style={{ color: theme.colors.text }}>
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-6 h-6 rounded flex items-center justify-center text-white text-[10px]" style={{ backgroundColor: file.color }}>
+                                                {/* Simple icon mapping */}
+                                                {file.type === 'PDF' && <Icons.File size="sm"/>}
+                                                {file.type === 'ZIP' && <Icons.Folder size="sm"/>}
+                                                {file.type === 'CSV' && <Icons.Chart size="sm"/>}
+                                                {file.type === 'XLS' && <Icons.Chart size="sm"/>}
+                                                {file.type === 'FIG' && <Icons.Image size="sm"/>}
+                                            </div>
+                                            <span className="truncate max-w-[120px]">{file.name}</span>
+                                        </div>
+                                    </td>
+                                    <td className="p-3">
+                                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold border" style={{ borderColor: theme.colors.text + '20', color: theme.colors.textSecondary }}>{file.type}</span>
+                                    </td>
+                                    <td className="p-3 font-mono opacity-70" style={{ color: theme.colors.text }}>{file.size}</td>
+                                    <td className="p-3 opacity-60" style={{ color: theme.colors.text }}>{file.date}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </ThemedCard>
+
+            {/* Transaction Table */}
+            <ThemedCard className="p-0 overflow-hidden flex flex-col h-full">
+                <div className="p-4 border-b flex justify-between items-center" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.surface }}>
+                    <div className="flex items-center gap-2">
+                        <Icons.Chart size="md" style={{ color: theme.colors.primary }}/>
+                        <span className="font-bold text-sm" style={{ color: theme.colors.text }}>Recent Transactions</span>
+                    </div>
+                    <ThemedButton size="sm" variant="outline">Export</ThemedButton>
+                </div>
+                <div className="overflow-x-auto flex-1">
+                    <table className="w-full text-xs text-left">
+                        <thead style={{ backgroundColor: theme.colors.text + '05', color: theme.colors.textSecondary }}>
+                            <tr>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>Status</th>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>User</th>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>Amount</th>
+                                <th className="p-3 font-bold uppercase tracking-wider opacity-70 border-b" style={{ borderColor: theme.colors.text + '10' }}>ID</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y" style={{ borderColor: theme.colors.text + '10' }}>
+                            {[
+                                { user: 'Alice Smith', email: 'alice@example.com', amount: '$1,299.00', status: 'Completed', id: '#TRX-992' },
+                                { user: 'Bob Jones', email: 'bob@example.com', amount: '$42.50', status: 'Pending', id: '#TRX-991' },
+                                { user: 'Charlie Day', email: 'charlie@example.com', amount: '$120.00', status: 'Failed', id: '#TRX-990' },
+                                { user: 'Dana White', email: 'dana@example.com', amount: '$850.00', status: 'Completed', id: '#TRX-989' },
+                                { user: 'Evan Lee', email: 'evan@example.com', amount: '$15.00', status: 'Refunded', id: '#TRX-988' },
+                            ].map((row, i) => (
+                                <tr key={i} className="group hover:bg-black/5 transition-colors cursor-pointer">
+                                    <td className="p-3">
+                                        <div className="flex items-center gap-1.5">
+                                            <div className={`w-2 h-2 rounded-full ${
+                                                row.status === 'Completed' ? 'bg-green-500' : 
+                                                row.status === 'Pending' ? 'bg-yellow-500' : 
+                                                row.status === 'Failed' ? 'bg-red-500' : 'bg-gray-400'
+                                            }`}></div>
+                                            <span style={{ color: theme.colors.text }}>{row.status}</span>
+                                        </div>
+                                    </td>
+                                    <td className="p-3">
+                                        <div className="font-bold" style={{ color: theme.colors.text }}>{row.user}</div>
+                                        <div className="text-[10px] opacity-50">{row.email}</div>
+                                    </td>
+                                    <td className="p-3 font-mono font-medium" style={{ color: theme.colors.text }}>{row.amount}</td>
+                                    <td className="p-3 font-mono opacity-50" style={{ color: theme.colors.text }}>{row.id}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </ThemedCard>
         </div>
     </div>
   );

@@ -16,11 +16,13 @@ interface ThemeEditorProps {
     isMobile: boolean;
 }
 
+type TabId = 'colors' | 'type' | 'shape' | 'layout';
+
 export const ThemeEditor: React.FC<ThemeEditorProps> = ({ onClose, isMobile }) => {
   const { theme, setTheme, resetTheme } = useTheme();
   const [prompt, setPrompt] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [activeTab, setActiveTab] = useState<'colors' | 'type' | 'shape' | 'layout'>('colors');
+  const [activeTab, setActiveTab] = useState<TabId>('colors');
   const [isAIExpanded, setIsAIExpanded] = useState(false);
 
   const handleMagicTheme = async () => {
@@ -49,7 +51,7 @@ export const ThemeEditor: React.FC<ThemeEditorProps> = ({ onClose, isMobile }) =
     }
   };
 
-  const tabs = [
+  const tabs: { id: TabId; label: string }[] = [
       { id: 'colors', label: 'Colors' },
       { id: 'type', label: 'Typography' },
       { id: 'shape', label: 'Components' },
@@ -164,7 +166,7 @@ export const ThemeEditor: React.FC<ThemeEditorProps> = ({ onClose, isMobile }) =
                     {tabs.map(t => (
                         <button
                             key={t.id}
-                            onClick={() => setActiveTab(t.id as any)}
+                            onClick={() => setActiveTab(t.id)}
                             className={`
                                 flex-1 py-1.5 text-xs font-semibold rounded-md transition-all
                                 ${activeTab === t.id 

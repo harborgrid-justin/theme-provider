@@ -9,7 +9,7 @@ if (!rootElement) {
 
 // Suppress benign ResizeObserver errors commonly triggered by Recharts
 const originalConsoleError = console.error;
-console.error = (...args: any[]) => {
+console.error = (...args: unknown[]) => {
   if (typeof args[0] === 'string' && /ResizeObserver loop/.test(args[0])) {
     return;
   }
