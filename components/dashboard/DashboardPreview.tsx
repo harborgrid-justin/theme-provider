@@ -17,12 +17,13 @@ import { FinanceGalleryTab } from './dashboard/FinanceGalleryTab';
 import { PagesGalleryTab } from './dashboard/PagesGalleryTab';
 import { CalendarGalleryTab } from './dashboard/CalendarGalleryTab';
 import { SecurityGalleryTab } from './dashboard/SecurityGalleryTab';
+import { DocumentGalleryTab } from './dashboard/DocumentGalleryTab';
 
-type TabId = 'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar' | 'security';
+type TabId = 'home' | 'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar' | 'security' | 'documents';
 
 export const DashboardPreview: React.FC = () => {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<TabId>('security');
+  const [activeTab, setActiveTab] = useState<TabId>('home');
 
   const wrapperStyle = {
     backgroundColor: theme.colors.background,
@@ -46,7 +47,9 @@ export const DashboardPreview: React.FC = () => {
   });
 
   const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
+      { id: 'home', label: 'Home', icon: <Icons.Home size="sm"/> },
       { id: 'security', label: 'Security & Ops', icon: <Icons.Lock size="sm"/> },
+      { id: 'documents', label: 'Documents', icon: <Icons.File size="sm"/> },
       { id: 'elements', label: 'UI Elements', icon: <Icons.Palette size="sm"/> },
       { id: 'pages', label: 'Page Layouts', icon: <Icons.Layers size="sm"/> },
       { id: 'webui', label: 'Web UI', icon: <Icons.Grid size="sm"/> },
@@ -75,13 +78,14 @@ export const DashboardPreview: React.FC = () => {
                 </div>
              </div>
              
-             <div className="flex flex-wrap gap-2">
+             {/* Scrollable Tabs Container for Mobile */}
+             <div className="flex overflow-x-auto pb-2 -mx-4 px-4 md:pb-0 md:mx-0 md:px-0 md:flex-wrap gap-2 no-scrollbar">
                 {tabs.map(tab => (
                   <button 
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     style={badgeStyle(activeTab === tab.id)}
-                    className="capitalize transition-all duration-200 hover:opacity-80 active:scale-95 whitespace-nowrap"
+                    className="capitalize transition-all duration-200 hover:opacity-80 active:scale-95 whitespace-nowrap flex-shrink-0"
                   >
                     {activeTab === tab.id && tab.icon}
                     {tab.label}
@@ -92,6 +96,7 @@ export const DashboardPreview: React.FC = () => {
       </div>
 
       <div className="p-6 md:p-8 max-w-7xl mx-auto space-y-12">
+        {activeTab === 'home' && <ApplicationTab />}
         {activeTab === 'marketing' && <MarketingTab />}
         {activeTab === 'application' && <ApplicationTab />}
         {activeTab === 'project' && <ProjectTab />}
@@ -108,6 +113,7 @@ export const DashboardPreview: React.FC = () => {
         {activeTab === 'pages' && <PagesGalleryTab />}
         {activeTab === 'calendar' && <CalendarGalleryTab />}
         {activeTab === 'security' && <SecurityGalleryTab />}
+        {activeTab === 'documents' && <DocumentGalleryTab />}
       </div>
     </div>
   );
