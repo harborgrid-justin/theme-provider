@@ -14,10 +14,11 @@ import { ProjectGalleryTab } from './dashboard/ProjectGalleryTab';
 import { ApplicationGalleryTab } from './dashboard/ApplicationGalleryTab';
 import { FinanceGalleryTab } from './dashboard/FinanceGalleryTab';
 import { PagesGalleryTab } from './dashboard/PagesGalleryTab';
+import { CalendarGalleryTab } from './dashboard/CalendarGalleryTab';
 
 export const DashboardPreview: React.FC = () => {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages'>('pages');
+  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar'>('calendar');
 
   const wrapperStyle = {
     backgroundColor: theme.colors.background,
@@ -48,7 +49,7 @@ export const DashboardPreview: React.FC = () => {
              </div>
              
              <div className="flex flex-wrap gap-2">
-                {(['elements', 'marketing', 'application', 'project', 'data', 'legal', 'finance', 'graph', 'database', 'flow', 'webui', 'project_gallery', 'app_gallery', 'pages'] as const).map(tab => (
+                {(['elements', 'marketing', 'application', 'project', 'data', 'legal', 'finance', 'graph', 'database', 'flow', 'webui', 'project_gallery', 'app_gallery', 'pages', 'calendar'] as const).map(tab => (
                   <button 
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -65,6 +66,7 @@ export const DashboardPreview: React.FC = () => {
                      tab === 'flow' ? 'Flowcharts' : 
                      tab === 'webui' ? 'Web UI' :
                      tab === 'pages' ? 'Page Layouts' :
+                     tab === 'calendar' ? 'Calendar & Sched' :
                      tab === 'application' ? 'App Demo' :
                      tab === 'project' ? 'Project Demo' :
                      tab}
@@ -89,6 +91,7 @@ export const DashboardPreview: React.FC = () => {
         {activeTab === 'project_gallery' && <ProjectGalleryTab />}
         {activeTab === 'app_gallery' && <ApplicationGalleryTab />}
         {activeTab === 'pages' && <PagesGalleryTab />}
+        {activeTab === 'calendar' && <CalendarGalleryTab />}
       </div>
     </div>
   );
