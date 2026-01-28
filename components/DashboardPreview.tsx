@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { Icons } from './dashboard/DashboardIcons';
 import { MarketingTab } from './dashboard/MarketingTab';
 import { ApplicationTab } from './dashboard/ApplicationTab';
 import { ProjectTab } from './dashboard/ProjectTab';
@@ -15,10 +16,13 @@ import { ApplicationGalleryTab } from './dashboard/ApplicationGalleryTab';
 import { FinanceGalleryTab } from './dashboard/FinanceGalleryTab';
 import { PagesGalleryTab } from './dashboard/PagesGalleryTab';
 import { CalendarGalleryTab } from './dashboard/CalendarGalleryTab';
+import { SecurityGalleryTab } from './dashboard/SecurityGalleryTab';
+
+type TabId = 'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar' | 'security';
 
 export const DashboardPreview: React.FC = () => {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar'>('calendar');
+  const [activeTab, setActiveTab] = useState<TabId>('security');
 
   const wrapperStyle = {
     backgroundColor: theme.colors.background,
@@ -36,7 +40,27 @@ export const DashboardPreview: React.FC = () => {
     fontWeight: 600,
     cursor: 'pointer',
     boxShadow: active ? '0 1px 2px rgba(0,0,0,0.1)' : 'none',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
   });
+
+  const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
+      { id: 'security', label: 'Security & Ops', icon: <Icons.Lock size="sm"/> },
+      { id: 'elements', label: 'UI Elements', icon: <Icons.Palette size="sm"/> },
+      { id: 'pages', label: 'Page Layouts', icon: <Icons.Layers size="sm"/> },
+      { id: 'webui', label: 'Web UI', icon: <Icons.Grid size="sm"/> },
+      { id: 'calendar', label: 'Calendar', icon: <Icons.Calendar size="sm"/> },
+      { id: 'finance', label: 'Finance', icon: <Icons.ShoppingBag size="sm"/> },
+      { id: 'data', label: 'Data', icon: <Icons.Chart size="sm"/> },
+      { id: 'database', label: 'Database', icon: <Icons.File size="sm"/> },
+      { id: 'flow', label: 'Flowcharts', icon: <Icons.Refresh size="sm"/> },
+      { id: 'graph', label: 'Diagrams', icon: <Icons.Share size="sm"/> },
+      { id: 'legal', label: 'Legal', icon: <Icons.File size="sm"/> },
+      { id: 'application', label: 'App Demo', icon: <Icons.Home size="sm"/> },
+      { id: 'project', label: 'Project Demo', icon: <Icons.Folder size="sm"/> },
+      { id: 'marketing', label: 'Marketing', icon: <Icons.Star size="sm"/> },
+  ];
 
   return (
     <div style={wrapperStyle} className="transition-colors duration-300">
@@ -45,31 +69,22 @@ export const DashboardPreview: React.FC = () => {
       <div className="sticky top-0 z-20 backdrop-blur-xl bg-white/70 border-b border-gray-200/50 px-4 py-3 md:px-6 md:py-4 transition-all">
          <div className="flex flex-col xl:flex-row xl:items-center gap-4 xl:justify-between max-w-7xl mx-auto">
              <div className="flex items-center justify-between">
-                <div className="font-bold tracking-tight text-lg">UI Gallery</div>
+                <div className="font-bold tracking-tight text-lg flex items-center gap-2">
+                    <Icons.Grid className="text-gray-400" />
+                    UI Gallery
+                </div>
              </div>
              
              <div className="flex flex-wrap gap-2">
-                {(['elements', 'marketing', 'application', 'project', 'data', 'legal', 'finance', 'graph', 'database', 'flow', 'webui', 'project_gallery', 'app_gallery', 'pages', 'calendar'] as const).map(tab => (
+                {tabs.map(tab => (
                   <button 
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    style={badgeStyle(activeTab === tab)}
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    style={badgeStyle(activeTab === tab.id)}
                     className="capitalize transition-all duration-200 hover:opacity-80 active:scale-95 whitespace-nowrap"
                   >
-                    {tab === 'project_gallery' ? 'Project Gallery' :
-                     tab === 'app_gallery' ? 'App Gallery' :
-                     tab === 'data' ? 'Data Gallery' : 
-                     tab === 'legal' ? 'Legal Gallery' : 
-                     tab === 'finance' ? 'Finance Gallery' :
-                     tab === 'graph' ? 'Diagrams' : 
-                     tab === 'database' ? 'Database' : 
-                     tab === 'flow' ? 'Flowcharts' : 
-                     tab === 'webui' ? 'Web UI' :
-                     tab === 'pages' ? 'Page Layouts' :
-                     tab === 'calendar' ? 'Calendar & Sched' :
-                     tab === 'application' ? 'App Demo' :
-                     tab === 'project' ? 'Project Demo' :
-                     tab}
+                    {activeTab === tab.id && tab.icon}
+                    {tab.label}
                   </button>
                 ))}
              </div>
@@ -92,6 +107,7 @@ export const DashboardPreview: React.FC = () => {
         {activeTab === 'app_gallery' && <ApplicationGalleryTab />}
         {activeTab === 'pages' && <PagesGalleryTab />}
         {activeTab === 'calendar' && <CalendarGalleryTab />}
+        {activeTab === 'security' && <SecurityGalleryTab />}
       </div>
     </div>
   );
