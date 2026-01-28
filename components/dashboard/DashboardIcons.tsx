@@ -61,4 +61,17 @@ export const Icons = {
   // Finance & Commerce Icons
   ShoppingBag: (props: IconWrapperProps) => <Icon name="shopping_bag" size="sm" {...props} />,
   Refresh: (props: IconWrapperProps) => <Icon name="refresh" size="sm" {...props} />,
+
+  // Security & Legal Icons
+  Key: (props: IconWrapperProps) => <Icon name="vpn_key" size="sm" {...props} />,
+  Bug: (props: IconWrapperProps) => <Icon name="bug_report" size="sm" {...props} />,
+  Hdd: (props: IconWrapperProps) => <Icon name="storage" size="sm" {...props} />,
+  Fingerprint: (props: IconWrapperProps) => <Icon name="fingerprint" size="sm" {...props} />,
+  Globe: (props: IconWrapperProps) => <Icon name="public" size="sm" {...props} />,
+  Shield: (props: IconWrapperProps) => <Icon name="security" size="sm" {...props} />,
+  Rss: (props: IconWrapperProps) => <Icon name="rss_feed" size="sm" {...props} />,
+  Mail: (props: IconWrapperProps) => <Icon name="mail" size="sm" {...props} />,
+  Book: (props: IconWrapperProps) => <Icon name="menu_book" size="sm" {...props} />,
+  Phone: (props: IconWrapperProps) => <Icon name="smartphone" size="sm" {...props} />,
+  EyeOff: (props: IconWrapperProps) => <Icon name="visibility_off" size="sm" {...props} />,
 };

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { GalleryItem } from './GalleryItem';
@@ -24,9 +25,9 @@ export const SecurityGalleryTab: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Security & Defense (55 Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Security & Defense (115 Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
-            Visual language for cybersecurity, threat modeling, and network defense architectures.
+            Visual language for cybersecurity, threat modeling, network defense, compliance, and zero trust architectures.
         </p>
 
         {/* --- 1. Network Defense --- */}
@@ -461,6 +462,376 @@ export const SecurityGalleryTab: React.FC = () => {
                     <line x1="20" y1="20" x2="20" y2="35" stroke={theme.colors.surface} />
                     <line x1="28" y1="20" x2="28" y2="35" stroke={theme.colors.surface} />
                 </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 8. Cloud Security --- */}
+        <SectionTitle>8. Cloud Security</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Cloud WAF" centered>
+                <svg viewBox="0 0 60 40" className="w-16 h-12">
+                    <path d="M10,25 Q15,15 30,25 T50,20" fill="none" stroke={theme.colors.primary} strokeWidth="1.5" />
+                    <path d="M15,10 L25,30 M35,10 L45,30" stroke={theme.colors.text} strokeWidth="1" opacity="0.3" />
+                    <circle cx="30" cy="20" r="15" fill="none" stroke={theme.colors.primary} strokeWidth="1.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="IAM Policy" centered>
+                <svg viewBox="0 0 40 50" className="w-10 h-12">
+                    <rect x="5" y="5" width="30" height="40" rx="2" fill={theme.colors.surface} stroke={theme.colors.text} />
+                    <circle cx="20" cy="20" r="5" fill={theme.colors.text} opacity="0.2" />
+                    <rect x="10" y="30" width="20" height="2" fill={theme.colors.text} />
+                    <rect x="10" y="35" width="15" height="2" fill={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="VPC Peering" centered>
+                <svg viewBox="0 0 60 30" className="w-16 h-8">
+                    <path d="M10,15 Q20,5 30,15 T50,15" fill="none" stroke={theme.colors.primary} strokeDasharray="3 3" />
+                    <circle cx="10" cy="15" r="5" fill={theme.colors.surface} stroke={theme.colors.text} />
+                    <circle cx="50" cy="15" r="5" fill={theme.colors.surface} stroke={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Security Group" centered>
+                <div className="border border-dashed p-1 rounded grid grid-cols-2 gap-1 w-12 h-12">
+                    <div className="bg-gray-200 rounded"></div><div className="bg-gray-200 rounded"></div>
+                    <div className="bg-gray-200 rounded"></div><Icons.Lock size="sm" className="w-3 h-3"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="KMS Key" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <path d="M10,20 Q20,10 30,20" fill="none" stroke={theme.colors.primary} />
+                    <path d="M15,20 L25,20 L25,25 L22,25" fill="none" stroke={theme.colors.text} />
+                    <circle cx="15" cy="20" r="3" fill={theme.colors.surface} stroke={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Cloud Trail" centered>
+                <svg viewBox="0 0 50 30" className="w-14 h-8">
+                    <path d="M10,15 Q25,5 40,15" fill="none" stroke={theme.colors.text} opacity="0.3" />
+                    <circle cx="15" cy="12" r="1" fill={theme.colors.text} />
+                    <circle cx="25" cy="10" r="1" fill={theme.colors.text} />
+                    <circle cx="35" cy="12" r="1" fill={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Container Scan" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <rect x="10" y="10" width="20" height="20" fill="none" stroke={theme.colors.primary} />
+                    <line x1="5" y1="20" x2="35" y2="20" stroke={theme.colors.success} strokeWidth="1" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Serverless Shield" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <path d="M20,5 L35,10 V20 C35,30 20,35 20,35 C20,35 5,30 5,20 V10 L20,5" fill="none" stroke={theme.colors.text} />
+                    <text x="20" y="25" textAnchor="middle" fontSize="14" fontWeight="bold" fill={theme.colors.warning}>λ</text>
+                </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 9. Compliance & GRC --- */}
+        <SectionTitle>9. Compliance & GRC</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Audit Log" centered>
+                <svg viewBox="0 0 40 50" className="w-10 h-12">
+                    <rect x="5" y="5" width="30" height="40" fill={theme.colors.surface} stroke={theme.colors.text} />
+                    <line x1="10" y1="15" x2="30" y2="15" stroke={theme.colors.text} opacity="0.3" />
+                    <line x1="10" y1="25" x2="30" y2="25" stroke={theme.colors.text} opacity="0.3" />
+                    <circle cx="25" cy="35" r="8" fill={theme.colors.surface} stroke={theme.colors.primary} />
+                    <line x1="29" y1="39" x2="33" y2="43" stroke={theme.colors.primary} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Compliance Check" centered>
+                <div className="border border-green-500 text-green-500 rounded px-2 py-1 flex items-center gap-1 text-[8px] font-bold">
+                    <Icons.Check size="sm" className="w-3"/> PASS
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Policy Doc" centered>
+                <svg viewBox="0 0 40 50" className="w-10 h-12">
+                    <path d="M10,5 H30 V45 H10 Z" fill={theme.colors.surface} stroke={theme.colors.text} />
+                    <circle cx="30" cy="15" r="5" fill={theme.colors.accent} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Risk Assessment" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <polygon points="20,5 35,35 5,35" fill={theme.colors.warning} stroke={theme.colors.text} />
+                    <text x="20" y="30" fontSize="16" fontWeight="bold" textAnchor="middle" fill={theme.colors.text}>!</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="GDPR Badge" centered>
+                <div className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-[8px] font-bold border-2 border-white shadow">GDPR</div>
+            </GalleryItem>
+            <GalleryItem title="SOC2 Seal" centered>
+                <div className="w-10 h-10 border-2 border-double rounded-full flex items-center justify-center text-[6px] font-bold text-center leading-tight" style={{ borderColor: theme.colors.text }}>SOC<br/>TYPE 2</div>
+            </GalleryItem>
+            <GalleryItem title="Data Class" centered>
+                <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded text-[8px] font-bold uppercase border border-red-200">Confidential</span>
+            </GalleryItem>
+            <GalleryItem title="Incident Report" centered>
+                <svg viewBox="0 0 40 50" className="w-10 h-12">
+                    <rect x="5" y="5" width="30" height="40" fill={theme.colors.surface} stroke={theme.colors.text} />
+                    <path d="M15,20 L25,30 M25,20 L15,30" stroke={theme.colors.error} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 10. Application Security --- */}
+        <SectionTitle>10. Application Security</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Input Validation" centered>
+                <div className="border rounded px-2 py-1 w-24 flex items-center justify-between" style={{ borderColor: theme.colors.success }}>
+                    <span className="text-[8px]">user_input</span>
+                    <Icons.Check size="sm" className="w-3 text-green-500"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="CSRF Token" centered>
+                <div className="border border-dashed px-2 py-1 rounded text-[8px] font-mono bg-gray-50 opacity-60">_csrf_token</div>
+            </GalleryItem>
+            <GalleryItem title="Rate Limiter" centered>
+                <svg viewBox="0 0 40 20" className="w-12 h-6">
+                    <path d="M5,20 A15,15 0 0,1 35,20" fill="none" stroke={theme.colors.text} strokeWidth="2" />
+                    <line x1="20" y1="20" x2="30" y2="10" stroke={theme.colors.error} strokeWidth="1.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Header Security" centered>
+                <div className="bg-gray-800 text-green-400 p-1 rounded text-[6px] font-mono">&lt;H&gt; SECURE</div>
+            </GalleryItem>
+            <GalleryItem title="Cookie Secure" centered>
+                <div className="w-8 h-8 rounded-full bg-yellow-200 relative">
+                    <div className="absolute top-1 right-1 w-3 h-3 bg-white rounded-full border border-gray-400 flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Dependency Check" centered>
+                <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                    <div className="w-8 h-px bg-gray-300"></div>
+                    <Icons.Help size="sm" className="text-yellow-500"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Code Analysis" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <text x="5" y="20" fontSize="10" fontFamily="monospace" fill={theme.colors.text}>&lt;/&gt;</text>
+                    <circle cx="25" cy="25" r="8" fill="none" stroke={theme.colors.primary} strokeWidth="1.5" />
+                    <line x1="30" y1="30" x2="35" y2="35" stroke={theme.colors.primary} strokeWidth="1.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="API Gateway" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <path d="M10,35 V15 C10,5 30,5 30,15 V35" fill="none" stroke={theme.colors.text} strokeWidth="2" />
+                    <rect x="18" y="25" width="4" height="6" fill={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 11. Zero Trust --- */}
+        <SectionTitle>11. Zero Trust Architecture</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Device Trust" centered>
+                <div className="relative">
+                    <Icons.Home size="lg" style={{ color: theme.colors.text }}/>
+                    <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full w-4 h-4 flex items-center justify-center border border-white">
+                        <Icons.Check size="sm" className="text-white w-2"/>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Context Access" centered>
+                <div className="flex gap-1 text-[8px] opacity-60">
+                    <Icons.User size="sm" className="w-3"/>
+                    <Icons.Clock size="sm" className="w-3"/>
+                    <Icons.Flag size="sm" className="w-3"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Service Mesh" centered>
+                <div className="grid grid-cols-3 gap-1">
+                    {[1,2,3,4,5,6,7,8,9].map(i => <div key={i} className="w-1 h-1 bg-gray-400 rounded-full"></div>)}
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Least Privilege" centered>
+                <div className="flex flex-col items-center">
+                    <Icons.User size="md" style={{ color: theme.colors.text }}/>
+                    <Icons.Key size="sm" className="w-3 mt-1 text-yellow-500"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Continuous Auth" centered>
+                <svg viewBox="0 0 40 20" className="w-12 h-6">
+                    <path d="M5,10 C5,0 15,0 15,10 C15,20 25,20 25,10 C25,0 35,0 35,10" fill="none" stroke={theme.colors.primary} strokeWidth="1.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Policy Engine" centered>
+                <Icons.Settings size="lg" className="animate-spin-slow opacity-60"/>
+            </GalleryItem>
+            <GalleryItem title="Trust Score" centered>
+                <div className="w-10 h-10 rounded-full border-4 border-green-500 flex items-center justify-center text-[10px] font-bold">95</div>
+            </GalleryItem>
+            <GalleryItem title="Break Glass" centered>
+                <div className="border-2 border-red-500 p-1 rounded bg-red-50 cursor-pointer hover:bg-red-100">
+                    <div className="w-full h-1 bg-red-500 mb-1"></div>
+                    <span className="text-[6px] text-red-800 font-bold uppercase">Emergency</span>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 12. Forensics & Investigation --- */}
+        <SectionTitle>12. Forensics & Investigation</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Evidence Bag" centered>
+                <svg viewBox="0 0 40 50" className="w-10 h-12">
+                    <path d="M10,10 H30 V45 H10 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M10,15 H30" stroke={theme.colors.warning} strokeWidth="2" strokeDasharray="2 1" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Timeline Analysis" centered>
+                <div className="w-full px-2">
+                    <div className="h-px bg-gray-400 w-full relative">
+                        <div className="absolute left-1/4 -top-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div className="absolute left-3/4 -top-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Malware Sandbox" centered>
+                <div className="border-2 border-dashed border-red-400 p-2 rounded">
+                    <Icons.Bug size="md" className="text-red-500"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Memory Dump" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <rect x="10" y="10" width="20" height="20" fill={theme.colors.text} opacity="0.8" />
+                    <text x="12" y="24" fontSize="6" fontFamily="monospace" fill="white">0101</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Network Pcap" centered>
+                <svg viewBox="0 0 40 20" className="w-12 h-6">
+                    <path d="M0,10 L5,5 L10,15 L15,8 L20,12 L25,2 L30,18 L35,10 L40,10" fill="none" stroke={theme.colors.primary} strokeWidth="1" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Disk Image" centered>
+                <Icons.Hdd size="lg" style={{ color: theme.colors.textSecondary }}/>
+            </GalleryItem>
+            <GalleryItem title="Chain of Custody" centered>
+                <div className="flex gap-0.5">
+                    <div className="w-3 h-3 rounded-full border border-black"></div>
+                    <div className="w-3 h-1 bg-black self-center"></div>
+                    <div className="w-3 h-3 rounded-full border border-black"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Fingerprint Match" centered>
+                <div className="relative">
+                    <Icons.Fingerprint size="lg" className="opacity-40"/>
+                    <div className="absolute top-0 left-0 w-full h-full border-b-2 border-green-500 animate-pulse"></div>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 13. Threat Intelligence --- */}
+        <SectionTitle>13. Threat Intelligence</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="IOC Feed" centered>
+                <div className="flex flex-col gap-1 w-full px-4">
+                    <div className="flex justify-between text-[6px] border-b pb-0.5"><span>IP</span><span className="text-red-500">Malicious</span></div>
+                    <div className="flex justify-between text-[6px] border-b pb-0.5"><span>Hash</span><span className="text-yellow-500">Suspicious</span></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Actor Profile" centered>
+                <div className="bg-black text-white p-2 rounded-full">
+                    <Icons.User size="md"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Campaign Map" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <circle cx="20" cy="20" r="15" fill="none" stroke={theme.colors.text} opacity="0.2" />
+                    <circle cx="20" cy="20" r="10" fill="none" stroke={theme.colors.text} opacity="0.4" />
+                    <line x1="20" y1="20" x2="30" y2="10" stroke={theme.colors.error} />
+                    <circle cx="30" cy="10" r="2" fill={theme.colors.error} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="TTP Matrix" centered>
+                <div className="grid grid-cols-3 gap-0.5 w-8 h-8">
+                    {[1,0,0,0,1,0,1,0,1].map((x,i) => <div key={i} className={`w-full h-full ${x?'bg-red-500':'bg-gray-200'}`}></div>)}
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Dark Web Monitor" centered>
+                <div className="w-10 h-10 rounded-full bg-gray-900 border border-gray-700 flex items-center justify-center">
+                    <Icons.Globe size="sm" className="text-gray-500"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Brand Protection" centered>
+                <div className="relative">
+                    <Icons.Shield size="lg" className="text-blue-500"/>
+                    <Icons.Star size="sm" className="text-white absolute top-1.5 left-1.5 w-3"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Attack Surface" centered>
+                <svg viewBox="0 0 40 20" className="w-12 h-6">
+                    <path d="M2,18 C10,5 30,5 38,18" fill="none" stroke={theme.colors.error} strokeWidth="1" strokeDasharray="2 1" />
+                    <circle cx="20" cy="18" r="2" fill={theme.colors.primary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Vuln Feed" centered>
+                <Icons.Rss size="lg" className="text-orange-500"/>
+            </GalleryItem>
+        </div>
+
+        {/* --- 14. User Awareness --- */}
+        <SectionTitle>14. User Awareness</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Phishing Sim" centered>
+                <div className="relative">
+                    <Icons.Mail size="lg"/>
+                    <div className="absolute -top-1 -right-1 text-red-500 font-bold text-lg">?</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Training Module" centered>
+                <Icons.Book size="lg" style={{ color: theme.colors.primary }}/>
+            </GalleryItem>
+            <GalleryItem title="Security Quiz" centered>
+                <div className="border-2 rounded p-1 font-bold text-lg text-center w-8 h-8 flex items-center justify-center">?</div>
+            </GalleryItem>
+            <GalleryItem title="Report Button" centered>
+                <button className="bg-red-100 text-red-600 px-2 py-1 rounded text-[8px] font-bold flex items-center gap-1">
+                    <Icons.Flag size="sm" className="w-2"/> Report
+                </button>
+            </GalleryItem>
+            <GalleryItem title="Password Meter" centered>
+                <div className="w-12 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="w-2/3 h-full bg-green-500"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="2FA Setup" centered>
+                <Icons.Phone size="lg" style={{ color: theme.colors.text }}/>
+            </GalleryItem>
+        </div>
+
+        {/* --- 15. Cryptographic Tools --- */}
+        <SectionTitle>15. Cryptographic Tools</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Lockout Screen" centered>
+                <Icons.Lock size="xl" className="opacity-20"/>
+            </GalleryItem>
+            <GalleryItem title="Shred File" centered>
+                <div className="relative overflow-hidden h-10 w-8 border flex flex-col gap-0.5">
+                    <div className="bg-gray-200 h-full w-full"></div>
+                    <div className="absolute bottom-0 w-full h-4 bg-white transform -skew-y-12 translate-y-2"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Encrypt Folder" centered>
+                <div className="relative">
+                    <Icons.Folder size="lg" className="text-yellow-500"/>
+                    <Icons.Lock size="sm" className="absolute top-1 right-1 w-3 text-black"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="VPN Connect" centered>
+                <div className="w-8 h-4 rounded-full bg-green-500 relative">
+                    <div className="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Secure Chat" centered>
+                <div className="relative">
+                    <Icons.Chat size="lg"/>
+                    <Icons.Lock size="sm" className="absolute -bottom-1 -right-1 w-3"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Anonymous" centered>
+                <div className="bg-gray-800 rounded-full p-2 text-white">
+                    <Icons.EyeOff size="sm"/>
+                </div>
             </GalleryItem>
         </div>
     </div>
