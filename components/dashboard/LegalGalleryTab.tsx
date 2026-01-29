@@ -1,32 +1,37 @@
+
 import React from 'react';
-import { useTheme } from '../../context/ThemeContext';
-import { ThemedButton } from '../ui-elements/ThemedButton';
-import { Icons } from './DashboardIcons';
+import { useSvgTheme } from '../../hooks/useSvgTheme';
 import { GalleryItem } from './GalleryItem';
 import { SectionTitle } from './SectionTitle';
 
 export const LegalGalleryTab: React.FC = () => {
-  const { theme } = useTheme();
+  const { theme, strokeProps, layoutProps, primaryFill, textFill, surfaceFill, faintFill, textStyle } = useSvgTheme();
 
+  // Helper for Status Badges
   const StatusBadge = ({ label, color }: { label: string, color: string }) => (
-      <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap border" 
-            style={{ backgroundColor: color + '15', color: color, borderColor: color + '30' }}>
-          {label}
-      </span>
+      <svg viewBox="0 0 100 30" className="w-24 h-8">
+          <rect x="5" y="5" width="90" height="20" rx="10" fill={color} fillOpacity="0.1" stroke={color} strokeOpacity="0.3" strokeWidth="1" />
+          <text x="50" y="16" fontSize="8" fontWeight="bold" fill={color} textAnchor="middle" dominantBaseline="middle" style={{ textTransform: 'uppercase' }}>
+              {label}
+          </text>
+      </svg>
   );
 
-  const ClauseItem = ({ title, icon }: { title: string, icon: string }) => (
-      <div className="flex flex-col items-center justify-center text-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
-          <span className="material-icons text-2xl" style={{ color: theme.colors.primary }}>{icon}</span>
-          <span className="text-[8px] font-bold uppercase tracking-wide leading-tight" style={{ color: theme.colors.text }}>{title}</span>
-      </div>
+  // Helper for Clause Icons (Abstract representation)
+  const ClauseIcon = ({ char, label }: { char: string, label: string }) => (
+      <svg viewBox="0 0 60 60" className="w-16 h-16">
+          <path d="M15,10 H45 L50,20 V50 H10 V10 Z" {...layoutProps} />
+          <circle cx="30" cy="30" r="12" {...surfaceFill} stroke={theme.colors.text} strokeWidth="1" />
+          <text x="30" y="34" fontSize="12" fontWeight="bold" fill={theme.colors.primary} textAnchor="middle">{char}</text>
+          <text x="30" y="58" fontSize="6" fill={theme.colors.text} textAnchor="middle" opacity="0.6">{label}</text>
+      </svg>
   );
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Legal Micro-Elements (230+ Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Legal Micro-Elements (330+ Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
-            Specialized UI tokens for contract management, compliance, and legal workflows. 
+            Specialized UI tokens for contract management, compliance, litigation, and legal operations.
         </p>
 
         {/* --- 1. Document Lifecycle & Status --- */}
@@ -45,78 +50,88 @@ export const LegalGalleryTab: React.FC = () => {
             <GalleryItem title="Voided" centered><StatusBadge label="Void" color={theme.colors.error} /></GalleryItem>
             <GalleryItem title="Archived" centered><StatusBadge label="Archived" color={theme.colors.textSecondary} /></GalleryItem>
             <GalleryItem title="Locked" centered>
-                <div className="flex items-center gap-1.5 opacity-60" style={{ color: theme.colors.text }}>
-                    <Icons.Lock size="sm"/> <span className="text-[10px] font-bold uppercase">Locked</span>
-                </div>
+                <svg viewBox="0 0 80 30" className="w-20 h-8">
+                    <rect x="25" y="8" width="10" height="8" rx="2" stroke={theme.colors.text} fill="none" />
+                    <rect x="22" y="12" width="16" height="10" rx="2" fill={theme.colors.text} />
+                    <text x="55" y="20" fontSize="8" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">LOCKED</text>
+                </svg>
             </GalleryItem>
-            <GalleryItem title="Redlined" centered><span className="text-[10px] font-bold line-through decoration-2" style={{ color: theme.colors.error, textDecorationColor: theme.colors.error }}>Redlined</span></GalleryItem>
+            <GalleryItem title="Redlined" centered>
+                <svg viewBox="0 0 80 30" className="w-20 h-8">
+                    <text x="40" y="20" fontSize="10" fontWeight="bold" fill={theme.colors.error} textAnchor="middle" textDecoration="line-through">Redlined</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Superseded" centered><StatusBadge label="Superseded" color={theme.colors.textSecondary} /></GalleryItem>
+            <GalleryItem title="Renewed" centered><StatusBadge label="Renewed" color={theme.colors.success} /></GalleryItem>
         </div>
 
         {/* --- 2. Signature & Authentication --- */}
         <SectionTitle>2. Signature & Authentication</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
              <GalleryItem title="Signature Line" centered>
-                <div className="w-full px-4 text-center">
-                    <div className="h-8 border-b-2 mb-1 relative flex items-end justify-center pb-1" style={{borderColor: theme.colors.text}}>
-                        <span className="font-serif italic opacity-60 text-sm font-bold absolute" style={{ color: theme.colors.primary }}>John Doe</span>
-                        <span className="absolute bottom-1 right-0 text-[8px] opacity-30" style={{ color: theme.colors.text }}>X</span>
-                    </div>
-                    <div className="text-[8px] uppercase font-bold opacity-60" style={{ color: theme.colors.text }}>Sign Here</div>
-                </div>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <line x1="10" y1="45" x2="90" y2="45" {...strokeProps} />
+                    <path d="M20,40 Q30,20 40,40 T60,30 T80,40" fill="none" stroke={theme.colors.primary} strokeWidth="1.5" strokeOpacity="0.6" fontStyle="italic" />
+                    <text x="90" y="42" fontSize="8" fill={theme.colors.text} opacity="0.3" textAnchor="end">X</text>
+                    <text x="50" y="55" {...textStyle} opacity="0.6" fontSize="6">Sign Here</text>
+                </svg>
             </GalleryItem>
 
              <GalleryItem title="Initial Box" centered>
-                <div className="w-12 h-12 border-2 border-dashed flex items-center justify-center text-[8px] uppercase opacity-60 font-bold" style={{borderColor: theme.colors.text, backgroundColor: theme.colors.warning + '10'}}>
-                    Initials
-                </div>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" rx="4" fill={theme.colors.warning} fillOpacity="0.1" stroke={theme.colors.text} strokeDasharray="4 2" />
+                    <text x="30" y="32" fontSize="10" fontWeight="bold" fill={theme.colors.text} opacity="0.4" textAnchor="middle">INITIALS</text>
+                </svg>
             </GalleryItem>
             
              <GalleryItem title="Date Stamp" centered>
-                <div className="border-2 rounded px-2 py-1 text-center transform -rotate-6 shadow-sm" style={{borderColor: theme.colors.error, color: theme.colors.error}}>
-                    <div className="text-[6px] uppercase font-bold">Received</div>
-                    <div className="text-[10px] font-mono font-bold">OCT 24 2024</div>
-                </div>
+                <svg viewBox="0 0 80 40" className="w-20 h-10">
+                    <rect x="5" y="5" width="70" height="30" rx="2" fill="none" stroke={theme.colors.error} strokeWidth="2" transform="rotate(-2 40 20)" />
+                    <text x="40" y="18" fontSize="6" fontWeight="bold" fill={theme.colors.error} textAnchor="middle" transform="rotate(-2 40 20)">RECEIVED</text>
+                    <text x="40" y="28" fontSize="10" fontWeight="bold" fill={theme.colors.error} textAnchor="middle" fontFamily="monospace" transform="rotate(-2 40 20)">OCT 24 2024</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Notary Seal" centered>
-                <div className="w-14 h-14 rounded-full border-2 border-double flex items-center justify-center relative" style={{ borderColor: theme.colors.warning, backgroundColor: theme.colors.warning + '10' }}>
-                    <div className="w-10 h-10 rounded-full border flex items-center justify-center" style={{ borderColor: theme.colors.warning }}>
-                        <Icons.Star size="md" style={{ color: theme.colors.warning }}/>
-                    </div>
-                    <div className="absolute bottom-1 text-[6px] px-1 uppercase font-bold shadow-sm border rounded-sm" style={{ backgroundColor: theme.colors.surface, color: theme.colors.warning, borderColor: theme.colors.warning }}>Official Seal</div>
-                </div>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="30" r="25" fill={theme.colors.warning} fillOpacity="0.1" stroke={theme.colors.warning} strokeWidth="2" strokeDasharray="2 1" />
+                    <path d="M30,10 L35,25 L50,25 L38,35 L43,50 L30,40 L17,50 L22,35 L10,25 L25,25 Z" fill="none" stroke={theme.colors.warning} />
+                    <rect x="15" y="25" width="30" height="10" fill={theme.colors.surface} stroke={theme.colors.warning} rx="2" />
+                    <text x="30" y="32" fontSize="4" fontWeight="bold" fill={theme.colors.warning} textAnchor="middle">OFFICIAL</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="E-Sign Badge" centered>
-                <div className="flex items-center gap-1.5 px-2 py-1.5 rounded border shadow-sm" style={{ backgroundColor: theme.colors.info + '10', color: theme.colors.info, borderColor: theme.colors.info + '30' }}>
-                    <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: theme.colors.success }}></div>
-                    <span className="text-[8px] font-bold uppercase tracking-wide">Verified E-Sign</span>
-                </div>
+                <svg viewBox="0 0 100 30" className="w-24 h-8">
+                    <rect x="5" y="5" width="90" height="20" rx="4" fill={theme.colors.info} fillOpacity="0.1" stroke={theme.colors.info} strokeOpacity="0.3" />
+                    <circle cx="20" cy="15" r="3" fill={theme.colors.success} />
+                    <text x="55" y="19" fontSize="8" fontWeight="bold" fill={theme.colors.info} textAnchor="middle">VERIFIED SIGNATURE</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Digital Cert" centered>
-                <div className="border p-1.5 rounded flex flex-col items-center shadow-sm w-12" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                    <Icons.Lock size="sm" className="mb-1" style={{ color: theme.colors.success }}/>
-                    <div className="h-px w-full my-0.5" style={{ backgroundColor: theme.colors.text + '20' }}></div>
-                    <span className="text-[6px] font-mono" style={{ color: theme.colors.textSecondary }}>SHA-256</span>
-                </div>
+                <svg viewBox="0 0 40 50" className="w-10 h-12">
+                    <path d="M5,5 H35 V45 H5 Z" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <path d="M15,15 H25 M20,12 V18" stroke={theme.colors.success} strokeWidth="2" />
+                    <circle cx="20" cy="15" r="6" fill="none" stroke={theme.colors.success} />
+                    <line x1="10" y1="30" x2="30" y2="30" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <text x="20" y="40" fontSize="4" fontFamily="monospace" fill={theme.colors.textSecondary} textAnchor="middle">SHA-256</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Timestamp" centered>
-                <span className="font-mono text-[8px] opacity-70 px-2 py-1 rounded border" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '10', color: theme.colors.text }}>2024-10-24 14:30:01 UTC</span>
+                <svg viewBox="0 0 100 30" className="w-24 h-8">
+                    <rect x="5" y="5" width="90" height="20" rx="4" fill={theme.colors.text} fillOpacity="0.05" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <text x="50" y="17" fontSize="8" fontFamily="monospace" fill={theme.colors.text} textAnchor="middle">2024-10-24 14:30 UTC</text>
+                </svg>
             </GalleryItem>
 
-            <GalleryItem title="ID Verified" centered>
-                <div className="flex flex-col items-center">
-                    <div className="w-10 h-6 border rounded relative overflow-hidden mb-1 shadow-sm" style={{ borderColor: theme.colors.text + '20', backgroundColor: theme.colors.surface }}>
-                        <div className="w-3 h-4 absolute top-1 left-1 rounded-sm" style={{ backgroundColor: theme.colors.text + '20' }}></div>
-                        <div className="h-0.5 w-4 absolute top-1.5 left-5" style={{ backgroundColor: theme.colors.text + '20' }}></div>
-                        <div className="h-0.5 w-3 absolute top-3 left-5" style={{ backgroundColor: theme.colors.text + '20' }}></div>
-                    </div>
-                    <div className="flex items-center gap-0.5 text-[8px] font-bold" style={{ color: theme.colors.success }}>
-                        <Icons.Check size="sm" className="w-3 h-3"/> ID Verified
-                    </div>
-                </div>
+            <GalleryItem title="Biometric Sign" centered>
+                <svg viewBox="0 0 60 40" className="w-16 h-12">
+                    <path d="M20,35 Q30,5 40,35" fill="none" stroke={theme.colors.success} strokeWidth="1.5" />
+                    <path d="M15,25 Q30,10 45,25" fill="none" stroke={theme.colors.text} opacity="0.2" />
+                    <rect x="5" y="5" width="50" height="30" rx="2" fill="none" stroke={theme.colors.text} strokeOpacity="0.2" />
+                </svg>
             </GalleryItem>
         </div>
 
@@ -124,523 +139,575 @@ export const LegalGalleryTab: React.FC = () => {
         <SectionTitle>3. Structure & Formatting</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
              <GalleryItem title="Clause Header" centered>
-                <div className="flex gap-2 items-baseline w-full px-6">
-                    <span className="font-bold text-sm" style={{ color: theme.colors.text }}>1.2</span>
-                    <div className="h-2 w-full rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-24 h-12">
+                    <text x="10" y="25" fontSize="12" fontWeight="bold" fill={theme.colors.text}>1.2</text>
+                    <rect x="30" y="20" width="60" height="6" rx="2" fill={theme.colors.text} fillOpacity="0.1" />
+                </svg>
             </GalleryItem>
 
              <GalleryItem title="Section Break" centered>
-                <div className="flex items-center gap-2 w-full px-6 opacity-30" style={{ color: theme.colors.text }}>
-                    <div className="h-px bg-current flex-1"></div>
-                    <div className="font-serif text-xl">§</div>
-                    <div className="h-px bg-current flex-1"></div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-24 h-12">
+                    <line x1="10" y1="20" x2="45" y2="20" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <text x="50" y="24" fontSize="16" fontFamily="serif" fill={theme.colors.text} textAnchor="middle">§</text>
+                    <line x1="55" y1="20" x2="90" y2="20" stroke={theme.colors.text} strokeOpacity="0.2" />
+                </svg>
             </GalleryItem>
 
              <GalleryItem title="Redaction" centered>
-                <div className="text-white px-3 py-1 text-[8px] select-none font-mono tracking-[0.2em] font-bold" style={{ backgroundColor: theme.colors.text }}>REDACTED</div>
+                <svg viewBox="0 0 100 30" className="w-24 h-8">
+                    <rect x="5" y="5" width="90" height="20" fill={theme.colors.text} />
+                    <text x="50" y="18" fontSize="8" fontFamily="monospace" fill="white" fontWeight="bold" textAnchor="middle" letterSpacing="2">REDACTED</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Exhibit Label" centered>
-                <div className="border-2 px-3 py-1 text-center font-serif shadow-md" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface }}>
-                    <div className="text-[6px] uppercase tracking-wider font-bold" style={{ color: theme.colors.text }}>Exhibit</div>
-                    <div className="text-2xl font-bold leading-none" style={{ color: theme.colors.text }}>A</div>
-                </div>
+                <svg viewBox="0 0 60 40" className="w-16 h-12">
+                    <rect x="5" y="5" width="50" height="30" fill={theme.colors.surface} stroke={theme.colors.text} strokeWidth="1.5" />
+                    <text x="30" y="15" fontSize="6" fontWeight="bold" fill={theme.colors.text} textAnchor="middle" style={{textTransform: 'uppercase'}}>Exhibit</text>
+                    <text x="30" y="30" fontSize="14" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">A</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Watermark: Draft" centered>
-                <div className="text-sm font-bold uppercase tracking-[0.2em] opacity-20 transform -rotate-12 select-none border-4 border-current px-3 py-1 rounded-lg" style={{ color: theme.colors.text }}>
-                    Draft
-                </div>
+                <svg viewBox="0 0 100 40" className="w-24 h-12">
+                    <text x="50" y="25" fontSize="20" fontWeight="bold" fill={theme.colors.text} opacity="0.1" textAnchor="middle" style={{textTransform: 'uppercase'}}>DRAFT</text>
+                    <rect x="20" y="10" width="60" height="20" fill="none" stroke={theme.colors.text} strokeOpacity="0.1" strokeWidth="2" />
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Page Number" centered>
-                <div className="flex items-center gap-1 text-[10px] opacity-60 font-serif" style={{ color: theme.colors.text }}>
-                    Page <span className="font-bold">1</span> of <span className="font-bold">24</span>
-                </div>
+                <svg viewBox="0 0 100 30" className="w-24 h-8">
+                    <text x="50" y="20" fontSize="8" fill={theme.colors.text} textAnchor="middle" fontFamily="serif" opacity="0.6">Page 1 of 24</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Footnote" centered>
-                <div className="w-full px-4">
-                    <div className="h-px w-8 mb-1.5 opacity-20" style={{ backgroundColor: theme.colors.text }}></div>
-                    <div className="text-[8px] opacity-60 leading-tight" style={{ color: theme.colors.text }}>1. defined in Section 2.4</div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-24 h-12">
+                    <line x1="10" y1="10" x2="30" y2="10" stroke={theme.colors.text} opacity="0.5" />
+                    <text x="10" y="25" fontSize="6" fill={theme.colors.text} opacity="0.6">1. Defined in Section 2.4</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Comment Bubble" centered>
-                <div className="relative border px-2 py-1.5 rounded shadow-sm max-w-[80%]" style={{ backgroundColor: theme.colors.warning + '10', borderColor: theme.colors.warning + '30' }}>
-                    <div className="text-[8px] leading-tight" style={{ color: theme.colors.warning }}>Check this clause against v2.</div>
-                    <div className="absolute -bottom-1 left-2 w-2 h-2 border-b border-r transform rotate-45" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.warning + '30' }}></div>
-                </div>
+                <svg viewBox="0 0 100 40" className="w-24 h-12">
+                    <path d="M10,5 H90 V25 H20 L10,35 V5 Z" fill={theme.colors.warning} fillOpacity="0.1" stroke={theme.colors.warning} strokeOpacity="0.5" />
+                    <text x="20" y="18" fontSize="6" fill={theme.colors.warning}>Check this clause...</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Highlight" centered>
-                <span className="px-1 py-0.5 text-[10px] font-medium" style={{ backgroundColor: theme.colors.warning + '30', color: theme.colors.text }}>Critical Term</span>
+                <svg viewBox="0 0 100 30" className="w-24 h-8">
+                    <rect x="10" y="8" width="80" height="14" fill={theme.colors.warning} fillOpacity="0.3" />
+                    <text x="50" y="18" fontSize="8" fill={theme.colors.text} textAnchor="middle">Critical Term</text>
+                </svg>
             </GalleryItem>
 
             <GalleryItem title="Track Changes" centered>
-                <div className="text-[10px] flex gap-1">
-                    <span className="line-through decoration-current opacity-60" style={{ color: theme.colors.error }}>old term</span>
-                    <span className="underline decoration-current font-bold px-0.5" style={{ color: theme.colors.success, backgroundColor: theme.colors.success + '10' }}>new term</span>
-                </div>
-            </GalleryItem>
-        </div>
-
-        {/* --- 4. Icons & Symbols --- */}
-        <SectionTitle>4. Icons & Symbols</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Gavel" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>gavel</span></GalleryItem>
-            <GalleryItem title="Scales" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>balance</span></GalleryItem>
-            <GalleryItem title="Courthouse" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>account_balance</span></GalleryItem>
-            <GalleryItem title="Briefcase" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>work</span></GalleryItem>
-            <GalleryItem title="Contract" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>history_edu</span></GalleryItem>
-            <GalleryItem title="Stamp" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>approval</span></GalleryItem>
-            <GalleryItem title="Policy" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>policy</span></GalleryItem>
-            <GalleryItem title="Shield" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>security</span></GalleryItem>
-            <GalleryItem title="Copyright" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>copyright</span></GalleryItem>
-            <GalleryItem title="Fingerprint" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>fingerprint</span></GalleryItem>
-            <GalleryItem title="Verified User" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>verified_user</span></GalleryItem>
-            <GalleryItem title="Privacy" centered><span className="material-icons text-3xl opacity-60" style={{ color: theme.colors.text }}>visibility_off</span></GalleryItem>
-        </div>
-
-        {/* --- 5. Case & Matter Fields --- */}
-        <SectionTitle>5. Case & Matter Fields</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Case Number" centered>
-                <div className="rounded px-3 py-1.5 text-[10px] font-mono border font-bold tracking-wide" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '20', color: theme.colors.text }}>
-                    CV-2024-0012
-                </div>
+                <svg viewBox="0 0 100 30" className="w-24 h-8">
+                    <text x="30" y="18" fontSize="8" fill={theme.colors.error} textAnchor="end" textDecoration="line-through" opacity="0.7">old</text>
+                    <text x="70" y="18" fontSize="8" fill={theme.colors.success} textAnchor="start" fontWeight="bold">new term</text>
+                </svg>
             </GalleryItem>
             
-            <GalleryItem title="Docket Tag" centered>
-                <div className="flex items-center gap-1.5 text-[10px] font-bold border rounded px-2 py-1 shadow-sm" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20', color: theme.colors.text }}>
-                    <Icons.Tag size="sm" className="w-3"/> DK-99
-                </div>
+            <GalleryItem title="Line Numbers" centered>
+                <svg viewBox="0 0 40 60" className="w-8 h-12">
+                    <text x="10" y="15" fontSize="6" fill={theme.colors.text} opacity="0.4">10</text>
+                    <text x="10" y="25" fontSize="6" fill={theme.colors.text} opacity="0.4">11</text>
+                    <text x="10" y="35" fontSize="6" fill={theme.colors.text} opacity="0.4">12</text>
+                    <line x1="20" y1="5" x2="20" y2="55" stroke={theme.colors.text} opacity="0.1" />
+                </svg>
             </GalleryItem>
+            
+            <GalleryItem title="Paragraph" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <text x="20" y="25" fontSize="20" fontWeight="bold" fill={theme.colors.text} textAnchor="middle" opacity="0.5">¶</text>
+                </svg>
+            </GalleryItem>
+        </div>
 
+        {/* --- 4. Contract Clauses --- */}
+        <SectionTitle>4. Contract Clauses</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Indemnity" centered><ClauseIcon char="I" label="Indemnity" /></GalleryItem>
+            <GalleryItem title="Liability Cap" centered><ClauseIcon char="$" label="Liability" /></GalleryItem>
+            <GalleryItem title="Confidentiality" centered><ClauseIcon char="C" label="Confidential" /></GalleryItem>
+            <GalleryItem title="Termination" centered><ClauseIcon char="X" label="Terminate" /></GalleryItem>
+            <GalleryItem title="Force Majeure" centered><ClauseIcon char="!" label="Force Maj." /></GalleryItem>
+            <GalleryItem title="Governing Law" centered><ClauseIcon char="§" label="Gov. Law" /></GalleryItem>
+            <GalleryItem title="Arbitration" centered><ClauseIcon char="A" label="Arbitration" /></GalleryItem>
+            <GalleryItem title="Severability" centered><ClauseIcon char="/" label="Severability" /></GalleryItem>
+            <GalleryItem title="Non-Compete" centered><ClauseIcon char="∅" label="Non-Compete" /></GalleryItem>
+            <GalleryItem title="Non-Solicit" centered><ClauseIcon char="No" label="Non-Solicit" /></GalleryItem>
+            <GalleryItem title="Assignment" centered><ClauseIcon char="→" label="Assign" /></GalleryItem>
+            <GalleryItem title="Entire Agmt" centered><ClauseIcon char="≡" label="Entire Agmt" /></GalleryItem>
+        </div>
+
+        {/* --- 5. Compliance & Regulatory (NEW) --- */}
+        <SectionTitle>5. Compliance & Regulatory</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="GDPR Badge" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="30" r="25" fill={theme.colors.info} fillOpacity="0.1" stroke={theme.colors.info} />
+                    <text x="30" y="34" fontSize="10" fontWeight="bold" fill={theme.colors.info} textAnchor="middle">GDPR</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="HIPAA Shield" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M30,5 L50,15 V35 C50,45 30,55 30,55 C30,55 10,45 10,35 V15 L30,5 Z" fill={theme.colors.success} fillOpacity="0.1" stroke={theme.colors.success} />
+                    <text x="30" y="34" fontSize="8" fontWeight="bold" fill={theme.colors.success} textAnchor="middle">HIPAA</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="SOC2 Check" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M10,20 L25,35 L50,10" fill="none" stroke={theme.colors.primary} strokeWidth="4" />
+                    <text x="30" y="55" fontSize="8" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">SOC 2</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="ISO Cert" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="30" r="22" fill="none" stroke={theme.colors.text} strokeWidth="1" strokeDasharray="3 2" />
+                    <text x="30" y="34" fontSize="10" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">ISO</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Risk Matrix" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="5" y="5" width="25" height="25" fill={theme.colors.success} opacity="0.5" />
+                    <rect x="30" y="5" width="25" height="25" fill={theme.colors.warning} opacity="0.5" />
+                    <rect x="5" y="30" width="25" height="25" fill={theme.colors.warning} opacity="0.5" />
+                    <rect x="30" y="30" width="25" height="25" fill={theme.colors.error} opacity="0.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Audit Trail" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="10" width="30" height="40" fill="none" stroke={theme.colors.text} />
+                    <line x1="20" y1="20" x2="40" y2="20" stroke={theme.colors.text} opacity="0.5" />
+                    <line x1="20" y1="30" x2="40" y2="30" stroke={theme.colors.text} opacity="0.5" />
+                    <line x1="20" y1="40" x2="40" y2="40" stroke={theme.colors.text} opacity="0.5" />
+                    <circle cx="45" cy="45" r="8" fill={theme.colors.surface} stroke={theme.colors.primary} />
+                    <path d="M43,45 L45,47 L49,43" fill="none" stroke={theme.colors.primary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Whistleblower" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,30 H45 L35,45 H25 Z" fill={theme.colors.text} opacity="0.1" />
+                    <rect x="25" y="15" width="10" height="15" fill={theme.colors.text} />
+                    <circle cx="30" cy="15" r="5" fill={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Data Retention" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M30,10 V30 L40,40" fill="none" stroke={theme.colors.warning} strokeWidth="2" />
+                    <circle cx="30" cy="30" r="20" fill="none" stroke={theme.colors.warning} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Incident Log" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" fill={theme.colors.error} fillOpacity="0.1" />
+                    <path d="M20,20 L40,40 M40,20 L20,40" stroke={theme.colors.error} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Policy Lock" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="10" width="30" height="40" fill="none" stroke={theme.colors.text} />
+                    <rect x="25" y="25" width="10" height="8" fill={theme.colors.primary} />
+                    <path d="M27,25 V22 A3,3 0 0,1 33,22 V25" fill="none" stroke={theme.colors.primary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="CCPA Icon" centered>
+                <svg viewBox="0 0 60 30" className="w-16 h-8">
+                    <text x="30" y="20" fontSize="10" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">CCPA</text>
+                    <rect x="5" y="5" width="50" height="20" fill="none" stroke={theme.colors.text} rx="4" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Access Control" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="20" cy="30" r="10" fill={theme.colors.text} opacity="0.2" />
+                    <circle cx="40" cy="30" r="10" fill={theme.colors.success} opacity="0.5" />
+                    <path d="M25,25 L35,35 M35,25 L25,35" stroke={theme.colors.surface} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 6. Case Management (NEW) --- */}
+        <SectionTitle>6. Case Management</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Case Folder" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M5,10 H25 L30,15 H55 V50 H5 Z" fill={theme.colors.primary} fillOpacity="0.2" stroke={theme.colors.primary} />
+                    <text x="30" y="35" fontSize="8" fontWeight="bold" fill={theme.colors.primary} textAnchor="middle">CASE #</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Evidence Bag" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,20 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M15,25 H45" stroke={theme.colors.warning} strokeWidth="2" strokeDasharray="2 1" />
+                    <text x="30" y="40" fontSize="6" fill={theme.colors.text} textAnchor="middle">EXHIBIT A</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Gavel Hit" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="20" width="40" height="15" fill={theme.colors.text} transform="rotate(-15 30 30)" />
+                    <rect x="25" y="30" width="8" height="25" fill={theme.colors.text} transform="rotate(-15 30 30)" />
+                    <path d="M5,50 H55" stroke={theme.colors.text} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Witness Stand" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,40 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M15,40 L20,20 H40 L45,40" fill="none" stroke={theme.colors.text} />
+                    <circle cx="30" cy="15" r="5" fill={theme.colors.text} opacity="0.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Subpoena" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="10" width="30" height="40" fill="white" stroke={theme.colors.text} />
+                    <text x="30" y="25" fontSize="6" fontWeight="bold" fill={theme.colors.error} textAnchor="middle">SUBPOENA</text>
+                    <line x1="20" y1="35" x2="40" y2="35" stroke={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Docket List" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" fill="none" stroke={theme.colors.text} />
+                    <line x1="15" y1="20" x2="45" y2="20" stroke={theme.colors.text} opacity="0.3" />
+                    <line x1="15" y1="30" x2="45" y2="30" stroke={theme.colors.text} opacity="0.3" />
+                    <line x1="15" y1="40" x2="45" y2="40" stroke={theme.colors.text} opacity="0.3" />
+                </svg>
+            </GalleryItem>
             <GalleryItem title="Plaintiff" centered>
-                <div className="text-center border rounded px-3 py-1 w-24" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '20' }}>
-                    <div className="text-[6px] uppercase opacity-50 font-bold tracking-wider mb-0.5" style={{ color: theme.colors.text }}>Plaintiff</div>
-                    <div className="text-[10px] font-bold truncate" style={{ color: theme.colors.text }}>Smith Corp.</div>
-                </div>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="20" r="8" fill={theme.colors.success} />
+                    <path d="M15,50 Q30,30 45,50" fill="none" stroke={theme.colors.success} strokeWidth="2" />
+                    <text x="30" y="58" fontSize="6" fill={theme.colors.success} textAnchor="middle">PLAINTIFF</text>
+                </svg>
             </GalleryItem>
-
             <GalleryItem title="Defendant" centered>
-                <div className="text-center border rounded px-3 py-1 w-24" style={{ backgroundColor: theme.colors.text + '05', borderColor: theme.colors.text + '20' }}>
-                    <div className="text-[6px] uppercase opacity-50 font-bold tracking-wider mb-0.5" style={{ color: theme.colors.text }}>Defendant</div>
-                    <div className="text-[10px] font-bold truncate" style={{ color: theme.colors.text }}>Doe LLC</div>
-                </div>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="20" r="8" fill={theme.colors.error} />
+                    <path d="M15,50 Q30,30 45,50" fill="none" stroke={theme.colors.error} strokeWidth="2" />
+                    <text x="30" y="58" fontSize="6" fill={theme.colors.error} textAnchor="middle">DEFENDANT</text>
+                </svg>
             </GalleryItem>
-
-            <GalleryItem title="Jurisdiction" centered>
-                <div className="flex items-center gap-1.5 text-[10px] border rounded px-2 py-1 font-medium" style={{ backgroundColor: theme.colors.info + '10', color: theme.colors.info, borderColor: theme.colors.info + '30' }}>
-                    <Icons.Flag size="sm" className="w-3"/> CA, USA
-                </div>
+            <GalleryItem title="Settlement" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,30 L30,30 L45,20" stroke={theme.colors.text} fill="none" />
+                    <path d="M45,30 L30,30 L15,20" stroke={theme.colors.text} fill="none" />
+                    <circle cx="30" cy="30" r="3" fill={theme.colors.success} />
+                </svg>
             </GalleryItem>
-
-            <GalleryItem title="Filing Date" centered>
-                <div className="flex items-center gap-1.5 text-[10px] border rounded px-2 py-1 font-mono" style={{ backgroundColor: theme.colors.surface, borderColor: theme.colors.text + '20', color: theme.colors.text }}>
-                    <Icons.Calendar size="sm" className="w-3 opacity-50"/> 2024-10-12
-                </div>
+            <GalleryItem title="Briefcase" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="20" width="40" height="25" rx="2" fill={theme.colors.text} opacity="0.8" />
+                    <path d="M25,20 V15 H35 V20" fill="none" stroke={theme.colors.text} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Jury Box" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="5" y="10" width="50" height="20" fill="none" stroke={theme.colors.text} />
+                    <circle cx="15" cy="20" r="3" fill={theme.colors.text} opacity="0.3" />
+                    <circle cx="30" cy="20" r="3" fill={theme.colors.text} opacity="0.3" />
+                    <circle cx="45" cy="20" r="3" fill={theme.colors.text} opacity="0.3" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Appeal Brief" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,10 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M30,30 L35,25 M30,30 L25,25 M30,30 V45" stroke={theme.colors.primary} strokeWidth="1.5" />
+                </svg>
             </GalleryItem>
         </div>
 
-        {/* --- 6. Compliance & Security --- */}
-        <SectionTitle>6. Compliance & Security</SectionTitle>
+        {/* --- 7. Billing & Finance (NEW) --- */}
+        <SectionTitle>7. Billing & Finance</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="GDPR" centered>
-                <div className="w-10 h-10 rounded-full text-white flex items-center justify-center text-[8px] font-bold border-2 border-white shadow-md" style={{ backgroundColor: theme.colors.info }}>
-                    GDPR
-                </div>
+            <GalleryItem title="Billable Hour" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="30" r="20" fill="none" stroke={theme.colors.success} strokeWidth="2" />
+                    <path d="M30,30 L30,15" stroke={theme.colors.text} />
+                    <path d="M30,30 L40,30" stroke={theme.colors.text} />
+                    <text x="30" y="45" fontSize="10" fill={theme.colors.success} textAnchor="middle">$</text>
+                </svg>
             </GalleryItem>
-            <GalleryItem title="HIPAA" centered>
-                <div className="border px-2 py-1 text-[8px] font-bold rounded tracking-wider" style={{ borderColor: theme.colors.success, color: theme.colors.success }}>
-                    HIPAA
-                </div>
+            <GalleryItem title="Trust Account" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M10,20 H50 V50 H10 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M5,20 L30,5 L55,20" fill="none" stroke={theme.colors.text} />
+                    <text x="30" y="40" fontSize="12" fill={theme.colors.text} textAnchor="middle">TRUST</text>
+                </svg>
             </GalleryItem>
-            <GalleryItem title="CCPA" centered>
-                <div className="px-2 py-1 text-[8px] font-bold rounded border tracking-wider" style={{ backgroundColor: theme.colors.accent + '10', color: theme.colors.accent, borderColor: theme.colors.accent + '30' }}>
-                    CCPA
-                </div>
+            <GalleryItem title="Retainer" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="20" width="40" height="20" fill={theme.colors.primary} opacity="0.2" />
+                    <text x="30" y="34" fontSize="8" fontWeight="bold" fill={theme.colors.primary} textAnchor="middle">RETAINER</text>
+                </svg>
             </GalleryItem>
-            <GalleryItem title="SOC2" centered>
-                <div className="flex items-center gap-1 text-[10px] font-bold px-2 py-1 rounded border" style={{ backgroundColor: theme.colors.success + '10', color: theme.colors.success, borderColor: theme.colors.success + '30' }}>
-                    <Icons.Check size="sm" className="w-3"/> SOC2
-                </div>
+            <GalleryItem title="Contingency %" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <text x="30" y="40" fontSize="24" fontWeight="bold" fill={theme.colors.success} textAnchor="middle">33%</text>
+                </svg>
             </GalleryItem>
-            <GalleryItem title="ISO 27001" centered>
-                <div className="w-12 h-8 border-2 flex flex-col items-center justify-center text-[6px] font-bold shadow-sm" style={{ borderColor: theme.colors.text, backgroundColor: theme.colors.surface, color: theme.colors.text }}>
-                    <span>ISO</span>
-                    <span className="text-[5px]">27001</span>
-                </div>
+            <GalleryItem title="Expense" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="10" width="30" height="40" fill="white" stroke={theme.colors.text} />
+                    <line x1="20" y1="20" x2="40" y2="20" stroke={theme.colors.text} opacity="0.5" />
+                    <line x1="20" y1="30" x2="40" y2="30" stroke={theme.colors.text} opacity="0.5" />
+                    <text x="30" y="45" fontSize="8" fill={theme.colors.error} textAnchor="middle">-$50</text>
+                </svg>
             </GalleryItem>
-            <GalleryItem title="Privileged" centered>
-                <div className="px-2 py-0.5 text-[6px] uppercase font-bold tracking-widest border rounded shadow-sm" style={{ backgroundColor: theme.colors.error + '10', color: theme.colors.error, borderColor: theme.colors.error + '30' }}>
-                    Privileged
-                </div>
+            <GalleryItem title="Invoice Paid" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" fill="none" stroke={theme.colors.text} opacity="0.5" />
+                    <rect x="5" y="25" width="50" height="15" fill={theme.colors.success} />
+                    <text x="30" y="35" fontSize="8" fontWeight="bold" fill="white" textAnchor="middle">PAID</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Invoice Overdue" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" fill="none" stroke={theme.colors.text} opacity="0.5" />
+                    <rect x="5" y="25" width="50" height="15" fill={theme.colors.error} />
+                    <text x="30" y="35" fontSize="8" fontWeight="bold" fill="white" textAnchor="middle">OVERDUE</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Rate Card" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" rx="2" fill="none" stroke={theme.colors.text} />
+                    <text x="30" y="25" fontSize="6" fill={theme.colors.text} textAnchor="middle">Partner</text>
+                    <text x="30" y="45" fontSize="6" fill={theme.colors.text} textAnchor="middle">Assoc.</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Pro Bono" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="30" r="20" fill={theme.colors.text} opacity="0.1" />
+                    <text x="30" y="34" fontSize="10" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">FREE</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Legal Aid" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M30,10 L15,25 H45 Z" fill={theme.colors.info} />
+                    <rect x="25" y="25" width="10" height="20" fill={theme.colors.info} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Court Fees" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="20" width="30" height="20" fill="none" stroke={theme.colors.text} />
+                    <path d="M15,20 L30,10 L45,20" fill="none" stroke={theme.colors.text} />
+                    <text x="30" y="34" fontSize="8" fill={theme.colors.text} textAnchor="middle">$</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Settlement Check" centered>
+                <svg viewBox="0 0 80 40" className="w-20 h-12">
+                    <rect x="5" y="10" width="70" height="25" fill={theme.colors.success} fillOpacity="0.1" stroke={theme.colors.success} />
+                    <text x="40" y="26" fontSize="8" fontWeight="bold" fill={theme.colors.success} textAnchor="middle">PAY TO THE ORDER OF</text>
+                </svg>
             </GalleryItem>
         </div>
 
-        {/* --- 7. Contract Clauses --- */}
-        <SectionTitle>7. Contract Clauses</SectionTitle>
+        {/* --- 8. Specialized Law (NEW) --- */}
+        <SectionTitle>8. Specialized Law</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Indemnity" centered><ClauseItem title="Indemnity" icon="shield" /></GalleryItem>
-            <GalleryItem title="Liability Cap" centered><ClauseItem title="Liability" icon="money_off" /></GalleryItem>
-            <GalleryItem title="Confidentiality" centered><ClauseItem title="NDA" icon="lock" /></GalleryItem>
-            <GalleryItem title="Termination" centered><ClauseItem title="Termination" icon="cancel" /></GalleryItem>
-            <GalleryItem title="Force Majeure" centered><ClauseItem title="Act of God" icon="thunderstorm" /></GalleryItem>
-            <GalleryItem title="Governing Law" centered><ClauseItem title="Gov. Law" icon="gavel" /></GalleryItem>
-            <GalleryItem title="Arbitration" centered><ClauseItem title="Arbitration" icon="balance" /></GalleryItem>
-            <GalleryItem title="Severability" centered><ClauseItem title="Severability" icon="content_cut" /></GalleryItem>
-            <GalleryItem title="Non-Compete" centered><ClauseItem title="Non-Compete" icon="block" /></GalleryItem>
-            <GalleryItem title="Non-Solicit" centered><ClauseItem title="Non-Solicit" icon="person_off" /></GalleryItem>
-            <GalleryItem title="Assignment" centered><ClauseItem title="Assignment" icon="forward" /></GalleryItem>
-            <GalleryItem title="Entire Agreement" centered><ClauseItem title="Entire Agmt." icon="folder_zip" /></GalleryItem>
+            <GalleryItem title="Last Will" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,10 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <text x="30" y="25" fontSize="8" fontStyle="italic" fill={theme.colors.text} textAnchor="middle">Will</text>
+                    <path d="M20,40 L40,40" stroke={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Trust Fund" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="20" width="30" height="25" rx="5" fill={theme.colors.success} opacity="0.2" />
+                    <circle cx="30" cy="32" r="6" fill={theme.colors.success} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Power of Attorney" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,10 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <text x="30" y="30" fontSize="10" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">POA</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Custody" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="20" cy="20" r="5" fill={theme.colors.text} />
+                    <circle cx="40" cy="20" r="5" fill={theme.colors.text} />
+                    <circle cx="30" cy="40" r="4" fill={theme.colors.primary} />
+                    <path d="M25,25 L30,35 L35,25" stroke={theme.colors.text} fill="none" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Divorce" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="20" cy="30" r="8" fill="none" stroke={theme.colors.text} />
+                    <circle cx="40" cy="30" r="8" fill="none" stroke={theme.colors.text} />
+                    <line x1="30" y1="10" x2="30" y2="50" stroke={theme.colors.error} strokeWidth="2" strokeDasharray="4 2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Handcuffs" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="20" cy="30" r="8" fill="none" stroke={theme.colors.text} strokeWidth="2" />
+                    <circle cx="40" cy="30" r="8" fill="none" stroke={theme.colors.text} strokeWidth="2" />
+                    <path d="M28,30 H32" stroke={theme.colors.text} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Police Badge" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M30,10 L45,20 V35 L30,50 L15,35 V20 Z" fill={theme.colors.text} opacity="0.1" stroke={theme.colors.text} />
+                    <circle cx="30" cy="30" r="5" fill={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Visa Stamp" centered>
+                <svg viewBox="0 0 60 40" className="w-16 h-12">
+                    <rect x="5" y="5" width="50" height="30" rx="2" fill="none" stroke={theme.colors.info} />
+                    <text x="30" y="24" fontSize="8" fontWeight="bold" fill={theme.colors.info} textAnchor="middle">VISA</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Passport" centered>
+                <svg viewBox="0 0 40 50" className="w-10 h-12">
+                    <rect x="5" y="5" width="30" height="40" rx="2" fill={theme.colors.primary} />
+                    <circle cx="20" cy="20" r="6" fill="white" opacity="0.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Tax Audit" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,10 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <circle cx="40" cy="40" r="12" fill={theme.colors.surface} stroke={theme.colors.warning} />
+                    <path d="M36,44 L44,36" stroke={theme.colors.warning} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Bankruptcy" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <text x="30" y="35" fontSize="24" fontWeight="bold" fill={theme.colors.text} opacity="0.2" textAnchor="middle">$</text>
+                    <line x1="20" y1="20" x2="40" y2="40" stroke={theme.colors.error} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Medical Proxy" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="10" width="30" height="40" fill="none" stroke={theme.colors.text} />
+                    <path d="M25,30 H35 M30,25 V35" stroke={theme.colors.error} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
         </div>
 
-        {/* --- 8. Intellectual Property --- */}
-        <SectionTitle>8. Intellectual Property</SectionTitle>
+        {/* --- 9. Legal Tech & Ops (NEW) --- */}
+        <SectionTitle>9. Legal Tech & Ops</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Patent Pending" centered><ClauseItem title="Pending" icon="lightbulb" /></GalleryItem>
-            <GalleryItem title="Trademark (TM)" centered><span className="text-2xl font-serif font-bold" style={{ color: theme.colors.text }}>TM</span></GalleryItem>
-            <GalleryItem title="Registered (R)" centered><span className="text-2xl font-serif font-bold" style={{ color: theme.colors.text }}>®</span></GalleryItem>
-            <GalleryItem title="Copyright (C)" centered><span className="text-2xl font-serif font-bold" style={{ color: theme.colors.text }}>©</span></GalleryItem>
-            <GalleryItem title="Trade Secret" centered><ClauseItem title="Secret" icon="visibility_off" /></GalleryItem>
-            <GalleryItem title="License Grant" centered><ClauseItem title="License" icon="key" /></GalleryItem>
-            <GalleryItem title="Royalties" centered><ClauseItem title="Royalties" icon="monetization_on" /></GalleryItem>
-            <GalleryItem title="Open Source" centered><span className="material-icons text-3xl" style={{ color: theme.colors.success }}>code</span></GalleryItem>
-            <GalleryItem title="Public Domain" centered><span className="material-icons text-3xl" style={{ color: theme.colors.textSecondary }}>public</span></GalleryItem>
-            <GalleryItem title="Fair Use" centered><ClauseItem title="Fair Use" icon="balance" /></GalleryItem>
-            <GalleryItem title="Infringement" centered><ClauseItem title="Infringement" icon="report_problem" /></GalleryItem>
-            <GalleryItem title="Prior Art" centered><ClauseItem title="Prior Art" icon="history" /></GalleryItem>
+            <GalleryItem title="AI Review" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,10 H45 V50 H15 Z" fill="none" stroke={theme.colors.primary} />
+                    <path d="M45,10 L50,5 M45,50 L50,55" stroke={theme.colors.accent} strokeWidth="2" />
+                    <text x="30" y="35" fontSize="8" fontWeight="bold" fill={theme.colors.primary} textAnchor="middle">AI</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Smart Contract" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,10 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M20,20 H40" stroke={theme.colors.text} strokeDasharray="2 2" />
+                    <path d="M20,30 H40" stroke={theme.colors.text} strokeDasharray="2 2" />
+                    <circle cx="45" cy="50" r="5" fill={theme.colors.success} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Blockchain" centered>
+                <svg viewBox="0 0 60 40" className="w-16 h-12">
+                    <rect x="5" y="10" width="10" height="10" fill={theme.colors.text} opacity="0.5" />
+                    <line x1="15" y1="15" x2="25" y2="15" stroke={theme.colors.text} />
+                    <rect x="25" y="10" width="10" height="10" fill={theme.colors.text} opacity="0.5" />
+                    <line x1="35" y1="15" x2="45" y2="15" stroke={theme.colors.text} />
+                    <rect x="45" y="10" width="10" height="10" fill={theme.colors.text} opacity="0.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="E-Discovery" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M10,10 H30 V40 H10 Z" fill="none" stroke={theme.colors.text} opacity="0.5" />
+                    <path d="M20,15 H40 V45 H20 Z" fill="none" stroke={theme.colors.text} opacity="0.5" />
+                    <circle cx="40" cy="40" r="12" fill={theme.colors.surface} stroke={theme.colors.primary} />
+                    <path d="M36,36 L44,44" stroke={theme.colors.primary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Clause Lib" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="10" width="40" height="40" rx="2" fill="none" stroke={theme.colors.text} />
+                    <line x1="20" y1="10" x2="20" y2="50" stroke={theme.colors.text} />
+                    <line x1="25" y1="20" x2="45" y2="20" stroke={theme.colors.text} />
+                    <line x1="25" y1="30" x2="45" y2="30" stroke={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Conflict Check" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="20" cy="30" r="10" fill={theme.colors.error} opacity="0.5" />
+                    <circle cx="40" cy="30" r="10" fill={theme.colors.error} opacity="0.5" />
+                    <path d="M30,20 V40" stroke={theme.colors.surface} strokeWidth="2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Virtual Court" centered>
+                <svg viewBox="0 0 60 50" className="w-16 h-14">
+                    <rect x="10" y="5" width="40" height="30" rx="2" fill={theme.colors.text} />
+                    <polygon points="15,45 25,35 35,45" fill={theme.colors.text} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Citation" centered>
+                <svg viewBox="0 0 40 40" className="w-12 h-12">
+                    <text x="20" y="25" fontSize="20" fontWeight="bold" fill={theme.colors.text} textAnchor="middle">§</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Doc Assembly" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="10" width="30" height="40" fill="none" stroke={theme.colors.text} />
+                    <path d="M20,50 L20,55 L40,55 L40,50" stroke={theme.colors.primary} fill="none" />
+                    <circle cx="30" cy="30" r="5" fill={theme.colors.primary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Matter Intake" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M10,20 H50 V40 L30,50 L10,40 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M30,10 V30" stroke={theme.colors.success} strokeWidth="2" markerEnd="url(#arrow)" />
+                </svg>
+            </GalleryItem>
         </div>
 
-        {/* --- 9. Corporate & Entity --- */}
-        <SectionTitle>9. Corporate & Entity</SectionTitle>
+        {/* --- 10. Jurisdiction & Venues (NEW) --- */}
+        <SectionTitle>10. Jurisdiction & Venues</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Incorporation" centered><ClauseItem title="Inc." icon="business" /></GalleryItem>
-            <GalleryItem title="LLC" centered><span className="font-bold text-lg border-2 p-1 rounded" style={{ borderColor: theme.colors.text }}>LLC</span></GalleryItem>
-            <GalleryItem title="Partnership" centered><span className="material-icons text-3xl" style={{ color: theme.colors.primary }}>handshake</span></GalleryItem>
-            <GalleryItem title="Non-Profit" centered><span className="material-icons text-3xl" style={{ color: theme.colors.success }}>volunteer_activism</span></GalleryItem>
-            <GalleryItem title="Board of Dir" centered><span className="material-icons text-3xl" style={{ color: theme.colors.text }}>groups</span></GalleryItem>
-            <GalleryItem title="Shareholder" centered><ClauseItem title="Shares" icon="pie_chart" /></GalleryItem>
-            <GalleryItem title="Bylaws" centered><ClauseItem title="Bylaws" icon="gavel" /></GalleryItem>
-            <GalleryItem title="Meeting Mins" centered><ClauseItem title="Minutes" icon="description" /></GalleryItem>
-            <GalleryItem title="Resolution" centered><ClauseItem title="Resolution" icon="check_circle" /></GalleryItem>
-            <GalleryItem title="Proxy Vote" centered><ClauseItem title="Proxy" icon="how_to_vote" /></GalleryItem>
-            <GalleryItem title="Merger" centered><span className="material-icons text-3xl" style={{ color: theme.colors.accent }}>call_merge</span></GalleryItem>
-            <GalleryItem title="Acquisition" centered><span className="material-icons text-3xl" style={{ color: theme.colors.accent }}>shopping_bag</span></GalleryItem>
-        </div>
-
-        {/* --- 10. Court & Litigation --- */}
-        <SectionTitle>10. Court & Litigation</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Subpoena" centered><ClauseItem title="Subpoena" icon="mail" /></GalleryItem>
-            <GalleryItem title="Affidavit" centered><ClauseItem title="Affidavit" icon="history_edu" /></GalleryItem>
-            <GalleryItem title="Deposition" centered><ClauseItem title="Deposition" icon="record_voice_over" /></GalleryItem>
-            <GalleryItem title="Evidence" centered><ClauseItem title="Evidence" icon="inventory_2" /></GalleryItem>
-            <GalleryItem title="Exhibit A" centered><div className="border px-2 py-1 font-serif bg-white shadow-sm">EXHIBIT A</div></GalleryItem>
-            <GalleryItem title="Motion" centered><ClauseItem title="Motion" icon="move_to_inbox" /></GalleryItem>
-            <GalleryItem title="Order" centered><ClauseItem title="Order" icon="gavel" /></GalleryItem>
-            <GalleryItem title="Judgment" centered><ClauseItem title="Judgment" icon="balance" /></GalleryItem>
-            <GalleryItem title="Appeal" centered><ClauseItem title="Appeal" icon="undo" /></GalleryItem>
-            <GalleryItem title="Brief" centered><ClauseItem title="Brief" icon="article" /></GalleryItem>
-            <GalleryItem title="Docket Entry" centered><ClauseItem title="Docket" icon="list" /></GalleryItem>
-            <GalleryItem title="Summons" centered><ClauseItem title="Summons" icon="notifications_active" /></GalleryItem>
-        </div>
-
-        {/* --- 11. Real Estate & Property --- */}
-        <SectionTitle>11. Real Estate & Property</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Deed" centered><ClauseItem title="Deed" icon="foundation" /></GalleryItem>
-            <GalleryItem title="Title Search" centered><ClauseItem title="Title" icon="search" /></GalleryItem>
-            <GalleryItem title="Lease Agmt" centered><ClauseItem title="Lease" icon="key" /></GalleryItem>
-            <GalleryItem title="Mortgage" centered><ClauseItem title="Mortgage" icon="account_balance" /></GalleryItem>
-            <GalleryItem title="Lien" centered><ClauseItem title="Lien" icon="attach_money" /></GalleryItem>
-            <GalleryItem title="Easement" centered><ClauseItem title="Easement" icon="add_road" /></GalleryItem>
-            <GalleryItem title="Zoning" centered><ClauseItem title="Zoning" icon="map" /></GalleryItem>
-            <GalleryItem title="Inspection" centered><ClauseItem title="Inspect" icon="fact_check" /></GalleryItem>
-            <GalleryItem title="Escrow" centered><ClauseItem title="Escrow" icon="savings" /></GalleryItem>
-            <GalleryItem title="Closing Disc" centered><ClauseItem title="Closing" icon="done_all" /></GalleryItem>
-            <GalleryItem title="Tenancy" centered><ClauseItem title="Tenant" icon="person" /></GalleryItem>
-            <GalleryItem title="Eviction" centered><ClauseItem title="Eviction" icon="block" /></GalleryItem>
-        </div>
-
-        {/* --- 12. Estate & Family --- */}
-        <SectionTitle>12. Estate & Family</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Will" centered><ClauseItem title="Will" icon="receipt_long" /></GalleryItem>
-            <GalleryItem title="Trust" centered><ClauseItem title="Trust" icon="volunteer_activism" /></GalleryItem>
-            <GalleryItem title="POA" centered><ClauseItem title="Power of Atty" icon="assignment_ind" /></GalleryItem>
-            <GalleryItem title="Health Proxy" centered><ClauseItem title="Health Proxy" icon="medical_services" /></GalleryItem>
-            <GalleryItem title="Beneficiary" centered><ClauseItem title="Beneficiary" icon="group_add" /></GalleryItem>
-            <GalleryItem title="Executor" centered><ClauseItem title="Executor" icon="manage_accounts" /></GalleryItem>
-            <GalleryItem title="Guardianship" centered><ClauseItem title="Guardian" icon="child_care" /></GalleryItem>
-            <GalleryItem title="Prenup" centered><ClauseItem title="Prenup" icon="handshake" /></GalleryItem>
-            <GalleryItem title="Divorce" centered><ClauseItem title="Divorce" icon="heart_broken" /></GalleryItem>
-            <GalleryItem title="Custody" centered><ClauseItem title="Custody" icon="family_restroom" /></GalleryItem>
-        </div>
-
-        {/* --- 13. Legal UI & Tools --- */}
-        <SectionTitle>13. Legal UI & Tools</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Redact Tool" centered>
-                <div className="w-12 h-6 bg-black flex items-center justify-center text-[6px] text-white tracking-widest font-mono">REDACT</div>
+            <GalleryItem title="Supreme Court" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="10" y="30" width="40" height="20" fill={theme.colors.text} opacity="0.2" />
+                    <path d="M10,30 L30,10 L50,30" fill={theme.colors.text} opacity="0.5" />
+                    <rect x="15" y="30" width="5" height="20" fill={theme.colors.text} />
+                    <rect x="27.5" y="30" width="5" height="20" fill={theme.colors.text} />
+                    <rect x="40" y="30" width="5" height="20" fill={theme.colors.text} />
+                </svg>
             </GalleryItem>
-            <GalleryItem title="Highlight Tool" centered>
-                <div className="w-12 h-6 bg-yellow-200 border-yellow-400 border flex items-center justify-center text-[8px] text-yellow-800">Highlight</div>
+            <GalleryItem title="Federal Court" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <path d="M15,30 H45 V50 H15 Z" fill="none" stroke={theme.colors.text} />
+                    <path d="M15,30 L30,15 L45,30" fill="none" stroke={theme.colors.text} />
+                    <circle cx="30" cy="25" r="3" fill={theme.colors.text} />
+                </svg>
             </GalleryItem>
-            <GalleryItem title="Comment Tool" centered>
-                <div className="relative">
-                    <Icons.Chat size="md" style={{ color: theme.colors.warning }}/>
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-                </div>
+            <GalleryItem title="International" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <circle cx="30" cy="30" r="20" fill="none" stroke={theme.colors.text} />
+                    <path d="M10,30 H50" stroke={theme.colors.text} opacity="0.3" />
+                    <path d="M30,10 V50" stroke={theme.colors.text} opacity="0.3" />
+                </svg>
             </GalleryItem>
-            <GalleryItem title="E-Discovery" centered><ClauseItem title="Search" icon="find_in_page" /></GalleryItem>
-            <GalleryItem title="Bates Stamp" centered>
-                <div className="font-mono text-[8px] border px-1 bg-white shadow-sm" style={{ color: theme.colors.text }}>ABC-000123</div>
+            <GalleryItem title="Arbitration" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="20" y="20" width="20" height="20" fill={theme.colors.surface} stroke={theme.colors.text} />
+                    <circle cx="10" cy="30" r="5" fill={theme.colors.text} opacity="0.5" />
+                    <circle cx="50" cy="30" r="5" fill={theme.colors.text} opacity="0.5" />
+                </svg>
             </GalleryItem>
-            <GalleryItem title="Time Keeper" centered><ClauseItem title="Timer" icon="timer" /></GalleryItem>
-            <GalleryItem title="Billing Code" centered>
-                <div className="bg-gray-100 px-2 py-1 rounded text-[8px] font-mono">L100</div>
+            <GalleryItem title="Law Library" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="10" width="5" height="40" fill={theme.colors.text} />
+                    <rect x="22" y="12" width="5" height="38" fill={theme.colors.text} opacity="0.8" />
+                    <rect x="29" y="10" width="5" height="40" fill={theme.colors.text} />
+                    <rect x="36" y="15" width="5" height="35" fill={theme.colors.text} opacity="0.8" />
+                </svg>
             </GalleryItem>
-            <GalleryItem title="Client Portal" centered><ClauseItem title="Portal" icon="web" /></GalleryItem>
-            <GalleryItem title="Secure Share" centered><ClauseItem title="Share" icon="lock" /></GalleryItem>
-            <GalleryItem title="Audit Trail" centered><ClauseItem title="Audit" icon="history" /></GalleryItem>
-        </div>
-
-        {/* --- 14. Status Stamps --- */}
-        <SectionTitle>14. Official Status Stamps</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Approved" centered>
-                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest transform -rotate-12 opacity-80" style={{ borderColor: theme.colors.success, color: theme.colors.success }}>
-                    APPROVED
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Denied" centered>
-                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest transform rotate-6 opacity-80" style={{ borderColor: theme.colors.error, color: theme.colors.error }}>
-                    DENIED
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Filed" centered>
-                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest opacity-60" style={{ borderColor: theme.colors.primary, color: theme.colors.primary }}>
-                    FILED
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Received" centered>
-                <div className="border-2 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest border-dashed" style={{ borderColor: theme.colors.textSecondary, color: theme.colors.textSecondary }}>
-                    RECEIVED
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Paid" centered>
-                <div className="border-4 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest transform -rotate-12" style={{ borderColor: theme.colors.success, color: theme.colors.success }}>
-                    PAID
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Overdue" centered>
-                <div className="border-4 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest bg-red-100" style={{ borderColor: theme.colors.error, color: theme.colors.error }}>
-                    OVERDUE
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Urgent" centered>
-                <div className="border-4 px-2 py-1 text-[10px] font-bold uppercase tracking-widest" style={{ borderColor: theme.colors.error, color: theme.colors.error }}>
-                    URGENT
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Confidential" centered>
-                <div className="border-4 px-2 py-1 text-[8px] font-bold uppercase tracking-widest transform rotate-3 opacity-50" style={{ borderColor: theme.colors.text, color: theme.colors.text }}>
-                    CONFIDENTIAL
-                </div>
-            </GalleryItem>
-        </div>
-
-        {/* --- 15. Integrated Legal Views (NEW) --- */}
-        <SectionTitle>15. Integrated Legal Views</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-16">
-            <GalleryItem title="Contract Header" centered>
-                <div className="w-full border-b pb-2">
-                    <div className="text-[8px] font-bold uppercase tracking-wide opacity-50">Master Services Agreement</div>
-                    <div className="text-[10px] font-bold">Acme Corp v. Beta Inc</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Status Timeline" centered>
-                <div className="flex items-center gap-1 w-full text-[8px]">
-                    <div className="px-1 bg-green-100 rounded">Draft</div>
-                    <span>→</span>
-                    <div className="px-1 border rounded">Review</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Clause Review" centered>
-                <div className="relative border p-2 w-full text-[8px]">
-                    <span className="bg-yellow-100">Term: 3 years</span>
-                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Signature Block" centered>
-                <div className="flex justify-between w-full text-[6px] pt-4 border-t border-dashed">
-                    <span>Client Sign</span>
-                    <span>Provider Sign</span>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Redline View" centered>
-                <div className="text-[8px]">
-                    <span className="line-through text-red-500 opacity-60">Monthly</span>
-                    <span className="text-green-600 font-bold ml-1">Quarterly</span>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Comment Thread" centered>
-                <div className="space-y-1 w-full">
-                    <div className="bg-gray-100 p-1 rounded text-[6px]">Pls revise sec 2.</div>
-                    <div className="bg-blue-50 p-1 rounded text-[6px] ml-2">Done.</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Approval Chain" centered>
-                <div className="flex items-center gap-1">
-                    <div className="w-4 h-4 rounded-full bg-green-200"></div>
-                    <div className="h-px w-2 bg-gray-300"></div>
-                    <div className="w-4 h-4 rounded-full border"></div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Doc List Item" centered>
-                <div className="flex justify-between w-full border-b pb-1 text-[8px]">
-                    <span>NDA.pdf</span>
-                    <span className="text-green-600">Signed</span>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Version History" centered>
-                <div className="text-[8px] opacity-60 w-full">
-                    <div>v1.0 - Oct 1</div>
-                    <div className="font-bold">v1.1 - Oct 5</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Matter Card" centered>
-                <div className="border p-2 w-full">
-                    <div className="text-[8px] font-bold">Matter #99</div>
-                    <div className="text-[6px] opacity-60">Open • Litigation</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Billing Row" centered>
-                <div className="flex justify-between w-full text-[8px] border-b border-dashed">
-                    <span>Research</span>
-                    <span>0.5h</span>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Search Hit" centered>
-                <div className="text-[8px]">
-                    ...party shall <span className="bg-yellow-200">indemnify</span> the...
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Filter Tag" centered>
-                <div className="border rounded-full px-2 py-0.5 text-[8px] flex gap-1 items-center">
-                    Type: NDA <span className="text-[6px]">✕</span>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Smart Field" centered>
-                <span className="bg-blue-100 text-blue-800 px-1 rounded text-[8px]">[ Client Name ]</span>
-            </GalleryItem>
-            <GalleryItem title="Obligation" centered>
-                <div className="border-l-2 border-red-500 pl-2 text-[8px]">
-                    <div>Deliver Report</div>
-                    <div className="opacity-50">Due Oct 31</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Risk Badge" centered>
-                <div className="border border-red-500 text-red-500 rounded px-1 text-[8px] font-bold">HIGH RISK</div>
-            </GalleryItem>
-            <GalleryItem title="User Perms" centered>
-                <div className="w-full text-[8px]">
-                    <div className="flex justify-between"><span>Alice</span> <span>Edit</span></div>
-                    <div className="flex justify-between opacity-60"><span>Bob</span> <span>View</span></div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="E-Sign Env" centered>
-                <div className="relative border w-8 h-10 bg-white mx-auto shadow-sm">
-                    <div className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full"></div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Nav Sidebar" centered>
-                <div className="w-full space-y-1 text-[8px]">
-                    <div className="font-bold">Contracts</div>
-                    <div className="opacity-60">Matters</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="KPI Widget" centered>
-                <div className="text-center">
-                    <div className="text-xl font-bold">3</div>
-                    <div className="text-[6px] uppercase">Expiring Soon</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Task Check" centered>
-                <div className="flex items-center gap-1 text-[8px]">
-                    <input type="checkbox" checked readOnly /> Review Clause 5
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Dropzone" centered>
-                <div className="border-2 border-dashed w-full py-2 text-center text-[6px]">
-                    Upload Signed Copy
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Toast" centered>
-                <div className="bg-green-600 text-white text-[8px] px-2 py-1 rounded shadow-md">
-                    Contract Signed
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Confirm Modal" centered>
-                <div className="border rounded p-2 text-center shadow-lg w-3/4 bg-white">
-                    <div className="text-[8px] font-bold mb-1">Approve?</div>
-                    <div className="flex gap-1 justify-center"><button className="bg-gray-200 px-1 text-[6px]">No</button><button className="bg-blue-500 text-white px-1 text-[6px]">Yes</button></div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Data Room" centered>
-                <div className="grid grid-cols-2 gap-1 w-full px-2">
-                    <Icons.Folder size="sm" className="opacity-50"/>
-                    <Icons.Folder size="sm" className="opacity-50"/>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Exhibit List" centered>
-                <div className="w-full text-[8px] space-y-1">
-                    <div className="border-b">Exhibit A</div>
-                    <div className="border-b">Exhibit B</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Board Vote" centered>
-                <div className="w-full text-[8px]">
-                    <div className="text-green-600">For: 5</div>
-                    <div className="text-red-600">Against: 0</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Watermark" centered>
-                <div className="border w-10 h-12 bg-white relative flex items-center justify-center">
-                    <div className="transform -rotate-45 text-[6px] opacity-20 font-bold">DRAFT</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Jurisdiction" centered>
-                <div className="relative w-12 h-12 border rounded bg-gray-50">
-                    <Icons.Flag size="sm" className="absolute top-2 left-4 text-red-500"/>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Audit Log" centered>
-                <div className="text-[6px] font-mono w-full">
-                    <span className="opacity-50">10:00</span> User X viewed
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Secure Link" centered>
-                <div className="flex border rounded w-full">
-                    <div className="bg-gray-100 text-[6px] px-1 truncate flex-1">https://sec...</div>
-                    <div className="border-l px-1">📋</div>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Tag Cloud" centered>
-                <div className="flex flex-wrap gap-1 justify-center">
-                    <span className="bg-gray-100 px-1 rounded text-[6px]">NDA</span>
-                    <span className="bg-gray-100 px-1 rounded text-[6px]">MSA</span>
-                </div>
-            </GalleryItem>
-            <GalleryItem title="Renewal Alert" centered>
-                <div className="w-full bg-yellow-100 text-yellow-800 text-[6px] p-1 text-center font-bold">
-                    RENEWAL DUE
-                </div>
+            <GalleryItem title="Prison" centered>
+                <svg viewBox="0 0 60 60" className="w-16 h-16">
+                    <rect x="15" y="15" width="30" height="30" fill="none" stroke={theme.colors.text} />
+                    <line x1="20" y1="15" x2="20" y2="45" stroke={theme.colors.text} />
+                    <line x1="30" y1="15" x2="30" y2="45" stroke={theme.colors.text} />
+                    <line x1="40" y1="15" x2="40" y2="45" stroke={theme.colors.text} />
+                </svg>
             </GalleryItem>
         </div>
     </div>

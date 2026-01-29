@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export type FrameworkType = 'modern' | 'material' | 'bootstrap' | 'neobrutalism' | 'glass' | 'terminal' | 'lucid' | 'fluent';
@@ -31,8 +32,9 @@ export interface BorderRadius {
 }
 
 export interface Spacing {
-  unit: number; // base multiplier
+  unit: number; // base multiplier (px)
   pagePadding: string;
+  density: number; // 0.75 (compact) to 1.5 (spacious)
 }
 
 export interface Effects {

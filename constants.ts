@@ -1,3 +1,4 @@
+
 import { ThemeConfig } from './types';
 
 export const DEFAULT_THEME: ThemeConfig = {
@@ -32,6 +33,7 @@ export const DEFAULT_THEME: ThemeConfig = {
   spacing: {
     unit: 4,
     pagePadding: '2rem',
+    density: 1,
   },
   effects: {
     shadow: 'sm',
