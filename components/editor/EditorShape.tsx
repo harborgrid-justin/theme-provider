@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { ThemeSlider } from '../ui-elements/ThemeSlider';
@@ -54,7 +53,7 @@ export const EditorShape: React.FC = () => {
                     {['none', 'sm', 'md', 'lg', 'hard'].map(s => (
                         <button
                             key={s}
-                            onClick={() => updateEffect('shadow', s)}
+                            onClick={() => updateEffect('shadow', s as any)}
                             className={`
                                 flex-1 py-1.5 px-1 text-[10px] font-medium rounded-md transition-all uppercase tracking-wide
                                 ${theme.effects.shadow === s 

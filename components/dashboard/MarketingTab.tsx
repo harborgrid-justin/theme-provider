@@ -199,7 +199,7 @@ export const MarketingTab: React.FC = () => {
                          <div className="aspect-video rounded-xl bg-gray-100 mb-4 border relative overflow-hidden" style={{ borderColor: theme.colors.text + '10', backgroundColor: theme.colors.text + '05' }}>
                             <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur text-xs font-bold rounded shadow-sm" style={{ color: theme.colors.text }}>{post.cat}</div>
                          </div>
-                         <h4 className="font-bold text-xl mb-3 group-hover:underline decoration-2 underline-offset-4" style={{ color: theme.colors.text, decorationColor: theme.colors.primary }}>{post.title}</h4>
+                         <h4 className="font-bold text-xl mb-3 group-hover:underline decoration-2 underline-offset-4" style={{ color: theme.colors.text, textDecorationColor: theme.colors.primary }}>{post.title}</h4>
                          <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: theme.colors.textSecondary }}>
                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
                          </p>
@@ -315,7 +315,7 @@ export const MarketingTab: React.FC = () => {
                 </ThemedCard>
 
                 {/* Enterprise */}
-                <ThemedCard className="p-8 h-full flex flex-col">
+                <ThemedCard className="p-8 h-full flex flex-col" style={{ backgroundColor: theme.colors.surface }}>
                     <h3 className="text-lg opacity-50 font-bold uppercase tracking-wide" style={{ color: theme.colors.text }}>Enterprise</h3>
                     <div className="text-4xl font-bold my-6" style={{ color: theme.colors.text }}>$99<span className="text-base font-normal opacity-50 ml-1">/mo</span></div>
                     <ul className="space-y-4 mb-8 text-sm opacity-80 flex-1" style={{ color: theme.colors.text }}>

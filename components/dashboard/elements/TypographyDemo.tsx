@@ -51,7 +51,7 @@ export const TypographyDemo: React.FC = () => {
                     <div className="space-y-2 text-sm" style={{ color: theme.colors.text }}>
                         <div>You can use <span className="font-bold">bold text</span> for emphasis.</div>
                         <div>You can use <span className="italic">italic text</span> for nuance.</div>
-                        <div>You can use <span className="underline decoration-2" style={{ decorationColor: theme.colors.primary }}>underlined text</span> for links.</div>
+                        <div>You can use <span className="underline decoration-2" style={{ textDecorationColor: theme.colors.primary }}>underlined text</span> for links.</div>
                         <div>
                             <span className="px-1.5 py-0.5 rounded text-xs font-mono" style={{ backgroundColor: theme.colors.text + '10', color: theme.colors.primary }}>code_snippet</span> for technical terms.
                         </div>

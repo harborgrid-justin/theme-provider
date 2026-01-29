@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { GalleryItem } from './GalleryItem';
@@ -23,7 +24,7 @@ export const PagesGalleryTab: React.FC = () => {
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Page Layouts (80+ Templates)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Page Layouts (100+ Templates)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             High-fidelity full-page layout patterns leveraging the theme's structural tokens.
         </p>
@@ -531,8 +532,8 @@ export const PagesGalleryTab: React.FC = () => {
             <GalleryItem title="Calendar Full" centered>
                 <svg viewBox="0 0 100 60" className="w-24 h-16">
                     <rect x="5" y="5" width="90" height="50" rx="2" {...layoutProps} />
-                    <line x1="35" y1="5" x2="35" y2="55" stroke={theme.colors.text} strokeOpacity="0.1" />
-                    <line x1="65" y1="5" x2="65" y2="55" stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <line x1="35" y="5" x2="35" y2="55" stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <line x1="65" y="5" x2="65" y2="55" stroke={theme.colors.text} strokeOpacity="0.1" />
                     <line x1="5" y1="20" x2="95" y2="20" stroke={theme.colors.text} strokeOpacity="0.1" />
                     <rect x="38" y="25" width="20" height="4" rx="1" fill={theme.colors.primary} />
                 </svg>
@@ -763,6 +764,162 @@ export const PagesGalleryTab: React.FC = () => {
                 </svg>
             </GalleryItem>
         </div>
+
+        {/* --- 13. Help & Support (NEW) --- */}
+        <SectionTitle>13. Help & Support</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Help Center" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="0" y="0" width="100" height="25" fill={theme.colors.primary} fillOpacity="0.1" />
+                    <rect x="20" y="10" width="60" height="6" rx="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="10" y="35" width="25" height="15" rx="1" {...layoutProps} />
+                    <rect x="37.5" y="35" width="25" height="15" rx="1" {...layoutProps} />
+                    <rect x="65" y="35" width="25" height="15" rx="1" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Article View" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="20" height="50" rx="1" {...layoutProps} />
+                    <rect x="30" y="5" width="65" height="50" rx="1" {...layoutProps} />
+                    <rect x="35" y="10" width="40" height="4" rx="1" {...textFill} />
+                    <rect x="35" y="20" width="50" height="2" {...textFill} opacity="0.5" />
+                    <rect x="35" y="25" width="50" height="2" {...textFill} opacity="0.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Submit Ticket" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="20" y="5" width="60" height="50" rx="2" {...layoutProps} />
+                    <rect x="25" y="15" width="50" height="6" rx="1" {...layoutProps} />
+                    <rect x="25" y="25" width="50" height="15" rx="1" {...layoutProps} />
+                    <rect x="25" y="45" width="20" height="6" rx="2" {...primaryFill} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Chat Widget" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="65" y="15" width="30" height="40" rx="2" {...layoutProps} />
+                    <rect x="70" y="45" width="20" height="6" rx="1" {...textFill} opacity="0.1" />
+                    <rect x="70" y="25" width="20" height="6" rx="1" {...primaryFill} opacity="0.2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="FAQ List" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="10" width="80" height="8" rx="1" {...layoutProps} />
+                    <rect x="10" y="22" width="80" height="8" rx="1" {...layoutProps} />
+                    <rect x="10" y="34" width="80" height="8" rx="1" {...layoutProps} />
+                    <rect x="85" y="12" width="2" height="4" {...textFill} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Documentation" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="0" y="0" width="25" height="60" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="30" y="10" width="65" height="6" rx="1" {...textFill} />
+                    <rect x="30" y="25" width="65" height="20" rx="1" fill={theme.colors.text} fillOpacity="0.05" />
+                </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 14. Industry Specific (NEW) --- */}
+        <SectionTitle>14. Industry Specific</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="LMS Course" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="60" height="35" rx="2" fill={theme.colors.text} fillOpacity="0.1" />
+                    <circle cx="35" cy="22" r="5" fill={theme.colors.surface} />
+                    <rect x="5" y="45" width="60" height="10" rx="1" {...layoutProps} />
+                    <rect x="70" y="5" width="25" height="50" rx="2" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Medical Chart" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="90" height="15" rx="2" {...layoutProps} />
+                    <circle cx="15" cy="12" r="4" {...textFill} opacity="0.2" />
+                    <rect x="5" y="25" width="42" height="30" rx="2" {...layoutProps} />
+                    <rect x="53" y="25" width="42" height="30" rx="2" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Real Estate" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="55" height="35" rx="2" fill={theme.colors.text} fillOpacity="0.1" />
+                    <rect x="65" y="5" width="30" height="20" rx="2" {...layoutProps} />
+                    <rect x="5" y="45" width="90" height="10" rx="1" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Restaurant POS" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="60" height="50" rx="2" fill="none" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <rect x="10" y="10" width="12" height="12" rx="1" {...primaryFill} opacity="0.2" />
+                    <rect x="25" y="10" width="12" height="12" rx="1" {...primaryFill} opacity="0.2" />
+                    <rect x="70" y="5" width="25" height="50" rx="2" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Travel Book" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="0" y="0" width="100" height="20" fill={theme.colors.primary} fillOpacity="0.1" />
+                    <rect x="10" y="25" width="80" height="30" rx="2" {...layoutProps} />
+                    <rect x="15" y="30" width="20" height="20" rx="1" fill={theme.colors.text} fillOpacity="0.1" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Restaurant Menu" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="5" width="80" height="10" rx="5" {...layoutProps} />
+                    <rect x="10" y="20" width="38" height="35" rx="2" {...layoutProps} />
+                    <rect x="52" y="20" width="38" height="35" rx="2" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+        </div>
+
+        {/* --- 15. Technical & Dev (NEW) --- */}
+        <SectionTitle>15. Technical & Dev</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="API Reference" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="0" y="0" width="20" height="60" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="20" y="0" width="40" height="60" fill={theme.colors.surface} />
+                    <rect x="60" y="0" width="40" height="60" fill={theme.colors.text} fillOpacity="0.05" />
+                    <rect x="65" y="10" width="30" height="20" rx="1" fill={theme.colors.text} fillOpacity="0.1" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Status Page" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="5" width="80" height="10" rx="2" fill={theme.colors.success} fillOpacity="0.2" stroke={theme.colors.success} />
+                    <rect x="10" y="20" width="80" height="8" rx="1" {...layoutProps} />
+                    <rect x="10" y="32" width="80" height="8" rx="1" {...layoutProps} />
+                    <rect x="10" y="44" width="80" height="8" rx="1" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="CI/CD Pipeline" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="25" width="20" height="10" rx="2" {...layoutProps} />
+                    <rect x="40" y="25" width="20" height="10" rx="2" {...layoutProps} />
+                    <rect x="75" y="25" width="20" height="10" rx="2" {...layoutProps} />
+                    <line x1="25" y1="30" x2="40" y2="30" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <line x1="60" y1="30" x2="75" y2="30" stroke={theme.colors.text} strokeOpacity="0.2" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Terminal View" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="90" height="50" rx="2" fill={theme.colors.text} />
+                    <text x="10" y="20" fontSize="6" fill={theme.colors.surface} fontFamily="monospace">$ npm install</text>
+                    <text x="10" y="30" fontSize="6" fill={theme.colors.surface} fontFamily="monospace" opacity="0.5">downloading...</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Server Monitor" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="28" height="23" rx="2" {...layoutProps} />
+                    <rect x="36" y="5" width="28" height="23" rx="2" {...layoutProps} />
+                    <rect x="67" y="5" width="28" height="23" rx="2" {...layoutProps} />
+                    <rect x="5" y="32" width="90" height="23" rx="2" {...layoutProps} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Webhook Log" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="5" y="5" width="90" height="50" rx="2" {...layoutProps} />
+                    <rect x="10" y="15" width="80" height="6" rx="1" fill={theme.colors.success} fillOpacity="0.1" />
+                    <rect x="10" y="25" width="80" height="6" rx="1" fill={theme.colors.error} fillOpacity="0.1" />
+                    <rect x="10" y="35" width="80" height="6" rx="1" fill={theme.colors.success} fillOpacity="0.1" />
+                </svg>
+            </GalleryItem>
+        </div>
     </div>
-  )
-}
+  );
+};

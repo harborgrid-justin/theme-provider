@@ -444,7 +444,7 @@ export const ProjectGalleryTab: React.FC = () => {
             </GalleryItem>
             <GalleryItem title="Log Entry" centered>
                 <svg viewBox="0 0 100 30" className="w-32 h-8">
-                    <line x1="10" y1="0" x2="10" y2="30" stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <line x1="10" y="0" x2="10" y2="30" stroke={theme.colors.text} strokeOpacity="0.1" />
                     <circle cx="10" cy="15" r="3" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.3" />
                     <rect x="20" y="12" width="70" height="6" rx="2" fill={theme.colors.text} opacity="0.5" />
                 </svg>
@@ -750,6 +750,109 @@ export const ProjectGalleryTab: React.FC = () => {
                     <div className="h-1 w-16 mb-1 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                     <div className="h-1 w-12 rounded" style={{ backgroundColor: theme.colors.text + '10' }}></div>
                 </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 11. Reporting & Analytics (NEW) --- */}
+        <SectionTitle>11. Reporting & Analytics</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Burnup Chart" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <line x1="10" y1="50" x2="90" y2="10" stroke={theme.colors.text} strokeOpacity="0.2" strokeDasharray="3 3" />
+                    <path d="M10,50 L30,40 L50,35 L70,25 L90,15" stroke={theme.colors.success} strokeWidth="2" fill="none" />
+                    <path d="M10,50 L30,45 L50,40 L70,35" stroke={theme.colors.primary} strokeWidth="2" fill="none" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Cumulative Flow" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <path d="M10,50 L30,45 L50,40 L70,35 L90,30 V50 H10 Z" fill={theme.colors.primary} />
+                    <path d="M10,50 L30,40 L50,30 L70,20 L90,10 V30 L70,35 L50,40 L30,45 L10,50 Z" fill={theme.colors.secondary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Control Chart" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="20" width="80" height="20" fill={theme.colors.text} opacity="0.05" />
+                    <circle cx="20" cy="30" r="2" fill={theme.colors.primary} />
+                    <circle cx="40" cy="25" r="2" fill={theme.colors.primary} />
+                    <circle cx="60" cy="35" r="2" fill={theme.colors.primary} />
+                    <circle cx="80" cy="15" r="2" fill={theme.colors.error} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Lead Time Dist" centered>
+                <svg viewBox="0 0 100 60" className="w-24 h-16">
+                    <rect x="10" y="45" width="10" height="5" fill={theme.colors.primary} />
+                    <rect x="25" y="35" width="10" height="15" fill={theme.colors.primary} />
+                    <rect x="40" y="25" width="10" height="25" fill={theme.colors.primary} />
+                    <rect x="55" y="40" width="10" height="10" fill={theme.colors.primary} />
+                    <rect x="70" y="45" width="10" height="5" fill={theme.colors.primary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Sprint Report" centered>
+                <div className="w-full px-2 text-[6px]">
+                    <div className="flex justify-between border-b pb-1"><span>Completed</span> <span className="font-bold">24pts</span></div>
+                    <div className="flex justify-between pt-1 opacity-60"><span>Planned</span> <span>30pts</span></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Time Sheet" centered>
+                <div className="grid grid-cols-7 gap-px bg-gray-200 border w-full">
+                    {[2,4,8,8,8,6,0].map((h, i) => (
+                        <div key={i} className="bg-white text-[6px] text-center py-1">{h}</div>
+                    ))}
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 12. Mobile Interface (NEW) --- */}
+        <SectionTitle>12. Mobile Interface</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Task Feed" centered>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="90" rx="4" stroke={theme.colors.text} fill="none" opacity="0.2" />
+                    <rect x="10" y="15" width="40" height="15" rx="2" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="10" y="35" width="40" height="15" rx="2" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="10" y="55" width="40" height="15" rx="2" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Mobile Board" centered>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="90" rx="4" stroke={theme.colors.text} fill="none" opacity="0.2" />
+                    <rect x="10" y="15" width="35" height="60" rx="2" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="50" y="15" width="5" height="60" rx="1" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Quick Add FAB" centered>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="90" rx="4" stroke={theme.colors.text} fill="none" opacity="0.2" />
+                    <circle cx="45" cy="85" r="6" fill={theme.colors.primary} />
+                    <path d="M45,82 V88 M42,85 H48" stroke="white" strokeWidth="1.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Notifications" centered>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="90" rx="4" stroke={theme.colors.text} fill="none" opacity="0.2" />
+                    <circle cx="15" cy="20" r="3" fill={theme.colors.primary} />
+                    <rect x="22" y="18" width="25" height="4" rx="1" fill={theme.colors.text} opacity="0.5" />
+                    <circle cx="15" cy="35" r="3" fill={theme.colors.error} />
+                    <rect x="22" y="33" width="25" height="4" rx="1" fill={theme.colors.text} opacity="0.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Comment Input" centered>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="90" rx="4" stroke={theme.colors.text} fill="none" opacity="0.2" />
+                    <rect x="5" y="80" width="50" height="15" fill={theme.colors.surface} />
+                    <line x1="5" y1="80" x2="55" y2="80" stroke={theme.colors.text} strokeOpacity="0.2" />
+                    <rect x="10" y="83" width="30" height="8" rx="4" fill={theme.colors.text} opacity="0.1" />
+                    <circle cx="48" cy="87" r="4" fill={theme.colors.primary} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Status Picker" centered>
+                <svg viewBox="0 0 60 100" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="90" rx="4" stroke={theme.colors.text} fill="none" opacity="0.2" />
+                    <rect x="5" y="60" width="50" height="35" rx="2" fill={theme.colors.surface} stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <rect x="10" y="65" width="40" height="6" rx="2" fill={theme.colors.success} opacity="0.2" />
+                    <rect x="10" y="75" width="40" height="6" rx="2" fill={theme.colors.warning} opacity="0.2" />
+                    <rect x="10" y="85" width="40" height="6" rx="2" fill={theme.colors.error} opacity="0.2" />
+                </svg>
             </GalleryItem>
         </div>
     </div>

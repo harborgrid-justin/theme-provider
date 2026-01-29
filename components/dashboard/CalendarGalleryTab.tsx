@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { GalleryItem } from './GalleryItem';
@@ -17,13 +18,14 @@ export const CalendarGalleryTab: React.FC = () => {
   };
 
   const primaryFill = { fill: theme.colors.primary, stroke: 'none' };
+  const secondaryFill = { fill: theme.colors.secondary, stroke: 'none' };
   const textFill = { fill: theme.colors.text, stroke: 'none' };
   const surfaceFill = { fill: theme.colors.surface, stroke: 'none' };
   const faintFill = { fill: theme.colors.text, fillOpacity: 0.05, stroke: 'none' };
 
   return (
     <div className="animate-in fade-in duration-500 pb-20">
-        <SectionTitle style={{ marginTop: '1rem' }}>Calendar & Scheduling (55 Items)</SectionTitle>
+        <SectionTitle style={{ marginTop: '1rem' }}>Calendar & Scheduling (105 Items)</SectionTitle>
         <p className="mb-8 opacity-60" style={{ color: theme.colors.text }}>
             A dedicated collection of date pickers, calendar views, timeline diagrams, and scheduling primitives.
         </p>
@@ -469,6 +471,426 @@ export const CalendarGalleryTab: React.FC = () => {
                 <div className="flex flex-wrap gap-2 justify-center w-full px-2">
                     <div className="flex items-center gap-1"><div className="w-2 h-2 bg-blue-500 rounded-full"></div><span className="text-[6px]">Work</span></div>
                     <div className="flex items-center gap-1"><div className="w-2 h-2 bg-green-500 rounded-full"></div><span className="text-[6px]">Personal</span></div>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 6. Mobile & App Views (NEW) --- */}
+        <SectionTitle>6. Mobile & App Views</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Mobile Month" centered>
+                <svg viewBox="0 0 60 80" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="70" rx="3" fill="none" stroke={theme.colors.text} />
+                    <rect x="5" y="5" width="50" height="15" rx="3" fill={theme.colors.surface} />
+                    <text x="30" y="15" fontSize="6" textAnchor="middle" fontWeight="bold">October</text>
+                    <rect x="8" y="25" width="44" height="45" fill="none" />
+                    {Array.from({length: 20}).map((_, i) => (
+                        <circle key={i} cx={12 + (i%5)*9} cy={28 + Math.floor(i/5)*9} r="1.5" fill={theme.colors.text} opacity="0.3" />
+                    ))}
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Agenda List" centered>
+                <div className="w-full h-full flex flex-col p-2 space-y-1">
+                    <div className="text-[6px] font-bold">TODAY</div>
+                    <div className="flex gap-1 items-center bg-gray-50 p-1 rounded">
+                        <div className="w-1 h-4 bg-blue-500 rounded"></div>
+                        <div className="text-[6px]">10:00 Meeting</div>
+                    </div>
+                    <div className="flex gap-1 items-center bg-gray-50 p-1 rounded">
+                        <div className="w-1 h-4 bg-purple-500 rounded"></div>
+                        <div className="text-[6px]">12:00 Lunch</div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Day Stream" centered>
+                <div className="w-full relative h-full overflow-hidden px-2">
+                    <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-200"></div>
+                    <div className="relative pl-6 py-2">
+                        <div className="absolute left-3 top-3 w-2 h-2 bg-blue-500 rounded-full border-2 border-white"></div>
+                        <div className="text-[6px] font-bold">09:00</div>
+                        <div className="text-[6px] opacity-60">Start</div>
+                    </div>
+                    <div className="relative pl-6 py-2">
+                        <div className="absolute left-3 top-3 w-2 h-2 bg-white border-2 border-gray-400 rounded-full"></div>
+                        <div className="text-[6px] font-bold">10:00</div>
+                        <div className="text-[6px] opacity-60">Break</div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Bottom Sheet" centered>
+                <svg viewBox="0 0 60 80" className="w-16 h-24">
+                    <rect x="5" y="5" width="50" height="70" rx="3" fill={theme.colors.text} fillOpacity="0.1" />
+                    <path d="M5,50 Q30,50 55,50 L55,75 H5 Z" fill={theme.colors.surface} />
+                    <rect x="25" y="55" width="10" height="2" rx="1" fill={theme.colors.text} opacity="0.2" />
+                    <text x="30" y="65" fontSize="6" textAnchor="middle" fontWeight="bold">Select Date</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="FAB Add" centered>
+                <div className="relative w-full h-full bg-gray-50 flex items-center justify-center">
+                    <div className="absolute bottom-2 right-2 w-8 h-8 bg-blue-600 rounded-full shadow-lg flex items-center justify-center text-white text-lg">+</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Sticky Header" centered>
+                <div className="w-full h-full flex flex-col border rounded overflow-hidden">
+                    <div className="bg-white shadow-sm z-10 p-1 text-center text-[6px] font-bold border-b">OCT 24</div>
+                    <div className="flex-1 bg-gray-50 p-1 text-[6px] overflow-hidden">
+                        <div className="h-4 bg-gray-200 mb-1 rounded w-3/4"></div>
+                        <div className="h-4 bg-gray-200 mb-1 rounded w-full"></div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Swipe Action" centered>
+                <div className="w-full flex border rounded overflow-hidden h-8">
+                    <div className="flex-1 bg-white flex items-center pl-2 text-[6px]">Meeting</div>
+                    <div className="w-8 bg-red-500 flex items-center justify-center text-white text-[6px]">DEL</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Mobile Time" centered>
+                <div className="flex flex-col items-center justify-center h-full w-full bg-gray-900 rounded text-white">
+                    <div className="text-xl font-bold">09:41</div>
+                    <div className="text-[6px] opacity-60">Wednesday, Oct 24</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Pull Refresh" centered>
+                <div className="w-full h-full flex flex-col items-center justify-start pt-2 border-t-4 border-gray-200">
+                    <div className="w-4 h-4 rounded-full border-2 border-t-blue-500 animate-spin"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Infinite Scroll" centered>
+                <div className="w-full h-full flex flex-col gap-1 p-2 opacity-50">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                    <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 7. Booking & Appointments --- */}
+        <SectionTitle>7. Booking & Appointments</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Slot Picker" centered>
+                <div className="grid grid-cols-2 gap-1 w-full px-2">
+                    <button className="border rounded text-[6px] py-1 hover:bg-blue-50">09:00</button>
+                    <button className="border rounded text-[6px] py-1 bg-gray-100 text-gray-400 line-through">09:30</button>
+                    <button className="border rounded text-[6px] py-1 bg-blue-500 text-white">10:00</button>
+                    <button className="border rounded text-[6px] py-1 hover:bg-blue-50">10:30</button>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Duration Toggle" centered>
+                <div className="flex border rounded overflow-hidden">
+                    <button className="px-2 py-1 text-[6px] bg-blue-100 font-bold">15m</button>
+                    <button className="px-2 py-1 text-[6px] hover:bg-gray-50 border-l">30m</button>
+                    <button className="px-2 py-1 text-[6px] hover:bg-gray-50 border-l">60m</button>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Provider Avatar" centered>
+                <div className="flex flex-col items-center">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 mb-1 border-2 border-white shadow-sm"></div>
+                    <div className="text-[6px] font-bold">Dr. Smith</div>
+                    <div className="text-[6px] opacity-50">Dermatology</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Instant Book" centered>
+                <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-1 px-3 rounded text-[8px] flex items-center gap-1 shadow-sm">
+                    <Icons.Star size="sm" className="w-2"/> Book
+                </button>
+            </GalleryItem>
+            <GalleryItem title="Cancellation" centered>
+                <div className="border border-red-200 bg-red-50 p-1 rounded text-[6px] text-red-800 text-center w-full mx-2">
+                    Free cancel <br/> until 24h before
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Service Select" centered>
+                <div className="w-full px-2 space-y-1">
+                    <div className="flex justify-between border rounded p-1 items-center bg-blue-50 border-blue-200">
+                        <span className="text-[6px] font-bold">Haircut</span>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    </div>
+                    <div className="flex justify-between border rounded p-1 items-center">
+                        <span className="text-[6px]">Shave</span>
+                        <div className="w-2 h-2 border rounded-full"></div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Timezone Map" centered>
+                <svg viewBox="0 0 60 30" className="w-16 h-8">
+                    <path d="M5,15 Q15,5 30,15 T55,15" fill="none" stroke={theme.colors.text} opacity="0.3" />
+                    <circle cx="15" cy="12" r="2" fill={theme.colors.primary} />
+                    <text x="15" y="20" fontSize="4" textAnchor="middle">NYC</text>
+                    <circle cx="45" cy="18" r="2" fill={theme.colors.secondary} />
+                    <text x="45" y="26" fontSize="4" textAnchor="middle">LON</text>
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Buffer Time" centered>
+                <div className="flex w-full px-2 items-center">
+                    <div className="flex-1 h-4 bg-blue-200 rounded-l flex items-center justify-center text-[6px]">Event</div>
+                    <div className="w-4 h-4 bg-gray-200 pattern-diagonal flex items-center justify-center rounded-r border-l border-white"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Integrations" centered>
+                <div className="flex gap-2">
+                    <div className="w-6 h-6 rounded bg-blue-100 flex items-center justify-center text-[8px] font-bold text-blue-700">G</div>
+                    <div className="w-6 h-6 rounded bg-blue-800 flex items-center justify-center text-[8px] font-bold text-white">O</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Request Book" centered>
+                <button className="border border-blue-500 text-blue-500 px-2 py-1 rounded text-[8px] font-bold hover:bg-blue-50 w-full mx-2">
+                    Request Time
+                </button>
+            </GalleryItem>
+        </div>
+
+        {/* --- 8. Year & Strategic Planning --- */}
+        <SectionTitle>8. Year & Strategic Planning</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Fiscal Bar" centered>
+                <div className="flex w-full border rounded overflow-hidden mx-2">
+                    <div className="flex-1 bg-green-100 text-[6px] text-center py-1 border-r border-green-200">Q1</div>
+                    <div className="flex-1 bg-green-100 text-[6px] text-center py-1 border-r border-green-200">Q2</div>
+                    <div className="flex-1 bg-white text-[6px] text-center py-1 border-r">Q3</div>
+                    <div className="flex-1 bg-white text-[6px] text-center py-1">Q4</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Objectives" centered>
+                <div className="w-full px-2 space-y-1">
+                    <div className="flex gap-1 items-center">
+                        <div className="w-2 h-2 bg-green-500 transform rotate-45"></div>
+                        <div className="h-1 bg-gray-200 flex-1 rounded"><div className="w-3/4 h-full bg-green-500"></div></div>
+                    </div>
+                    <div className="flex gap-1 items-center">
+                        <div className="w-2 h-2 bg-blue-500 transform rotate-45"></div>
+                        <div className="h-1 bg-gray-200 flex-1 rounded"><div className="w-1/2 h-full bg-blue-500"></div></div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Multi-Year" centered>
+                <div className="flex justify-between w-full px-2 text-[8px] font-bold text-gray-400">
+                    <span>2023</span><span>2024</span><span>2025</span>
+                </div>
+                <div className="w-full h-1 bg-gray-200 mt-1 relative mx-2">
+                    <div className="absolute left-1/3 w-2 h-2 bg-black rounded-full top-1/2 -translate-y-1/2"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Seasonality" centered>
+                <svg viewBox="0 0 60 20" className="w-16 h-6">
+                    <path d="M0,20 Q15,0 30,20 T60,20" fill="none" stroke={theme.colors.primary} strokeWidth="1.5" />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Milestone Flag" centered>
+                <svg viewBox="0 0 20 40" className="w-6 h-10">
+                    <line x1="2" y1="0" x2="2" y2="40" stroke="black" strokeWidth="1"/>
+                    <path d="M2,2 L15,8 L2,14" fill={theme.colors.error} />
+                </svg>
+            </GalleryItem>
+            <GalleryItem title="Release Train" centered>
+                <div className="flex items-center gap-0.5 w-full px-2">
+                    <div className="w-4 h-3 bg-blue-500 rounded-l"></div>
+                    <div className="w-4 h-3 bg-blue-500"></div>
+                    <div className="w-4 h-3 bg-blue-500"></div>
+                    <div className="w-4 h-3 bg-blue-300 rounded-r"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Blackout Date" centered>
+                <div className="w-8 h-8 bg-gray-800 text-gray-500 flex items-center justify-center text-[8px] line-through decoration-red-500 rounded">
+                    25
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Holiday" centered>
+                <div className="w-8 h-8 bg-green-100 text-green-700 flex flex-col items-center justify-center rounded">
+                    <span className="text-[8px] font-bold">25</span>
+                    <Icons.Star size="sm" className="w-2 h-2"/>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Budget Cycle" centered>
+                <div className="w-12 h-12 rounded-full border-4 border-t-green-500 border-r-green-500 border-b-gray-200 border-l-gray-200 transform -rotate-45 flex items-center justify-center text-[6px]">
+                    Q2
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Roadmap Node" centered>
+                <div className="bg-white border shadow-sm px-2 py-1 rounded text-[6px] w-full text-center">
+                    <div className="font-bold">v2.0</div>
+                    <div className="text-gray-400">Oct 15</div>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 9. Recurring & Logic --- */}
+        <SectionTitle>9. Recurrence & Logic</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Daily" centered>
+                <div className="flex gap-0.5">
+                    {['M','T','W','T','F'].map((d,i)=><div key={i} className="w-3 h-3 bg-blue-500 text-white text-[4px] flex items-center justify-center rounded-sm">{d}</div>)}
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Weekly" centered>
+                <div className="flex gap-0.5">
+                    <div className="w-3 h-3 bg-blue-500 rounded-sm"></div>
+                    <div className="w-3 h-3 border rounded-sm"></div>
+                    <div className="w-3 h-3 border rounded-sm"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Custom Recur" centered>
+                <div className="text-[6px] border rounded px-1 bg-gray-50">Every 2 weeks on Mon</div>
+            </GalleryItem>
+            <GalleryItem title="End Date" centered>
+                <div className="flex items-center gap-1 text-[6px] border px-1 rounded">
+                    <span>Until:</span> <span className="font-bold">Dec 31</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Exception" centered>
+                <div className="flex items-center gap-1 text-[6px] text-red-600 bg-red-50 px-1 rounded border border-red-100">
+                    <Icons.Close size="sm" className="w-2"/> Skip Dec 25
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Shift Rotate" centered>
+                <div className="flex gap-1 items-center">
+                    <div className="w-4 h-4 bg-blue-500 text-white text-[6px] flex items-center justify-center rounded">A</div>
+                    <span className="text-[6px]">→</span>
+                    <div className="w-4 h-4 bg-green-500 text-white text-[6px] flex items-center justify-center rounded">B</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="On-Call" centered>
+                <div className="flex items-center gap-1 border border-purple-200 bg-purple-50 text-purple-800 px-2 py-1 rounded-full text-[6px]">
+                    <Icons.Phone size="sm" className="w-2"/> Primary
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Countdown" centered>
+                <div className="font-mono text-[10px] bg-black text-red-500 px-2 py-1 rounded">00:05:00</div>
+            </GalleryItem>
+            <GalleryItem title="Time Block" centered>
+                <div className="w-full bg-gray-100 rounded p-1 text-[6px] text-center border border-gray-300 border-dashed">
+                    Blocked
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Offset" centered>
+                <div className="flex items-center gap-1 text-[6px]">
+                    <span>UTC</span> <span className="font-bold">+2</span>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 10. Mini & Widgets --- */}
+        <SectionTitle>10. Mini & Widgets</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Mini Calendar" centered>
+                <div className="grid grid-cols-7 gap-px w-16">
+                    {Array.from({length: 21}).map((_, i) => <div key={i} className={`w-1.5 h-1.5 rounded-full ${i===10?'bg-blue-500':'bg-gray-200'}`}></div>)}
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Upcoming" centered>
+                <div className="flex flex-col gap-1 w-full px-2">
+                    <div className="h-1 w-full bg-gray-200 rounded"></div>
+                    <div className="h-1 w-2/3 bg-gray-200 rounded"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Next Up" centered>
+                <div className="bg-blue-600 text-white p-2 rounded text-center w-20">
+                    <div className="text-[6px] opacity-70">Next</div>
+                    <div className="text-[8px] font-bold">Design</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Analog Clock" centered>
+                <div className="w-10 h-10 border rounded-full relative">
+                    <div className="absolute top-1/2 left-1/2 w-3 h-0.5 bg-black -translate-y-1/2 origin-left rotate-45"></div>
+                    <div className="absolute top-1/2 left-1/2 w-4 h-px bg-red-500 -translate-y-1/2 origin-left -rotate-90"></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Digital Clock" centered>
+                <div className="font-mono text-lg font-bold">12:00</div>
+            </GalleryItem>
+            <GalleryItem title="Timer" centered>
+                <div className="relative w-10 h-10 flex items-center justify-center">
+                    <svg className="absolute w-full h-full transform -rotate-90"><circle cx="20" cy="20" r="18" fill="none" stroke="#eee" strokeWidth="2"/><circle cx="20" cy="20" r="18" fill="none" stroke="blue" strokeWidth="2" strokeDasharray="113" strokeDashoffset="40"/></svg>
+                    <span className="text-[8px]">15m</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Date Badge" centered>
+                <div className="border rounded text-center w-8 overflow-hidden">
+                    <div className="bg-red-500 text-white text-[4px]">OCT</div>
+                    <div className="text-[10px] font-bold">24</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Time Badge" centered>
+                <div className="bg-gray-800 text-white rounded px-2 py-0.5 text-[8px] font-mono">10:00</div>
+            </GalleryItem>
+            <GalleryItem title="Weather" centered>
+                <div className="flex flex-col items-center">
+                    <div className="w-4 h-4 rounded-full bg-yellow-400"></div>
+                    <div className="text-[6px]">72°F</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="3 Cities" centered>
+                <div className="flex gap-1 text-[4px] font-bold text-gray-400">
+                    <div>NY</div><div>LDN</div><div>TK</div>
+                </div>
+            </GalleryItem>
+        </div>
+
+        {/* --- 11. Travel & Logistics --- */}
+        <SectionTitle>11. Travel & Logistics</SectionTitle>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
+            <GalleryItem title="Flight Timeline" centered>
+                <div className="flex items-center gap-1 w-full px-2">
+                    <div className="text-[6px] font-bold">SFO</div>
+                    <div className="flex-1 border-b border-dashed relative"><div className="absolute left-1/2 -top-1">✈</div></div>
+                    <div className="text-[6px] font-bold">JFK</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Itinerary Node" centered>
+                <div className="flex gap-2 items-start w-full px-2">
+                    <div className="flex flex-col items-center">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="h-6 w-px bg-gray-300"></div>
+                    </div>
+                    <div className="text-[6px] pt-0.5">
+                        <div className="font-bold">Hotel</div>
+                        <div className="text-gray-400">Check-in</div>
+                    </div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Hotel Range" centered>
+                <div className="flex w-full px-2">
+                    <div className="h-4 bg-blue-100 border border-blue-300 w-full rounded flex items-center justify-center text-[6px]">3 Nights</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Times" centered>
+                <div className="flex justify-between w-full px-2 text-[6px]">
+                    <div className="flex flex-col"><span>IN</span><b>14:00</b></div>
+                    <div className="flex flex-col text-right"><span>OUT</span><b>11:00</b></div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Layover" centered>
+                <div className="border border-orange-200 bg-orange-50 text-orange-800 px-2 py-1 rounded text-[6px] text-center w-full mx-2">
+                    2h 30m Layover
+                </div>
+            </GalleryItem>
+            <GalleryItem title="TZ Change" centered>
+                <div className="flex items-center gap-1 text-[6px] text-gray-500">
+                    <span>EST</span> <span className="text-lg">→</span> <span>PST</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Duration" centered>
+                <div className="bg-gray-100 rounded-full px-2 py-0.5 text-[6px] font-bold">
+                    5h 45m
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Rental" centered>
+                <div className="w-full px-2 border-l-2 border-purple-500 pl-1">
+                    <div className="text-[6px] font-bold">Car Rental</div>
+                    <div className="text-[4px] text-gray-400">Confirmation #123</div>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Packing List" centered>
+                <div className="flex items-center gap-1 w-full px-2">
+                    <div className="w-2 h-2 border rounded"></div>
+                    <span className="text-[6px] line-through opacity-50">Passport</span>
+                </div>
+            </GalleryItem>
+            <GalleryItem title="Ticket" centered>
+                <div className="w-16 h-10 border border-dashed rounded bg-yellow-50 relative flex items-center justify-center">
+                    <div className="absolute left-0 top-1/2 w-2 h-2 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 border-r"></div>
+                    <div className="absolute right-0 top-1/2 w-2 h-2 bg-white rounded-full translate-x-1/2 -translate-y-1/2 border-l"></div>
+                    <span className="text-[6px] font-mono font-bold">QR CODE</span>
                 </div>
             </GalleryItem>
         </div>

@@ -169,7 +169,7 @@ export const ProjectPortfolio: React.FC = () => {
                                         {proj.status}
                                     </span>
                                 </div>
-                                <h4 className="font-bold mb-4 group-hover:underline decoration-2" style={{ color: theme.colors.text, decorationColor: theme.colors.primary }}>{proj.name}</h4>
+                                <h4 className="font-bold mb-4 group-hover:underline decoration-2" style={{ color: theme.colors.text, textDecorationColor: theme.colors.primary }}>{proj.name}</h4>
                                 <div className="mb-6">
                                     <div className="flex justify-between text-xs mb-1.5 opacity-70" style={{ color: theme.colors.text }}>
                                         <span>Progress</span>

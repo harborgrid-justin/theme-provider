@@ -21,12 +21,13 @@ const PagesGalleryTab = React.lazy(() => import('./PagesGalleryTab').then(module
 const CalendarGalleryTab = React.lazy(() => import('./CalendarGalleryTab').then(module => ({ default: module.CalendarGalleryTab })));
 const SecurityGalleryTab = React.lazy(() => import('./SecurityGalleryTab').then(module => ({ default: module.SecurityGalleryTab })));
 const DocumentGalleryTab = React.lazy(() => import('./DocumentGalleryTab').then(module => ({ default: module.DocumentGalleryTab })));
+const AviationGalleryTab = React.lazy(() => import('./AviationGalleryTab').then(module => ({ default: module.AviationGalleryTab })));
 
-type TabId = 'home' | 'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar' | 'security' | 'documents';
+type TabId = 'home' | 'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar' | 'security' | 'documents' | 'aviation';
 
 export const DashboardPreview: React.FC = () => {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<TabId>('home');
+  const [activeTab, setActiveTab] = useState<TabId>('aviation');
 
   const wrapperStyle = {
     backgroundColor: theme.colors.background,
@@ -51,9 +52,12 @@ export const DashboardPreview: React.FC = () => {
 
   const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
       { id: 'home', label: 'Home', icon: <Icons.Home size="sm"/> },
+      { id: 'aviation', label: 'Aviation', icon: <Icons.Plane size="sm"/> },
+      { id: 'project_gallery', label: 'Project Gallery', icon: <Icons.Layers size="sm"/> },
+      { id: 'app_gallery', label: 'App Gallery', icon: <Icons.Grid size="sm"/> },
+      { id: 'elements', label: 'UI Elements', icon: <Icons.Palette size="sm"/> },
       { id: 'security', label: 'Security & Ops', icon: <Icons.Lock size="sm"/> },
       { id: 'documents', label: 'Documents', icon: <Icons.File size="sm"/> },
-      { id: 'elements', label: 'UI Elements', icon: <Icons.Palette size="sm"/> },
       { id: 'pages', label: 'Page Layouts', icon: <Icons.Layers size="sm"/> },
       { id: 'webui', label: 'Web UI', icon: <Icons.Grid size="sm"/> },
       { id: 'calendar', label: 'Calendar', icon: <Icons.Calendar size="sm"/> },
@@ -125,6 +129,7 @@ export const DashboardPreview: React.FC = () => {
             {activeTab === 'calendar' && <CalendarGalleryTab />}
             {activeTab === 'security' && <SecurityGalleryTab />}
             {activeTab === 'documents' && <DocumentGalleryTab />}
+            {activeTab === 'aviation' && <AviationGalleryTab />}
         </Suspense>
       </div>
     </div>

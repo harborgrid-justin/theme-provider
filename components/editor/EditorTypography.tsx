@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { FONTS } from '../../constants';
@@ -16,7 +15,7 @@ export const EditorTypography: React.FC = () => {
                 <div className="relative w-40">
                     <select 
                         value={theme.typography.fontFamily}
-                        onChange={(e) => updateTypography('fontFamily', e.target.value)}
+                        onChange={(e) => updateTypography('fontFamily', e.target.value as any)}
                         className="w-full text-xs border border-gray-200 rounded-md py-1.5 pl-2 pr-6 outline-none focus:border-indigo-500 bg-white appearance-none cursor-pointer hover:border-gray-300 transition-colors"
                     >
                         {FONTS.map(f => (
@@ -44,7 +43,7 @@ export const EditorTypography: React.FC = () => {
                     {['400', '600', '700', '800'].map(w => (
                         <button
                            key={w}
-                           onClick={() => updateTypography('headingWeight', w)}
+                           onClick={() => updateTypography('headingWeight', w as any)}
                            className={`flex-1 text-[10px] font-medium py-1.5 rounded-md transition-all ${theme.typography.headingWeight === w ? 'bg-white shadow-sm text-indigo-600 ring-1 ring-black/5' : 'text-gray-500 hover:text-gray-700'}`}
                         >
                            {w}

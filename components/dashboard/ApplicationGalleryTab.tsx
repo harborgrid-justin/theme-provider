@@ -259,7 +259,7 @@ export const ApplicationGalleryTab: React.FC = () => {
 
             <GalleryItem title="Color Picker" centered>
                 <div className="flex gap-1">
-                    <div className="w-4 h-4 rounded-full ring-1 ring-offset-1" style={{ backgroundColor: theme.colors.error, ringColor: theme.colors.text + '30' }}></div>
+                    <div className="w-4 h-4 rounded-full" style={{ backgroundColor: theme.colors.error, border: `1px solid ${theme.colors.text}30` }}></div>
                     <div className="w-4 h-4 rounded-full" style={{ backgroundColor: theme.colors.primary }}></div>
                     <div className="w-4 h-4 rounded-full" style={{ backgroundColor: theme.colors.success }}></div>
                 </div>
@@ -535,7 +535,7 @@ export const ApplicationGalleryTab: React.FC = () => {
             <GalleryItem title="Overlay Sidebar" centered>
                 <svg viewBox="0 0 100 60" className="w-24 h-16">
                     <rect x="0" y="0" width="100" height="60" {...layoutSvgProps} fill="none" />
-                    <rect x="60" y="0" width="40" height="60" {...layoutSvgProps} style={{...layoutSvgProps, fill: theme.colors.surface}} />
+                    <rect x="60" y="0" width="40" height="60" {...layoutSvgProps} fill={theme.colors.surface} />
                     <line x1="60" y1="0" x2="60" y2="60" stroke={theme.colors.text} strokeOpacity="0.1" />
                 </svg>
             </GalleryItem>
@@ -705,8 +705,8 @@ export const ApplicationGalleryTab: React.FC = () => {
             <GalleryItem title="Simple Table" centered>
                 <svg viewBox="0 0 100 60" className="w-24 h-16">
                     <rect x="5" y="5" width="90" height="50" rx="2" {...layoutSvgProps} />
-                    <line x1="5" y1="20" x2="95" y2="20" stroke={theme.colors.text} strokeOpacity="0.1" />
-                    <line x1="5" y1="35" x2="95" y2="35" stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <line x1="5" y="20" x2="95" y2="20" stroke={theme.colors.text} strokeOpacity="0.1" />
+                    <line x1="5" y="35" x2="95" y2="35" stroke={theme.colors.text} strokeOpacity="0.1" />
                 </svg>
             </GalleryItem>
             <GalleryItem title="Striped Table" centered>
@@ -854,207 +854,4 @@ export const ApplicationGalleryTab: React.FC = () => {
             <GalleryItem title="File Browser" centered>
                 <svg viewBox="0 0 100 60" className="w-24 h-16">
                     <rect x="5" y="10" width="20" height="25" rx="2" {...layoutSvgProps} />
-                    <rect x="30" y="10" width="20" height="25" rx="2" {...layoutSvgProps} />
-                    <rect x="55" y="10" width="20" height="25" rx="2" {...layoutSvgProps} />
-                    <rect x="5" y="40" width="90" height="15" rx="2" {...layoutSvgProps} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Search Results" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="10" y="5" width="80" height="8" rx="4" {...layoutSvgProps} />
-                    <rect x="10" y="20" width="80" height="10" rx="2" {...layoutSvgProps} />
-                    <rect x="10" y="35" width="80" height="10" rx="2" {...layoutSvgProps} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Chat Layout" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="30" height="60" {...layoutSvgProps} />
-                    <rect x="30" y="0" width="70" height="60" fill="none" stroke={theme.colors.text} strokeOpacity="0.1" />
-                    <rect x="35" y="10" width="30" height="8" rx="4" {...primaryFill} opacity="0.5" />
-                    <rect x="65" y="25" width="30" height="8" rx="4" {...layoutSvgProps} />
-                    <rect x="30" y="50" width="70" height="10" fill={theme.colors.text} fillOpacity="0.05" />
-                </svg>
-            </GalleryItem>
-        </div>
-
-        {/* --- 10. Authentication --- */}
-        <SectionTitle>Authentication</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Login Box" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="30" y="5" width="40" height="50" rx="3" {...layoutSvgProps} />
-                    <rect x="35" y="15" width="30" height="6" rx="1" {...layoutSvgProps} />
-                    <rect x="35" y="25" width="30" height="6" rx="1" {...layoutSvgProps} />
-                    <rect x="35" y="35" width="30" height="8" rx="2" {...primaryFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Split Login" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="50" height="60" {...layoutSvgProps} fill={theme.colors.primary} fillOpacity="0.1" />
-                    <rect x="50" y="0" width="50" height="60" {...layoutSvgProps} />
-                    <rect x="60" y="20" width="30" height="4" rx="1" {...layoutSvgProps} />
-                    <rect x="60" y="30" width="30" height="6" rx="2" {...primaryFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Sign Up" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="25" y="5" width="50" height="50" rx="3" {...layoutSvgProps} />
-                    <rect x="35" y="12" width="30" height="4" rx="1" {...layoutSvgProps} />
-                    <rect x="35" y="20" width="30" height="4" rx="1" {...layoutSvgProps} />
-                    <rect x="35" y="28" width="30" height="4" rx="1" {...layoutSvgProps} />
-                    <rect x="35" y="38" width="30" height="6" rx="2" {...primaryFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Forgot Pass" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="30" y="10" width="40" height="40" rx="3" {...layoutSvgProps} />
-                    <rect x="35" y="25" width="30" height="6" rx="1" {...layoutSvgProps} />
-                    <rect x="35" y="35" width="30" height="6" rx="2" {...primaryFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="OTP Entry" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="20" y="10" width="60" height="40" rx="3" {...layoutSvgProps} />
-                    <rect x="25" y="25" width="10" height="10" rx="2" {...layoutSvgProps} />
-                    <rect x="38" y="25" width="10" height="10" rx="2" {...layoutSvgProps} />
-                    <rect x="51" y="25" width="10" height="10" rx="2" {...layoutSvgProps} />
-                    <rect x="64" y="25" width="10" height="10" rx="2" {...layoutSvgProps} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="SSO Login" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="30" y="5" width="40" height="50" rx="3" {...layoutSvgProps} />
-                    <rect x="35" y="15" width="30" height="6" rx="2" {...layoutSvgProps} />
-                    <rect x="35" y="25" width="30" height="6" rx="2" {...layoutSvgProps} />
-                    <line x1="35" y1="38" x2="65" y2="38" stroke={theme.colors.text} strokeOpacity="0.2" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Lock Screen" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="100" height="60" {...layoutSvgProps} fillOpacity="0.5" />
-                    <circle cx="50" cy="20" r="5" {...layoutSvgProps} />
-                    <rect x="35" y="30" width="30" height="6" rx="3" {...layoutSvgProps} fill="white" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Onboarding" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="20" y="5" width="60" height="50" rx="3" {...layoutSvgProps} />
-                    <circle cx="50" cy="20" r="8" {...primaryFill} opacity="0.5" />
-                    <rect x="30" y="35" width="40" height="4" rx="1" {...textFill} />
-                    <circle cx="45" cy="45" r="2" {...primaryFill} />
-                    <circle cx="50" cy="45" r="2" {...textFill} />
-                    <circle cx="55" cy="45" r="2" {...textFill} />
-                </svg>
-            </GalleryItem>
-        </div>
-
-        {/* --- 11. Overlays & Utility --- */}
-        <SectionTitle>Overlays & Utility</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Modal Small" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="100" height="60" fill={theme.colors.text} fillOpacity="0.1" />
-                    <rect x="30" y="15" width="40" height="30" rx="3" {...layoutSvgProps} fill="white" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Modal Large" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="100" height="60" fill={theme.colors.text} fillOpacity="0.1" />
-                    <rect x="10" y="5" width="80" height="50" rx="3" {...layoutSvgProps} fill="white" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Drawer Right" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="100" height="60" fill={theme.colors.text} fillOpacity="0.1" />
-                    <rect x="60" y="0" width="40" height="60" {...layoutSvgProps} fill="white" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Drawer Left" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="100" height="60" fill={theme.colors.text} fillOpacity="0.1" />
-                    <rect x="0" y="0" width="40" height="60" {...layoutSvgProps} fill="white" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Bottom Sheet" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="0" y="0" width="100" height="60" fill={theme.colors.text} fillOpacity="0.1" />
-                    <path d="M10,60 V35 Q10,30 15,30 H85 Q90,30 90,35 V60" fill="white" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Toast Stack" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="60" y="10" width="30" height="10" rx="2" {...layoutSvgProps} />
-                    <rect x="60" y="25" width="30" height="10" rx="2" {...layoutSvgProps} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Popover" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="20" y="20" width="20" height="10" rx="2" {...primaryFill} />
-                    <path d="M40,25 L45,20 L45,30 Z" fill="white" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
-                    <rect x="45" y="15" width="30" height="20" rx="2" fill="white" stroke={theme.colors.text} strokeWidth="1" strokeOpacity="0.2" />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Tooltip Arrow" centered>
-                <svg viewBox="0 0 100 60" className="w-24 h-16">
-                    <rect x="40" y="35" width="20" height="6" rx="2" {...textFill} />
-                    <path d="M45,28 H55 L50,33 Z" fill={theme.colors.text} />
-                    <rect x="35" y="18" width="30" height="10" rx="2" fill={theme.colors.text} />
-                </svg>
-            </GalleryItem>
-        </div>
-
-        {/* --- 12. Footers --- */}
-        <SectionTitle>Footers</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
-            <GalleryItem title="Simple Footer" centered>
-                <svg viewBox="0 0 100 30" className="w-24 h-8">
-                    <rect x="0" y="0" width="100" height="30" {...layoutSvgProps} fillOpacity="0.05" />
-                    <rect x="40" y="12" width="20" height="4" rx="1" {...textFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Cols Footer" centered>
-                <svg viewBox="0 0 100 30" className="w-24 h-8">
-                    <rect x="0" y="0" width="100" height="30" {...layoutSvgProps} fillOpacity="0.05" />
-                    <rect x="10" y="8" width="15" height="3" rx="1" {...textFill} />
-                    <rect x="10" y="14" width="10" height="2" rx="1" {...textFill} />
-                    <rect x="40" y="8" width="15" height="3" rx="1" {...textFill} />
-                    <rect x="40" y="14" width="10" height="2" rx="1" {...textFill} />
-                    <rect x="70" y="8" width="15" height="3" rx="1" {...textFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Fat Footer" centered>
-                <svg viewBox="0 0 100 40" className="w-24 h-12">
-                    <rect x="0" y="0" width="100" height="40" {...layoutSvgProps} fillOpacity="0.05" />
-                    <rect x="10" y="5" width="20" height="20" rx="2" {...textFill} />
-                    <rect x="40" y="10" width="50" height="4" rx="1" {...textFill} />
-                    <rect x="40" y="18" width="30" height="4" rx="1" {...textFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Newsletter" centered>
-                <svg viewBox="0 0 100 30" className="w-24 h-8">
-                    <rect x="0" y="0" width="100" height="30" {...layoutSvgProps} fillOpacity="0.05" />
-                    <rect x="10" y="10" width="50" height="10" rx="2" {...layoutSvgProps} />
-                    <rect x="65" y="10" width="25" height="10" rx="2" {...primaryFill} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Sitemap Footer" centered>
-                <svg viewBox="0 0 100 40" className="w-24 h-12">
-                    <rect x="0" y="0" width="100" height="40" {...layoutSvgProps} fillOpacity="0.05" />
-                    <rect x="10" y="10" width="15" height="20" rx="1" {...layoutSvgProps} />
-                    <rect x="30" y="10" width="15" height="20" rx="1" {...layoutSvgProps} />
-                    <rect x="50" y="10" width="15" height="20" rx="1" {...layoutSvgProps} />
-                    <rect x="70" y="10" width="15" height="20" rx="1" {...layoutSvgProps} />
-                </svg>
-            </GalleryItem>
-            <GalleryItem title="Legal Footer" centered>
-                <svg viewBox="0 0 100 20" className="w-24 h-6">
-                    <rect x="0" y="0" width="100" height="20" {...layoutSvgProps} fillOpacity="0.05" />
-                    <line x1="10" y1="10" x2="90" y2="10" stroke={theme.colors.text} strokeOpacity="0.2" />
-                    <rect x="10" y="14" width="30" height="2" {...textFill} />
-                    <rect x="80" y="14" width="10" height="2" {...textFill} />
-                </svg>
-            </GalleryItem>
-        </div>
-    </div>
-  );
-};
+                    <rect x="30"

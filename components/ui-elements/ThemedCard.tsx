@@ -1,7 +1,12 @@
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 
-export const ThemedCard: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
+interface ThemedCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const ThemedCard: React.FC<ThemedCardProps> = ({ children, className = '', style, ...props }) => {
   const { theme } = useTheme();
   
   let classes = "transition-all duration-300 ";
@@ -28,6 +33,7 @@ export const ThemedCard: React.FC<{ children: React.ReactNode; className?: strin
     backgroundColor: theme.framework === 'glass' ? undefined : theme.colors.surface,
     borderColor: theme.framework === 'material' ? theme.colors.primary : undefined, // Top border for material
     padding: `${theme.spacing.unit * 6}px`, // Dynamic padding
+    ...style
   };
 
   if (theme.framework === 'terminal') {
@@ -42,7 +48,7 @@ export const ThemedCard: React.FC<{ children: React.ReactNode; className?: strin
   }
 
   return (
-    <div className={`${classes} ${className}`} style={dynamicStyle}>
+    <div className={`${classes} ${className}`} style={dynamicStyle} {...props}>
       {children}
     </div>
   );

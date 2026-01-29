@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Icon, IconProps } from '../ui-elements/Icon';
 
@@ -39,6 +40,7 @@ export const Icons = {
   Tag: (props: IconWrapperProps) => <Icon name="label" size="sm" {...props} />,
   Close: (props: IconWrapperProps) => <Icon name="close" size="sm" {...props} />,
   Code: (props: IconWrapperProps) => <Icon name="code" size="sm" {...props} />,
+  Plane: (props: IconWrapperProps) => <Icon name="flight" size="sm" {...props} />,
   
   // New Icons for Gallery
   Wifi: (props: IconWrapperProps) => <Icon name="wifi" size="sm" {...props} />,
