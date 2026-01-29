@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { ThemeSlider } from '../ui-elements/ThemeSlider';
 
 export const EditorLayout: React.FC = () => {
   const { theme, updateSpacing } = useTheme();
@@ -7,19 +9,13 @@ export const EditorLayout: React.FC = () => {
   return (
     <section className="space-y-6">
         <div className="space-y-5">
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <label className="text-xs font-medium text-gray-700">Grid Unit</label>
-                    <span className="text-[10px] font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-500 border border-gray-200">{theme.spacing.unit}px</span>
-                </div>
-                 <input 
-                    type="range" 
-                    min="2" max="12" step="1"
-                    value={theme.spacing.unit}
-                    onChange={(e) => updateSpacing('unit', parseInt(e.target.value))}
-                    className="w-full h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 hover:bg-gray-200 transition-colors"
-                />
-            </div>
+            <ThemeSlider 
+                label="Grid Unit"
+                value={theme.spacing.unit}
+                min={2}
+                max={12}
+                onChange={(v) => updateSpacing('unit', v)}
+            />
             
             <div className="space-y-2">
                  <div className="flex items-center justify-between">

@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { ThemeSlider } from '../ui-elements/ThemeSlider';
 
 export const EditorShape: React.FC = () => {
   const { theme, updateBorderRadius, updateEffect } = useTheme();
@@ -7,34 +9,21 @@ export const EditorShape: React.FC = () => {
   return (
     <section className="space-y-6">
         <div className="space-y-5">
-            {/* Sliders */}
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <label className="text-xs font-medium text-gray-700">Button Radius</label>
-                    <span className="text-[10px] font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-500 border border-gray-200">{theme.borderRadius.button}</span>
-                </div>
-                <input 
-                    type="range" 
-                    min="0" max="32" 
-                    value={parseInt(theme.borderRadius.button)}
-                    onChange={(e) => updateBorderRadius('button', `${e.target.value}px`)}
-                    className="w-full h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 hover:bg-gray-200 transition-colors"
-                />
-            </div>
+            <ThemeSlider 
+                label="Button Radius"
+                value={parseInt(theme.borderRadius.button)}
+                min={0}
+                max={32}
+                onChange={(v) => updateBorderRadius('button', `${v}px`)}
+            />
             
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <label className="text-xs font-medium text-gray-700">Card Radius</label>
-                    <span className="text-[10px] font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-500 border border-gray-200">{theme.borderRadius.card}</span>
-                </div>
-                <input 
-                    type="range" 
-                    min="0" max="40" 
-                    value={parseInt(theme.borderRadius.card)}
-                    onChange={(e) => updateBorderRadius('card', `${e.target.value}px`)}
-                    className="w-full h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 hover:bg-gray-200 transition-colors"
-                />
-            </div>
+            <ThemeSlider 
+                label="Card Radius"
+                value={parseInt(theme.borderRadius.card)}
+                min={0}
+                max={40}
+                onChange={(v) => updateBorderRadius('card', `${v}px`)}
+            />
             
             {/* Grid Inputs */}
             <div className="grid grid-cols-2 gap-3">

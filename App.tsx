@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ThemeEditor } from './components/ThemeEditor';
 import { PreviewCanvas } from './components/PreviewCanvas';
@@ -5,26 +6,17 @@ import { Navbar } from './components/Navbar';
 import { ThemeProvider } from './context/ThemeContext';
 import { Toaster } from './components/ui/Toaster';
 import { CodeExportModal } from './components/CodeExportModal';
+import { useMediaQuery } from './hooks/useMediaQuery';
 
 export default function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 1024px)');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(!isMobile);
   const [showExportModal, setShowExportModal] = useState(false);
 
+  // Sync sidebar state with mobile changes, but allow manual override
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-      if (window.innerWidth < 1024) {
-        setIsSidebarOpen(false);
-      } else {
-        setIsSidebarOpen(true);
-      }
-    };
-
-    handleResize(); // Initial check
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    setIsSidebarOpen(!isMobile);
+  }, [isMobile]);
 
   return (
     <ThemeProvider>

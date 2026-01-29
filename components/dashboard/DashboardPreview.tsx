@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
+
+import React, { useState, Suspense } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { Icons } from './DashboardIcons';
-import { MarketingTab } from './dashboard/MarketingTab';
-import { ApplicationTab } from './dashboard/ApplicationTab';
-import { ProjectTab } from './dashboard/ProjectTab';
-import { ElementsTab } from './dashboard/ElementsTab';
-import { DataGalleryTab } from './dashboard/DataGalleryTab';
-import { LegalGalleryTab } from './dashboard/LegalGalleryTab';
-import { GraphGalleryTab } from './dashboard/GraphGalleryTab';
-import { DatabaseGalleryTab } from './dashboard/DatabaseGalleryTab';
-import { FlowGalleryTab } from './dashboard/FlowGalleryTab';
-import { WebUiGalleryTab } from './dashboard/WebUiGalleryTab';
-import { ProjectGalleryTab } from './dashboard/ProjectGalleryTab';
-import { ApplicationGalleryTab } from './dashboard/ApplicationGalleryTab';
-import { FinanceGalleryTab } from './dashboard/FinanceGalleryTab';
-import { PagesGalleryTab } from './dashboard/PagesGalleryTab';
-import { CalendarGalleryTab } from './dashboard/CalendarGalleryTab';
-import { SecurityGalleryTab } from './dashboard/SecurityGalleryTab';
-import { DocumentGalleryTab } from './dashboard/DocumentGalleryTab';
+
+// Lazy load heavy gallery tabs
+const MarketingTab = React.lazy(() => import('./MarketingTab').then(module => ({ default: module.MarketingTab })));
+const ApplicationTab = React.lazy(() => import('./ApplicationTab').then(module => ({ default: module.ApplicationTab })));
+const ProjectTab = React.lazy(() => import('./ProjectTab').then(module => ({ default: module.ProjectTab })));
+const ElementsTab = React.lazy(() => import('./ElementsTab').then(module => ({ default: module.ElementsTab })));
+const DataGalleryTab = React.lazy(() => import('./DataGalleryTab').then(module => ({ default: module.DataGalleryTab })));
+const LegalGalleryTab = React.lazy(() => import('./LegalGalleryTab').then(module => ({ default: module.LegalGalleryTab })));
+const GraphGalleryTab = React.lazy(() => import('./GraphGalleryTab').then(module => ({ default: module.GraphGalleryTab })));
+const DatabaseGalleryTab = React.lazy(() => import('./DatabaseGalleryTab').then(module => ({ default: module.DatabaseGalleryTab })));
+const FlowGalleryTab = React.lazy(() => import('./FlowGalleryTab').then(module => ({ default: module.FlowGalleryTab })));
+const WebUiGalleryTab = React.lazy(() => import('./WebUiGalleryTab').then(module => ({ default: module.WebUiGalleryTab })));
+const ProjectGalleryTab = React.lazy(() => import('./ProjectGalleryTab').then(module => ({ default: module.ProjectGalleryTab })));
+const ApplicationGalleryTab = React.lazy(() => import('./ApplicationGalleryTab').then(module => ({ default: module.ApplicationGalleryTab })));
+const FinanceGalleryTab = React.lazy(() => import('./FinanceGalleryTab').then(module => ({ default: module.FinanceGalleryTab })));
+const PagesGalleryTab = React.lazy(() => import('./PagesGalleryTab').then(module => ({ default: module.PagesGalleryTab })));
+const CalendarGalleryTab = React.lazy(() => import('./CalendarGalleryTab').then(module => ({ default: module.CalendarGalleryTab })));
+const SecurityGalleryTab = React.lazy(() => import('./SecurityGalleryTab').then(module => ({ default: module.SecurityGalleryTab })));
+const DocumentGalleryTab = React.lazy(() => import('./DocumentGalleryTab').then(module => ({ default: module.DocumentGalleryTab })));
 
 type TabId = 'home' | 'marketing' | 'application' | 'project' | 'elements' | 'data' | 'legal' | 'graph' | 'database' | 'flow' | 'webui' | 'project_gallery' | 'app_gallery' | 'finance' | 'pages' | 'calendar' | 'security' | 'documents';
 
@@ -65,6 +68,13 @@ export const DashboardPreview: React.FC = () => {
       { id: 'marketing', label: 'Marketing', icon: <Icons.Star size="sm"/> },
   ];
 
+  const LoadingSpinner = () => (
+      <div className="flex flex-col items-center justify-center h-64 opacity-50 space-y-4">
+          <div className="w-8 h-8 border-4 border-t-transparent rounded-full animate-spin" style={{ borderColor: theme.colors.primary, borderTopColor: 'transparent' }}></div>
+          <p className="text-xs font-bold uppercase tracking-wider">Loading...</p>
+      </div>
+  );
+
   return (
     <div style={wrapperStyle} className="transition-colors duration-300">
       
@@ -95,25 +105,27 @@ export const DashboardPreview: React.FC = () => {
          </div>
       </div>
 
-      <div className="p-6 md:p-8 max-w-7xl mx-auto space-y-12">
-        {activeTab === 'home' && <ApplicationTab />}
-        {activeTab === 'marketing' && <MarketingTab />}
-        {activeTab === 'application' && <ApplicationTab />}
-        {activeTab === 'project' && <ProjectTab />}
-        {activeTab === 'elements' && <ElementsTab />}
-        {activeTab === 'data' && <DataGalleryTab />}
-        {activeTab === 'legal' && <LegalGalleryTab />}
-        {activeTab === 'finance' && <FinanceGalleryTab />}
-        {activeTab === 'graph' && <GraphGalleryTab />}
-        {activeTab === 'database' && <DatabaseGalleryTab />}
-        {activeTab === 'flow' && <FlowGalleryTab />}
-        {activeTab === 'webui' && <WebUiGalleryTab />}
-        {activeTab === 'project_gallery' && <ProjectGalleryTab />}
-        {activeTab === 'app_gallery' && <ApplicationGalleryTab />}
-        {activeTab === 'pages' && <PagesGalleryTab />}
-        {activeTab === 'calendar' && <CalendarGalleryTab />}
-        {activeTab === 'security' && <SecurityGalleryTab />}
-        {activeTab === 'documents' && <DocumentGalleryTab />}
+      <div className="p-6 md:p-8 max-w-7xl mx-auto space-y-12 min-h-[500px]">
+        <Suspense fallback={<LoadingSpinner />}>
+            {activeTab === 'home' && <ApplicationTab />}
+            {activeTab === 'marketing' && <MarketingTab />}
+            {activeTab === 'application' && <ApplicationTab />}
+            {activeTab === 'project' && <ProjectTab />}
+            {activeTab === 'elements' && <ElementsTab />}
+            {activeTab === 'data' && <DataGalleryTab />}
+            {activeTab === 'legal' && <LegalGalleryTab />}
+            {activeTab === 'finance' && <FinanceGalleryTab />}
+            {activeTab === 'graph' && <GraphGalleryTab />}
+            {activeTab === 'database' && <DatabaseGalleryTab />}
+            {activeTab === 'flow' && <FlowGalleryTab />}
+            {activeTab === 'webui' && <WebUiGalleryTab />}
+            {activeTab === 'project_gallery' && <ProjectGalleryTab />}
+            {activeTab === 'app_gallery' && <ApplicationGalleryTab />}
+            {activeTab === 'pages' && <PagesGalleryTab />}
+            {activeTab === 'calendar' && <CalendarGalleryTab />}
+            {activeTab === 'security' && <SecurityGalleryTab />}
+            {activeTab === 'documents' && <DocumentGalleryTab />}
+        </Suspense>
       </div>
     </div>
   );

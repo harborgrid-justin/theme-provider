@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { FONTS } from '../../constants';
+import { ThemeSlider } from '../ui-elements/ThemeSlider';
 
 export const EditorTypography: React.FC = () => {
   const { theme, updateTypography } = useTheme();
@@ -27,20 +29,13 @@ export const EditorTypography: React.FC = () => {
                 </div>
             </div>
 
-            {/* Base Size Stacked */}
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <label className="text-xs font-medium text-gray-700">Base Scale</label>
-                    <span className="text-[10px] font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-500 border border-gray-200">{theme.typography.baseSize}px</span>
-                </div>
-                <input 
-                    type="range" 
-                    min="12" max="24" step="1"
-                    value={theme.typography.baseSize}
-                    onChange={(e) => updateTypography('baseSize', parseInt(e.target.value))}
-                    className="w-full h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 hover:bg-gray-200 transition-colors"
-                />
-            </div>
+            <ThemeSlider 
+                label="Base Scale"
+                value={theme.typography.baseSize}
+                min={12}
+                max={24}
+                onChange={(v) => updateTypography('baseSize', v)}
+            />
             
             {/* Heading Weight Stacked */}
             <div className="space-y-2">

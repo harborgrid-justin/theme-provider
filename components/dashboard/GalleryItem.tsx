@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { ThemedCard } from '../ui-elements/ThemedCard';
@@ -10,7 +11,7 @@ interface GalleryItemProps {
   centered?: boolean;
 }
 
-export const GalleryItem: React.FC<GalleryItemProps> = ({ title, children, className = '', centered = false }) => {
+export const GalleryItem: React.FC<GalleryItemProps> = React.memo(({ title, children, className = '', centered = false }) => {
   const { theme } = useTheme();
 
   // Determine if height class is provided, otherwise default to h-32
@@ -33,4 +34,4 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ title, children, class
           )}
       </ThemedCard>
   );
-};
+});
