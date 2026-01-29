@@ -7,6 +7,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { Toaster } from './components/ui/Toaster';
 import { CodeExportModal } from './components/CodeExportModal';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 export default function App() {
   const isMobile = useMediaQuery('(max-width: 1024px)');
@@ -35,13 +36,17 @@ export default function App() {
             `}
           >
             <div className={`h-full overflow-hidden flex flex-col ${isSidebarOpen ? 'opacity-100' : 'opacity-0 lg:hidden'}`}>
-               <ThemeEditor onClose={() => setIsSidebarOpen(false)} isMobile={isMobile} />
+               <ErrorBoundary fallback={<div className="p-4 text-red-500">Editor Error</div>}>
+                  <ThemeEditor onClose={() => setIsSidebarOpen(false)} isMobile={isMobile} />
+               </ErrorBoundary>
             </div>
           </div>
 
           {/* Main Preview Area */}
           <main className="flex-1 h-full overflow-hidden bg-white p-4">
-             <PreviewCanvas />
+             <ErrorBoundary>
+                <PreviewCanvas />
+             </ErrorBoundary>
           </main>
 
           {/* Overlay for mobile when sidebar is open */}

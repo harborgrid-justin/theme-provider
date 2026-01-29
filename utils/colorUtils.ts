@@ -1,3 +1,4 @@
+
 export interface Palette {
     name: string;
     colors: string[];
@@ -10,6 +11,35 @@ function hexToRgb(hex: string): {r: number, g: number, b: number} | null {
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     } : null;
+}
+
+function getLuminance(r: number, g: number, b: number) {
+    const a = [r, g, b].map(v => {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+}
+
+export function getContrastRatio(hex1: string, hex2: string): number {
+    const rgb1 = hexToRgb(hex1);
+    const rgb2 = hexToRgb(hex2);
+    if (!rgb1 || !rgb2) return 1;
+    
+    const lum1 = getLuminance(rgb1.r, rgb1.g, rgb1.b);
+    const lum2 = getLuminance(rgb2.r, rgb2.g, rgb2.b);
+    
+    const brightest = Math.max(lum1, lum2);
+    const darkest = Math.min(lum1, lum2);
+    
+    return (brightest + 0.05) / (darkest + 0.05);
+}
+
+// Returns black or white depending on which has better contrast against the bg
+export function getAccessibleTextColor(bgHex: string): '#000000' | '#ffffff' {
+    const whiteContrast = getContrastRatio(bgHex, '#ffffff');
+    const blackContrast = getContrastRatio(bgHex, '#000000');
+    return whiteContrast > blackContrast ? '#ffffff' : '#000000';
 }
   
 function rgbToHsl(r: number, g: number, b: number): {h: number, s: number, l: number} {
@@ -60,7 +90,6 @@ function rgbToHex(r: number, g: number, b: number): string {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
-// Wrapper to handle Hex string directly
 function adjustHue(hex: string, degree: number): string {
     const rgb = hexToRgb(hex);
     if(!rgb) return hex;
@@ -73,25 +102,21 @@ function adjustHue(hex: string, degree: number): string {
 export function generatePalettes(baseColor: string): Palette[] {
     const palettes: Palette[] = [];
     
-    // Complementary (Base + 180deg)
     palettes.push({
         name: 'Complementary',
         colors: [baseColor, adjustHue(baseColor, 180)]
     });
 
-    // Analogous (Base - 30, Base + 30)
     palettes.push({
         name: 'Analogous',
         colors: [adjustHue(baseColor, -30), baseColor, adjustHue(baseColor, 30)]
     });
 
-    // Triadic (Base + 120, Base + 240)
     palettes.push({
         name: 'Triadic',
         colors: [baseColor, adjustHue(baseColor, 120), adjustHue(baseColor, 240)]
     });
 
-    // Split Complementary
     palettes.push({
         name: 'Split Compl.',
         colors: [baseColor, adjustHue(baseColor, 150), adjustHue(baseColor, 210)]
